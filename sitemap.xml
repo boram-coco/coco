@@ -2,22 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://boram-coco.github.io/coco/about.html</loc>
-    <lastmod>2023-01-25T13:45:38.348Z</lastmod>
+    <lastmod>2023-01-25T13:55:50.918Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/hm/python 3_0316 .html</loc>
+    <lastmod>2023-01-25T13:55:51.242Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/hm/python 1_0307.html</loc>
+    <lastmod>2023-01-25T13:55:51.550Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 4_0328.html</loc>
-    <lastmod>2023-01-25T13:45:38.616Z</lastmod>
+    <lastmod>2023-01-25T13:55:51.794Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 4_0321.html</loc>
-    <lastmod>2023-01-25T13:45:38.960Z</lastmod>
+    <lastmod>2023-01-25T13:55:52.130Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 5_0404.html</loc>
-    <lastmod>2023-01-25T13:45:39.280Z</lastmod>
+    <lastmod>2023-01-25T13:55:52.438Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/index.html</loc>
-    <lastmod>2023-01-25T13:45:39.472Z</lastmod>
+    <lastmod>2023-01-25T13:55:52.638Z</lastmod>
   </url>
 </urlset>
