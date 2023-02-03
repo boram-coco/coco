@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/est/test.html",
       "/posts/python/python 7_0418.html",
       "/posts/python/python 7_0413.html",
       "/posts/python/python 6_0411.html",
@@ -12,7 +13,6 @@
       "/posts/python/python 3_0321.html",
       "/posts/python/python 3_0316.html",
       "/posts/python/python 2_0314.html",
-      "/posts/est/test.html",
       "/posts/python/python 1_0307.html"
     ]
   }
