@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>coco</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">coco</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./about.html" aria-current="page">
+ <span class="menu-text">Boram-coco</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/boram-coco"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">coco</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">coco</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">Boram-coco</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Est</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/1. file-path-setting.html" class="sidebar-item-text sidebar-link">1. file-path-setting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/0. jupyter basic.html" class="sidebar-item-text sidebar-link">1. 주피터 노트북 사용법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/2. 데이터 분석 준비하기.html" class="sidebar-item-text sidebar-link">3. 데이터 분석 준비하기</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/3. 서울 종합병원 분포 확인하기.html" class="sidebar-item-text sidebar-link">4. 서울 종합병원 분포 확인하기</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/4. 건강검진 데이터로 가설검정.html" class="sidebar-item-text sidebar-link">5. 건강검진 데이터로 가설검정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/5. K-beauty.html" class="sidebar-item-text sidebar-link">6. K-beauty</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Python</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 1_0307.html" class="sidebar-item-text sidebar-link">파이썬 1주차 (0307)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 2_0314.html" class="sidebar-item-text sidebar-link">파이썬 2주차 (0314)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 3_0316.html" class="sidebar-item-text sidebar-link">파이썬 3주차 (0316)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 3_0321.html" class="sidebar-item-text sidebar-link">파이썬 3주차 (0321)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 4_0323.html" class="sidebar-item-text sidebar-link">파이썬 4주차 (0323)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 4_0328.html" class="sidebar-item-text sidebar-link">파이썬 4주차 (0328)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 5_0404.html" class="sidebar-item-text sidebar-link">파이썬 5주차 (0404)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 5_0406.html" class="sidebar-item-text sidebar-link">파이썬 5주차 (0406)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 6_0411.html" class="sidebar-item-text sidebar-link">파이썬 6주차 (0411)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 7_0413.html" class="sidebar-item-text sidebar-link">파이썬 7주차 (0413)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/python/python 7_0418.html" class="sidebar-item-text sidebar-link">파이썬 7주차 (0418)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(17)</span></div><div class="category" data-category="int, float, bool, str 자료형">int, float, bool, str 자료형 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff)">numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_)">numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist)">numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능)">numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="개발환경 변천사 1~5세대 프로그래머">개발환경 변천사 1~5세대 프로그래머 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="딕셔너리, 집합">딕셔너리, 집합 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션)">리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="부스트코스">부스트코스 <span class="quarto-category-count">(6)</span></div><div class="category" data-category="소스코드 관리(모듈, 패키지, 라이브러리)">소스코드 관리(모듈, 패키지, 라이브러리) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="스트라이딩, 컴프리헨션고급, len함수, 딕셔너리">스트라이딩, 컴프리헨션고급, len함수, 딕셔너리 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="튜플">튜플 <span class="quarto-category-count">(1)</span></div></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-body" id="quarto-document-content">
+
+
+
+
+
+<p>:::{#quarto-listing-pipeline .hidden} <span class="hidden" data-render-id="quarto-enable-math-inline"><span class="math inline">\(e = mC^2\)</span></span></p>
+<p>:::{.hidden render-id=“pipeline-listing-listing”}</p>
+:::{.list .quarto-listing-default}
+<div class="quarto-post image-right" data-index="0" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675413025156" data-listing-reading-time-sort="0.005">
+<div class="body">
+<a href="./posts/est/1. file-path-setting.html">
+<h3 class="no-anchor listing-title">
+<ol type="1">
+<li>file-path-setting
+</li></ol></h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('부스트코스'); return false;">
+부스트코스
+</div>
+</div>
+<a href="./posts/est/1. file-path-setting.html">
+<div class="listing-description">
+2816 rows × 23 columns
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/est/1. file-path-setting.html">
+<div class="listing-date">
+Nov 24, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675412983604" data-listing-reading-time-sort="0.465">
+<div class="body">
+<a href="./posts/est/3. 서울 종합병원 분포 확인하기.html">
+<h3 class="no-anchor listing-title">
+<ol start="4" type="1">
+<li>서울 종합병원 분포 확인하기
+</li></ol></h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('부스트코스'); return false;">
+부스트코스
+</div>
+</div>
+<a href="./posts/est/3. 서울 종합병원 분포 확인하기.html">
+<div class="listing-description">
+1 rows × 39 columns
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/est/3. 서울 종합병원 분포 확인하기.html">
+<div class="listing-date">
+Nov 24, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675413002136" data-listing-reading-time-sort="1.03">
+<div class="body">
+<a href="./posts/est/4. 건강검진 데이터로 가설검정.html">
+<h3 class="no-anchor listing-title">
+<ol start="5" type="1">
+<li>건강검진 데이터로 가설검정
+</li></ol></h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('부스트코스'); return false;">
+부스트코스
+</div>
+</div>
+<a href="./posts/est/4. 건강검진 데이터로 가설검정.html">
+<div class="listing-description">
+1000000 rows × 34 columns
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/est/4. 건강검진 데이터로 가설검정.html">
+<div class="listing-date">
+Nov 24, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675413020532" data-listing-reading-time-sort="0.295">
+<div class="body">
+<a href="./posts/est/5. K-beauty.html">
+<h3 class="no-anchor listing-title">
+<ol start="6" type="1">
+<li>K-beauty
+</li></ol></h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('부스트코스'); return false;">
+부스트코스
+</div>
+</div>
+<a href="./posts/est/5. K-beauty.html">
+<div class="listing-description">
+5 rows × 27 columns
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/est/5. K-beauty.html">
+<div class="listing-date">
+Nov 24, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675412914640" data-listing-reading-time-sort="0.43">
+<div class="body">
+<a href="./posts/est/0. jupyter basic.html">
+<h3 class="no-anchor listing-title">
+<ol type="1">
+<li>주피터 노트북 사용법
+</li></ol></h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('부스트코스'); return false;">
+부스트코스
+</div>
+</div>
+<a href="./posts/est/0. jupyter basic.html">
+<div class="listing-description">
+
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/est/0. jupyter basic.html">
+<div class="listing-date">
+Nov 24, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675419932080" data-listing-reading-time-sort="0.49">
+<div class="body">
+<a href="./posts/est/2. 데이터 분석 준비하기.html">
+<h3 class="no-anchor listing-title">
+<ol start="3" type="1">
+<li>데이터 분석 준비하기
+</li></ol></h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('부스트코스'); return false;">
+부스트코스
+</div>
+</div>
+<a href="./posts/est/2. 데이터 분석 준비하기.html">
+<div class="listing-description">
+파이썬에서는 명시적인 것이 암시적인 것보다 낫다라는 철학이 있습니다.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/est/2. 데이터 분석 준비하기.html">
+<div class="listing-date">
+Nov 24, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-categories="numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist)" data-listing-date-sort="1650207600000" data-listing-file-modified-sort="1674692458410" data-listing-reading-time-sort="0.655">
+<div class="body">
+<a href="./posts/python/python 7_0418.html">
+<h3 class="no-anchor listing-title">
+파이썬 7주차 (0418)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist)'); return false;">
+numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist)
+</div>
+</div>
+<a href="./posts/python/python 7_0418.html">
+<div class="listing-description">
+<code>-</code> 파이썬에서 함수를 적용하는 2가지 방식 - np.sum(a) - a.sum()
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 7_0418.html">
+<div class="listing-date">
+Apr 18, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-categories="numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_)" data-listing-date-sort="1649775600000" data-listing-file-modified-sort="1674692719187" data-listing-reading-time-sort="1.235">
+<div class="body">
+<a href="./posts/python/python 7_0413.html">
+<h3 class="no-anchor listing-title">
+파이썬 7주차 (0413)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_)'); return false;">
+numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_)
+</div>
+</div>
+<a href="./posts/python/python 7_0413.html">
+<div class="listing-description">
+<code>-</code> 0~1사이에서 10개의 난수 생성
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 7_0413.html">
+<div class="listing-date">
+Apr 13, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff)" data-listing-date-sort="1649602800000" data-listing-file-modified-sort="1674693427418" data-listing-reading-time-sort="3.435">
+<div class="body">
+<a href="./posts/python/python 6_0411.html">
+<h3 class="no-anchor listing-title">
+파이썬 6주차 (0411)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff)'); return false;">
+numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff)
+</div>
+</div>
+<a href="./posts/python/python 6_0411.html">
+<div class="listing-description">
+<code>-</code> 아래의 연립방정식 고려
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 6_0411.html">
+<div class="listing-date">
+Apr 11, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능)" data-listing-date-sort="1649170800000" data-listing-file-modified-sort="1674692692255" data-listing-reading-time-sort="0.525">
+<div class="body">
+<a href="./posts/python/python 5_0406.html">
+<h3 class="no-anchor listing-title">
+파이썬 5주차 (0406)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능)'); return false;">
+numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능)
+</div>
+</div>
+<a href="./posts/python/python 5_0406.html">
+<div class="listing-description">
+<code>-</code> 선언
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 5_0406.html">
+<div class="listing-date">
+Apr 6, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-categories="소스코드 관리(모듈, 패키지, 라이브러리)" data-listing-date-sort="1648998000000" data-listing-file-modified-sort="1674694572543" data-listing-reading-time-sort="2.15">
+<div class="body">
+<a href="./posts/python/python 5_0404.html">
+<h3 class="no-anchor listing-title">
+파이썬 5주차 (0404)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('소스코드 관리(모듈, 패키지, 라이브러리)'); return false;">
+소스코드 관리(모듈, 패키지, 라이브러리)
+</div>
+</div>
+<a href="./posts/python/python 5_0404.html">
+<div class="listing-description">
+<strong>intro</strong>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 5_0404.html">
+<div class="listing-date">
+Apr 4, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-categories="개발환경 변천사 1~5세대 프로그래머" data-listing-date-sort="1648393200000" data-listing-file-modified-sort="1674694441163" data-listing-reading-time-sort="8.15">
+<div class="body">
+<a href="./posts/python/python 4_0328.html">
+<h3 class="no-anchor listing-title">
+파이썬 4주차 (0328)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('개발환경 변천사 1~5세대 프로그래머'); return false;">
+개발환경 변천사 1~5세대 프로그래머
+</div>
+</div>
+<a href="./posts/python/python 4_0328.html">
+<div class="listing-description">
+youtube: https://youtube.com/playlist?list=PLQqh36zP38-zcnjAged1xIatgznRTy93c
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 4_0328.html">
+<div class="listing-date">
+Mar 28, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-categories="딕셔너리, 집합" data-listing-date-sort="1647961200000" data-listing-file-modified-sort="1674692344161" data-listing-reading-time-sort="0.71">
+<div class="body">
+<a href="./posts/python/python 4_0323.html">
+<h3 class="no-anchor listing-title">
+파이썬 4주차 (0323)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('딕셔너리, 집합'); return false;">
+딕셔너리, 집합
+</div>
+</div>
+<a href="./posts/python/python 4_0323.html">
+<div class="listing-description">
+<code>-</code> 하나있다.`
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 4_0323.html">
+<div class="listing-date">
+Mar 23, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="13" data-categories="스트라이딩, 컴프리헨션고급, len함수, 딕셔너리" data-listing-date-sort="1647788400000" data-listing-file-modified-sort="1674692341913" data-listing-reading-time-sort="2.325">
+<div class="body">
+<a href="./posts/python/python 3_0321.html">
+<h3 class="no-anchor listing-title">
+파이썬 3주차 (0321)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('스트라이딩, 컴프리헨션고급, len함수, 딕셔너리'); return false;">
+스트라이딩, 컴프리헨션고급, len함수, 딕셔너리
+</div>
+</div>
+<a href="./posts/python/python 3_0321.html">
+<div class="listing-description">
+<code>-</code> 책의 설명 (파이썬에 한정되는 것은 아니고 모든 언어에 존재하는 불변형 객체에 적용가능한 설명) - 실수방지 -…
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 3_0321.html">
+<div class="listing-date">
+Mar 21, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="14" data-categories="튜플" data-listing-date-sort="1647356400000" data-listing-file-modified-sort="1674694297366" data-listing-reading-time-sort="1.22">
+<div class="body">
+<a href="./posts/python/python 3_0316.html">
+<h3 class="no-anchor listing-title">
+파이썬 3주차 (0316)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('튜플'); return false;">
+튜플
+</div>
+</div>
+<a href="./posts/python/python 3_0316.html">
+<div class="listing-description">
+<code>-</code> 컨테이너형타입이라는 점, 그리고 연산 및 인덱싱을 하는 방법은 리스트와 같음
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 3_0316.html">
+<div class="listing-date">
+Mar 16, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="15" data-categories="리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션)" data-listing-date-sort="1647183600000" data-listing-file-modified-sort="1674692227500" data-listing-reading-time-sort="2.48">
+<div class="body">
+<a href="./posts/python/python 2_0314.html">
+<h3 class="no-anchor listing-title">
+파이썬 2주차 (0314)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션)'); return false;">
+리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션)
+</div>
+</div>
+<a href="./posts/python/python 2_0314.html">
+<div class="listing-description">
+<code>-</code> 리스트의 선언
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 2_0314.html">
+<div class="listing-date">
+Mar 14, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="16" data-categories="int, float, bool, str 자료형" data-listing-date-sort="1646578800000" data-listing-file-modified-sort="1674692223560" data-listing-reading-time-sort="1.03">
+<div class="body">
+<a href="./posts/python/python 1_0307.html">
+<h3 class="no-anchor listing-title">
+파이썬 1주차 (0307)
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('int, float, bool, str 자료형'); return false;">
+int, float, bool, str 자료형
+</div>
+</div>
+<a href="./posts/python/python 1_0307.html">
+<div class="listing-description">
+<code>-</code> 파이썬의 기본자료형은 int, float, bool, str, list, tuple, dict, set 등이 있다.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/python/python 1_0307.html">
+<div class="listing-date">
+Mar 7, 2022
+</div>
+<div class="listing-author">
+김보람
+</div>
+</a>
+</div>
+</div>
+:::
+
+
+
+
+
+
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+<p>:::</p>
+<p>:::</p>
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing"></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
