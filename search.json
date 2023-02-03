@@ -7,13 +7,6 @@
     "text": "Everyday with Coco"
   },
   {
-    "objectID": "posts/est/test.html",
-    "href": "posts/est/test.html",
-    "title": "1. 주피터 노트북 사용법",
-    "section": "",
-    "text": "주피터 노트북 사용법\n\nShift+Enter 키를 누르면 셀이 실행되고 커서가 다음셀로 이동\nEnter 키 누르면 편집상태로 돌아온다.\nESC 키를 누르고\n\na 키를 누르면 위에 셀이 추가 된다.\nb 키를 누르면 아래에 셀이 추가 된다.\ndd 키를 누르면 셀이 삭제 된다.\nm 키를 누르면 문서 셀로 변경 된다.\ny 키를 누르면 코드 셀로 변경 된다.\n\n단축키는 h 버튼 눌러서 확인이 가능하다\n\n\n마크다운(Markdown)이란?\n\n코드와 함께 문서화를 할 수 있다.\n문서화를 할 수 있는 문법\n\n여러 줄의 설명을\n줄바꿈으로 쓰고자 할 때\n\nprint(\"Hello World\")\n\nHello World\n\n\n\na=1\nb=2\na+b\n\n3\n\n\n\nfor i in range(10000000):\n    print(i)"
-  },
-  {
     "objectID": "posts/python/python 7_0418.html",
     "href": "posts/python/python 7_0418.html",
     "title": "파이썬 7주차 (0418)",
