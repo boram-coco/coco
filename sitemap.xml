@@ -2,114 +2,118 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://boram-coco.github.io/coco/about.html</loc>
-    <lastmod>2023-02-15T08:48:45.380Z</lastmod>
+    <lastmod>2023-02-15T08:54:00.720Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/machin learning/2022_09_28_(5주차)_10월05일_ipynb의_사본.html</loc>
+    <lastmod>2023-02-15T08:54:02.708Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/machin learning/2022_09_21_(3주차)_9월21일_ipynb의_사본.html</loc>
-    <lastmod>2023-02-15T08:48:47.600Z</lastmod>
+    <lastmod>2023-02-15T08:54:04.876Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/machin learning/(202250926)기계학습특강_final (2).html</loc>
-    <lastmod>2023-02-15T08:48:47.900Z</lastmod>
+    <lastmod>2023-02-15T08:54:05.196Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/machin learning/2022_09_07_(1주차)_9월7일_ipynb의_사본.html</loc>
-    <lastmod>2023-02-15T08:48:48.272Z</lastmod>
+    <lastmod>2023-02-15T08:54:05.564Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/machin learning/2022_09_14_(2주차)_9월14일_ipynb의_사본.html</loc>
-    <lastmod>2023-02-15T08:48:48.624Z</lastmod>
+    <lastmod>2023-02-15T08:54:05.924Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/machin learning/2022_09_28_(4주차)_9월 28일__ipynb의_사본.html</loc>
-    <lastmod>2023-02-15T08:48:49.140Z</lastmod>
+    <lastmod>2023-02-15T08:54:06.444Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/est/1. file-path-setting.html</loc>
-    <lastmod>2023-02-15T08:48:49.332Z</lastmod>
+    <lastmod>2023-02-15T08:54:06.640Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/est/3. 서울 종합병원 분포 확인하기.html</loc>
-    <lastmod>2023-02-15T08:48:49.904Z</lastmod>
+    <lastmod>2023-02-15T08:54:07.212Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/est/4. 건강검진 데이터로 가설검정.html</loc>
-    <lastmod>2023-02-15T08:48:50.400Z</lastmod>
+    <lastmod>2023-02-15T08:54:07.736Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/est/5. K-beauty.html</loc>
-    <lastmod>2023-02-15T08:48:50.800Z</lastmod>
+    <lastmod>2023-02-15T08:54:08.144Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/est/0. jupyter basic.html</loc>
-    <lastmod>2023-02-15T08:48:50.988Z</lastmod>
+    <lastmod>2023-02-15T08:54:08.332Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/est/2. 데이터 분석 준비하기.html</loc>
-    <lastmod>2023-02-15T08:48:51.288Z</lastmod>
+    <lastmod>2023-02-15T08:54:08.632Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 7_0418.html</loc>
-    <lastmod>2023-02-15T08:48:51.632Z</lastmod>
+    <lastmod>2023-02-15T08:54:08.972Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 5_0406.html</loc>
-    <lastmod>2023-02-15T08:48:51.984Z</lastmod>
+    <lastmod>2023-02-15T08:54:09.328Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 3_0321.html</loc>
-    <lastmod>2023-02-15T08:48:52.356Z</lastmod>
+    <lastmod>2023-02-15T08:54:09.704Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 4_0323.html</loc>
-    <lastmod>2023-02-15T08:48:52.700Z</lastmod>
+    <lastmod>2023-02-15T08:54:10.032Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 4_0328.html</loc>
-    <lastmod>2023-02-15T08:48:52.964Z</lastmod>
+    <lastmod>2023-02-15T08:54:10.296Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 7_0413.html</loc>
-    <lastmod>2023-02-15T08:48:53.252Z</lastmod>
+    <lastmod>2023-02-15T08:54:10.584Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 10_0509.html</loc>
-    <lastmod>2023-02-15T08:48:53.540Z</lastmod>
+    <lastmod>2023-02-15T08:54:10.872Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 2_0314.html</loc>
-    <lastmod>2023-02-15T08:48:54.032Z</lastmod>
+    <lastmod>2023-02-15T08:54:11.352Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 11_0511.html</loc>
-    <lastmod>2023-02-15T08:48:54.348Z</lastmod>
+    <lastmod>2023-02-15T08:54:11.680Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 5_0404.html</loc>
-    <lastmod>2023-02-15T08:48:54.676Z</lastmod>
+    <lastmod>2023-02-15T08:54:12.020Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 11_0516.html</loc>
-    <lastmod>2023-02-15T08:48:55.036Z</lastmod>
+    <lastmod>2023-02-15T08:54:12.376Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 6_0411.html</loc>
-    <lastmod>2023-02-15T08:48:55.500Z</lastmod>
+    <lastmod>2023-02-15T08:54:12.840Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 1_0307.html</loc>
-    <lastmod>2023-02-15T08:48:55.808Z</lastmod>
+    <lastmod>2023-02-15T08:54:13.160Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 10_0506 .html</loc>
-    <lastmod>2023-02-15T08:48:56.528Z</lastmod>
+    <lastmod>2023-02-15T08:54:13.872Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/python/python 3_0316.html</loc>
-    <lastmod>2023-02-15T08:48:56.844Z</lastmod>
+    <lastmod>2023-02-15T08:54:14.180Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/index.html</loc>
-    <lastmod>2023-02-15T08:48:57.272Z</lastmod>
+    <lastmod>2023-02-15T08:54:14.624Z</lastmod>
   </url>
 </urlset>
