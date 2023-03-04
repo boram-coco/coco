@@ -297,6 +297,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/Data Visualization/DV_8(1024).html" class="sidebar-item-text sidebar-link active">DV (1024) 8주차</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Data Visualization/DV_09(1102).html" class="sidebar-item-text sidebar-link">DV (1102) 9주차</a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -685,25 +690,21 @@ Installing collected packages: htmlmin, typeguard, tqdm, tangled-up-in-unicode, 
 Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.1 joblib-1.2.0 multimethod-1.9.1 networkx-2.6.3 pandas_profiling-3.6.6 phik-0.12.3 pydantic-1.10.5 tangled-up-in-unicode-0.2.0 tqdm-4.64.1 typeguard-2.13.3 visions-0.7.5 ydata-profiling-4.0.0</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> pandas_profiling</span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/home/koinup4/anaconda3/envs/py37/lib/python3.7/site-packages/ipykernel_launcher.py:3: DeprecationWarning: `import pandas_profiling` is going to be deprecated by April 1st. Please use `import ydata_profiling` instead.
-  This is separate from the ipykernel package so we can avoid doing imports until</code></pre>
-</div>
 </div>
 <section id="판다스-새로운-열의-할당-2단계-연쇄할당" class="level1">
 <h1>판다스: 새로운 열의 할당 2단계 (연쇄할당)</h1>
 <section id="모티브" class="level2">
 <h2 class="anchored" data-anchor-id="모티브">모티브</h2>
 <p><code>-</code> 원본데이터를 가급적 손상시키지 않으면서 데이터를 변형하고 싶음</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'A'</span>:<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="st">'B'</span>:<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>)})</span>
-<span id="cb5-2"><a href="#cb5-2"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'A'</span>:<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="st">'B'</span>:<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>)})</span>
+<span id="cb4-2"><a href="#cb4-2"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
 
 <div>
 
@@ -747,10 +748,10 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 </div>
 <p>복사본 생성</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df2 <span class="op">=</span> df</span>
-<span id="cb6-2"><a href="#cb6-2"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df2 <span class="op">=</span> df</span>
+<span id="cb5-2"><a href="#cb5-2"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
 
 <div>
 
@@ -793,10 +794,10 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df2[<span class="st">'C'</span>] <span class="op">=</span> (df2.A<span class="op">+</span>df2.B)<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df2[<span class="st">'C'</span>] <span class="op">=</span> (df2.A<span class="op">+</span>df2.B)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
 
 <div>
 
@@ -845,10 +846,10 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>df2[<span class="st">'D'</span>] <span class="op">=</span> (df2.C <span class="op">-</span> np.mean(df2.C))<span class="op">/</span>np.std(df2.C)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df2[<span class="st">'D'</span>] <span class="op">=</span> (df2.C <span class="op">-</span> np.mean(df2.C))<span class="op">/</span>np.std(df2.C)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
 
 <div>
 
@@ -903,9 +904,9 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>df  <span class="co"># 왜 C랑 D 값이 들어가있노?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>df  <span class="co"># 왜 C랑 D 값이 들어가있노?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
 
 <div>
 
@@ -968,15 +969,15 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 <section id="해결책1" class="level2">
 <h2 class="anchored" data-anchor-id="해결책1">해결책1</h2>
 <p><code>-</code> 올바른코드1</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'A'</span>:<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="st">'B'</span>:<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>)})</span>
-<span id="cb10-2"><a href="#cb10-2"></a>df2 <span class="op">=</span> df.copy() </span>
-<span id="cb10-3"><a href="#cb10-3"></a>df2[<span class="st">'C'</span>] <span class="op">=</span> (df2.A<span class="op">+</span> df2.B)<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>df2[<span class="st">'D'</span>]<span class="op">=</span> (df2.C <span class="op">-</span> np.mean(df2.C))<span class="op">/</span>np.std(df2.C) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'A'</span>:<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="st">'B'</span>:<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>)})</span>
+<span id="cb9-2"><a href="#cb9-2"></a>df2 <span class="op">=</span> df.copy() </span>
+<span id="cb9-3"><a href="#cb9-3"></a>df2[<span class="st">'C'</span>] <span class="op">=</span> (df2.A<span class="op">+</span> df2.B)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>df2[<span class="st">'D'</span>]<span class="op">=</span> (df2.C <span class="op">-</span> np.mean(df2.C))<span class="op">/</span>np.std(df2.C) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
 
 <div>
 
@@ -1031,9 +1032,9 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
 
 <div>
 
@@ -1077,33 +1078,33 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 </div>
 <p><code>-</code> 올바른 코드2 (eval)</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df.<span class="bu">eval</span>(<span class="st">'C=(A+B)/2'</span>).<span class="bu">eval</span>(<span class="st">'D=C-mean(c))/std(C)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df.<span class="bu">eval</span>(<span class="st">'C=(A+B)/2'</span>).<span class="bu">eval</span>(<span class="st">'D=C-mean(c))/std(C)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>TokenError: ('EOF in multi-line statement', (2, 0))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>mean([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]) <span class="co"># 정의가 안되있으무로</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>mean([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]) <span class="co"># 정의가 안되있으무로</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>NameError: name 'mean' is not defined</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>mean <span class="op">=</span> np.mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>mean <span class="op">=</span> np.mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>mean([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>mean([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>mean <span class="op">=</span> np.mean</span>
-<span id="cb20-2"><a href="#cb20-2"></a>std <span class="op">=</span> np.std</span>
-<span id="cb20-3"><a href="#cb20-3"></a>df.<span class="bu">eval</span>(<span class="st">'C=(A+B)/2'</span>).<span class="bu">eval</span>(<span class="st">'D=(C-@mean(C))/@std(C)'</span>)</span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># 외부에서 온 거란 걸 표시해주기 위해서 mean앞에 @ 붙인다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>mean <span class="op">=</span> np.mean</span>
+<span id="cb19-2"><a href="#cb19-2"></a>std <span class="op">=</span> np.std</span>
+<span id="cb19-3"><a href="#cb19-3"></a>df.<span class="bu">eval</span>(<span class="st">'C=(A+B)/2'</span>).<span class="bu">eval</span>(<span class="st">'D=(C-@mean(C))/@std(C)'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># 외부에서 온 거란 걸 표시해주기 위해서 mean앞에 @ 붙인다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
 
 <div>
 
@@ -1163,10 +1164,10 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 <li><p>외부에 함수를 선언하고 eval expression 안에 <span class="citation" data-cites="를">@를</span> 붙이는게 가독성이 없다.</p></li>
 </ul>
 <p><code>-</code> 올바른 코드3 (assign) —-&gt; 실패</p>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'A'</span>:<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="st">'B'</span>:<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>)})</span>
-<span id="cb21-2"><a href="#cb21-2"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'A'</span>:<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="st">'B'</span>:<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>)})</span>
+<span id="cb20-2"><a href="#cb20-2"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
 
 <div>
 
@@ -1216,16 +1217,16 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 </div>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>).assign(D<span class="op">=</span>(df.C<span class="op">-</span>np.mean(df.C))<span class="op">/</span>np.std(df.C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>).assign(D<span class="op">=</span>(df.C<span class="op">-</span>np.mean(df.C))<span class="op">/</span>np.std(df.C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>AttributeError: 'DataFrame' object has no attribute 'C'</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># df.C 하면 나오는 오류와 동일한 오류가 위처럼 나타난다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># df.C 하면 나오는 오류와 동일한 오류가 위처럼 나타난다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 
 <div>
@@ -1277,8 +1278,8 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 <p>아래와 같이 고쳐야함</p>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>_df <span class="op">=</span> df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb26-2"><a href="#cb26-2"></a>_df.assign(D<span class="op">=</span>(_df.C<span class="op">-</span>np.mean(_df.C))<span class="op">/</span>np.std(_df.C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>_df <span class="op">=</span> df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>_df.assign(D<span class="op">=</span>(_df.C<span class="op">-</span>np.mean(_df.C))<span class="op">/</span>np.std(_df.C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 
 <div>
@@ -1339,14 +1340,14 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 <h2 class="anchored" data-anchor-id="해결책2-assign">해결책2 (assign)</h2>
 <p>실패한 코드</p>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>).assign(D<span class="op">=</span>(df.C<span class="op">-</span>np.mean(df.C))<span class="op">/</span>np.std(df.C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>).assign(D<span class="op">=</span>(df.C<span class="op">-</span>np.mean(df.C))<span class="op">/</span>np.std(df.C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>AttributeError: 'DataFrame' object has no attribute 'C'</code></pre>
 </div>
 </div>
 <p>두번째 assign에서 표현된 df.C에서 <code>df current df</code> ( = <code>df.assign(C=(df.A+df.B)/2)</code> 까지 연산된 상태) 를 의미하도록 만들고 싶다. <span class="math inline">\(\to\)</span> 아래와 같이 <code>lambda df:</code> 를 추가하면 된다.</p>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>).assign(D<span class="op">=</span> <span class="kw">lambda</span> df: (df.C<span class="op">-</span>np.mean(df.C))<span class="op">/</span>np.std(df.C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>df.assign(C<span class="op">=</span>(df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>).assign(D<span class="op">=</span> <span class="kw">lambda</span> df: (df.C<span class="op">-</span>np.mean(df.C))<span class="op">/</span>np.std(df.C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 
 <div>
@@ -1404,7 +1405,7 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 <p><code>-</code> 연쇄할당</p>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df.assign(C<span class="op">=</span> (df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>).assign(D<span class="op">=</span> <span class="kw">lambda</span> df:df.C<span class="op">+</span><span class="dv">2</span>).assign(E <span class="op">=</span> <span class="kw">lambda</span> df: df.D <span class="op">-</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df.assign(C<span class="op">=</span> (df.A<span class="op">+</span>df.B)<span class="op">/</span><span class="dv">2</span>).assign(D<span class="op">=</span> <span class="kw">lambda</span> df:df.C<span class="op">+</span><span class="dv">2</span>).assign(E <span class="op">=</span> <span class="kw">lambda</span> df: df.D <span class="op">-</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 
 <div>
@@ -1479,8 +1480,8 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 <section id="데이터-살펴보기" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-살펴보기">데이터 살펴보기</h2>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DV2022/main/posts/FIFA23_official_data.csv'</span>)</span>
-<span id="cb31-2"><a href="#cb31-2"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">'https://raw.githubusercontent.com/guebin/DV2022/main/posts/FIFA23_official_data.csv'</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
@@ -1641,7 +1642,7 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 <p>트랜스포즈하여 보는 것이 편할 때도 있다</p>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>df.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 
 <div>
@@ -2379,7 +2380,7 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 <section id="columns-조사" class="level3">
 <h3 class="anchored" data-anchor-id="columns-조사">columns 조사</h3>
 <div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>df.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>Index(['ID', 'Name', 'Age', 'Photo', 'Nationality', 'Flag', 'Overall',
        'Potential', 'Club', 'Club Logo', 'Value', 'Wage', 'Special',
@@ -2391,7 +2392,7 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 </div>
 </div>
 <div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>df.Body Type</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>df.Body Type</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>SyntaxError: invalid syntax (&lt;ipython-input-29-8965601661e6&gt;, line 1)</code></pre>
 </div>
@@ -2401,26 +2402,26 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 <section id="각-column별로-자료형-조사" class="level3">
 <h3 class="anchored" data-anchor-id="각-column별로-자료형-조사">각 column별로 자료형 조사</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>df[<span class="st">'ID'</span>].dtype</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>df[<span class="st">'ID'</span>].dtype</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="cf">for</span> key <span class="kw">in</span> df.keys():</span>
-<span id="cb38-2"><a href="#cb38-2"></a>    <span class="bu">print</span>(df[key].dtype)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="cf">for</span> key <span class="kw">in</span> df.keys():</span>
+<span id="cb37-2"><a href="#cb37-2"></a>    <span class="bu">print</span>(df[key].dtype)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>dtypes <span class="op">=</span> [df[key].dtype <span class="cf">for</span> key <span class="kw">in</span> df.keys()]</span>
-<span id="cb39-2"><a href="#cb39-2"></a>pd.DataFrame({<span class="st">'colname'</span>:df.keys(), <span class="st">'dtype'</span>:dtypes})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>dtypes <span class="op">=</span> [df[key].dtype <span class="cf">for</span> key <span class="kw">in</span> df.keys()]</span>
+<span id="cb38-2"><a href="#cb38-2"></a>pd.DataFrame({<span class="st">'colname'</span>:df.keys(), <span class="st">'dtype'</span>:dtypes})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="결측치-조사" class="level3">
 <h3 class="anchored" data-anchor-id="결측치-조사">결측치 조사</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>[df[key].isna().<span class="bu">sum</span>() <span class="cf">for</span> key <span class="kw">in</span> df.keys()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>[df[key].isna().<span class="bu">sum</span>() <span class="cf">for</span> key <span class="kw">in</span> df.keys()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>pd.DataFrame({<span class="st">'colname'</span>:df.keys(), </span>
-<span id="cb41-2"><a href="#cb41-2"></a>              <span class="st">'dtype'</span>:[df[key].dtype <span class="cf">for</span> key <span class="kw">in</span> df.keys()], </span>
-<span id="cb41-3"><a href="#cb41-3"></a>              <span class="st">'na'</span>:[df[key].isna().<span class="bu">sum</span>() <span class="cf">for</span> key <span class="kw">in</span> df.keys()]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>pd.DataFrame({<span class="st">'colname'</span>:df.keys(), </span>
+<span id="cb40-2"><a href="#cb40-2"></a>              <span class="st">'dtype'</span>:[df[key].dtype <span class="cf">for</span> key <span class="kw">in</span> df.keys()], </span>
+<span id="cb40-3"><a href="#cb40-3"></a>              <span class="st">'na'</span>:[df[key].isna().<span class="bu">sum</span>() <span class="cf">for</span> key <span class="kw">in</span> df.keys()]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 
 <div>
@@ -2618,7 +2619,7 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 <li>열의선택: 결측치가 10000개 이상인 열을 보고싶다면?</li>
 </ol>
 <div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>df.loc[:,[df[key].isna().<span class="bu">sum</span>()<span class="op">&gt;</span><span class="dv">10000</span> <span class="cf">for</span> key <span class="kw">in</span> df.keys()]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>df.loc[:,[df[key].isna().<span class="bu">sum</span>()<span class="op">&gt;</span><span class="dv">10000</span> <span class="cf">for</span> key <span class="kw">in</span> df.keys()]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 
 <div>
@@ -2697,7 +2698,7 @@ Successfully installed PyWavelets-1.3.0 PyYAML-6.0 htmlmin-0.1.12 imagehash-4.3.
 <section id="info" class="level3">
 <h3 class="anchored" data-anchor-id="info"><code>.info()</code></h3>
 <div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 17660 entries, 0 to 17659
@@ -2740,7 +2741,7 @@ memory usage: 3.9+ MB</code></pre>
 <p>### <code>.describe()</code></p>
 <p>숫자들이 저장된 column에 대하여 기본통계량 조사</p>
 <div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 
 <div>
@@ -2864,7 +2865,7 @@ memory usage: 3.9+ MB</code></pre>
 </div>
 <p><code>-</code> pandas_profiling.ProfileReport()를 이용한 전체적인 조사</p>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>pandas_profiling.ProfileReport(df).to_file(<span class="st">'fifa2023_reprot.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>pandas_profiling.ProfileReport(df).to_file(<span class="st">'fifa2023_reprot.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"de18a463619b4ddf91bf77d6c2f7b2fe","version_major":2,"version_minor":0}
@@ -2898,8 +2899,8 @@ https://github.com/ydataai/pandas-profiling/issues
 <section id="특정열을-중심으로-정렬하여-보기" class="level3">
 <h3 class="anchored" data-anchor-id="특정열을-중심으로-정렬하여-보기">특정열을 중심으로 정렬하여 보기</h3>
 <div class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>df.sort_values(by<span class="op">=</span><span class="st">'Overall'</span>, ascending<span class="op">=</span><span class="va">False</span>) </span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="co"># ascending=False  # 내림차순</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>df.sort_values(by<span class="op">=</span><span class="st">'Overall'</span>, ascending<span class="op">=</span><span class="va">False</span>) </span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="co"># ascending=False  # 내림차순</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
 
 <div>
@@ -3203,9 +3204,9 @@ https://github.com/ydataai/pandas-profiling/issues
 </div>
 </div>
 <div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>df.sort_values(by<span class="op">=</span><span class="st">'Overall'</span>, ascending<span class="op">=</span><span class="va">False</span>,ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb49-2"><a href="#cb49-2"></a><span class="co"># df.sort_values(by='Overall', ascending=False).reset_index() 와 같음</span></span>
-<span id="cb49-3"><a href="#cb49-3"></a><span class="co"># 맨 왼쪽 인덱스 순서 정렬</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>df.sort_values(by<span class="op">=</span><span class="st">'Overall'</span>, ascending<span class="op">=</span><span class="va">False</span>,ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="co"># df.sort_values(by='Overall', ascending=False).reset_index() 와 같음</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a><span class="co"># 맨 왼쪽 인덱스 순서 정렬</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 
 <div>
@@ -3512,13 +3513,13 @@ https://github.com/ydataai/pandas-profiling/issues
 <section id="특정열을-중심으로-그룹화하여-보기star-groupby" class="level3">
 <h3 class="anchored" data-anchor-id="특정열을-중심으로-그룹화하여-보기star-groupby">특정열을 중심으로 그룹화하여 보기(<span class="math inline">\(\star\)</span>): groupby</h3>
 <div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>df.query(<span class="st">'Nationality == "Germany"'</span>)[<span class="st">'Overall'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>df.query(<span class="st">'Nationality == "Germany"'</span>)[<span class="st">'Overall'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>63.50481695568401</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>df.Nationality.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>df.Nationality.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>array(['Germany', 'Portugal', 'Argentina', 'Belgium', 'Italy', 'Austria',
        'Brazil', 'Croatia', 'Serbia', 'Spain', 'Netherlands', 'France',
@@ -3557,13 +3558,13 @@ https://github.com/ydataai/pandas-profiling/issues
 </div>
 </div>
 <div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a><span class="bu">len</span>(df.Nationality.unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="bu">len</span>(df.Nationality.unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>161</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>df.groupby(by<span class="op">=</span><span class="st">'Nationality'</span>)[[<span class="st">'Overall'</span>]].agg({np.mean,<span class="bu">len</span>}).sort_values((<span class="st">'Overall'</span>, <span class="st">'mean'</span>),ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>df.groupby(by<span class="op">=</span><span class="st">'Nationality'</span>)[[<span class="st">'Overall'</span>]].agg({np.mean,<span class="bu">len</span>}).sort_values((<span class="st">'Overall'</span>, <span class="st">'mean'</span>),ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 
 <div>
@@ -3654,7 +3655,7 @@ https://github.com/ydataai/pandas-profiling/issues
 <section id="칼럼이름-변경" class="level3">
 <h3 class="anchored" data-anchor-id="칼럼이름-변경">칼럼이름 변경</h3>
 <div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>Index(['ID', 'Name', 'Age', 'Photo', 'Nationality', 'Flag', 'Overall',
        'Potential', 'Club', 'Club Logo', 'Value', 'Wage', 'Special',
@@ -3666,7 +3667,7 @@ https://github.com/ydataai/pandas-profiling/issues
 </div>
 </div>
 <div class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a><span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.replace(<span class="st">' '</span>,<span class="st">'_'</span>), df.columns))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a><span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.replace(<span class="st">' '</span>,<span class="st">'_'</span>), df.columns))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>['ID',
  'Name',
@@ -3700,7 +3701,7 @@ https://github.com/ydataai/pandas-profiling/issues
 </div>
 </div>
 <div class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>df.set_axis(<span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.replace(<span class="st">' '</span>,<span class="st">'_'</span>), df.columns)), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>df.set_axis(<span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.replace(<span class="st">' '</span>,<span class="st">'_'</span>), df.columns)), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 
 <div>
@@ -4004,7 +4005,7 @@ https://github.com/ydataai/pandas-profiling/issues
 </div>
 </div>
 <div class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>df.set_axis(pd.Index(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.replace(<span class="st">' '</span>,<span class="st">'_'</span>), df.columns)), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>df.set_axis(pd.Index(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.replace(<span class="st">' '</span>,<span class="st">'_'</span>), df.columns)), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 
 <div>
@@ -4314,7 +4315,7 @@ https://github.com/ydataai/pandas-profiling/issues
 <section id="결측치-제거" class="level3">
 <h3 class="anchored" data-anchor-id="결측치-제거">결측치 제거</h3>
 <div class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 17660 entries, 0 to 17659
@@ -4355,7 +4356,7 @@ memory usage: 3.9+ MB</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">'Loaned From'</span>, <span class="st">'Best Overall Rating'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">'Loaned From'</span>, <span class="st">'Best Overall Rating'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="46">
 
 <div>
@@ -4660,7 +4661,7 @@ memory usage: 3.9+ MB</code></pre>
 </div>
 <p><code>-</code> Height, Weight의 자료형을 float형으로 수정하기</p>
 <div class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a>df[[<span class="st">'Height'</span>, <span class="st">'Weight'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a>df[[<span class="st">'Height'</span>, <span class="st">'Weight'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 
 <div>
@@ -4737,10 +4738,10 @@ memory usage: 3.9+ MB</code></pre>
 </div>
 <p>cm, kg으로 되어있어서 object형인데 이걸 float형으로 바꾸자</p>
 <div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>df.assign(</span>
-<span id="cb67-2"><a href="#cb67-2"></a>    Height<span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">float</span>(x[:<span class="op">-</span><span class="dv">2</span>]), df.Height)),</span>
-<span id="cb67-3"><a href="#cb67-3"></a>    Weight<span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">float</span>(x[:<span class="op">-</span><span class="dv">2</span>]), df.Weight))</span>
-<span id="cb67-4"><a href="#cb67-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a>df.assign(</span>
+<span id="cb66-2"><a href="#cb66-2"></a>    Height<span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">float</span>(x[:<span class="op">-</span><span class="dv">2</span>]), df.Height)),</span>
+<span id="cb66-3"><a href="#cb66-3"></a>    Weight<span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">float</span>(x[:<span class="op">-</span><span class="dv">2</span>]), df.Weight))</span>
+<span id="cb66-4"><a href="#cb66-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
 
 <div>
@@ -5045,7 +5046,7 @@ memory usage: 3.9+ MB</code></pre>
 </div>
 <p><code>-</code> Release Clause의 자료형을 float으로 수정하기</p>
 <div class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a>df[<span class="st">'Release Clause'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>df[<span class="st">'Release Clause'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>0          €157M
 1          €155M
@@ -5062,36 +5063,36 @@ Name: Release Clause, Length: 17660, dtype: object</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>_f <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">float</span>(x[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>])<span class="op">*</span><span class="dv">1000</span> <span class="cf">if</span> x[<span class="op">-</span><span class="dv">1</span>]<span class="op">==</span><span class="st">'K'</span> <span class="cf">else</span> <span class="bu">float</span>(x[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>])<span class="op">*</span><span class="dv">1000000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a>_f <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">float</span>(x[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>])<span class="op">*</span><span class="dv">1000</span> <span class="cf">if</span> x[<span class="op">-</span><span class="dv">1</span>]<span class="op">==</span><span class="st">'K'</span> <span class="cf">else</span> <span class="bu">float</span>(x[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>])<span class="op">*</span><span class="dv">1000000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a>_f(<span class="st">'€157M'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>_f(<span class="st">'€157M'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="51">
 <pre><code>157000000.0</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>_f(<span class="st">'€131K'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1"></a>_f(<span class="st">'€131K'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>131000.0</code></pre>
 </div>
 </div>
 <p>(시도1) - 실패</p>
 <div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a><span class="bu">list</span>(<span class="bu">map</span>(_f, df[<span class="st">'Release Clause'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a><span class="bu">list</span>(<span class="bu">map</span>(_f, df[<span class="st">'Release Clause'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>TypeError: 'float' object is not subscriptable</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a>df[<span class="st">'Release Clause'</span>].isna().<span class="bu">sum</span>()   <span class="co"># 이 column에는 1151개의 결측치가 존재</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a>df[<span class="st">'Release Clause'</span>].isna().<span class="bu">sum</span>()   <span class="co"># 이 column에는 1151개의 결측치가 존재</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>1151</code></pre>
 </div>
 </div>
 <p>(nan에 대한 예비학습)</p>
 <div class="cell" data-execution_count="55">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a>df.loc[df[<span class="st">'Release Clause'</span>].isna(), <span class="st">'Release Clause'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a>df.loc[df[<span class="st">'Release Clause'</span>].isna(), <span class="st">'Release Clause'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>18       NaN
 34       NaN
@@ -5108,25 +5109,25 @@ Name: Release Clause, Length: 1151, dtype: object</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1"></a>df.loc[<span class="dv">18</span>, <span class="st">'Release Clause'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a>df.loc[<span class="dv">18</span>, <span class="st">'Release Clause'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
 <pre><code>nan</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1"></a>pd.isna(df.loc[<span class="dv">18</span>, <span class="st">'Release Clause'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1"></a>pd.isna(df.loc[<span class="dv">18</span>, <span class="st">'Release Clause'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="57">
 <pre><code>True</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1"></a><span class="bu">type</span>(df.loc[<span class="dv">18</span>, <span class="st">'Release Clause'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1"></a><span class="bu">type</span>(df.loc[<span class="dv">18</span>, <span class="st">'Release Clause'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>float</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1"></a>df.loc[<span class="dv">18</span>, <span class="st">'Release Clause'</span>][<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1"></a>df.loc[<span class="dv">18</span>, <span class="st">'Release Clause'</span>][<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>TypeError: 'float' object is not subscriptable</code></pre>
 </div>
@@ -5136,9 +5137,9 @@ Name: Release Clause, Length: 1151, dtype: object</code></pre>
 </ul>
 <p>(시도2) - 성공</p>
 <div class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1"></a>df.rename(columns<span class="op">=</span>{<span class="st">'Release Clause'</span>:<span class="st">'ReleaseClause'</span>})<span class="op">\</span></span>
-<span id="cb89-2"><a href="#cb89-2"></a>.assign(ReleaseClause <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: _f(x) <span class="cf">if</span> pd.isna(x)<span class="op">==</span><span class="va">False</span> <span class="cf">else</span> x , df[<span class="st">'Release Clause'</span>])))<span class="op">\</span></span>
-<span id="cb89-3"><a href="#cb89-3"></a>.rename(columns<span class="op">=</span>{<span class="st">'ReleaseClause'</span>:<span class="st">'Release Clause'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1"></a>df.rename(columns<span class="op">=</span>{<span class="st">'Release Clause'</span>:<span class="st">'ReleaseClause'</span>})<span class="op">\</span></span>
+<span id="cb88-2"><a href="#cb88-2"></a>.assign(ReleaseClause <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: _f(x) <span class="cf">if</span> pd.isna(x)<span class="op">==</span><span class="va">False</span> <span class="cf">else</span> x , df[<span class="st">'Release Clause'</span>])))<span class="op">\</span></span>
+<span id="cb88-3"><a href="#cb88-3"></a>.rename(columns<span class="op">=</span>{<span class="st">'ReleaseClause'</span>:<span class="st">'Release Clause'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="60">
 
 <div>
@@ -5442,9 +5443,9 @@ Name: Release Clause, Length: 1151, dtype: object</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1"></a>df.rename(columns<span class="op">=</span>{<span class="st">'Release Clause'</span>:<span class="st">'ReleaseClause'</span>})<span class="op">\</span></span>
-<span id="cb90-2"><a href="#cb90-2"></a>.assign(ReleaseClause <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: _f(x) <span class="cf">if</span> pd.isna(x)<span class="op">==</span><span class="va">False</span> <span class="cf">else</span> x , df[<span class="st">'Release Clause'</span>])))<span class="op">\</span></span>
-<span id="cb90-3"><a href="#cb90-3"></a>.rename(columns<span class="op">=</span>{<span class="st">'ReleaseClause'</span>:<span class="st">'Release Clause'</span>}).info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1"></a>df.rename(columns<span class="op">=</span>{<span class="st">'Release Clause'</span>:<span class="st">'ReleaseClause'</span>})<span class="op">\</span></span>
+<span id="cb89-2"><a href="#cb89-2"></a>.assign(ReleaseClause <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: _f(x) <span class="cf">if</span> pd.isna(x)<span class="op">==</span><span class="va">False</span> <span class="cf">else</span> x , df[<span class="st">'Release Clause'</span>])))<span class="op">\</span></span>
+<span id="cb89-3"><a href="#cb89-3"></a>.rename(columns<span class="op">=</span>{<span class="st">'ReleaseClause'</span>:<span class="st">'Release Clause'</span>}).info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 17660 entries, 0 to 17659
@@ -5487,9 +5488,9 @@ memory usage: 3.9+ MB</code></pre>
 <p>26번 컬럼이 float64로 바뀜!</p>
 <p>(시도3) - 성공, 그냥 결측치를 제거하고 변경해도 무방</p>
 <div class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1"></a>df2 <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Loaned From'</span>, <span class="st">'Best Overall Rating'</span>]).dropna()</span>
-<span id="cb92-2"><a href="#cb92-2"></a>df2[<span class="st">'Release Clause'</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: _f(x) <span class="cf">if</span> pd.isna(x)<span class="op">==</span><span class="va">False</span> <span class="cf">else</span> x , df2[<span class="st">'Release Clause'</span>]))</span>
-<span id="cb92-3"><a href="#cb92-3"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1"></a>df2 <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Loaned From'</span>, <span class="st">'Best Overall Rating'</span>]).dropna()</span>
+<span id="cb91-2"><a href="#cb91-2"></a>df2[<span class="st">'Release Clause'</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: _f(x) <span class="cf">if</span> pd.isna(x)<span class="op">==</span><span class="va">False</span> <span class="cf">else</span> x , df2[<span class="st">'Release Clause'</span>]))</span>
+<span id="cb91-3"><a href="#cb91-3"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="62">
 
 <div>
@@ -5793,7 +5794,7 @@ memory usage: 3.9+ MB</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1"></a>df2.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1"></a>df2.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 16364 entries, 0 to 17659
@@ -5842,7 +5843,7 @@ memory usage: 3.5+ MB</code></pre>
 <h3 class="anchored" data-anchor-id="overall-vs-potential">Overall vs Potential</h3>
 <p>(의문)현재 능력치가 좋은 선수는 잠재력이 없는 거일까?</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1"></a>df.Potential <span class="co"># 잠재능력</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a>df.Potential <span class="co"># 잠재능력</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>0        88
 1        87
@@ -5859,7 +5860,7 @@ Name: Potential, Length: 17660, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1"></a>df.Overall  <span class="co"># 전반적인</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1"></a>df.Overall  <span class="co"># 전반적인</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>0        87
 1        86
@@ -5876,8 +5877,8 @@ Name: Overall, Length: 17660, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1"></a>fig <span class="op">=</span> ggplot(data<span class="op">=</span>df) <span class="op">+</span> geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential'</span>))</span>
-<span id="cb99-2"><a href="#cb99-2"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1"></a>fig <span class="op">=</span> ggplot(data<span class="op">=</span>df) <span class="op">+</span> geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential'</span>))</span>
+<span id="cb98-2"><a href="#cb98-2"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="DV_8(1024)_files/figure-html/cell-69-output-1.png" class="img-fluid"></p>
 </div>
@@ -5890,7 +5891,7 @@ Name: Overall, Length: 17660, dtype: int64</code></pre>
 </ul>
 <p><code>-</code> Potential2 = Potential - Overall 를 계산하여 새로운 열을 추가하자.</p>
 <div class="cell" data-execution_count="104">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1"></a>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1"></a>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="104">
 
 <div>
@@ -6195,8 +6196,8 @@ Name: Overall, Length: 17660, dtype: int64</code></pre>
 </div>
 <p><code>-</code> 수정된 df에 다시 시각화를 하면</p>
 <div class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1"></a>ggplot(data<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>))<span class="op">\</span></span>
-<span id="cb102-2"><a href="#cb102-2"></a><span class="op">+</span> geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>),alpha<span class="op">=</span><span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1"></a>ggplot(data<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>))<span class="op">\</span></span>
+<span id="cb101-2"><a href="#cb101-2"></a><span class="op">+</span> geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>),alpha<span class="op">=</span><span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="DV_8(1024)_files/figure-html/cell-71-output-1.png" class="img-fluid"></p>
 </div>
@@ -6205,10 +6206,10 @@ Name: Overall, Length: 17660, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1"></a>ggplot(data<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>))<span class="op">\</span></span>
-<span id="cb104-2"><a href="#cb104-2"></a><span class="op">+</span> geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>),alpha<span class="op">=</span><span class="fl">0.05</span>,position<span class="op">=</span><span class="st">'jitter'</span>)</span>
-<span id="cb104-3"><a href="#cb104-3"></a></span>
-<span id="cb104-4"><a href="#cb104-4"></a><span class="co"># position='jitter' 흩뿌려진 점</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1"></a>ggplot(data<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>))<span class="op">\</span></span>
+<span id="cb103-2"><a href="#cb103-2"></a><span class="op">+</span> geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>),alpha<span class="op">=</span><span class="fl">0.05</span>,position<span class="op">=</span><span class="st">'jitter'</span>)</span>
+<span id="cb103-3"><a href="#cb103-3"></a></span>
+<span id="cb103-4"><a href="#cb103-4"></a><span class="co"># position='jitter' 흩뿌려진 점</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="DV_8(1024)_files/figure-html/cell-72-output-1.png" class="img-fluid"></p>
 </div>
@@ -6224,10 +6225,10 @@ Name: Overall, Length: 17660, dtype: int64</code></pre>
 </ul>
 <p><code>-</code> 은퇴한 선수들을 제외하고 시각화</p>
 <div class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1"></a>ggplot(data<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>))<span class="op">\</span></span>
-<span id="cb106-2"><a href="#cb106-2"></a><span class="op">+</span> geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>),alpha<span class="op">=</span><span class="fl">0.05</span>,position<span class="op">=</span><span class="st">'jitter'</span>)</span>
-<span id="cb106-3"><a href="#cb106-3"></a></span>
-<span id="cb106-4"><a href="#cb106-4"></a><span class="co"># .query('Potential2 &gt; 1') : 은퇴선수제외, 0에 몰려있는 데이터 제외</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1"></a>ggplot(data<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>))<span class="op">\</span></span>
+<span id="cb105-2"><a href="#cb105-2"></a><span class="op">+</span> geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>),alpha<span class="op">=</span><span class="fl">0.05</span>,position<span class="op">=</span><span class="st">'jitter'</span>)</span>
+<span id="cb105-3"><a href="#cb105-3"></a></span>
+<span id="cb105-4"><a href="#cb105-4"></a><span class="co"># .query('Potential2 &gt; 1') : 은퇴선수제외, 0에 몰려있는 데이터 제외</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="DV_8(1024)_files/figure-html/cell-73-output-1.png" class="img-fluid"></p>
 </div>
@@ -6237,8 +6238,8 @@ Name: Overall, Length: 17660, dtype: int64</code></pre>
 </div>
 <p><code>-</code> Overall에 따라서 구간을 나누고 그 구간에 대응하는 boxplot을 그리자</p>
 <div class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1"></a>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
-<span id="cb108-2"><a href="#cb108-2"></a>.Overall.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1"></a>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
+<span id="cb107-2"><a href="#cb107-2"></a>.Overall.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="110">
 <pre><code>count    13644.000000
 mean        61.415347
@@ -6252,21 +6253,21 @@ Name: Overall, dtype: float64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1"></a><span class="kw">def</span> f(x):</span>
-<span id="cb110-2"><a href="#cb110-2"></a>    <span class="cf">if</span> x<span class="op">&gt;</span><span class="dv">66</span>: </span>
-<span id="cb110-3"><a href="#cb110-3"></a>        y<span class="op">=</span><span class="st">'66&lt;'</span></span>
-<span id="cb110-4"><a href="#cb110-4"></a>    <span class="cf">elif</span> x<span class="op">&gt;</span><span class="dv">61</span>:</span>
-<span id="cb110-5"><a href="#cb110-5"></a>        y<span class="op">=</span><span class="st">'61~66'</span></span>
-<span id="cb110-6"><a href="#cb110-6"></a>    <span class="cf">elif</span> x<span class="op">&gt;</span><span class="dv">56</span>:</span>
-<span id="cb110-7"><a href="#cb110-7"></a>        y<span class="op">=</span><span class="st">'56~61'</span></span>
-<span id="cb110-8"><a href="#cb110-8"></a>    <span class="cf">else</span>:</span>
-<span id="cb110-9"><a href="#cb110-9"></a>        y<span class="op">=</span><span class="st">'&lt;56'</span> </span>
-<span id="cb110-10"><a href="#cb110-10"></a>    <span class="cf">return</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb109-2"><a href="#cb109-2"></a>    <span class="cf">if</span> x<span class="op">&gt;</span><span class="dv">66</span>: </span>
+<span id="cb109-3"><a href="#cb109-3"></a>        y<span class="op">=</span><span class="st">'66&lt;'</span></span>
+<span id="cb109-4"><a href="#cb109-4"></a>    <span class="cf">elif</span> x<span class="op">&gt;</span><span class="dv">61</span>:</span>
+<span id="cb109-5"><a href="#cb109-5"></a>        y<span class="op">=</span><span class="st">'61~66'</span></span>
+<span id="cb109-6"><a href="#cb109-6"></a>    <span class="cf">elif</span> x<span class="op">&gt;</span><span class="dv">56</span>:</span>
+<span id="cb109-7"><a href="#cb109-7"></a>        y<span class="op">=</span><span class="st">'56~61'</span></span>
+<span id="cb109-8"><a href="#cb109-8"></a>    <span class="cf">else</span>:</span>
+<span id="cb109-9"><a href="#cb109-9"></a>        y<span class="op">=</span><span class="st">'&lt;56'</span> </span>
+<span id="cb109-10"><a href="#cb109-10"></a>    <span class="cf">return</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1"></a>ggplot(data<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
-<span id="cb111-2"><a href="#cb111-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall))))<span class="op">\</span></span>
-<span id="cb111-3"><a href="#cb111-3"></a>    <span class="op">+</span> geom_boxplot(aes(x<span class="op">=</span><span class="st">'Overall_grouped'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1"></a>ggplot(data<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
+<span id="cb110-2"><a href="#cb110-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall))))<span class="op">\</span></span>
+<span id="cb110-3"><a href="#cb110-3"></a>    <span class="op">+</span> geom_boxplot(aes(x<span class="op">=</span><span class="st">'Overall_grouped'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>NameError: name 'f' is not defined</code></pre>
 </div>
@@ -6278,30 +6279,30 @@ Name: Overall, dtype: float64</code></pre>
 <li><p>Overall_grouped = “66&lt;” 에 대응하는 점들을 모두 뽑아서 mean(Overall)를 계산하고 그 값을 Overall_grouped = “66&lt;” 에 대응하는 박스플랏의 x축위치로 설정</p></li>
 </ul>
 <div class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1"></a>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
-<span id="cb113-2"><a href="#cb113-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall)))<span class="op">\</span></span>
-<span id="cb113-3"><a href="#cb113-3"></a>.query(<span class="st">"Overall_grouped == '66&lt;'"</span>).Overall.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1"></a>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
+<span id="cb112-2"><a href="#cb112-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall)))<span class="op">\</span></span>
+<span id="cb112-3"><a href="#cb112-3"></a>.query(<span class="st">"Overall_grouped == '66&lt;'"</span>).Overall.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="114">
 <pre><code>71.8127687727423</code></pre>
 </div>
 </div>
 <p>(방법1)</p>
 <div class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1"></a><span class="kw">def</span> g(x):</span>
-<span id="cb115-2"><a href="#cb115-2"></a>    <span class="cf">if</span> x<span class="op">==</span><span class="st">'66&lt;'</span>: </span>
-<span id="cb115-3"><a href="#cb115-3"></a>        y<span class="op">=</span> <span class="fl">71.8127687727423</span></span>
-<span id="cb115-4"><a href="#cb115-4"></a>    <span class="cf">elif</span> x<span class="op">==</span><span class="st">'61~66'</span>:</span>
-<span id="cb115-5"><a href="#cb115-5"></a>        y<span class="op">=</span> <span class="fl">63.773918342474104</span></span>
-<span id="cb115-6"><a href="#cb115-6"></a>    <span class="cf">elif</span> x<span class="op">==</span><span class="st">'56~61'</span>:</span>
-<span id="cb115-7"><a href="#cb115-7"></a>        y<span class="op">=</span> <span class="fl">59.155840684309005</span></span>
-<span id="cb115-8"><a href="#cb115-8"></a>    <span class="cf">else</span>:</span>
-<span id="cb115-9"><a href="#cb115-9"></a>        y<span class="op">=</span> <span class="fl">52.87743190661479</span></span>
-<span id="cb115-10"><a href="#cb115-10"></a>    <span class="cf">return</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1"></a><span class="kw">def</span> g(x):</span>
+<span id="cb114-2"><a href="#cb114-2"></a>    <span class="cf">if</span> x<span class="op">==</span><span class="st">'66&lt;'</span>: </span>
+<span id="cb114-3"><a href="#cb114-3"></a>        y<span class="op">=</span> <span class="fl">71.8127687727423</span></span>
+<span id="cb114-4"><a href="#cb114-4"></a>    <span class="cf">elif</span> x<span class="op">==</span><span class="st">'61~66'</span>:</span>
+<span id="cb114-5"><a href="#cb114-5"></a>        y<span class="op">=</span> <span class="fl">63.773918342474104</span></span>
+<span id="cb114-6"><a href="#cb114-6"></a>    <span class="cf">elif</span> x<span class="op">==</span><span class="st">'56~61'</span>:</span>
+<span id="cb114-7"><a href="#cb114-7"></a>        y<span class="op">=</span> <span class="fl">59.155840684309005</span></span>
+<span id="cb114-8"><a href="#cb114-8"></a>    <span class="cf">else</span>:</span>
+<span id="cb114-9"><a href="#cb114-9"></a>        y<span class="op">=</span> <span class="fl">52.87743190661479</span></span>
+<span id="cb114-10"><a href="#cb114-10"></a>    <span class="cf">return</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="116">
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1"></a>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
-<span id="cb116-2"><a href="#cb116-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall)))<span class="op">\</span></span>
-<span id="cb116-3"><a href="#cb116-3"></a>.assign(Overall_x<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(g,df.Overall_grouped)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1"></a>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
+<span id="cb115-2"><a href="#cb115-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall)))<span class="op">\</span></span>
+<span id="cb115-3"><a href="#cb115-3"></a>.assign(Overall_x<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(g,df.Overall_grouped)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="116">
 
 <div>
@@ -6605,37 +6606,37 @@ Name: Overall, dtype: float64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="117">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1"></a>df2<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
-<span id="cb117-2"><a href="#cb117-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall)))<span class="op">\</span></span>
-<span id="cb117-3"><a href="#cb117-3"></a>.assign(Overall_x<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(g,df.Overall_grouped)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1"></a>df2<span class="op">=</span>df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
+<span id="cb116-2"><a href="#cb116-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall)))<span class="op">\</span></span>
+<span id="cb116-3"><a href="#cb116-3"></a>.assign(Overall_x<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(g,df.Overall_grouped)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="118">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1"></a>ggplot(data<span class="op">=</span>df2)<span class="op">\</span></span>
-<span id="cb118-2"><a href="#cb118-2"></a><span class="op">+</span>geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>),position<span class="op">=</span><span class="st">'jitter'</span>,alpha<span class="op">=</span><span class="fl">0.05</span>)<span class="op">\</span></span>
-<span id="cb118-3"><a href="#cb118-3"></a><span class="op">+</span>geom_boxplot(aes(x<span class="op">=</span><span class="st">'Overall_x'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1"></a>ggplot(data<span class="op">=</span>df2)<span class="op">\</span></span>
+<span id="cb117-2"><a href="#cb117-2"></a><span class="op">+</span>geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>),position<span class="op">=</span><span class="st">'jitter'</span>,alpha<span class="op">=</span><span class="fl">0.05</span>)<span class="op">\</span></span>
+<span id="cb117-3"><a href="#cb117-3"></a><span class="op">+</span>geom_boxplot(aes(x<span class="op">=</span><span class="st">'Overall_x'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="118">
 <pre><code>&lt;ggplot: (8751309238629)&gt;</code></pre>
 </div>
 </div>
 <p>(방법2)</p>
 <div class="cell" data-execution_count="119">
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1"></a>_df <span class="op">=</span> df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
-<span id="cb120-2"><a href="#cb120-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1"></a>_df <span class="op">=</span> df.<span class="bu">eval</span>(<span class="st">'Potential2 = Potential - Overall'</span>).query(<span class="st">'Potential2 &gt; 1'</span>)<span class="op">\</span></span>
+<span id="cb119-2"><a href="#cb119-2"></a>.assign(Overall_grouped<span class="op">=</span> <span class="kw">lambda</span> df: <span class="bu">list</span>(<span class="bu">map</span>(f,df.Overall)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="120">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1"></a>df3<span class="op">=</span>_df.groupby(by<span class="op">=</span><span class="st">"Overall_grouped"</span>).agg({<span class="st">'Overall'</span>:np.mean}).reset_index()<span class="op">\</span></span>
-<span id="cb121-2"><a href="#cb121-2"></a>.rename(columns<span class="op">=</span>{<span class="st">'Overall'</span>:<span class="st">'Overall_x'</span>}).merge(_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1"></a>df3<span class="op">=</span>_df.groupby(by<span class="op">=</span><span class="st">"Overall_grouped"</span>).agg({<span class="st">'Overall'</span>:np.mean}).reset_index()<span class="op">\</span></span>
+<span id="cb120-2"><a href="#cb120-2"></a>.rename(columns<span class="op">=</span>{<span class="st">'Overall'</span>:<span class="st">'Overall_x'</span>}).merge(_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="121">
-<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1"></a>ggplot(data<span class="op">=</span>df3)<span class="op">\</span></span>
-<span id="cb122-2"><a href="#cb122-2"></a><span class="op">+</span>geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>),position<span class="op">=</span><span class="st">'jitter'</span>,alpha<span class="op">=</span><span class="fl">0.05</span>)<span class="op">\</span></span>
-<span id="cb122-3"><a href="#cb122-3"></a><span class="op">+</span>geom_boxplot(aes(x<span class="op">=</span><span class="st">'Overall_x'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1"></a>ggplot(data<span class="op">=</span>df3)<span class="op">\</span></span>
+<span id="cb121-2"><a href="#cb121-2"></a><span class="op">+</span>geom_point(aes(x<span class="op">=</span><span class="st">'Overall'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>),position<span class="op">=</span><span class="st">'jitter'</span>,alpha<span class="op">=</span><span class="fl">0.05</span>)<span class="op">\</span></span>
+<span id="cb121-3"><a href="#cb121-3"></a><span class="op">+</span>geom_boxplot(aes(x<span class="op">=</span><span class="st">'Overall_x'</span>,y<span class="op">=</span><span class="st">'Potential2'</span>,color<span class="op">=</span><span class="st">'Overall_grouped'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="121">
 <pre><code>&lt;ggplot: (8751308728441)&gt;</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="122">
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1"></a>df3.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1"></a>df3.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="122">
 
 <div>
@@ -6802,8 +6803,8 @@ Name: Overall, dtype: float64</code></pre>
 <section id="flights-data" class="level2">
 <h2 class="anchored" data-anchor-id="flights-data">flights data</h2>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">'https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/master/data/flights.csv'</span>)</span>
-<span id="cb125-2"><a href="#cb125-2"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">'https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/master/data/flights.csv'</span>)</span>
+<span id="cb124-2"><a href="#cb124-2"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 58492 entries, 0 to 58491
@@ -6829,7 +6830,7 @@ memory usage: 6.2+ MB</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1"></a>df[[<span class="st">'ARR_DELAY'</span>,<span class="st">'CANCELLED'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1"></a>df[[<span class="st">'ARR_DELAY'</span>,<span class="st">'CANCELLED'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 
 <div>
@@ -6913,14 +6914,14 @@ memory usage: 6.2+ MB</code></pre>
 <li><p>단독으로 쓸 이유는 별로 없다. <span class="math inline">\(\to\)</span> 그룹을 나누고 그룹을 어떠한 “변수”에 “연산”을 하기 위함이다.</p></li>
 </ul>
 <div class="cell" data-execution_count="127">
-<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1"></a>df[<span class="st">'AIRLINE'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1"></a>df[<span class="st">'AIRLINE'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="127">
 <pre><code>array(['WN', 'UA', 'MQ', 'AA', 'F9', 'EV', 'OO', 'NK', 'US', 'AS', 'DL',
        'VX', 'B6', 'HA'], dtype=object)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="126">
-<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1"></a>df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1"></a>df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="126">
 <pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f58e3f69090&gt;</code></pre>
 </div>
@@ -6930,14 +6931,14 @@ memory usage: 6.2+ MB</code></pre>
 </ul>
 <p><code>-</code> sub dataframe으로 나누어져 있는지 확인</p>
 <div class="cell" data-execution_count="129">
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1"></a>grouped <span class="op">=</span> df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)</span>
-<span id="cb132-2"><a href="#cb132-2"></a>grouped.groups.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1"></a>grouped <span class="op">=</span> df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)</span>
+<span id="cb131-2"><a href="#cb131-2"></a>grouped.groups.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="129">
 <pre><code>dict_keys(['AA', 'AS', 'B6', 'DL', 'EV', 'F9', 'HA', 'MQ', 'NK', 'OO', 'UA', 'US', 'VX', 'WN'])</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="132">
-<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1"></a>grouped.get_group(<span class="st">'AS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1"></a>grouped.get_group(<span class="st">'AS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="132">
 
 <div>
@@ -7157,9 +7158,9 @@ memory usage: 6.2+ MB</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="133">
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1"></a><span class="co">#collapse_output</span></span>
-<span id="cb135-2"><a href="#cb135-2"></a><span class="cf">for</span> key <span class="kw">in</span> grouped.groups.keys():</span>
-<span id="cb135-3"><a href="#cb135-3"></a>    display(grouped.get_group(key))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1"></a><span class="co">#collapse_output</span></span>
+<span id="cb134-2"><a href="#cb134-2"></a><span class="cf">for</span> key <span class="kw">in</span> grouped.groups.keys():</span>
+<span id="cb134-3"><a href="#cb134-3"></a>    display(grouped.get_group(key))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <div>
@@ -10206,20 +10207,20 @@ memory usage: 6.2+ MB</code></pre>
 <h3 class="anchored" data-anchor-id="ex1-airline-to-arr_delaymean">EX1: [AIRLINE] <span class="math inline">\(\to\)</span> {ARR_DELAY:mean}</h3>
 <p><code>-</code> 방법1: groupby() <span class="math inline">\(\to\)</span> .agg({colname: function})</p>
 <div class="cell" data-execution_count="134">
-<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb136-1"><a href="#cb136-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="134">
 <pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f5900e60850&gt;</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="135">
-<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1"></a>df.AIRLINE.unique().<span class="fu">__len__</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1"></a>df.AIRLINE.unique().<span class="fu">__len__</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="135">
 <pre><code>14</code></pre>
 </div>
 </div>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="137">
-<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>).agg({<span class="st">'ARR_DELAY'</span>:np.mean})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>).agg({<span class="st">'ARR_DELAY'</span>:np.mean})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="137">
 
 <div>
@@ -10299,9 +10300,9 @@ memory usage: 6.2+ MB</code></pre>
 </div>
 <p>(예시2)</p>
 <div class="cell" data-execution_count="139">
-<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>).agg({<span class="st">'ARR_DELAY'</span>:mean})</span>
-<span id="cb141-2"><a href="#cb141-2"></a></span>
-<span id="cb141-3"><a href="#cb141-3"></a><span class="co"># numpy로 하지 않고 mean만을 해도 된다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>).agg({<span class="st">'ARR_DELAY'</span>:mean})</span>
+<span id="cb140-2"><a href="#cb140-2"></a></span>
+<span id="cb140-3"><a href="#cb140-3"></a><span class="co"># numpy로 하지 않고 mean만을 해도 된다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="139">
 
 <div>
@@ -10381,7 +10382,7 @@ memory usage: 6.2+ MB</code></pre>
 </div>
 <p>(실습)</p>
 <div class="cell" data-execution_count="141">
-<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>).agg({<span class="st">'ARR_DELAY'</span>:std})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>).agg({<span class="st">'ARR_DELAY'</span>:std})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="141">
 
 <div>
@@ -10460,7 +10461,7 @@ memory usage: 6.2+ MB</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="142">
-<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>).agg({<span class="st">'ARR_DELAY'</span>:<span class="bu">max</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1"></a>df.groupby(by<span class="op">=</span><span class="st">"AIRLINE"</span>).agg({<span class="st">'ARR_DELAY'</span>:<span class="bu">max</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="142">
 
 <div>
@@ -10541,7 +10542,7 @@ memory usage: 6.2+ MB</code></pre>
 <p><code>-</code> 방법2: groupby() <span class="math inline">\(\to\)</span> key로 column 선택 <span class="math inline">\(\to\)</span> .agg(function) or .function()</p>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="144">
-<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1"></a>df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)[<span class="st">'ARR_DELAY'</span>].agg(np.mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1"></a>df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)[<span class="st">'ARR_DELAY'</span>].agg(np.mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="144">
 <pre><code>AIRLINE
 AA     5.542661
@@ -10563,8 +10564,8 @@ Name: ARR_DELAY, dtype: float64</code></pre>
 </div>
 <p>(예시2)</p>
 <div class="cell" data-execution_count="147">
-<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb146-1"><a href="#cb146-1"></a>df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)[<span class="st">'ARR_DELAY'</span>].agg(mean)</span>
-<span id="cb146-2"><a href="#cb146-2"></a><span class="co"># mean에 " " 들어가도 된다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1"></a>df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)[<span class="st">'ARR_DELAY'</span>].agg(mean)</span>
+<span id="cb145-2"><a href="#cb145-2"></a><span class="co"># mean에 " " 들어가도 된다</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="147">
 <pre><code>AIRLINE
 AA     5.542661
@@ -10586,7 +10587,7 @@ Name: ARR_DELAY, dtype: float64</code></pre>
 </div>
 <p>(예시3)</p>
 <div class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1"></a>df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)[<span class="st">'ARR_DELAY'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1"></a>df.groupby(by<span class="op">=</span><span class="st">'AIRLINE'</span>)[<span class="st">'ARR_DELAY'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="146">
 <pre><code>AIRLINE
 AA     5.542661
@@ -10612,8 +10613,8 @@ Name: ARR_DELAY, dtype: float64</code></pre>
 <p><code>-</code> 방법1</p>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="152">
-<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>]).agg({<span class="st">'CANCELLED'</span>:np.<span class="bu">sum</span>})</span>
-<span id="cb150-2"><a href="#cb150-2"></a><span class="co"># 몇요일에 항공사별로 취소가 많이 되었는지 (sum)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>]).agg({<span class="st">'CANCELLED'</span>:np.<span class="bu">sum</span>})</span>
+<span id="cb149-2"><a href="#cb149-2"></a><span class="co"># 몇요일에 항공사별로 취소가 많이 되었는지 (sum)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="152">
 
 <div>
@@ -10687,7 +10688,7 @@ Name: ARR_DELAY, dtype: float64</code></pre>
 </div>
 <p>(예시2)</p>
 <div class="cell" data-execution_count="153">
-<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb151-1"><a href="#cb151-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>]).agg({<span class="st">'CANCELLED'</span>:<span class="bu">sum</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>]).agg({<span class="st">'CANCELLED'</span>:<span class="bu">sum</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="153">
 
 <div>
@@ -10762,7 +10763,7 @@ Name: ARR_DELAY, dtype: float64</code></pre>
 <p><code>-</code> 방법2</p>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="154">
-<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>])[<span class="st">"CANCELLED"</span>].agg(np.<span class="bu">sum</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb151-1"><a href="#cb151-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>])[<span class="st">"CANCELLED"</span>].agg(np.<span class="bu">sum</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="154">
 <pre><code>AIRLINE  WEEKDAY
 AA       1          41
@@ -10781,7 +10782,7 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 </div>
 <p>(예시2)</p>
 <div class="cell" data-execution_count="155">
-<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>])[<span class="st">"CANCELLED"</span>].agg(<span class="st">"sum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb153-1"><a href="#cb153-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>])[<span class="st">"CANCELLED"</span>].agg(<span class="st">"sum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="155">
 <pre><code>AIRLINE  WEEKDAY
 AA       1          41
@@ -10800,7 +10801,7 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 </div>
 <p>(예시3)</p>
 <div class="cell" data-execution_count="156">
-<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>])[<span class="st">"CANCELLED"</span>].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb155-1"><a href="#cb155-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>])[<span class="st">"CANCELLED"</span>].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="156">
 <pre><code>AIRLINE  WEEKDAY
 AA       1          41
@@ -10818,7 +10819,7 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="157">
-<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>])[[<span class="st">"CANCELLED"</span>]].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb157-1"><a href="#cb157-1"></a>df.groupby(by<span class="op">=</span>[<span class="st">'AIRLINE'</span>, <span class="st">'WEEKDAY'</span>])[[<span class="st">"CANCELLED"</span>]].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="157">
 
 <div>
@@ -10896,8 +10897,8 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 <p><code>-</code> 방법1</p>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb159-1"><a href="#cb159-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])<span class="op">\</span></span>
-<span id="cb159-2"><a href="#cb159-2"></a>.agg({<span class="st">"CANCELLED"</span>:[np.<span class="bu">sum</span>,np.mean],<span class="st">"DIVERTED"</span>:[np.<span class="bu">sum</span>,np.mean]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])<span class="op">\</span></span>
+<span id="cb158-2"><a href="#cb158-2"></a>.agg({<span class="st">"CANCELLED"</span>:[np.<span class="bu">sum</span>,np.mean],<span class="st">"DIVERTED"</span>:[np.<span class="bu">sum</span>,np.mean]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="159">
 
 <div>
@@ -11016,14 +11017,14 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 </div>
 <p>(예시2)</p>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb160-1"><a href="#cb160-1"></a>np.<span class="bu">sum</span>([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb159-1"><a href="#cb159-1"></a>np.<span class="bu">sum</span>([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>6</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])<span class="op">\</span></span>
-<span id="cb162-2"><a href="#cb162-2"></a>.agg({<span class="st">"CANCELLED"</span>:[<span class="bu">sum</span>,np.mean],<span class="st">"DIVERTED"</span>:[<span class="bu">sum</span>,np.mean]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb161-1"><a href="#cb161-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])<span class="op">\</span></span>
+<span id="cb161-2"><a href="#cb161-2"></a>.agg({<span class="st">"CANCELLED"</span>:[<span class="bu">sum</span>,np.mean],<span class="st">"DIVERTED"</span>:[<span class="bu">sum</span>,np.mean]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 
 <div>
@@ -11143,8 +11144,8 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 <p><code>-</code> 방법2</p>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="161">
-<div class="sourceCode cell-code" id="cb163"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb163-1"><a href="#cb163-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])[[<span class="st">"CANCELLED"</span>,<span class="st">"DIVERTED"</span>]]<span class="op">\</span></span>
-<span id="cb163-2"><a href="#cb163-2"></a>.agg([np.<span class="bu">sum</span>,np.mean])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])[[<span class="st">"CANCELLED"</span>,<span class="st">"DIVERTED"</span>]]<span class="op">\</span></span>
+<span id="cb162-2"><a href="#cb162-2"></a>.agg([np.<span class="bu">sum</span>,np.mean])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="161">
 
 <div>
@@ -11263,8 +11264,8 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 </div>
 <p>(예시2)</p>
 <div class="cell" data-execution_count="162">
-<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])[[<span class="st">"CANCELLED"</span>,<span class="st">"DIVERTED"</span>]]<span class="op">\</span></span>
-<span id="cb164-2"><a href="#cb164-2"></a>.agg([<span class="st">"sum"</span>,<span class="st">"mean"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb163"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb163-1"><a href="#cb163-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])[[<span class="st">"CANCELLED"</span>,<span class="st">"DIVERTED"</span>]]<span class="op">\</span></span>
+<span id="cb163-2"><a href="#cb163-2"></a>.agg([<span class="st">"sum"</span>,<span class="st">"mean"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="162">
 
 <div>
@@ -11389,8 +11390,8 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 <p><code>-</code> 방법1</p>
 <p>(예시1)</p>
 <div class="cell" data-execution_count="165">
-<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb165-1"><a href="#cb165-1"></a>df.groupby([<span class="st">'AIRLINE'</span>,<span class="st">'WEEKDAY'</span>])<span class="op">\</span></span>
-<span id="cb165-2"><a href="#cb165-2"></a>.agg({<span class="st">'CANCELLED'</span>:[np.<span class="bu">sum</span>,np.mean,<span class="bu">len</span>], <span class="st">'AIR_TIME'</span>:[np.mean,np.var]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1"></a>df.groupby([<span class="st">'AIRLINE'</span>,<span class="st">'WEEKDAY'</span>])<span class="op">\</span></span>
+<span id="cb164-2"><a href="#cb164-2"></a>.agg({<span class="st">'CANCELLED'</span>:[np.<span class="bu">sum</span>,np.mean,<span class="bu">len</span>], <span class="st">'AIR_TIME'</span>:[np.mean,np.var]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="165">
 
 <div>
@@ -11522,9 +11523,9 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 </div>
 <p>(예시2)</p>
 <div class="cell" data-execution_count="169">
-<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1"></a>df.groupby([<span class="st">'AIRLINE'</span>,<span class="st">'WEEKDAY'</span>])<span class="op">\</span></span>
-<span id="cb166-2"><a href="#cb166-2"></a>.agg({<span class="st">'CANCELLED'</span>:[<span class="bu">sum</span>,mean,size], <span class="st">'AIR_TIME'</span>:[mean<span class="st">","</span>var<span class="st">"]})</span></span>
-<span id="cb166-3"><a href="#cb166-3"></a><span class="er"># 그 전에서는 큰 따옴표 없이도 다 됬는데, 여기서는 size 정의가 안 되어 있다고 나온다. 그래서 큰 따옴표를 해줘야 함!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb165-1"><a href="#cb165-1"></a>df.groupby([<span class="st">'AIRLINE'</span>,<span class="st">'WEEKDAY'</span>])<span class="op">\</span></span>
+<span id="cb165-2"><a href="#cb165-2"></a>.agg({<span class="st">'CANCELLED'</span>:[<span class="bu">sum</span>,mean,size], <span class="st">'AIR_TIME'</span>:[mean<span class="st">","</span>var<span class="st">"]})</span></span>
+<span id="cb165-3"><a href="#cb165-3"></a><span class="er"># 그 전에서는 큰 따옴표 없이도 다 됬는데, 여기서는 size 정의가 안 되어 있다고 나온다. 그래서 큰 따옴표를 해줘야 함!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="169">
 
 <div>
@@ -11656,9 +11657,9 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 </div>
 <p>(사용자정의함수)</p>
 <div class="cell" data-execution_count="170">
-<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb167-1"><a href="#cb167-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])<span class="op">\</span></span>
-<span id="cb167-2"><a href="#cb167-2"></a>.agg({<span class="st">'CANCELLED'</span>:[np.<span class="bu">sum</span>,np.mean,<span class="bu">len</span>],</span>
-<span id="cb167-3"><a href="#cb167-3"></a>      <span class="st">'AIR_TIME'</span>:[np.mean,<span class="kw">lambda</span> x: np.std(x,ddof<span class="op">=</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1"></a>df.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"WEEKDAY"</span>])<span class="op">\</span></span>
+<span id="cb166-2"><a href="#cb166-2"></a>.agg({<span class="st">'CANCELLED'</span>:[np.<span class="bu">sum</span>,np.mean,<span class="bu">len</span>],</span>
+<span id="cb166-3"><a href="#cb166-3"></a>      <span class="st">'AIR_TIME'</span>:[np.mean,<span class="kw">lambda</span> x: np.std(x,ddof<span class="op">=</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="170">
 
 <div>
@@ -11793,7 +11794,7 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 <section id="연속형-변수를-기준으로-groupby---agg" class="level2">
 <h2 class="anchored" data-anchor-id="연속형-변수를-기준으로-groupby---agg">연속형 변수를 기준으로 groupby -&gt; agg</h2>
 <div class="cell" data-execution_count="171">
-<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1"></a>df.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb167-1"><a href="#cb167-1"></a>df.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="171">
 
 <div>
@@ -12169,7 +12170,7 @@ Name: CANCELLED, Length: 98, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="172">
-<div class="sourceCode cell-code" id="cb169"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb169-1"><a href="#cb169-1"></a>df.DIST.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1"></a>df.DIST.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="172">
 <pre><code>count    58492.000000
 mean       872.900072
@@ -12183,8 +12184,8 @@ Name: DIST, dtype: float64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="174">
-<div class="sourceCode cell-code" id="cb171"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb171-1"><a href="#cb171-1"></a>df.assign(DIST2 <span class="op">=</span> pd.cut(df.DIST,[<span class="op">-</span>np.inf,<span class="dv">391</span>,<span class="dv">690</span>,<span class="dv">1199</span>,np.inf]))<span class="op">\</span></span>
-<span id="cb171-2"><a href="#cb171-2"></a>.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"DIST2"</span>]).agg({<span class="st">'CANCELLED'</span>:[<span class="st">"sum"</span>,<span class="st">"mean"</span>,<span class="st">"count"</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1"></a>df.assign(DIST2 <span class="op">=</span> pd.cut(df.DIST,[<span class="op">-</span>np.inf,<span class="dv">391</span>,<span class="dv">690</span>,<span class="dv">1199</span>,np.inf]))<span class="op">\</span></span>
+<span id="cb170-2"><a href="#cb170-2"></a>.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"DIST2"</span>]).agg({<span class="st">'CANCELLED'</span>:[<span class="st">"sum"</span>,<span class="st">"mean"</span>,<span class="st">"count"</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="174">
 
 <div>
@@ -12569,8 +12570,8 @@ Name: DIST, dtype: float64</code></pre>
 </div>
 <p>cut과 관련된 설명: https://seong6496.tistory.com/247 참고</p>
 <div class="cell" data-execution_count="175">
-<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1"></a>df.assign(DIST2 <span class="op">=</span> pd.cut(df.DIST,[<span class="op">-</span>np.inf,<span class="dv">400</span>,<span class="dv">700</span>,<span class="dv">1200</span>,np.inf],labels<span class="op">=</span>[<span class="st">'~400'</span>,<span class="st">'400~700'</span>,<span class="st">'700~1200'</span>,<span class="st">'1200~'</span>]))<span class="op">\</span></span>
-<span id="cb172-2"><a href="#cb172-2"></a>.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"DIST2"</span>]).agg({<span class="st">'CANCELLED'</span>:[<span class="st">"sum"</span>,<span class="st">"mean"</span>,<span class="st">"count"</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb171"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb171-1"><a href="#cb171-1"></a>df.assign(DIST2 <span class="op">=</span> pd.cut(df.DIST,[<span class="op">-</span>np.inf,<span class="dv">400</span>,<span class="dv">700</span>,<span class="dv">1200</span>,np.inf],labels<span class="op">=</span>[<span class="st">'~400'</span>,<span class="st">'400~700'</span>,<span class="st">'700~1200'</span>,<span class="st">'1200~'</span>]))<span class="op">\</span></span>
+<span id="cb171-2"><a href="#cb171-2"></a>.groupby([<span class="st">"AIRLINE"</span>,<span class="st">"DIST2"</span>]).agg({<span class="st">'CANCELLED'</span>:[<span class="st">"sum"</span>,<span class="st">"mean"</span>,<span class="st">"count"</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="175">
 
 <div>
