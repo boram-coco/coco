@@ -1,0 +1,24 @@
+Synthetic Data
+
+합성 데이터, 재현 데이터
+
+정의: https://en.wikipedia.org/wiki/Synthetic_data
+
+
+
+
+
+* 
+참고
+https://research.aimultiple.com/synthetic-data-generation/#when-to-use-synthetic-data
+
+
+*
+간행물
+
+
+합성 데이터(Synthetic data)의 부상: 김민진(KISDI)
+https://kisdi.re.kr/report/view.do?key=m2101113025339&masterId=4311435&arrMasterId=4311435&artId=706876
+
+
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9743558

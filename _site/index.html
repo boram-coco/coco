@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,9 +70,10 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-description","listing-categories"],
+      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      page: 30,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -176,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Python</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Data Visualization</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -184,57 +185,447 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 1_0307.html" class="sidebar-item-text sidebar-link">파이썬 1주차 (0307)</a>
+  <a href="./posts/Data Visualization/DV_10(1107).html" class="sidebar-item-text sidebar-link">DV 10주차(1)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 2_0314.html" class="sidebar-item-text sidebar-link">파이썬 2주차 (0314)</a>
+  <a href="./posts/Data Visualization/DV_10(1109).html" class="sidebar-item-text sidebar-link">DV 10주차(2)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 3_0316.html" class="sidebar-item-text sidebar-link">파이썬 3주차 (0316)</a>
+  <a href="./posts/Data Visualization/DV_11(1114).html" class="sidebar-item-text sidebar-link">DV 11주차(1)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 3_0321.html" class="sidebar-item-text sidebar-link">파이썬 3주차 (0321)</a>
+  <a href="./posts/Data Visualization/DV_11(1116).html" class="sidebar-item-text sidebar-link">DV 11주차(2)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 4_0323.html" class="sidebar-item-text sidebar-link">파이썬 4주차 (0323)</a>
+  <a href="./posts/Data Visualization/DV_12(1121).html" class="sidebar-item-text sidebar-link">DV 12주차</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 4_0328.html" class="sidebar-item-text sidebar-link">파이썬 4주차 (0328)</a>
+  <a href="./posts/Data Visualization/DV_13(1128).html" class="sidebar-item-text sidebar-link">DV 13주차(1)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 5_0404.html" class="sidebar-item-text sidebar-link">파이썬 5주차 (0404)</a>
+  <a href="./posts/Data Visualization/DV_13(1130).html" class="sidebar-item-text sidebar-link">DV 13주차(2)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 5_0406.html" class="sidebar-item-text sidebar-link">파이썬 5주차 (0406)</a>
+  <a href="./posts/Data Visualization/DV_1(0910).html" class="sidebar-item-text sidebar-link">DV 1주차</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 6_0411.html" class="sidebar-item-text sidebar-link">파이썬 6주차 (0411)</a>
+  <a href="./posts/Data Visualization/DV_2(0914).html" class="sidebar-item-text sidebar-link">DV 2주차</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 7_0413.html" class="sidebar-item-text sidebar-link">파이썬 7주차 (0413)</a>
+  <a href="./posts/Data Visualization/DV_3(0919).html" class="sidebar-item-text sidebar-link">DV 3주차(1)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/python/python 7_0418.html" class="sidebar-item-text sidebar-link">파이썬 7주차 (0418)</a>
+  <a href="./posts/Data Visualization/DV_3(0921).html" class="sidebar-item-text sidebar-link">DV 3주차(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_4(0926).html" class="sidebar-item-text sidebar-link">DV 4주차(1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_4(0928).html" class="sidebar-item-text sidebar-link">DV 4주차(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_5(1005).html" class="sidebar-item-text sidebar-link">DV 5주차(1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_5(1006).html" class="sidebar-item-text sidebar-link">DV 5주차(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_6(1012).html" class="sidebar-item-text sidebar-link">DV 6주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_07(1017).html" class="sidebar-item-text sidebar-link">DV 7주차(1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_07(1019).html" class="sidebar-item-text sidebar-link">DV 7주차(2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_8(1024).html" class="sidebar-item-text sidebar-link">DV 8주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Data Visualization/DV_09(1102).html" class="sidebar-item-text sidebar-link">DV 9주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Est</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/0. jupyter basic.html" class="sidebar-item-text sidebar-link">1: 주피터 노트북 사용법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/1. file-path-setting.html" class="sidebar-item-text sidebar-link">2: file-path-setting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/2. 데이터 분석 준비하기.html" class="sidebar-item-text sidebar-link">3: 데이터 분석 준비하기</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/3. 서울 종합병원 분포 확인하기.html" class="sidebar-item-text sidebar-link">4: 서울 종합병원 분포 확인하기</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/4. 건강검진 데이터로 가설검정.html" class="sidebar-item-text sidebar-link">5: 건강검진 데이터로 가설검정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/est/5. K-beauty.html" class="sidebar-item-text sidebar-link">6: K-beauty</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/2022_09_07_(1주차)_9월7일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (0907) 1주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/2022_09_14_(2주차)_9월14일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (0914) 2주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/2022_12_21_Extra_1_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1221)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/(202250926)기계학습특강_final (2).html" class="sidebar-item-text sidebar-link">기계학습 final</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/2022_11_29_13wk_2_final_checkpoint_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 final(교수님)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/MachineLearning_midterm(202250926).html" class="sidebar-item-text sidebar-link">기계학습 midterm</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">1. DNN</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/1. DNN/2022_09_21_(3주차)_9월21일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (0921) 3주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/1. DNN/2022_09_28_(4주차)_9월 28일__ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (0928) 4주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/1. DNN/2022_09_28_(5주차)_10월05일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1005) 5주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/1. DNN/2022_10_12_6wk_checkpoint.html" class="sidebar-item-text sidebar-link">기계학습 (1012) 6주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">2. CNN</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/2. CNN/기계학습특강2022_10_19_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1019) 7주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/2. CNN/2022_10_26_(8주차)_10월26일(2)_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1026) 8주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">3. RNN</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/3. RNN/2022_10_31_(9주차)_10월31일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1031) 9주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/3. RNN/2022_11_09_(10주차)_11월9일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1109) 10주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/3. RNN/2022_11_16_11wk_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1116) 11주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/3. RNN/2022_11_30_12wk_checkpoint_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1130) 12주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Machine Learning/3. RNN/2022_12_08_13wk_checkpoint.html" class="sidebar-item-text sidebar-link">기계학습 (1201)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">Python</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">1. Basic</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/1. Basic/python 1_0307.html" class="sidebar-item-text sidebar-link">파이썬 (0307) 1주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/1. Basic/python 2_0314.html" class="sidebar-item-text sidebar-link">파이썬 (0314) 2주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/1. Basic/python 3_0316.html" class="sidebar-item-text sidebar-link">파이썬 (0316) 3주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/1. Basic/python 3_0321.html" class="sidebar-item-text sidebar-link">파이썬 (0321) 3주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/1. Basic/python 4_0323.html" class="sidebar-item-text sidebar-link">파이썬 (0323) 4주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/1. Basic/python 4_0328.html" class="sidebar-item-text sidebar-link">파이썬 (0328) 4주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">2. Numpy</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/2. Numpy/python 5_0404.html" class="sidebar-item-text sidebar-link">파이썬 (0404) 5주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/2. Numpy/python 5_0406.html" class="sidebar-item-text sidebar-link">파이썬 (0406) 5주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/2. Numpy/python 6_0411.html" class="sidebar-item-text sidebar-link">파이썬 (0411) 6주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/2. Numpy/python 7_0413.html" class="sidebar-item-text sidebar-link">파이썬 (0413) 7주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/2. Numpy/python 7_0418.html" class="sidebar-item-text sidebar-link">파이썬 (0418) 7주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">3. Pandas</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/3. Pandas/python 10_0506 .html" class="sidebar-item-text sidebar-link">파이썬 (0506) 10주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">4. Class</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/4. Class/python 10_0509.html" class="sidebar-item-text sidebar-link">파이썬 (0509) 10주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/4. Class/python 11_0511.html" class="sidebar-item-text sidebar-link">파이썬 (0511) 11주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/4. Class/python 11_0516.html" class="sidebar-item-text sidebar-link">파이썬 (0516) 11주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/4. Class/python 12_0518.html" class="sidebar-item-text sidebar-link">파이썬 (0518) 12주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/4. Class/python 12_0523.html" class="sidebar-item-text sidebar-link">파이썬 (0523) 12주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/4. Class/python 13_0525.html" class="sidebar-item-text sidebar-link">파이썬 (0525) 13주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/4. Class/python 13_0530.html" class="sidebar-item-text sidebar-link">파이썬 (0530) 13주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Python/4. Class/python 14_0606.html" class="sidebar-item-text sidebar-link">파이썬 (0606) 14주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="false">Ref</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/ref/Ref.html" class="sidebar-item-text sidebar-link">Ref</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="false">Review</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Review/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">Practical Synthetic Data Generation</a>
   </div>
 </li>
       </ul>
@@ -247,7 +638,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(11)</span></div><div class="category" data-category="int, float, bool, str 자료형">int, float, bool, str 자료형 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff)">numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_)">numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist)">numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능)">numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="개발환경 변천사 1~5세대 프로그래머">개발환경 변천사 1~5세대 프로그래머 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="딕셔너리, 집합">딕셔너리, 집합 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션)">리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="소스코드 관리(모듈, 패키지, 라이브러리)">소스코드 관리(모듈, 패키지, 라이브러리) <span class="quarto-category-count">(1)</span></div><div class="category" data-category="스트라이딩, 컴프리헨션고급, len함수, 딕셔너리">스트라이딩, 컴프리헨션고급, len함수, 딕셔너리 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="튜플">튜플 <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(65)</span></div><div class="category" data-category="CAM">CAM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="FLOTLY">FLOTLY <span class="quarto-category-count">(1)</span></div><div class="category" data-category="FOLIUM">FOLIUM <span class="quarto-category-count">(2)</span></div><div class="category" data-category="GAN">GAN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="MATPLOTLIB">MATPLOTLIB <span class="quarto-category-count">(4)</span></div><div class="category" data-category="PANDAS BACKEND">PANDAS BACKEND <span class="quarto-category-count">(2)</span></div><div class="category" data-category="PLOTLY">PLOTLY <span class="quarto-category-count">(3)</span></div><div class="category" data-category="PLOTNINE">PLOTNINE <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Ref">Ref <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SEABORN">SEABORN <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Synthetic Data">Synthetic Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Transfer Learning">Transfer Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="boxplot">boxplot <span class="quarto-category-count">(1)</span></div><div class="category" data-category="final">final <span class="quarto-category-count">(1)</span></div><div class="category" data-category="histogram">histogram <span class="quarto-category-count">(1)</span></div><div class="category" data-category="len함수">len함수 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="midterm">midterm <span class="quarto-category-count">(1)</span></div><div class="category" data-category="numpy">numpy <span class="quarto-category-count">(4)</span></div><div class="category" data-category="pandas">pandas <span class="quarto-category-count">(4)</span></div><div class="category" data-category="개발환경 변천사">개발환경 변천사 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="경사하강법">경사하강법 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="깊은신경망">깊은신경망 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="드랍아웃">드랍아웃 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="딕셔너리">딕셔너리 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="딥러닝 기초">딥러닝 기초 <span class="quarto-category-count">(5)</span></div><div class="category" data-category="라이브러리">라이브러리 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="로지스틱">로지스틱 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="리스트">리스트 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="모듈">모듈 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="부스트코스">부스트코스 <span class="quarto-category-count">(6)</span></div><div class="category" data-category="소스코드 관리">소스코드 관리 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="손실함수">손실함수 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="순환신경망">순환신경망 <span class="quarto-category-count">(5)</span></div><div class="category" data-category="스트라이딩">스트라이딩 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="이미지자료분석">이미지자료분석 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="자료 분석">자료 분석 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="자료분석">자료분석 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="자료형">자료형 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="지리정보시각화">지리정보시각화 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="집합">집합 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="추천시스템">추천시스템 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="컴프리헨션고급">컴프리헨션고급 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="클래스">클래스 <span class="quarto-category-count">(8)</span></div><div class="category" data-category="텍스트분석">텍스트분석 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="통계와 시각화">통계와 시각화 <span class="quarto-category-count">(5)</span></div><div class="category" data-category="튜플">튜플 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="판다스">판다스 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="패키지">패키지 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="회귀분석">회귀분석 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="회귀분석 선형모형">회귀분석 선형모형 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="훌륭한 시각화">훌륭한 시각화 <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-body" id="quarto-document-content">
 
@@ -258,364 +649,747 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist)" data-listing-date-sort="1650207600000" data-listing-file-modified-sort="1674692458410" data-listing-reading-time-sort="0.655">
-<div class="body">
-<a href="./posts/python/python 7_0418.html">
-<h3 class="no-anchor listing-title">
-파이썬 7주차 (0418)
-</h3>
-<div class="listing-subtitle">
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist)'); return false;">
-numpy (메소드 도움말확인, hstack, vstack, append, ravel, flatten, 기타통계함수들, dtype, 브로드캐스팅), matploblib (plt.pyplot, plt.hist)
-</div>
-</div>
-<a href="./posts/python/python 7_0418.html">
-<div class="listing-description">
-<code>-</code> 파이썬에서 함수를 적용하는 2가지 방식 - np.sum(a) - a.sum()
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 7_0418.html">
-<div class="listing-date">
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Date
+</th>
+<th>
+Title
+</th>
+<th>
+Author
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="Synthetic Data" data-listing-date-sort="1678374000000" data-listing-file-modified-sort="1678432259998" data-listing-reading-time-sort="2.585" data-listing-title-sort="Practical Synthetic Data Generation" data-listing-filename-sort="Practical Synthetic Data Generation.ipynb">
+<td class="listing-date">
+Mar 10, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Review/Practical Synthetic Data Generation.html" class="title">Practical Synthetic Data Generation</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="1" data-categories="Ref" data-listing-date-sort="1678201200000" data-listing-file-modified-sort="1678431269151" data-listing-reading-time-sort="0.305" data-listing-title-sort="Ref" data-listing-filename-sort="Ref.ipynb">
+<td class="listing-date">
+Mar 8, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/ref/Ref.html" class="title">Ref</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="2" data-categories="추천시스템" data-listing-date-sort="1671548400000" data-listing-file-modified-sort="1676450550439" data-listing-reading-time-sort="1.665" data-listing-title-sort="기계학습 (1221)" data-listing-filename-sort="2022_12_21_Extra_1_ipynb의_사본.ipynb">
+<td class="listing-date">
+Dec 21, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/2022_12_21_Extra_1_ipynb의_사본.html" class="title">기계학습 (1221)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="3" data-categories="final" data-listing-date-sort="1670943600000" data-listing-file-modified-sort="1677919027988" data-listing-reading-time-sort="0.055" data-listing-title-sort="기계학습 final" data-listing-filename-sort="(202250926)기계학습특강_final (2).ipynb">
+<td class="listing-date">
+Dec 14, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/(202250926)기계학습특강_final (2).html" class="title">기계학습 final</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="4" data-categories="순환신경망" data-listing-date-sort="1669820400000" data-listing-file-modified-sort="1676513082085" data-listing-reading-time-sort="2.265" data-listing-title-sort="기계학습 (1201)" data-listing-filename-sort="2022_12_08_13wk_checkpoint.ipynb">
+<td class="listing-date">
+Dec 1, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/3. RNN/2022_12_08_13wk_checkpoint.html" class="title">기계학습 (1201)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="5" data-categories="순환신경망" data-listing-date-sort="1669734000000" data-listing-file-modified-sort="1676511455937" data-listing-reading-time-sort="2.715" data-listing-title-sort="기계학습 (1130) 12주차" data-listing-filename-sort="2022_11_30_12wk_checkpoint_ipynb의_사본.ipynb">
+<td class="listing-date">
+Nov 30, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/3. RNN/2022_11_30_12wk_checkpoint_ipynb의_사본.html" class="title">기계학습 (1130) 12주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="6" data-categories="지리정보시각화,PLOTLY" data-listing-date-sort="1669734000000" data-listing-file-modified-sort="1678358145352" data-listing-reading-time-sort="0.125" data-listing-title-sort="DV 13주차(2)" data-listing-filename-sort="DV_13(1130).ipynb">
+<td class="listing-date">
+Nov 30, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_13(1130).html" class="title">DV 13주차(2)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="7" data-listing-date-sort="1669647600000" data-listing-file-modified-sort="1676511066558" data-listing-reading-time-sort="1.185" data-listing-title-sort="기계학습 final(교수님)" data-listing-filename-sort="2022_11_29_13wk_2_final_checkpoint_ipynb의_사본.ipynb">
+<td class="listing-date">
+Nov 29, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/2022_11_29_13wk_2_final_checkpoint_ipynb의_사본.html" class="title">기계학습 final(교수님)</a>
+</td>
+<td class="listing-author">
+최규빈
+</td>
+</tr>
+<tr data-index="8" data-categories="지리정보시각화,FOLIUM" data-listing-date-sort="1669561200000" data-listing-file-modified-sort="1678356808705" data-listing-reading-time-sort="1.115" data-listing-title-sort="DV 13주차(1)" data-listing-filename-sort="DV_13(1128).ipynb">
+<td class="listing-date">
+Nov 28, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_13(1128).html" class="title">DV 13주차(1)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="9" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675421376015" data-listing-reading-time-sort="0.295" data-listing-title-sort="6: K-beauty" data-listing-filename-sort="5. K-beauty.ipynb">
+<td class="listing-date">
+Nov 24, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/est/5. K-beauty.html" class="title">6: K-beauty</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="10" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675421359155" data-listing-reading-time-sort="1.03" data-listing-title-sort="5: 건강검진 데이터로 가설검정" data-listing-filename-sort="4. 건강검진 데이터로 가설검정.ipynb">
+<td class="listing-date">
+Nov 24, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/est/4. 건강검진 데이터로 가설검정.html" class="title">5: 건강검진 데이터로 가설검정</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="11" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675421337643" data-listing-reading-time-sort="0.465" data-listing-title-sort="4: 서울 종합병원 분포 확인하기" data-listing-filename-sort="3. 서울 종합병원 분포 확인하기.ipynb">
+<td class="listing-date">
+Nov 24, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/est/3. 서울 종합병원 분포 확인하기.html" class="title">4: 서울 종합병원 분포 확인하기</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="12" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675421311195" data-listing-reading-time-sort="0.49" data-listing-title-sort="3: 데이터 분석 준비하기" data-listing-filename-sort="2. 데이터 분석 준비하기.ipynb">
+<td class="listing-date">
+Nov 24, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/est/2. 데이터 분석 준비하기.html" class="title">3: 데이터 분석 준비하기</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="13" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675421521427" data-listing-reading-time-sort="0.005" data-listing-title-sort="2: file-path-setting" data-listing-filename-sort="1. file-path-setting.ipynb">
+<td class="listing-date">
+Nov 24, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/est/1. file-path-setting.html" class="title">2: file-path-setting</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="14" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1675421296079" data-listing-reading-time-sort="0.43" data-listing-title-sort="1: 주피터 노트북 사용법" data-listing-filename-sort="0. jupyter basic.ipynb">
+<td class="listing-date">
+Nov 24, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/est/0. jupyter basic.html" class="title">1: 주피터 노트북 사용법</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="15" data-categories="지리정보시각화,FOLIUM,FLOTLY" data-listing-date-sort="1668956400000" data-listing-file-modified-sort="1678262930639" data-listing-reading-time-sort="1.38" data-listing-title-sort="DV 12주차" data-listing-filename-sort="DV_12(1121).ipynb">
+<td class="listing-date">
+Nov 21, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_12(1121).html" class="title">DV 12주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="16" data-categories="순환신경망" data-listing-date-sort="1668524400000" data-listing-file-modified-sort="1676450221059" data-listing-reading-time-sort="7.56" data-listing-title-sort="기계학습 (1116) 11주차" data-listing-filename-sort="2022_11_16_11wk_ipynb의_사본.ipynb">
+<td class="listing-date">
+Nov 16, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/3. RNN/2022_11_16_11wk_ipynb의_사본.html" class="title">기계학습 (1116) 11주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="17" data-categories="자료분석,PANDAS BACKEND,PLOTLY" data-listing-date-sort="1668524400000" data-listing-file-modified-sort="1678255791808" data-listing-reading-time-sort="1.215" data-listing-title-sort="DV 11주차(2)" data-listing-filename-sort="DV_11(1116).ipynb">
+<td class="listing-date">
+Nov 16, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_11(1116).html" class="title">DV 11주차(2)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="18" data-categories="PANDAS BACKEND,PLOTLY" data-listing-date-sort="1668351600000" data-listing-file-modified-sort="1678255783460" data-listing-reading-time-sort="0.885" data-listing-title-sort="DV 11주차(1)" data-listing-filename-sort="DV_11(1114).ipynb">
+<td class="listing-date">
+Nov 14, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_11(1114).html" class="title">DV 11주차(1)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="19" data-categories="순환신경망" data-listing-date-sort="1667919600000" data-listing-file-modified-sort="1676450091903" data-listing-reading-time-sort="6.545" data-listing-title-sort="기계학습 (1109) 10주차" data-listing-filename-sort="2022_11_09_(10주차)_11월9일_ipynb의_사본.ipynb">
+<td class="listing-date">
+Nov 9, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/3. RNN/2022_11_09_(10주차)_11월9일_ipynb의_사본.html" class="title">기계학습 (1109) 10주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="20" data-categories="통계와 시각화,PLOTNINE" data-listing-date-sort="1667919600000" data-listing-file-modified-sort="1678255837438" data-listing-reading-time-sort="0.695" data-listing-title-sort="DV 10주차(2)" data-listing-filename-sort="DV_10(1109).ipynb">
+<td class="listing-date">
+Nov 9, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_10(1109).html" class="title">DV 10주차(2)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="21" data-categories="pandas,PLOTNINE" data-listing-date-sort="1667746800000" data-listing-file-modified-sort="1678255764759" data-listing-reading-time-sort="2.435" data-listing-title-sort="DV 10주차(1)" data-listing-filename-sort="DV_10(1107).ipynb">
+<td class="listing-date">
+Nov 7, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_10(1107).html" class="title">DV 10주차(1)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="22" data-categories="훌륭한 시각화" data-listing-date-sort="1667314800000" data-listing-file-modified-sort="1678255747586" data-listing-reading-time-sort="3.47" data-listing-title-sort="DV 9주차" data-listing-filename-sort="DV_09(1102).ipynb">
+<td class="listing-date">
+Nov 2, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_09(1102).html" class="title">DV 9주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="23" data-categories="순환신경망" data-listing-date-sort="1667142000000" data-listing-file-modified-sort="1676449981694" data-listing-reading-time-sort="5.79" data-listing-title-sort="기계학습 (1031) 9주차" data-listing-filename-sort="2022_10_31_(9주차)_10월31일_ipynb의_사본.ipynb">
+<td class="listing-date">
+Oct 31, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/3. RNN/2022_10_31_(9주차)_10월31일_ipynb의_사본.html" class="title">기계학습 (1031) 9주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="24" data-categories="midterm" data-listing-date-sort="1666710000000" data-listing-file-modified-sort="1677919010124" data-listing-reading-time-sort="0.3" data-listing-title-sort="기계학습 midterm" data-listing-filename-sort="MachineLearning_midterm(202250926).ipynb">
+<td class="listing-date">
+Oct 26, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/MachineLearning_midterm(202250926).html" class="title">기계학습 midterm</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="25" data-categories="이미지자료분석,Transfer Learning,CAM" data-listing-date-sort="1666710000000" data-listing-file-modified-sort="1678322622726" data-listing-reading-time-sort="2.02" data-listing-title-sort="기계학습 (1026) 8주차" data-listing-filename-sort="2022_10_26_(8주차)_10월26일(2)_ipynb의_사본.ipynb">
+<td class="listing-date">
+Oct 26, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/2. CNN/2022_10_26_(8주차)_10월26일(2)_ipynb의_사본.html" class="title">기계학습 (1026) 8주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="26" data-categories="pandas,자료 분석,PLOTNINE" data-listing-date-sort="1666537200000" data-listing-file-modified-sort="1678255959905" data-listing-reading-time-sort="2.5" data-listing-title-sort="DV 8주차" data-listing-filename-sort="DV_8(1024).ipynb">
+<td class="listing-date">
+Oct 24, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_8(1024).html" class="title">DV 8주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="27" data-categories="딥러닝 기초,드랍아웃,이미지자료분석" data-listing-date-sort="1666105200000" data-listing-file-modified-sort="1678322637450" data-listing-reading-time-sort="1.98" data-listing-title-sort="기계학습 (1019) 7주차" data-listing-filename-sort="기계학습특강2022_10_19_ipynb의_사본.ipynb">
+<td class="listing-date">
+Oct 19, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/2. CNN/기계학습특강2022_10_19_ipynb의_사본.html" class="title">기계학습 (1019) 7주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="28" data-categories="통계와 시각화,PLOTNINE" data-listing-date-sort="1666105200000" data-listing-file-modified-sort="1678255738226" data-listing-reading-time-sort="1.775" data-listing-title-sort="DV 7주차(2)" data-listing-filename-sort="DV_07(1019).ipynb">
+<td class="listing-date">
+Oct 19, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_07(1019).html" class="title">DV 7주차(2)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="29" data-categories="pandas,통계와 시각화" data-listing-date-sort="1665932400000" data-listing-file-modified-sort="1678255739830" data-listing-reading-time-sort="1.925" data-listing-title-sort="DV 7주차(1)" data-listing-filename-sort="DV_07(1017).ipynb">
+<td class="listing-date">
+Oct 17, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_07(1017).html" class="title">DV 7주차(1)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="30" data-categories="딥러닝 기초,깊은신경망" data-listing-date-sort="1665500400000" data-listing-file-modified-sort="1678322717482" data-listing-reading-time-sort="7.615" data-listing-title-sort="기계학습 (1012) 6주차" data-listing-filename-sort="2022_10_12_6wk_checkpoint.ipynb">
+<td class="listing-date">
+Oct 12, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/1. DNN/2022_10_12_6wk_checkpoint.html" class="title">기계학습 (1012) 6주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="31" data-categories="pandas" data-listing-date-sort="1665500400000" data-listing-file-modified-sort="1678255943117" data-listing-reading-time-sort="2.625" data-listing-title-sort="DV 6주차" data-listing-filename-sort="DV_6(1012).ipynb">
+<td class="listing-date">
+Oct 12, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_6(1012).html" class="title">DV 6주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="32" data-categories="PLOTNINE" data-listing-date-sort="1664982000000" data-listing-file-modified-sort="1678322956146" data-listing-reading-time-sort="4.025" data-listing-title-sort="DV 5주차(2)" data-listing-filename-sort="DV_5(1006).ipynb">
+<td class="listing-date">
+Oct 6, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_5(1006).html" class="title">DV 5주차(2)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="33" data-categories="딥러닝 기초,로지스틱,깊은신경망" data-listing-date-sort="1664895600000" data-listing-file-modified-sort="1678322700078" data-listing-reading-time-sort="3.68" data-listing-title-sort="기계학습 (1005) 5주차" data-listing-filename-sort="2022_09_28_(5주차)_10월05일_ipynb의_사본.ipynb">
+<td class="listing-date">
+Oct 5, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/1. DNN/2022_09_28_(5주차)_10월05일_ipynb의_사본.html" class="title">기계학습 (1005) 5주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="34" data-categories="SEABORN,MATPLOTLIB" data-listing-date-sort="1664895600000" data-listing-file-modified-sort="1678255916784" data-listing-reading-time-sort="0.225" data-listing-title-sort="DV 5주차(1)" data-listing-filename-sort="DV_5(1005).ipynb">
+<td class="listing-date">
+Oct 5, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_5(1005).html" class="title">DV 5주차(1)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="35" data-categories="딥러닝 기초,회귀분석,로지스틱" data-listing-date-sort="1664290800000" data-listing-file-modified-sort="1678322677694" data-listing-reading-time-sort="2.92" data-listing-title-sort="기계학습 (0928) 4주차" data-listing-filename-sort="2022_09_28_(4주차)_9월 28일__ipynb의_사본.ipynb">
+<td class="listing-date">
+Sep 28, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/1. DNN/2022_09_28_(4주차)_9월 28일__ipynb의_사본.html" class="title">기계학습 (0928) 4주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="36" data-categories="SEABORN" data-listing-date-sort="1664290800000" data-listing-file-modified-sort="1678255910656" data-listing-reading-time-sort="0.485" data-listing-title-sort="DV 4주차(2)" data-listing-filename-sort="DV_4(0928).ipynb">
+<td class="listing-date">
+Sep 28, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_4(0928).html" class="title">DV 4주차(2)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="37" data-categories="MATPLOTLIB" data-listing-date-sort="1664118000000" data-listing-file-modified-sort="1678255902012" data-listing-reading-time-sort="0.81" data-listing-title-sort="DV 4주차(1)" data-listing-filename-sort="DV_4(0926).ipynb">
+<td class="listing-date">
+Sep 26, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_4(0926).html" class="title">DV 4주차(1)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="38" data-categories="딥러닝 기초,회귀분석 선형모형,손실함수,경사하강법" data-listing-date-sort="1663686000000" data-listing-file-modified-sort="1678322660926" data-listing-reading-time-sort="4.38" data-listing-title-sort="기계학습 (0921) 3주차" data-listing-filename-sort="2022_09_21_(3주차)_9월21일_ipynb의_사본.ipynb">
+<td class="listing-date">
+Sep 21, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/1. DNN/2022_09_21_(3주차)_9월21일_ipynb의_사본.html" class="title">기계학습 (0921) 3주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="39" data-categories="MATPLOTLIB,통계와 시각화" data-listing-date-sort="1663686000000" data-listing-file-modified-sort="1678255893267" data-listing-reading-time-sort="1.95" data-listing-title-sort="DV 3주차(2)" data-listing-filename-sort="DV_3(0921).ipynb">
+<td class="listing-date">
+Sep 21, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_3(0921).html" class="title">DV 3주차(2)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="40" data-categories="MATPLOTLIB" data-listing-date-sort="1663513200000" data-listing-file-modified-sort="1678255885127" data-listing-reading-time-sort="1.89" data-listing-title-sort="DV 3주차(1)" data-listing-filename-sort="DV_3(0919).ipynb">
+<td class="listing-date">
+Sep 19, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_3(0919).html" class="title">DV 3주차(1)</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="41" data-categories="추천시스템,텍스트분석,GAN" data-listing-date-sort="1663081200000" data-listing-file-modified-sort="1677498661870" data-listing-reading-time-sort="2.6" data-listing-title-sort="기계학습 (0914) 2주차" data-listing-filename-sort="2022_09_14_(2주차)_9월14일_ipynb의_사본.ipynb">
+<td class="listing-date">
+Sep 14, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/2022_09_14_(2주차)_9월14일_ipynb의_사본.html" class="title">기계학습 (0914) 2주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="42" data-categories="통계와 시각화" data-listing-date-sort="1663081200000" data-listing-file-modified-sort="1678255828245" data-listing-reading-time-sort="0.46" data-listing-title-sort="DV 2주차" data-listing-filename-sort="DV_2(0914).ipynb">
+<td class="listing-date">
+Sep 14, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_2(0914).html" class="title">DV 2주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="43" data-categories="이미지자료분석" data-listing-date-sort="1662476400000" data-listing-file-modified-sort="1676448831889" data-listing-reading-time-sort="0.07" data-listing-title-sort="기계학습 (0907) 1주차" data-listing-filename-sort="2022_09_07_(1주차)_9월7일_ipynb의_사본.ipynb">
+<td class="listing-date">
+Sep 7, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Machine Learning/2022_09_07_(1주차)_9월7일_ipynb의_사본.html" class="title">기계학습 (0907) 1주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="44" data-categories="boxplot,histogram" data-listing-date-sort="1662303600000" data-listing-file-modified-sort="1678255755583" data-listing-reading-time-sort="2.415" data-listing-title-sort="DV 1주차" data-listing-filename-sort="DV_1(0910).ipynb">
+<td class="listing-date">
+Sep 5, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Data Visualization/DV_1(0910).html" class="title">DV 1주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="45" data-categories="클래스" data-listing-date-sort="1654441200000" data-listing-file-modified-sort="1677031960819" data-listing-reading-time-sort="5.88" data-listing-title-sort="파이썬 (0606) 14주차" data-listing-filename-sort="python 14_0606.ipynb">
+<td class="listing-date">
+Jun 6, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/4. Class/python 14_0606.html" class="title">파이썬 (0606) 14주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="46" data-categories="클래스" data-listing-date-sort="1653836400000" data-listing-file-modified-sort="1676888178896" data-listing-reading-time-sort="0.97" data-listing-title-sort="파이썬 (0530) 13주차" data-listing-filename-sort="python 13_0530.ipynb">
+<td class="listing-date">
+May 30, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/4. Class/python 13_0530.html" class="title">파이썬 (0530) 13주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="47" data-categories="클래스" data-listing-date-sort="1653404400000" data-listing-file-modified-sort="1676869452708" data-listing-reading-time-sort="0.965" data-listing-title-sort="파이썬 (0525) 13주차" data-listing-filename-sort="python 13_0525.ipynb">
+<td class="listing-date">
+May 25, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/4. Class/python 13_0525.html" class="title">파이썬 (0525) 13주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="48" data-categories="클래스" data-listing-date-sort="1653231600000" data-listing-file-modified-sort="1676625360403" data-listing-reading-time-sort="2.075" data-listing-title-sort="파이썬 (0523) 12주차" data-listing-filename-sort="python 12_0523.ipynb">
+<td class="listing-date">
+May 23, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/4. Class/python 12_0523.html" class="title">파이썬 (0523) 12주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="49" data-categories="클래스" data-listing-date-sort="1652799600000" data-listing-file-modified-sort="1676616203751" data-listing-reading-time-sort="1.855" data-listing-title-sort="파이썬 (0518) 12주차" data-listing-filename-sort="python 12_0518.ipynb">
+<td class="listing-date">
+May 18, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/4. Class/python 12_0518.html" class="title">파이썬 (0518) 12주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="50" data-categories="클래스" data-listing-date-sort="1652626800000" data-listing-file-modified-sort="1676448544361" data-listing-reading-time-sort="2.29" data-listing-title-sort="파이썬 (0516) 11주차" data-listing-filename-sort="python 11_0516.ipynb">
+<td class="listing-date">
+May 16, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/4. Class/python 11_0516.html" class="title">파이썬 (0516) 11주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="51" data-categories="클래스" data-listing-date-sort="1652194800000" data-listing-file-modified-sort="1676356515316" data-listing-reading-time-sort="1.17" data-listing-title-sort="파이썬 (0511) 11주차" data-listing-filename-sort="python 11_0511.ipynb">
+<td class="listing-date">
+May 11, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/4. Class/python 11_0511.html" class="title">파이썬 (0511) 11주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="52" data-categories="클래스" data-listing-date-sort="1652022000000" data-listing-file-modified-sort="1675948003626" data-listing-reading-time-sort="1.34" data-listing-title-sort="파이썬 (0509) 10주차" data-listing-filename-sort="python 10_0509.ipynb">
+<td class="listing-date">
+May 9, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/4. Class/python 10_0509.html" class="title">파이썬 (0509) 10주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="53" data-categories="판다스" data-listing-date-sort="1651762800000" data-listing-file-modified-sort="1675947995406" data-listing-reading-time-sort="2.62" data-listing-title-sort="파이썬 (0506) 10주차" data-listing-filename-sort="python 10_0506 .ipynb">
+<td class="listing-date">
+May 6, 2022
+</td>
+<td class="listing-title">
+<a href="./posts/Python/3. Pandas/python 10_0506 .html" class="title">파이썬 (0506) 10주차</a>
+</td>
+<td class="listing-author">
+김보람
+</td>
+</tr>
+<tr data-index="54" data-categories="numpy" data-listing-date-sort="1650207600000" data-listing-file-modified-sort="1678322333454" data-listing-reading-time-sort="0.655" data-listing-title-sort="파이썬 (0418) 7주차" data-listing-filename-sort="python 7_0418.ipynb">
+<td class="listing-date">
 Apr 18, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/2. Numpy/python 7_0418.html" class="title">파이썬 (0418) 7주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_)" data-listing-date-sort="1649775600000" data-listing-file-modified-sort="1674692719187" data-listing-reading-time-sort="1.235">
-<div class="body">
-<a href="./posts/python/python 7_0413.html">
-<h3 class="no-anchor listing-title">
-파이썬 7주차 (0413)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_)'); return false;">
-numpy (rand, randn, randint, choice, 통계분포, np.where/np.argwhere, 인덱싱고급, np.ix_)
-</div>
-</div>
-<a href="./posts/python/python 7_0413.html">
-<div class="listing-description">
-<code>-</code> 0~1사이에서 10개의 난수 생성
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 7_0413.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="55" data-categories="numpy" data-listing-date-sort="1649775600000" data-listing-file-modified-sort="1678322210142" data-listing-reading-time-sort="1.235" data-listing-title-sort="파이썬 (0413) 7주차" data-listing-filename-sort="python 7_0413.ipynb">
+<td class="listing-date">
 Apr 13, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/2. Numpy/python 7_0413.html" class="title">파이썬 (0413) 7주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff)" data-listing-date-sort="1649602800000" data-listing-file-modified-sort="1674693427418" data-listing-reading-time-sort="3.435">
-<div class="body">
-<a href="./posts/python/python 6_0411.html">
-<h3 class="no-anchor listing-title">
-파이썬 6주차 (0411)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff)'); return false;">
-numpy (@, concat, stack, sum, mean, std, max, min, prod, argmax, argmin, cumsum, cumprod, diff)
-</div>
-</div>
-<a href="./posts/python/python 6_0411.html">
-<div class="listing-description">
-<code>-</code> 아래의 연립방정식 고려
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 6_0411.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="56" data-categories="numpy" data-listing-date-sort="1649602800000" data-listing-file-modified-sort="1678322204626" data-listing-reading-time-sort="3.435" data-listing-title-sort="파이썬 (0411) 6주차" data-listing-filename-sort="python 6_0411.ipynb">
+<td class="listing-date">
 Apr 11, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/2. Numpy/python 6_0411.html" class="title">파이썬 (0411) 6주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능)" data-listing-date-sort="1649170800000" data-listing-file-modified-sort="1674692692255" data-listing-reading-time-sort="0.525">
-<div class="body">
-<a href="./posts/python/python 5_0406.html">
-<h3 class="no-anchor listing-title">
-파이썬 5주차 (0406)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능)'); return false;">
-numpy (선언, 브로드캐스팅, 수학연산, 인덱싱, reshape, 랜덤으로 생성, 행렬관련기능)
-</div>
-</div>
-<a href="./posts/python/python 5_0406.html">
-<div class="listing-description">
-<code>-</code> 선언
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 5_0406.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="57" data-categories="numpy" data-listing-date-sort="1649170800000" data-listing-file-modified-sort="1678322285822" data-listing-reading-time-sort="0.525" data-listing-title-sort="파이썬 (0406) 5주차" data-listing-filename-sort="python 5_0406.ipynb">
+<td class="listing-date">
 Apr 6, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/2. Numpy/python 5_0406.html" class="title">파이썬 (0406) 5주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="소스코드 관리(모듈, 패키지, 라이브러리)" data-listing-date-sort="1648998000000" data-listing-file-modified-sort="1674694572543" data-listing-reading-time-sort="2.15">
-<div class="body">
-<a href="./posts/python/python 5_0404.html">
-<h3 class="no-anchor listing-title">
-파이썬 5주차 (0404)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('소스코드 관리(모듈, 패키지, 라이브러리)'); return false;">
-소스코드 관리(모듈, 패키지, 라이브러리)
-</div>
-</div>
-<a href="./posts/python/python 5_0404.html">
-<div class="listing-description">
-<strong>intro</strong>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 5_0404.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="58" data-categories="소스코드 관리,모듈,패키지,라이브러리" data-listing-date-sort="1648998000000" data-listing-file-modified-sort="1678322162722" data-listing-reading-time-sort="2.15" data-listing-title-sort="파이썬 (0404) 5주차" data-listing-filename-sort="python 5_0404.ipynb">
+<td class="listing-date">
 Apr 4, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/2. Numpy/python 5_0404.html" class="title">파이썬 (0404) 5주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="개발환경 변천사 1~5세대 프로그래머" data-listing-date-sort="1648393200000" data-listing-file-modified-sort="1674694441163" data-listing-reading-time-sort="8.15">
-<div class="body">
-<a href="./posts/python/python 4_0328.html">
-<h3 class="no-anchor listing-title">
-파이썬 4주차 (0328)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('개발환경 변천사 1~5세대 프로그래머'); return false;">
-개발환경 변천사 1~5세대 프로그래머
-</div>
-</div>
-<a href="./posts/python/python 4_0328.html">
-<div class="listing-description">
-youtube: https://youtube.com/playlist?list=PLQqh36zP38-zcnjAged1xIatgznRTy93c
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 4_0328.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="59" data-categories="개발환경 변천사" data-listing-date-sort="1648393200000" data-listing-file-modified-sort="1678322138406" data-listing-reading-time-sort="8.15" data-listing-title-sort="파이썬 (0328) 4주차" data-listing-filename-sort="python 4_0328.ipynb">
+<td class="listing-date">
 Mar 28, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/1. Basic/python 4_0328.html" class="title">파이썬 (0328) 4주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="딕셔너리, 집합" data-listing-date-sort="1647961200000" data-listing-file-modified-sort="1674692344161" data-listing-reading-time-sort="0.71">
-<div class="body">
-<a href="./posts/python/python 4_0323.html">
-<h3 class="no-anchor listing-title">
-파이썬 4주차 (0323)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('딕셔너리, 집합'); return false;">
-딕셔너리, 집합
-</div>
-</div>
-<a href="./posts/python/python 4_0323.html">
-<div class="listing-description">
-<code>-</code> 하나있다.`
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 4_0323.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="60" data-categories="딕셔너리,집합" data-listing-date-sort="1647961200000" data-listing-file-modified-sort="1678322132982" data-listing-reading-time-sort="0.71" data-listing-title-sort="파이썬 (0323) 4주차" data-listing-filename-sort="python 4_0323.ipynb">
+<td class="listing-date">
 Mar 23, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/1. Basic/python 4_0323.html" class="title">파이썬 (0323) 4주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="스트라이딩, 컴프리헨션고급, len함수, 딕셔너리" data-listing-date-sort="1647788400000" data-listing-file-modified-sort="1674692341913" data-listing-reading-time-sort="2.325">
-<div class="body">
-<a href="./posts/python/python 3_0321.html">
-<h3 class="no-anchor listing-title">
-파이썬 3주차 (0321)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('스트라이딩, 컴프리헨션고급, len함수, 딕셔너리'); return false;">
-스트라이딩, 컴프리헨션고급, len함수, 딕셔너리
-</div>
-</div>
-<a href="./posts/python/python 3_0321.html">
-<div class="listing-description">
-<code>-</code> 책의 설명 (파이썬에 한정되는 것은 아니고 모든 언어에 존재하는 불변형 객체에 적용가능한 설명) - 실수방지 -…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 3_0321.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="61" data-categories="스트라이딩,컴프리헨션고급,len함수,딕셔너리" data-listing-date-sort="1647788400000" data-listing-file-modified-sort="1678322122246" data-listing-reading-time-sort="2.325" data-listing-title-sort="파이썬 (0321) 3주차" data-listing-filename-sort="python 3_0321.ipynb">
+<td class="listing-date">
 Mar 21, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/1. Basic/python 3_0321.html" class="title">파이썬 (0321) 3주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="튜플" data-listing-date-sort="1647356400000" data-listing-file-modified-sort="1674694297366" data-listing-reading-time-sort="1.22">
-<div class="body">
-<a href="./posts/python/python 3_0316.html">
-<h3 class="no-anchor listing-title">
-파이썬 3주차 (0316)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('튜플'); return false;">
-튜플
-</div>
-</div>
-<a href="./posts/python/python 3_0316.html">
-<div class="listing-description">
-<code>-</code> 컨테이너형타입이라는 점, 그리고 연산 및 인덱싱을 하는 방법은 리스트와 같음
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 3_0316.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="62" data-categories="튜플" data-listing-date-sort="1647356400000" data-listing-file-modified-sort="1675947864889" data-listing-reading-time-sort="1.22" data-listing-title-sort="파이썬 (0316) 3주차" data-listing-filename-sort="python 3_0316.ipynb">
+<td class="listing-date">
 Mar 16, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/1. Basic/python 3_0316.html" class="title">파이썬 (0316) 3주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션)" data-listing-date-sort="1647183600000" data-listing-file-modified-sort="1674692227500" data-listing-reading-time-sort="2.48">
-<div class="body">
-<a href="./posts/python/python 2_0314.html">
-<h3 class="no-anchor listing-title">
-파이썬 2주차 (0314)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션)'); return false;">
-리스트(선언, 연산, 인덱싱, 콘테이너형 객체, 가변객체, 매소드, 중첩리스트, 리스트컴프리헨션)
-</div>
-</div>
-<a href="./posts/python/python 2_0314.html">
-<div class="listing-description">
-<code>-</code> 리스트의 선언
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 2_0314.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="63" data-categories="리스트" data-listing-date-sort="1647183600000" data-listing-file-modified-sort="1677498808159" data-listing-reading-time-sort="2.48" data-listing-title-sort="파이썬 (0314) 2주차" data-listing-filename-sort="python 2_0314.ipynb">
+<td class="listing-date">
 Mar 14, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/1. Basic/python 2_0314.html" class="title">파이썬 (0314) 2주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="int, float, bool, str 자료형" data-listing-date-sort="1646578800000" data-listing-file-modified-sort="1674692223560" data-listing-reading-time-sort="1.03">
-<div class="body">
-<a href="./posts/python/python 1_0307.html">
-<h3 class="no-anchor listing-title">
-파이썬 1주차 (0307)
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('int, float, bool, str 자료형'); return false;">
-int, float, bool, str 자료형
-</div>
-</div>
-<a href="./posts/python/python 1_0307.html">
-<div class="listing-description">
-<code>-</code> 파이썬의 기본자료형은 int, float, bool, str, list, tuple, dict, set 등이 있다.
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python/python 1_0307.html">
-<div class="listing-date">
+</td>
+</tr>
+<tr data-index="64" data-categories="자료형" data-listing-date-sort="1646578800000" data-listing-file-modified-sort="1677372105552" data-listing-reading-time-sort="1.03" data-listing-title-sort="파이썬 (0307) 1주차" data-listing-filename-sort="python 1_0307.ipynb">
+<td class="listing-date">
 Mar 7, 2022
-</div>
-<div class="listing-author">
+</td>
+<td class="listing-title">
+<a href="./posts/Python/1. Basic/python 1_0307.html" class="title">파이썬 (0307) 1주차</a>
+</td>
+<td class="listing-author">
 김보람
-</div>
-</a>
-</div>
-</div>
-</div>
+</td>
+</tr>
+</tbody>
+
+</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
