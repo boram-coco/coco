@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="김보람">
+<meta name="dcterms.date" content="2023-04-20">
+
+<title>coco - 딥러닝: 회귀분석</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">coco</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">Boram-coco</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/boram-coco"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">딥러닝: 회귀분석</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">딥러닝: 회귀분석</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">딥러닝</div>
+                <div class="quarto-category">회귀분석</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>김보람 </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 20, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">Boram-coco</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Advanved Probability Theory</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Advanved Probability Theory/2023_03_07_1wk_checkpoint.html" class="sidebar-item-text sidebar-link">1wk: 측도론 intro</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Advanved Probability Theory/2023_03_14_2wk_checkpoint.html" class="sidebar-item-text sidebar-link">2wk: 측도론 intro (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Advanved Probability Theory/2023_03_21_3wk_checkpoint.html" class="sidebar-item-text sidebar-link">3wk: 측도론 intro (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Advanved Probability Theory/2023_03_28_4wk_checkpoint.html" class="sidebar-item-text sidebar-link">4wk: 측도론 intro (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Advanved Probability Theory/2023_04_05_5wk_checkpoint.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Advanved Probability Theory/2023-04-11-6wk-checkpoint.html" class="sidebar-item-text sidebar-link">6wk: 측도론 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Advanved Probability Theory/2023-04-18-7wk-checkpoint.html" class="sidebar-item-text sidebar-link">7wk: 측도론 (3)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Applied statistics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/Simple Linear Regression.html" class="sidebar-item-text sidebar-link">1. SLR(Simple Linear Regression)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/CH0304.html" class="sidebar-item-text sidebar-link">2. SLR실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/CH0304_simulation.html" class="sidebar-item-text sidebar-link">3. SLR실습_simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/선형회귀분석 CH0607.html" class="sidebar-item-text sidebar-link">4. MLR실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/가변수 실습.html" class="sidebar-item-text sidebar-link">5. 가변수 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/alpha.html" class="sidebar-item-text sidebar-link">alpha</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/AS1.html" class="sidebar-item-text sidebar-link">AS HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/AS1_3.html" class="sidebar-item-text sidebar-link">AS HW1_</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Applied statistics/AS2.html" class="sidebar-item-text sidebar-link">AS HW2</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Est</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/imbalaced data.html" class="sidebar-item-text sidebar-link">imbalanced data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/plot_comparison_over_sampling.html" class="sidebar-item-text sidebar-link">plot_comparison_over_sampling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/plot_comparison_under_sampling.html" class="sidebar-item-text sidebar-link">plot_comparison_under_sampling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/경사하강법.html" class="sidebar-item-text sidebar-link">경사하강법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/다층 퍼셉트론과 딥러닝.html" class="sidebar-item-text sidebar-link">다층 퍼셉트론과 딥러닝</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/데이터 개념 공부.html" class="sidebar-item-text sidebar-link">데이터 개념공부</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/딥러닝 회귀분석.html" class="sidebar-item-text sidebar-link active">딥러닝: 회귀분석</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/인공신경망과 퍼셉트론.html" class="sidebar-item-text sidebar-link">인공신경망과 퍼셉트론</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/콰트로 블로그 만드는 법.html" class="sidebar-item-text sidebar-link">콰트로 블로그</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Boostcourse</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/boostcourse/0. jupyter basic.html" class="sidebar-item-text sidebar-link">1: 주피터 노트북 사용법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/boostcourse/1. file-path-setting.html" class="sidebar-item-text sidebar-link">2: file-path-setting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/boostcourse/2. 데이터 분석 준비하기.html" class="sidebar-item-text sidebar-link">3: 데이터 분석 준비하기</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="sidebar-item-text sidebar-link">4: 서울 종합병원 분포 확인하기</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/boostcourse/4. 건강검진 데이터로 가설검정.html" class="sidebar-item-text sidebar-link">5: 건강검진 데이터로 가설검정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/est/boostcourse/5. K-beauty.html" class="sidebar-item-text sidebar-link">6: K-beauty</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">Graph Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph basic.html" class="sidebar-item-text sidebar-link">CH1. graph basic</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph2.html" class="sidebar-item-text sidebar-link">CH2. 그래프 머신러닝</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph3-3.html" class="sidebar-item-text sidebar-link">CH3. 비지도 그래프 학습(그래프신경망)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph3-1.html" class="sidebar-item-text sidebar-link">CH3. 비지도 그래프 학습(얕은 임베딩 방법)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph3-2.html" class="sidebar-item-text sidebar-link">CH3. 비지도 그래프 학습(오토인코더)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph4-2.html" class="sidebar-item-text sidebar-link">CH4. 지도 그래프 학습(얕은 임베딩 방법)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph4-1.html" class="sidebar-item-text sidebar-link">CH4. 지도 그래프 학습(특징기반방법)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph5-1.html" class="sidebar-item-text sidebar-link">CH5. 그래프에서의 머신러닝 문제(링크예측)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph5-2.html" class="sidebar-item-text sidebar-link">CH5. 그래프에서의 머신러닝 문제(커뮤니티와 같은 의미 있는 구조 감지)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph8.html" class="sidebar-item-text sidebar-link">CH8. 신용카드 거래에 대한 그래프 분석(basic)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Graph Machine Learning/graph8.사기거래=0필터.html" class="sidebar-item-text sidebar-link">CH8. 신용카드 거래에 대한 그래프 분석(사기거래=0제외 필터)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/2022_09_07_(1주차)_9월7일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (0907) 1주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/2022_09_14_(2주차)_9월14일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (0914) 2주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/2022_12_21_Extra_1_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1221)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/(202250926)기계학습특강_final (2).html" class="sidebar-item-text sidebar-link">기계학습 final</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/2022_11_29_13wk_2_final_checkpoint_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 final(교수님)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/MachineLearning_midterm(202250926).html" class="sidebar-item-text sidebar-link">기계학습 midterm</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">1. DNN</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/1. DNN/2022_09_21_(3주차)_9월21일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (0921) 3주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/1. DNN/2022_09_28_(4주차)_9월 28일__ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (0928) 4주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/1. DNN/2022_09_28_(5주차)_10월05일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1005) 5주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/1. DNN/2022_10_12_6wk_checkpoint.html" class="sidebar-item-text sidebar-link">기계학습 (1012) 6주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">2. CNN</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/2. CNN/기계학습특강2022_10_19_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1019) 7주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/2. CNN/2022_10_26_(8주차)_10월26일(2)_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1026) 8주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">3. RNN</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/3. RNN/2022_10_31_(9주차)_10월31일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1031) 9주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/3. RNN/2022_11_09_(10주차)_11월9일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1109) 10주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/3. RNN/2022_11_16_11wk_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1116) 11주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/3. RNN/2022_11_30_12wk_checkpoint_ipynb의_사본.html" class="sidebar-item-text sidebar-link">기계학습 (1130) 12주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Machine Learning/3. RNN/2022_12_08_13wk_checkpoint.html" class="sidebar-item-text sidebar-link">기계학습 (1201)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">Python</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">1. Basic</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/1. Basic/python 1_0307.html" class="sidebar-item-text sidebar-link">파이썬 (0307) 1주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/1. Basic/python 2_0314.html" class="sidebar-item-text sidebar-link">파이썬 (0314) 2주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/1. Basic/python 3_0316.html" class="sidebar-item-text sidebar-link">파이썬 (0316) 3주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/1. Basic/python 3_0321.html" class="sidebar-item-text sidebar-link">파이썬 (0321) 3주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/1. Basic/python 4_0323.html" class="sidebar-item-text sidebar-link">파이썬 (0323) 4주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/1. Basic/python 4_0328.html" class="sidebar-item-text sidebar-link">파이썬 (0328) 4주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="false">2. Numpy</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/2. Numpy/python 5_0404.html" class="sidebar-item-text sidebar-link">파이썬 (0404) 5주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/2. Numpy/python 5_0406.html" class="sidebar-item-text sidebar-link">파이썬 (0406) 5주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/2. Numpy/python 6_0411.html" class="sidebar-item-text sidebar-link">파이썬 (0411) 6주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/2. Numpy/python 7_0413.html" class="sidebar-item-text sidebar-link">파이썬 (0413) 7주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/2. Numpy/python 7_0418.html" class="sidebar-item-text sidebar-link">파이썬 (0418) 7주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="false">3. Pandas</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/3. Pandas/python 10_0506 .html" class="sidebar-item-text sidebar-link">파이썬 (0506) 10주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false">4. Class</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/4. Class/python 10_0509.html" class="sidebar-item-text sidebar-link">파이썬 (0509) 10주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/4. Class/python 11_0511.html" class="sidebar-item-text sidebar-link">파이썬 (0511) 11주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/4. Class/python 11_0516.html" class="sidebar-item-text sidebar-link">파이썬 (0516) 11주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/4. Class/python 12_0518.html" class="sidebar-item-text sidebar-link">파이썬 (0518) 12주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/4. Class/python 12_0523.html" class="sidebar-item-text sidebar-link">파이썬 (0523) 12주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/4. Class/python 13_0525.html" class="sidebar-item-text sidebar-link">파이썬 (0525) 13주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/4. Class/python 13_0530.html" class="sidebar-item-text sidebar-link">파이썬 (0530) 13주차</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Python/4. Class/python 14_0606.html" class="sidebar-item-text sidebar-link">파이썬 (0606) 14주차</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" aria-expanded="false">Ref</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/ref/Ref.html" class="sidebar-item-text sidebar-link">Ref</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" aria-expanded="false">Review</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" aria-expanded="false">Synthetic data</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Review/Synthetic data/[R] synthpop.html" class="sidebar-item-text sidebar-link">[R] synthpop</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Review/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">[논문] Modeling Tabular Data using Conditional GAN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Review/Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="sidebar-item-text sidebar-link">[논문] Synthetic Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Review/Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="sidebar-item-text sidebar-link">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Review/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">Practical Synthetic Data Generation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Review/Synthetic data/synthetic data.html" class="sidebar-item-text sidebar-link">Synthetic Data</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" aria-expanded="false">Theoretical statistics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Theoretical statistics/TS1.html" class="sidebar-item-text sidebar-link">TS HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Theoretical statistics/TS2.html" class="sidebar-item-text sidebar-link">TS HW2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Theoretical statistics/TS3.html" class="sidebar-item-text sidebar-link">TS HW3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Theoretical statistics/TS4.html" class="sidebar-item-text sidebar-link">TS HW4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Theoretical statistics/TS5.html" class="sidebar-item-text sidebar-link">TS HW5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ref" id="toc-ref" class="nav-link active" data-scroll-target="#ref">ref</a></li>
+  <li><a href="#보스톤-주택가격-예측" id="toc-보스톤-주택가격-예측" class="nav-link" data-scroll-target="#보스톤-주택가격-예측">보스톤 주택가격 예측</a>
+  <ul class="collapse">
+  <li><a href="#패키지-설정" id="toc-패키지-설정" class="nav-link" data-scroll-target="#패키지-설정">1. 패키지 설정</a></li>
+  <li><a href="#데이터준비" id="toc-데이터준비" class="nav-link" data-scroll-target="#데이터준비">2. 데이터준비</a></li>
+  <li><a href="#탐색적-데이터-분석" id="toc-탐색적-데이터-분석" class="nav-link" data-scroll-target="#탐색적-데이터-분석">3. 탐색적 데이터 분석</a></li>
+  <li><a href="#데이터분리" id="toc-데이터분리" class="nav-link" data-scroll-target="#데이터분리">4. 데이터분리</a></li>
+  <li><a href="#피처-스케일링" id="toc-피처-스케일링" class="nav-link" data-scroll-target="#피처-스케일링">5. 피처 스케일링</a></li>
+  <li><a href="#모형화-및-학습" id="toc-모형화-및-학습" class="nav-link" data-scroll-target="#모형화-및-학습">6. 모형화 및 학습</a></li>
+  <li><a href="#예측" id="toc-예측" class="nav-link" data-scroll-target="#예측">7. 예측</a></li>
+  <li><a href="#드랍아웃-모형-추가" id="toc-드랍아웃-모형-추가" class="nav-link" data-scroll-target="#드랍아웃-모형-추가">8. 드랍아웃 모형 추가</a></li>
+  <li><a href="#입력-노드의-드랍-아웃" id="toc-입력-노드의-드랍-아웃" class="nav-link" data-scroll-target="#입력-노드의-드랍-아웃">9. 입력 노드의 드랍 아웃</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="ref" class="level1">
+<h1>ref</h1>
+<ul>
+<li><a href="http://www.yes24.com/Product/Goods/108023856">파이썬 데이터 분석</a></li>
+</ul>
+</section>
+<section id="보스톤-주택가격-예측" class="level1">
+<h1>보스톤 주택가격 예측</h1>
+<ol type="1">
+<li>보스톤 주택가격 데이터 세트와 모형 구조</li>
+</ol>
+<ul>
+<li><p>비선형 회귀분석의 경우 인공신경망 구조는 1개 이상의 은닉충 필요</p></li>
+<li><p>주택가격(mediv)을 출력노드, 주택가격에 영향을 미치는 나머지 독립변수는 입력노드</p></li>
+<li><p>0과 1사이의 값을 가지는 더미 변수 chas는 제외</p></li>
+</ul>
+<ol start="2" type="1">
+<li>활성화함수</li>
+</ol>
+<ul>
+<li>딥러닝의 경우 ReLU 함수 설정하지만 회귀분석의 경우 출력 노드에는 설정 하지 않아도 되고 <span class="math inline">\(a(x)=x\)</span>와 같이 선형함수가 활성화함수가 됨</li>
+</ul>
+<ol start="3" type="1">
+<li>비용함수</li>
+</ol>
+<ul>
+<li><span class="math inline">\(MSE=\dfrac{1}{n}\sum_{i=1}^n (y_i - \widehat y_i)^2\)</span></li>
+</ul>
+<ol start="4" type="1">
+<li>최적화 기법</li>
+</ol>
+<ul>
+<li>Adam 사용</li>
+</ul>
+<ol start="5" type="1">
+<li>테스트 및 평가</li>
+</ol>
+<ul>
+<li>평균절대오차 <span class="math inline">\(MAE=\dfrac{1}{n}\sum_{i=1}^n |y_i - \widehat y_i|^2\)</span></li>
+</ul>
+<section id="패키지-설정" class="level2">
+<h2 class="anchored" data-anchor-id="패키지-설정">1. 패키지 설정</h2>
+<p>sklearn에서 2.1 이후로 해당 데이터는 사용할 수 없다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_boston</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this special case, you can fetch the dataset from the original source::</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">22</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    data <span class="op">=</span> np.hstack([raw_df.values[::<span class="dv">2</span>, :], raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, :<span class="dv">2</span>]])</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    target <span class="op">=</span> raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split  <span class="co">#학습용과 테스트용 분리</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error       <span class="co">#정규화</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#딥러닝 모형화를 위해 keras를 사용</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="im">from</span> keras.models <span class="im">import</span> Sequential                   <span class="co">#Sequential 한층씩 추가하여 네트워크를 만든다.    </span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dense                        <span class="co">#Dense 층 간 노드들은 모두 연결되는 모형구조를 만든다.</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">22</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>data <span class="op">=</span> raw_df.values[:, :<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb4-7"><a href="#cb4-7"></a>target <span class="op">=</span> raw_df.values[:, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">21</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># 데이터셋에서 14번째 변수(MEDV)는 target 변수로 사용</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co"># 데이터와 target을 분리</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>data2 <span class="op">=</span> np.hstack([raw_df.values[::<span class="dv">2</span>, :], raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, :<span class="dv">3</span>]])</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a>feautre_names<span class="op">=</span>[<span class="st">'CRIM'</span>,<span class="st">'ZN'</span>,<span class="st">'INDUS'</span>,<span class="st">'CHAS'</span>,<span class="st">'NOX'</span>,<span class="st">'RM'</span>,<span class="st">'AGE'</span>,<span class="st">'DIS'</span>,<span class="st">'RAD'</span>,<span class="st">'TAX'</span>,<span class="st">'PTRATIO'</span>,<span class="st">'B'</span>,<span class="st">'LSTAT'</span>]</span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># 데이터셋의 크기를 확인</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="bu">print</span>(data2.shape)  <span class="co"># (506, 14)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(506, 14)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>data<span class="op">=</span>data2[:,:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-2"><a href="#cb7-2"></a>target<span class="op">=</span>data2[:,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">print</span>(data.shape)  <span class="co"># (506, 13)</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="bu">print</span>(target.shape)  <span class="co"># (506,)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(506, 13)
+(506,)</code></pre>
+</div>
+</div>
+</section>
+<section id="데이터준비" class="level2">
+<h2 class="anchored" data-anchor-id="데이터준비">2. 데이터준비</h2>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>X<span class="op">=</span>pd.DataFrame(data, columns<span class="op">=</span>feautre_names)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        CRIM    ZN  INDUS  CHAS    NOX     RM   AGE     DIS  RAD    TAX  \
+0    0.00632  18.0   2.31   0.0  0.538  6.575  65.2  4.0900  1.0  296.0   
+1    0.02731   0.0   7.07   0.0  0.469  6.421  78.9  4.9671  2.0  242.0   
+2    0.02729   0.0   7.07   0.0  0.469  7.185  61.1  4.9671  2.0  242.0   
+3    0.03237   0.0   2.18   0.0  0.458  6.998  45.8  6.0622  3.0  222.0   
+4    0.06905   0.0   2.18   0.0  0.458  7.147  54.2  6.0622  3.0  222.0   
+..       ...   ...    ...   ...    ...    ...   ...     ...  ...    ...   
+501  0.06263   0.0  11.93   0.0  0.573  6.593  69.1  2.4786  1.0  273.0   
+502  0.04527   0.0  11.93   0.0  0.573  6.120  76.7  2.2875  1.0  273.0   
+503  0.06076   0.0  11.93   0.0  0.573  6.976  91.0  2.1675  1.0  273.0   
+504  0.10959   0.0  11.93   0.0  0.573  6.794  89.3  2.3889  1.0  273.0   
+505  0.04741   0.0  11.93   0.0  0.573  6.030  80.8  2.5050  1.0  273.0   
+
+     PTRATIO       B  LSTAT  
+0       15.3  396.90   4.98  
+1       17.8  396.90   9.14  
+2       17.8  392.83   4.03  
+3       18.7  394.63   2.94  
+4       18.7  396.90   5.33  
+..       ...     ...    ...  
+501     21.0  391.99   9.67  
+502     21.0  396.90   9.08  
+503     21.0  396.90   5.64  
+504     21.0  393.45   6.48  
+505     21.0  396.90   7.88  
+
+[506 rows x 13 columns]</code></pre>
+</div>
+</div>
+<p><code>-</code> 더미 변수 CHAS제외</p>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>X<span class="op">=</span>X.drop([<span class="st">'CHAS'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(X.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      CRIM    ZN  INDUS    NOX     RM   AGE     DIS  RAD    TAX  PTRATIO  \
+0  0.00632  18.0   2.31  0.538  6.575  65.2  4.0900  1.0  296.0     15.3   
+1  0.02731   0.0   7.07  0.469  6.421  78.9  4.9671  2.0  242.0     17.8   
+2  0.02729   0.0   7.07  0.469  7.185  61.1  4.9671  2.0  242.0     17.8   
+3  0.03237   0.0   2.18  0.458  6.998  45.8  6.0622  3.0  222.0     18.7   
+4  0.06905   0.0   2.18  0.458  7.147  54.2  6.0622  3.0  222.0     18.7   
+
+        B  LSTAT  
+0  396.90   4.98  
+1  396.90   9.14  
+2  392.83   4.03  
+3  394.63   2.94  
+4  396.90   5.33  </code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>X.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 506 entries, 0 to 505
+Data columns (total 12 columns):
+ #   Column   Non-Null Count  Dtype  
+---  ------   --------------  -----  
+ 0   CRIM     506 non-null    float64
+ 1   ZN       506 non-null    float64
+ 2   INDUS    506 non-null    float64
+ 3   NOX      506 non-null    float64
+ 4   RM       506 non-null    float64
+ 5   AGE      506 non-null    float64
+ 6   DIS      506 non-null    float64
+ 7   RAD      506 non-null    float64
+ 8   TAX      506 non-null    float64
+ 9   PTRATIO  506 non-null    float64
+ 10  B        506 non-null    float64
+ 11  LSTAT    506 non-null    float64
+dtypes: float64(12)
+memory usage: 47.6 KB</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>y<span class="op">=</span>pd.DataFrame(target)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="bu">print</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        0
+0    24.0
+1    21.6
+2    34.7
+3    33.4
+4    36.2
+..    ...
+501  22.4
+502  20.6
+503  23.9
+504  22.0
+505  11.9
+
+[506 rows x 1 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="탐색적-데이터-분석" class="level2">
+<h2 class="anchored" data-anchor-id="탐색적-데이터-분석">3. 탐색적 데이터 분석</h2>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>boston_df<span class="op">=</span>pd.DataFrame(data<span class="op">=</span>X)</span>
+<span id="cb17-2"><a href="#cb17-2"></a>boston_df[<span class="st">"MEDIV"</span>]<span class="op">=</span>target</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="bu">print</span>(boston_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        CRIM    ZN  INDUS    NOX     RM   AGE     DIS  RAD    TAX  PTRATIO  \
+0    0.00632  18.0   2.31  0.538  6.575  65.2  4.0900  1.0  296.0     15.3   
+1    0.02731   0.0   7.07  0.469  6.421  78.9  4.9671  2.0  242.0     17.8   
+2    0.02729   0.0   7.07  0.469  7.185  61.1  4.9671  2.0  242.0     17.8   
+3    0.03237   0.0   2.18  0.458  6.998  45.8  6.0622  3.0  222.0     18.7   
+4    0.06905   0.0   2.18  0.458  7.147  54.2  6.0622  3.0  222.0     18.7   
+..       ...   ...    ...    ...    ...   ...     ...  ...    ...      ...   
+501  0.06263   0.0  11.93  0.573  6.593  69.1  2.4786  1.0  273.0     21.0   
+502  0.04527   0.0  11.93  0.573  6.120  76.7  2.2875  1.0  273.0     21.0   
+503  0.06076   0.0  11.93  0.573  6.976  91.0  2.1675  1.0  273.0     21.0   
+504  0.10959   0.0  11.93  0.573  6.794  89.3  2.3889  1.0  273.0     21.0   
+505  0.04741   0.0  11.93  0.573  6.030  80.8  2.5050  1.0  273.0     21.0   
+
+          B  LSTAT  MEDIV  
+0    396.90   4.98   24.0  
+1    396.90   9.14   21.6  
+2    392.83   4.03   34.7  
+3    394.63   2.94   33.4  
+4    396.90   5.33   36.2  
+..      ...    ...    ...  
+501  391.99   9.67   22.4  
+502  396.90   9.08   20.6  
+503  396.90   5.64   23.9  
+504  393.45   6.48   22.0  
+505  396.90   7.88   11.9  
+
+[506 rows x 13 columns]</code></pre>
+</div>
+</div>
+<p><code>-</code> 히스토그램</p>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">#목표변수 값 히스토그램</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">10</span>,<span class="dv">5</span>)})</span>
+<span id="cb19-3"><a href="#cb19-3"></a>sns.distplot(boston_df[<span class="st">'MEDIV'</span>],bins<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb19-4"><a href="#cb19-4"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="딥러닝 회귀분석_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> 상관계수</p>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># 각 변수별 상관계수</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>correlation_matrix<span class="op">=</span>boston_df.corr().<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb20-3"><a href="#cb20-3"></a>correlation_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+      <th>MEDIV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CRIM</th>
+      <td>1.00</td>
+      <td>-0.20</td>
+      <td>0.41</td>
+      <td>0.42</td>
+      <td>-0.22</td>
+      <td>0.35</td>
+      <td>-0.38</td>
+      <td>0.63</td>
+      <td>0.58</td>
+      <td>0.29</td>
+      <td>-0.39</td>
+      <td>0.46</td>
+      <td>-0.39</td>
+    </tr>
+    <tr>
+      <th>ZN</th>
+      <td>-0.20</td>
+      <td>1.00</td>
+      <td>-0.53</td>
+      <td>-0.52</td>
+      <td>0.31</td>
+      <td>-0.57</td>
+      <td>0.66</td>
+      <td>-0.31</td>
+      <td>-0.31</td>
+      <td>-0.39</td>
+      <td>0.18</td>
+      <td>-0.41</td>
+      <td>0.36</td>
+    </tr>
+    <tr>
+      <th>INDUS</th>
+      <td>0.41</td>
+      <td>-0.53</td>
+      <td>1.00</td>
+      <td>0.76</td>
+      <td>-0.39</td>
+      <td>0.64</td>
+      <td>-0.71</td>
+      <td>0.60</td>
+      <td>0.72</td>
+      <td>0.38</td>
+      <td>-0.36</td>
+      <td>0.60</td>
+      <td>-0.48</td>
+    </tr>
+    <tr>
+      <th>NOX</th>
+      <td>0.42</td>
+      <td>-0.52</td>
+      <td>0.76</td>
+      <td>1.00</td>
+      <td>-0.30</td>
+      <td>0.73</td>
+      <td>-0.77</td>
+      <td>0.61</td>
+      <td>0.67</td>
+      <td>0.19</td>
+      <td>-0.38</td>
+      <td>0.59</td>
+      <td>-0.43</td>
+    </tr>
+    <tr>
+      <th>RM</th>
+      <td>-0.22</td>
+      <td>0.31</td>
+      <td>-0.39</td>
+      <td>-0.30</td>
+      <td>1.00</td>
+      <td>-0.24</td>
+      <td>0.21</td>
+      <td>-0.21</td>
+      <td>-0.29</td>
+      <td>-0.36</td>
+      <td>0.13</td>
+      <td>-0.61</td>
+      <td>0.70</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>0.35</td>
+      <td>-0.57</td>
+      <td>0.64</td>
+      <td>0.73</td>
+      <td>-0.24</td>
+      <td>1.00</td>
+      <td>-0.75</td>
+      <td>0.46</td>
+      <td>0.51</td>
+      <td>0.26</td>
+      <td>-0.27</td>
+      <td>0.60</td>
+      <td>-0.38</td>
+    </tr>
+    <tr>
+      <th>DIS</th>
+      <td>-0.38</td>
+      <td>0.66</td>
+      <td>-0.71</td>
+      <td>-0.77</td>
+      <td>0.21</td>
+      <td>-0.75</td>
+      <td>1.00</td>
+      <td>-0.49</td>
+      <td>-0.53</td>
+      <td>-0.23</td>
+      <td>0.29</td>
+      <td>-0.50</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>RAD</th>
+      <td>0.63</td>
+      <td>-0.31</td>
+      <td>0.60</td>
+      <td>0.61</td>
+      <td>-0.21</td>
+      <td>0.46</td>
+      <td>-0.49</td>
+      <td>1.00</td>
+      <td>0.91</td>
+      <td>0.46</td>
+      <td>-0.44</td>
+      <td>0.49</td>
+      <td>-0.38</td>
+    </tr>
+    <tr>
+      <th>TAX</th>
+      <td>0.58</td>
+      <td>-0.31</td>
+      <td>0.72</td>
+      <td>0.67</td>
+      <td>-0.29</td>
+      <td>0.51</td>
+      <td>-0.53</td>
+      <td>0.91</td>
+      <td>1.00</td>
+      <td>0.46</td>
+      <td>-0.44</td>
+      <td>0.54</td>
+      <td>-0.47</td>
+    </tr>
+    <tr>
+      <th>PTRATIO</th>
+      <td>0.29</td>
+      <td>-0.39</td>
+      <td>0.38</td>
+      <td>0.19</td>
+      <td>-0.36</td>
+      <td>0.26</td>
+      <td>-0.23</td>
+      <td>0.46</td>
+      <td>0.46</td>
+      <td>1.00</td>
+      <td>-0.18</td>
+      <td>0.37</td>
+      <td>-0.51</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>-0.39</td>
+      <td>0.18</td>
+      <td>-0.36</td>
+      <td>-0.38</td>
+      <td>0.13</td>
+      <td>-0.27</td>
+      <td>0.29</td>
+      <td>-0.44</td>
+      <td>-0.44</td>
+      <td>-0.18</td>
+      <td>1.00</td>
+      <td>-0.37</td>
+      <td>0.33</td>
+    </tr>
+    <tr>
+      <th>LSTAT</th>
+      <td>0.46</td>
+      <td>-0.41</td>
+      <td>0.60</td>
+      <td>0.59</td>
+      <td>-0.61</td>
+      <td>0.60</td>
+      <td>-0.50</td>
+      <td>0.49</td>
+      <td>0.54</td>
+      <td>0.37</td>
+      <td>-0.37</td>
+      <td>1.00</td>
+      <td>-0.74</td>
+    </tr>
+    <tr>
+      <th>MEDIV</th>
+      <td>-0.39</td>
+      <td>0.36</td>
+      <td>-0.48</td>
+      <td>-0.43</td>
+      <td>0.70</td>
+      <td>-0.38</td>
+      <td>0.25</td>
+      <td>-0.38</td>
+      <td>-0.47</td>
+      <td>-0.51</td>
+      <td>0.33</td>
+      <td>-0.74</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">10</span>,<span class="dv">8</span>)})</span>
+<span id="cb21-2"><a href="#cb21-2"></a>sns.heatmap(data<span class="op">=</span>correlation_matrix,annot<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="딥러닝 회귀분석_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="데이터분리" class="level2">
+<h2 class="anchored" data-anchor-id="데이터분리">4. 데이터분리</h2>
+<ul>
+<li>학습용과 테스트용 데이터를 7:3으로 분리하자.</li>
+</ul>
+<div class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>X.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="97">
+<pre><code>(506, 13)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>X<span class="op">=</span>X.drop([<span class="st">'MEDIV'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-2"><a href="#cb24-2"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="99">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00632</td>
+      <td>18.0</td>
+      <td>2.31</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1.0</td>
+      <td>296.0</td>
+      <td>15.3</td>
+      <td>396.90</td>
+      <td>4.98</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.02731</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>396.90</td>
+      <td>9.14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.02729</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>392.83</td>
+      <td>4.03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.03237</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>394.63</td>
+      <td>2.94</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.06905</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>396.90</td>
+      <td>5.33</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>501</th>
+      <td>0.06263</td>
+      <td>0.0</td>
+      <td>11.93</td>
+      <td>0.573</td>
+      <td>6.593</td>
+      <td>69.1</td>
+      <td>2.4786</td>
+      <td>1.0</td>
+      <td>273.0</td>
+      <td>21.0</td>
+      <td>391.99</td>
+      <td>9.67</td>
+    </tr>
+    <tr>
+      <th>502</th>
+      <td>0.04527</td>
+      <td>0.0</td>
+      <td>11.93</td>
+      <td>0.573</td>
+      <td>6.120</td>
+      <td>76.7</td>
+      <td>2.2875</td>
+      <td>1.0</td>
+      <td>273.0</td>
+      <td>21.0</td>
+      <td>396.90</td>
+      <td>9.08</td>
+    </tr>
+    <tr>
+      <th>503</th>
+      <td>0.06076</td>
+      <td>0.0</td>
+      <td>11.93</td>
+      <td>0.573</td>
+      <td>6.976</td>
+      <td>91.0</td>
+      <td>2.1675</td>
+      <td>1.0</td>
+      <td>273.0</td>
+      <td>21.0</td>
+      <td>396.90</td>
+      <td>5.64</td>
+    </tr>
+    <tr>
+      <th>504</th>
+      <td>0.10959</td>
+      <td>0.0</td>
+      <td>11.93</td>
+      <td>0.573</td>
+      <td>6.794</td>
+      <td>89.3</td>
+      <td>2.3889</td>
+      <td>1.0</td>
+      <td>273.0</td>
+      <td>21.0</td>
+      <td>393.45</td>
+      <td>6.48</td>
+    </tr>
+    <tr>
+      <th>505</th>
+      <td>0.04741</td>
+      <td>0.0</td>
+      <td>11.93</td>
+      <td>0.573</td>
+      <td>6.030</td>
+      <td>80.8</td>
+      <td>2.5050</td>
+      <td>1.0</td>
+      <td>273.0</td>
+      <td>21.0</td>
+      <td>396.90</td>
+      <td>7.88</td>
+    </tr>
+  </tbody>
+</table>
+<p>506 rows × 12 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X,y,test_size<span class="op">=</span><span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="피처-스케일링" class="level2">
+<h2 class="anchored" data-anchor-id="피처-스케일링">5. 피처 스케일링</h2>
+<ul>
+<li>학습용 입력 데이터에 대한 정규화 스케일러 만들고 입력데이터를 0~1로 정규화하기</li>
+</ul>
+<div class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># 정규화 스케일러 생성</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>scalerX<span class="op">=</span>MinMaxScaler()</span>
+<span id="cb26-3"><a href="#cb26-3"></a></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="co"># 정규화 스케일러를 학습용 데이터에 맞춤</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>scalerX.fit(X_train)</span>
+<span id="cb26-6"><a href="#cb26-6"></a></span>
+<span id="cb26-7"><a href="#cb26-7"></a><span class="co"># 정규화 스케일러로 학습용 데이터 변환</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>X_train_norm<span class="op">=</span>scalerX.transform(X_train)</span>
+<span id="cb26-9"><a href="#cb26-9"></a></span>
+<span id="cb26-10"><a href="#cb26-10"></a><span class="co"># 정규화 스케일러로 테스트용 데이터 변환</span></span>
+<span id="cb26-11"><a href="#cb26-11"></a>X_test_norm <span class="op">=</span> scalerX.transform(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="bu">print</span>(X_train_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0.00680253 0.2        0.11962963 ... 0.04255319 0.98184477 0.08724646]
+ [0.07235853 0.         0.64296296 ... 0.80851064 0.24617984 0.27924423]
+ [0.1610363  0.         0.64296296 ... 0.80851064 0.93953301 0.7957766 ]
+ ...
+ [0.11494542 0.         0.64296296 ... 0.80851064 0.95662918 0.44595721]
+ [0.1717624  0.         0.64296296 ... 0.80851064 0.91456957 0.59071964]
+ [0.00187693 0.         0.33148148 ... 0.70212766 1.         0.27868852]]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>X_train_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="103">
+<pre><code>(354, 12)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="bu">print</span>(X_test_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 2.05400974e-02  0.00000000e+00  6.97777778e-01 ...  2.23404255e-01
+   9.81617832e-01 -1.66712976e-03]
+ [ 1.09008802e-02  0.00000000e+00  7.83333333e-01 ...  9.14893617e-01
+   6.61758031e-01  4.25951653e-01]
+ [ 4.66707160e-01  0.00000000e+00  6.42962963e-01 ...  8.08510638e-01
+   8.29946039e-01  7.05751598e-01]
+ ...
+ [ 1.61036297e-01  0.00000000e+00  6.42962963e-01 ...  8.08510638e-01
+   9.65757224e-01  3.09252570e-01]
+ [ 9.47848868e-04  2.00000000e-01  2.30370370e-01 ...  6.38297872e-01
+   9.85980130e-01  3.24256738e-01]
+ [ 4.01371790e-04  2.80000000e-01  5.29629630e-01 ...  5.95744681e-01
+   9.95234253e-01  1.71714365e-01]]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>X_test_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="105">
+<pre><code>(152, 12)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># 정규화 스케일러 생성</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>scalerY<span class="op">=</span>MinMaxScaler()</span>
+<span id="cb35-3"><a href="#cb35-3"></a></span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="co"># 정규화 스케일러를 학습용 데이터에 맞춤</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a>scalerY.fit(y_train)</span>
+<span id="cb35-6"><a href="#cb35-6"></a></span>
+<span id="cb35-7"><a href="#cb35-7"></a><span class="co"># 정규화 스케일러로 학습용 데이터 변환</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a>y_train_norm<span class="op">=</span>scalerY.transform(y_train)</span>
+<span id="cb35-9"><a href="#cb35-9"></a></span>
+<span id="cb35-10"><a href="#cb35-10"></a><span class="co"># 정규화 스케일러로 테스트용 데이터 변환</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a>y_test_norm <span class="op">=</span> scalerY.transform(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="107">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="bu">print</span>(y_train_norm[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1.        ]
+ [0.24666667]
+ [0.11555556]
+ [0.3       ]
+ [0.17111111]
+ [0.30888889]
+ [0.28444444]
+ [0.32666667]
+ [0.33111111]
+ [0.52444444]]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>y_train_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="108">
+<pre><code>(354, 1)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="bu">print</span>(y_test_norm[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1.        ]
+ [0.23555556]
+ [0.07777778]
+ [0.12222222]
+ [0.53555556]
+ [0.92666667]
+ [0.40222222]
+ [0.58      ]
+ [0.57333333]
+ [0.34888889]]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>y_test_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="110">
+<pre><code>(152, 1)</code></pre>
+</div>
+</div>
+</section>
+<section id="모형화-및-학습" class="level2">
+<h2 class="anchored" data-anchor-id="모형화-및-학습">6. 모형화 및 학습</h2>
+<div class="cell" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: "sequential_3"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense_12 (Dense)            (None, 60)                780       
+                                                                 
+ dense_13 (Dense)            (None, 60)                3660      
+                                                                 
+ dense_14 (Dense)            (None, 30)                1830      
+                                                                 
+ dense_15 (Dense)            (None, 1)                 31        
+                                                                 
+=================================================================
+Total params: 6,301
+Trainable params: 6,301
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</div>
+</div>
+<ul>
+<li>Param : 가중치 12x60=720, 편향:60</li>
+</ul>
+<div class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb47-2"><a href="#cb47-2"></a>              loss<span class="op">=</span><span class="st">'mse'</span>,</span>
+<span id="cb47-3"><a href="#cb47-3"></a>              metrics<span class="op">=</span>[<span class="st">'mae'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 학습</p>
+<div class="cell" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>results<span class="op">=</span>model.fit(X_train_norm, y_train_norm,</span>
+<span id="cb48-2"><a href="#cb48-2"></a>                  validation_data<span class="op">=</span>(X_test_norm, y_test_norm),</span>
+<span id="cb48-3"><a href="#cb48-3"></a>                  epochs<span class="op">=</span><span class="dv">200</span>, batch_size<span class="op">=</span><span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 1/200
+12/12 [==============================] - 0s 7ms/step - loss: 0.1031 - mae: 0.2534 - val_loss: 0.0570 - val_mae: 0.1836
+Epoch 2/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0472 - mae: 0.1690 - val_loss: 0.0401 - val_mae: 0.1482
+Epoch 3/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0326 - mae: 0.1291 - val_loss: 0.0295 - val_mae: 0.1203
+Epoch 4/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0244 - mae: 0.1095 - val_loss: 0.0234 - val_mae: 0.1124
+Epoch 5/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0224 - mae: 0.1113 - val_loss: 0.0205 - val_mae: 0.0991
+Epoch 6/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0176 - mae: 0.0876 - val_loss: 0.0162 - val_mae: 0.0880
+Epoch 7/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0144 - mae: 0.0785 - val_loss: 0.0135 - val_mae: 0.0801
+Epoch 8/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0123 - mae: 0.0711 - val_loss: 0.0118 - val_mae: 0.0791
+Epoch 9/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0110 - mae: 0.0675 - val_loss: 0.0108 - val_mae: 0.0707
+Epoch 10/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0100 - mae: 0.0645 - val_loss: 0.0105 - val_mae: 0.0756
+Epoch 11/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0097 - mae: 0.0650 - val_loss: 0.0095 - val_mae: 0.0690
+Epoch 12/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0089 - mae: 0.0612 - val_loss: 0.0092 - val_mae: 0.0682
+Epoch 13/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0082 - mae: 0.0588 - val_loss: 0.0090 - val_mae: 0.0672
+Epoch 14/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0080 - mae: 0.0565 - val_loss: 0.0102 - val_mae: 0.0783
+Epoch 15/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0089 - mae: 0.0635 - val_loss: 0.0090 - val_mae: 0.0702
+Epoch 16/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0121 - mae: 0.0826 - val_loss: 0.0117 - val_mae: 0.0826
+Epoch 17/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0088 - mae: 0.0666 - val_loss: 0.0088 - val_mae: 0.0703
+Epoch 18/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0069 - mae: 0.0544 - val_loss: 0.0077 - val_mae: 0.0625
+Epoch 19/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0067 - mae: 0.0540 - val_loss: 0.0073 - val_mae: 0.0614
+Epoch 20/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0062 - mae: 0.0518 - val_loss: 0.0072 - val_mae: 0.0605
+Epoch 21/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0063 - mae: 0.0513 - val_loss: 0.0070 - val_mae: 0.0599
+Epoch 22/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0059 - mae: 0.0507 - val_loss: 0.0069 - val_mae: 0.0594
+Epoch 23/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0064 - mae: 0.0518 - val_loss: 0.0075 - val_mae: 0.0646
+Epoch 24/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0061 - mae: 0.0507 - val_loss: 0.0065 - val_mae: 0.0573
+Epoch 25/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0057 - mae: 0.0495 - val_loss: 0.0064 - val_mae: 0.0568
+Epoch 26/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0055 - mae: 0.0504 - val_loss: 0.0067 - val_mae: 0.0580
+Epoch 27/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0058 - mae: 0.0512 - val_loss: 0.0066 - val_mae: 0.0570
+Epoch 28/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0056 - mae: 0.0487 - val_loss: 0.0064 - val_mae: 0.0564
+Epoch 29/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0052 - mae: 0.0484 - val_loss: 0.0063 - val_mae: 0.0554
+Epoch 30/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0049 - mae: 0.0469 - val_loss: 0.0063 - val_mae: 0.0560
+Epoch 31/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0049 - mae: 0.0472 - val_loss: 0.0061 - val_mae: 0.0545
+Epoch 32/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0045 - mae: 0.0448 - val_loss: 0.0063 - val_mae: 0.0546
+Epoch 33/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0045 - mae: 0.0452 - val_loss: 0.0061 - val_mae: 0.0537
+Epoch 34/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0044 - mae: 0.0456 - val_loss: 0.0061 - val_mae: 0.0540
+Epoch 35/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0045 - mae: 0.0454 - val_loss: 0.0061 - val_mae: 0.0533
+Epoch 36/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0041 - mae: 0.0436 - val_loss: 0.0060 - val_mae: 0.0520
+Epoch 37/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0043 - mae: 0.0449 - val_loss: 0.0062 - val_mae: 0.0529
+Epoch 38/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0041 - mae: 0.0444 - val_loss: 0.0060 - val_mae: 0.0529
+Epoch 39/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0040 - mae: 0.0439 - val_loss: 0.0060 - val_mae: 0.0518
+Epoch 40/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0046 - mae: 0.0481 - val_loss: 0.0087 - val_mae: 0.0648
+Epoch 41/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0046 - mae: 0.0467 - val_loss: 0.0060 - val_mae: 0.0524
+Epoch 42/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0041 - mae: 0.0453 - val_loss: 0.0060 - val_mae: 0.0533
+Epoch 43/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0043 - mae: 0.0454 - val_loss: 0.0067 - val_mae: 0.0548
+Epoch 44/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0045 - mae: 0.0501 - val_loss: 0.0060 - val_mae: 0.0503
+Epoch 45/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0039 - mae: 0.0451 - val_loss: 0.0063 - val_mae: 0.0548
+Epoch 46/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0038 - mae: 0.0446 - val_loss: 0.0056 - val_mae: 0.0494
+Epoch 47/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0035 - mae: 0.0423 - val_loss: 0.0057 - val_mae: 0.0496
+Epoch 48/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0037 - mae: 0.0426 - val_loss: 0.0060 - val_mae: 0.0509
+Epoch 49/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0036 - mae: 0.0425 - val_loss: 0.0071 - val_mae: 0.0555
+Epoch 50/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0092 - mae: 0.0708 - val_loss: 0.0089 - val_mae: 0.0701
+Epoch 51/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0050 - mae: 0.0526 - val_loss: 0.0069 - val_mae: 0.0579
+Epoch 52/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0041 - mae: 0.0456 - val_loss: 0.0060 - val_mae: 0.0510
+Epoch 53/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0041 - mae: 0.0462 - val_loss: 0.0062 - val_mae: 0.0528
+Epoch 54/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0033 - mae: 0.0409 - val_loss: 0.0063 - val_mae: 0.0516
+Epoch 55/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0034 - mae: 0.0414 - val_loss: 0.0064 - val_mae: 0.0529
+Epoch 56/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0034 - mae: 0.0414 - val_loss: 0.0064 - val_mae: 0.0545
+Epoch 57/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0035 - mae: 0.0401 - val_loss: 0.0062 - val_mae: 0.0504
+Epoch 58/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0031 - mae: 0.0387 - val_loss: 0.0065 - val_mae: 0.0525
+Epoch 59/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0030 - mae: 0.0385 - val_loss: 0.0068 - val_mae: 0.0541
+Epoch 60/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0031 - mae: 0.0404 - val_loss: 0.0061 - val_mae: 0.0506
+Epoch 61/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0034 - mae: 0.0425 - val_loss: 0.0071 - val_mae: 0.0564
+Epoch 62/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0033 - mae: 0.0405 - val_loss: 0.0070 - val_mae: 0.0545
+Epoch 63/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0031 - mae: 0.0395 - val_loss: 0.0068 - val_mae: 0.0534
+Epoch 64/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0029 - mae: 0.0399 - val_loss: 0.0064 - val_mae: 0.0527
+Epoch 65/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0028 - mae: 0.0382 - val_loss: 0.0062 - val_mae: 0.0517
+Epoch 66/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0028 - mae: 0.0379 - val_loss: 0.0063 - val_mae: 0.0512
+Epoch 67/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0027 - mae: 0.0379 - val_loss: 0.0062 - val_mae: 0.0505
+Epoch 68/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0026 - mae: 0.0365 - val_loss: 0.0063 - val_mae: 0.0513
+Epoch 69/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0029 - mae: 0.0383 - val_loss: 0.0066 - val_mae: 0.0514
+Epoch 70/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0027 - mae: 0.0370 - val_loss: 0.0066 - val_mae: 0.0505
+Epoch 71/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0029 - mae: 0.0386 - val_loss: 0.0066 - val_mae: 0.0520
+Epoch 72/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0026 - mae: 0.0373 - val_loss: 0.0067 - val_mae: 0.0515
+Epoch 73/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0025 - mae: 0.0367 - val_loss: 0.0063 - val_mae: 0.0509
+Epoch 74/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0026 - mae: 0.0364 - val_loss: 0.0064 - val_mae: 0.0519
+Epoch 75/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0034 - mae: 0.0422 - val_loss: 0.0060 - val_mae: 0.0496
+Epoch 76/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0026 - mae: 0.0353 - val_loss: 0.0068 - val_mae: 0.0534
+Epoch 77/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0027 - mae: 0.0381 - val_loss: 0.0064 - val_mae: 0.0499
+Epoch 78/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0024 - mae: 0.0357 - val_loss: 0.0060 - val_mae: 0.0495
+Epoch 79/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0024 - mae: 0.0353 - val_loss: 0.0059 - val_mae: 0.0490
+Epoch 80/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0025 - mae: 0.0366 - val_loss: 0.0065 - val_mae: 0.0517
+Epoch 81/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0024 - mae: 0.0363 - val_loss: 0.0064 - val_mae: 0.0507
+Epoch 82/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0023 - mae: 0.0350 - val_loss: 0.0062 - val_mae: 0.0499
+Epoch 83/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0342 - val_loss: 0.0064 - val_mae: 0.0513
+Epoch 84/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0023 - mae: 0.0351 - val_loss: 0.0062 - val_mae: 0.0499
+Epoch 85/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0335 - val_loss: 0.0061 - val_mae: 0.0500
+Epoch 86/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0346 - val_loss: 0.0062 - val_mae: 0.0517
+Epoch 87/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0345 - val_loss: 0.0061 - val_mae: 0.0507
+Epoch 88/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0021 - mae: 0.0331 - val_loss: 0.0061 - val_mae: 0.0500
+Epoch 89/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0020 - mae: 0.0331 - val_loss: 0.0062 - val_mae: 0.0512
+Epoch 90/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0021 - mae: 0.0330 - val_loss: 0.0062 - val_mae: 0.0498
+Epoch 91/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0020 - mae: 0.0327 - val_loss: 0.0062 - val_mae: 0.0496
+Epoch 92/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0020 - mae: 0.0328 - val_loss: 0.0061 - val_mae: 0.0496
+Epoch 93/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0019 - mae: 0.0319 - val_loss: 0.0063 - val_mae: 0.0506
+Epoch 94/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0020 - mae: 0.0329 - val_loss: 0.0062 - val_mae: 0.0506
+Epoch 95/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0019 - mae: 0.0318 - val_loss: 0.0061 - val_mae: 0.0503
+Epoch 96/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0315 - val_loss: 0.0062 - val_mae: 0.0507
+Epoch 97/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0317 - val_loss: 0.0061 - val_mae: 0.0501
+Epoch 98/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0315 - val_loss: 0.0063 - val_mae: 0.0505
+Epoch 99/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0019 - mae: 0.0330 - val_loss: 0.0062 - val_mae: 0.0498
+Epoch 100/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0019 - mae: 0.0313 - val_loss: 0.0067 - val_mae: 0.0527
+Epoch 101/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0310 - val_loss: 0.0063 - val_mae: 0.0507
+Epoch 102/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0318 - val_loss: 0.0066 - val_mae: 0.0519
+Epoch 103/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0021 - mae: 0.0343 - val_loss: 0.0063 - val_mae: 0.0517
+Epoch 104/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0317 - val_loss: 0.0063 - val_mae: 0.0508
+Epoch 105/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0019 - mae: 0.0325 - val_loss: 0.0065 - val_mae: 0.0513
+Epoch 106/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0021 - mae: 0.0339 - val_loss: 0.0060 - val_mae: 0.0501
+Epoch 107/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0311 - val_loss: 0.0068 - val_mae: 0.0528
+Epoch 108/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0026 - mae: 0.0386 - val_loss: 0.0067 - val_mae: 0.0512
+Epoch 109/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0020 - mae: 0.0335 - val_loss: 0.0070 - val_mae: 0.0530
+Epoch 110/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0028 - mae: 0.0404 - val_loss: 0.0065 - val_mae: 0.0517
+Epoch 111/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0029 - mae: 0.0407 - val_loss: 0.0058 - val_mae: 0.0501
+Epoch 112/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0019 - mae: 0.0328 - val_loss: 0.0060 - val_mae: 0.0507
+Epoch 113/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0019 - mae: 0.0331 - val_loss: 0.0059 - val_mae: 0.0495
+Epoch 114/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0021 - mae: 0.0341 - val_loss: 0.0064 - val_mae: 0.0505
+Epoch 115/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0020 - mae: 0.0324 - val_loss: 0.0065 - val_mae: 0.0518
+Epoch 116/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0017 - mae: 0.0303 - val_loss: 0.0061 - val_mae: 0.0500
+Epoch 117/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0017 - mae: 0.0303 - val_loss: 0.0060 - val_mae: 0.0502
+Epoch 118/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0320 - val_loss: 0.0062 - val_mae: 0.0509
+Epoch 119/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0317 - val_loss: 0.0060 - val_mae: 0.0499
+Epoch 120/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0017 - mae: 0.0309 - val_loss: 0.0064 - val_mae: 0.0512
+Epoch 121/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0024 - mae: 0.0355 - val_loss: 0.0063 - val_mae: 0.0514
+Epoch 122/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0024 - mae: 0.0379 - val_loss: 0.0075 - val_mae: 0.0617
+Epoch 123/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0028 - mae: 0.0388 - val_loss: 0.0055 - val_mae: 0.0484
+Epoch 124/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0020 - mae: 0.0330 - val_loss: 0.0065 - val_mae: 0.0531
+Epoch 125/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0325 - val_loss: 0.0063 - val_mae: 0.0504
+Epoch 126/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0017 - mae: 0.0306 - val_loss: 0.0065 - val_mae: 0.0512
+Epoch 127/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0317 - val_loss: 0.0061 - val_mae: 0.0503
+Epoch 128/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0292 - val_loss: 0.0060 - val_mae: 0.0502
+Epoch 129/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0297 - val_loss: 0.0065 - val_mae: 0.0531
+Epoch 130/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0302 - val_loss: 0.0063 - val_mae: 0.0503
+Epoch 131/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0015 - mae: 0.0293 - val_loss: 0.0066 - val_mae: 0.0525
+Epoch 132/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0305 - val_loss: 0.0060 - val_mae: 0.0499
+Epoch 133/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0315 - val_loss: 0.0061 - val_mae: 0.0505
+Epoch 134/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0299 - val_loss: 0.0066 - val_mae: 0.0515
+Epoch 135/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0301 - val_loss: 0.0065 - val_mae: 0.0520
+Epoch 136/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0321 - val_loss: 0.0064 - val_mae: 0.0509
+Epoch 137/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0021 - mae: 0.0343 - val_loss: 0.0059 - val_mae: 0.0505
+Epoch 138/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0303 - val_loss: 0.0058 - val_mae: 0.0489
+Epoch 139/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0017 - mae: 0.0308 - val_loss: 0.0061 - val_mae: 0.0500
+Epoch 140/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0015 - mae: 0.0287 - val_loss: 0.0062 - val_mae: 0.0494
+Epoch 141/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0015 - mae: 0.0285 - val_loss: 0.0062 - val_mae: 0.0496
+Epoch 142/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0280 - val_loss: 0.0061 - val_mae: 0.0497
+Epoch 143/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0279 - val_loss: 0.0061 - val_mae: 0.0499
+Epoch 144/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0300 - val_loss: 0.0061 - val_mae: 0.0492
+Epoch 145/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0015 - mae: 0.0293 - val_loss: 0.0064 - val_mae: 0.0512
+Epoch 146/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0017 - mae: 0.0304 - val_loss: 0.0065 - val_mae: 0.0515
+Epoch 147/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0024 - mae: 0.0374 - val_loss: 0.0062 - val_mae: 0.0497
+Epoch 148/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0017 - mae: 0.0316 - val_loss: 0.0061 - val_mae: 0.0515
+Epoch 149/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0017 - mae: 0.0305 - val_loss: 0.0062 - val_mae: 0.0523
+Epoch 150/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0015 - mae: 0.0281 - val_loss: 0.0059 - val_mae: 0.0492
+Epoch 151/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0015 - mae: 0.0283 - val_loss: 0.0062 - val_mae: 0.0512
+Epoch 152/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0015 - mae: 0.0289 - val_loss: 0.0062 - val_mae: 0.0501
+Epoch 153/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0283 - val_loss: 0.0061 - val_mae: 0.0488
+Epoch 154/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0277 - val_loss: 0.0061 - val_mae: 0.0492
+Epoch 155/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0272 - val_loss: 0.0063 - val_mae: 0.0489
+Epoch 156/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0268 - val_loss: 0.0063 - val_mae: 0.0494
+Epoch 157/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0269 - val_loss: 0.0062 - val_mae: 0.0494
+Epoch 158/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0012 - mae: 0.0259 - val_loss: 0.0063 - val_mae: 0.0489
+Epoch 159/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0260 - val_loss: 0.0062 - val_mae: 0.0500
+Epoch 160/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0263 - val_loss: 0.0073 - val_mae: 0.0537
+Epoch 161/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0023 - mae: 0.0360 - val_loss: 0.0071 - val_mae: 0.0572
+Epoch 162/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0360 - val_loss: 0.0069 - val_mae: 0.0546
+Epoch 163/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0342 - val_loss: 0.0066 - val_mae: 0.0527
+Epoch 164/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0356 - val_loss: 0.0061 - val_mae: 0.0509
+Epoch 165/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0331 - val_loss: 0.0065 - val_mae: 0.0516
+Epoch 166/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0019 - mae: 0.0319 - val_loss: 0.0063 - val_mae: 0.0499
+Epoch 167/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0325 - val_loss: 0.0077 - val_mae: 0.0570
+Epoch 168/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0374 - val_loss: 0.0066 - val_mae: 0.0519
+Epoch 169/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0365 - val_loss: 0.0066 - val_mae: 0.0520
+Epoch 170/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0023 - mae: 0.0377 - val_loss: 0.0058 - val_mae: 0.0501
+Epoch 171/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0311 - val_loss: 0.0061 - val_mae: 0.0517
+Epoch 172/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0300 - val_loss: 0.0060 - val_mae: 0.0501
+Epoch 173/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0018 - mae: 0.0322 - val_loss: 0.0060 - val_mae: 0.0498
+Epoch 174/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0274 - val_loss: 0.0061 - val_mae: 0.0494
+Epoch 175/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0269 - val_loss: 0.0063 - val_mae: 0.0495
+Epoch 176/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0012 - mae: 0.0263 - val_loss: 0.0061 - val_mae: 0.0495
+Epoch 177/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0012 - mae: 0.0258 - val_loss: 0.0060 - val_mae: 0.0501
+Epoch 178/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0027 - mae: 0.0401 - val_loss: 0.0057 - val_mae: 0.0493
+Epoch 179/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0022 - mae: 0.0354 - val_loss: 0.0061 - val_mae: 0.0501
+Epoch 180/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0301 - val_loss: 0.0063 - val_mae: 0.0511
+Epoch 181/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0275 - val_loss: 0.0070 - val_mae: 0.0533
+Epoch 182/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0277 - val_loss: 0.0059 - val_mae: 0.0485
+Epoch 183/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0015 - mae: 0.0289 - val_loss: 0.0061 - val_mae: 0.0484
+Epoch 184/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0271 - val_loss: 0.0071 - val_mae: 0.0546
+Epoch 185/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0305 - val_loss: 0.0066 - val_mae: 0.0513
+Epoch 186/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0270 - val_loss: 0.0061 - val_mae: 0.0483
+Epoch 187/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0267 - val_loss: 0.0062 - val_mae: 0.0481
+Epoch 188/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0283 - val_loss: 0.0066 - val_mae: 0.0496
+Epoch 189/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0261 - val_loss: 0.0060 - val_mae: 0.0476
+Epoch 190/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0266 - val_loss: 0.0062 - val_mae: 0.0483
+Epoch 191/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0016 - mae: 0.0300 - val_loss: 0.0070 - val_mae: 0.0524
+Epoch 192/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0287 - val_loss: 0.0065 - val_mae: 0.0515
+Epoch 193/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0283 - val_loss: 0.0062 - val_mae: 0.0481
+Epoch 194/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0269 - val_loss: 0.0059 - val_mae: 0.0482
+Epoch 195/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0264 - val_loss: 0.0060 - val_mae: 0.0490
+Epoch 196/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0012 - mae: 0.0251 - val_loss: 0.0059 - val_mae: 0.0480
+Epoch 197/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0012 - mae: 0.0255 - val_loss: 0.0063 - val_mae: 0.0510
+Epoch 198/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0013 - mae: 0.0277 - val_loss: 0.0059 - val_mae: 0.0479
+Epoch 199/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0012 - mae: 0.0257 - val_loss: 0.0065 - val_mae: 0.0513
+Epoch 200/200
+12/12 [==============================] - 0s 2ms/step - loss: 0.0014 - mae: 0.0272 - val_loss: 0.0066 - val_mae: 0.0507</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="bu">print</span>(results.history.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['loss', 'mae', 'val_loss', 'val_mae'])</code></pre>
+</div>
+</div>
+<ul>
+<li><p>loss : 학습 데이터 비용</p></li>
+<li><p>mae : 학습 데이터 오차</p></li>
+<li><p>val_loss : 테스트 데이터 비용</p></li>
+<li><p>val_mae : 테스트 데이터 오차</p></li>
+</ul>
+<div class="cell" data-execution_count="118">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># 학습 수에 따른 loss 변화</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb52-3"><a href="#cb52-3"></a>plt.plot(results.history[<span class="st">'loss'</span>]) </span>
+<span id="cb52-4"><a href="#cb52-4"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
+<span id="cb52-5"><a href="#cb52-5"></a>plt.title(<span class="st">'loss'</span>)</span>
+<span id="cb52-6"><a href="#cb52-6"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
+<span id="cb52-7"><a href="#cb52-7"></a>plt.ylabel(<span class="st">'loss'</span>)</span>
+<span id="cb52-8"><a href="#cb52-8"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb52-9"><a href="#cb52-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="딥러닝 회귀분석_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="119">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># 학습 수에 따른 정확도(mae) 변화</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb53-3"><a href="#cb53-3"></a>plt.plot(results.history[<span class="st">'mae'</span>]) </span>
+<span id="cb53-4"><a href="#cb53-4"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
+<span id="cb53-5"><a href="#cb53-5"></a>plt.title(<span class="st">'accuracy(MAE)'</span>)</span>
+<span id="cb53-6"><a href="#cb53-6"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
+<span id="cb53-7"><a href="#cb53-7"></a>plt.ylabel(<span class="st">'accuracy'</span>)</span>
+<span id="cb53-8"><a href="#cb53-8"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb53-9"><a href="#cb53-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="딥러닝 회귀분석_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예측" class="level2">
+<h2 class="anchored" data-anchor-id="예측">7. 예측</h2>
+<div class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># 테스트 데이터 예측</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a>y_pred<span class="op">=</span>model.predict(X_test_norm).flatten()</span>
+<span id="cb54-3"><a href="#cb54-3"></a></span>
+<span id="cb54-4"><a href="#cb54-4"></a><span class="co"># 예측 값의 역변환</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb54-6"><a href="#cb54-6"></a><span class="bu">print</span>(y_pred_inverse[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5/5 [==============================] - 0s 540us/step
+[[50.411358 ]
+ [13.942274 ]
+ [ 6.1426053]
+ [10.471625 ]
+ [30.684546 ]
+ [44.55355  ]
+ [26.434183 ]
+ [31.944752 ]
+ [32.296173 ]
+ [23.545477 ]]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># 오차측정(MAE)</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a><span class="bu">print</span>(<span class="st">'MAE:</span><span class="sc">%.2f</span><span class="st">'</span> <span class="op">%</span>mean_absolute_error(y_test, y_pred_inverse))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MAE:2.28</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># 실제 값 대비 예측 값의 산포도</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">7</span>))</span>
+<span id="cb58-3"><a href="#cb58-3"></a>plt.scatter(y_test_norm,y_pred,c<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb58-4"><a href="#cb58-4"></a>plt.xlabel(<span class="st">'TrueValues'</span>)</span>
+<span id="cb58-5"><a href="#cb58-5"></a>plt.ylabel(<span class="st">'Predictions'</span>)</span>
+<span id="cb58-6"><a href="#cb58-6"></a>plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb58-7"><a href="#cb58-7"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb58-8"><a href="#cb58-8"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb58-9"><a href="#cb58-9"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">0</span>,<span class="dv">1</span>])</span>
+<span id="cb58-10"><a href="#cb58-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="딥러닝 회귀분석_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="드랍아웃-모형-추가" class="level2">
+<h2 class="anchored" data-anchor-id="드랍아웃-모형-추가">8. 드랍아웃 모형 추가</h2>
+<div class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dropout</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="137">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
+<span id="cb60-3"><a href="#cb60-3"></a>model.add(Dropout(<span class="fl">0.5</span>)) <span class="co"># 제 1은닉충과 2은닉충 사이의 드롭 아웃 50%</span></span>
+<span id="cb60-4"><a href="#cb60-4"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
+<span id="cb60-5"><a href="#cb60-5"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
+<span id="cb60-6"><a href="#cb60-6"></a>model.add(Dropout(<span class="fl">0.2</span>)) <span class="co"># 제 3은닉충과 출력층 사이의 드롭 아웃 20%</span></span>
+<span id="cb60-7"><a href="#cb60-7"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="138">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: "sequential_5"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense_20 (Dense)            (None, 60)                780       
+                                                                 
+ dropout_2 (Dropout)         (None, 60)                0         
+                                                                 
+ dense_21 (Dense)            (None, 60)                3660      
+                                                                 
+ dense_22 (Dense)            (None, 30)                1830      
+                                                                 
+ dropout_3 (Dropout)         (None, 30)                0         
+                                                                 
+ dense_23 (Dense)            (None, 1)                 31        
+                                                                 
+=================================================================
+Total params: 6,301
+Trainable params: 6,301
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="139">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb63-2"><a href="#cb63-2"></a>              loss<span class="op">=</span><span class="st">'mse'</span>,</span>
+<span id="cb63-3"><a href="#cb63-3"></a>              metrics<span class="op">=</span>[<span class="st">'mae'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="143">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a><span class="co"># results=model.fit(X_train_norm, y_train_norm,</span></span>
+<span id="cb64-2"><a href="#cb64-2"></a><span class="co">#                   validation_data=(X_test_norm, y_test_norm),</span></span>
+<span id="cb64-3"><a href="#cb64-3"></a><span class="co">#                   epochs=1000, batch_size=20)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="141">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="bu">print</span>(results.history.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['loss', 'mae', 'val_loss', 'val_mae'])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="142">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a><span class="co"># 학습 수에 따른 loss 변화</span></span>
+<span id="cb67-2"><a href="#cb67-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb67-3"><a href="#cb67-3"></a>plt.plot(results.history[<span class="st">'loss'</span>]) </span>
+<span id="cb67-4"><a href="#cb67-4"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
+<span id="cb67-5"><a href="#cb67-5"></a>plt.title(<span class="st">'loss'</span>)</span>
+<span id="cb67-6"><a href="#cb67-6"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
+<span id="cb67-7"><a href="#cb67-7"></a>plt.ylabel(<span class="st">'loss'</span>)</span>
+<span id="cb67-8"><a href="#cb67-8"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb67-9"><a href="#cb67-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="딥러닝 회귀분석_files/figure-html/cell-43-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="144">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># 학습 수에 따른 정확도(mae) 변화</span></span>
+<span id="cb68-2"><a href="#cb68-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb68-3"><a href="#cb68-3"></a>plt.plot(results.history[<span class="st">'mae'</span>]) </span>
+<span id="cb68-4"><a href="#cb68-4"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
+<span id="cb68-5"><a href="#cb68-5"></a>plt.title(<span class="st">'accuracy(MAE)'</span>)</span>
+<span id="cb68-6"><a href="#cb68-6"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
+<span id="cb68-7"><a href="#cb68-7"></a>plt.ylabel(<span class="st">'accuracy'</span>)</span>
+<span id="cb68-8"><a href="#cb68-8"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb68-9"><a href="#cb68-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="딥러닝 회귀분석_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="145">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a><span class="co"># 테스트 데이터 예측</span></span>
+<span id="cb69-2"><a href="#cb69-2"></a>y_pred<span class="op">=</span>model.predict(X_test_norm).flatten()</span>
+<span id="cb69-3"><a href="#cb69-3"></a></span>
+<span id="cb69-4"><a href="#cb69-4"></a><span class="co"># 예측 값의 역변환</span></span>
+<span id="cb69-5"><a href="#cb69-5"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb69-6"><a href="#cb69-6"></a><span class="bu">print</span>(y_pred_inverse[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5/5 [==============================] - 0s 517us/step
+[[36.150234]
+ [15.184836]
+ [ 8.98333 ]
+ [12.427422]
+ [26.98419 ]
+ [34.612114]
+ [20.946304]
+ [27.669504]
+ [28.082466]
+ [23.544407]]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="146">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a><span class="co"># 오차측정(MAE)</span></span>
+<span id="cb71-2"><a href="#cb71-2"></a><span class="bu">print</span>(<span class="st">'MAE:</span><span class="sc">%.2f</span><span class="st">'</span> <span class="op">%</span>mean_absolute_error(y_test, y_pred_inverse))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MAE:3.00</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="147">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># 실제 값 대비 예측 값의 산포도</span></span>
+<span id="cb73-2"><a href="#cb73-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">7</span>))</span>
+<span id="cb73-3"><a href="#cb73-3"></a>plt.scatter(y_test_norm,y_pred,c<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb73-4"><a href="#cb73-4"></a>plt.xlabel(<span class="st">'TrueValues'</span>)</span>
+<span id="cb73-5"><a href="#cb73-5"></a>plt.ylabel(<span class="st">'Predictions'</span>)</span>
+<span id="cb73-6"><a href="#cb73-6"></a>plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb73-7"><a href="#cb73-7"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb73-8"><a href="#cb73-8"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb73-9"><a href="#cb73-9"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">0</span>,<span class="dv">1</span>])</span>
+<span id="cb73-10"><a href="#cb73-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="딥러닝 회귀분석_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="입력-노드의-드랍-아웃" class="level2">
+<h2 class="anchored" data-anchor-id="입력-노드의-드랍-아웃">9. 입력 노드의 드랍 아웃</h2>
+<div class="sourceCode" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
+<span id="cb74-2"><a href="#cb74-2"></a>model.add(Dropout(<span class="fl">0.2</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 입력 노드에 대한 드랍아웃 비율 0.2</span></span>
+<span id="cb74-3"><a href="#cb74-3"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
+<span id="cb74-4"><a href="#cb74-4"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
+<span id="cb74-5"><a href="#cb74-5"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
+<span id="cb74-6"><a href="#cb74-6"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
