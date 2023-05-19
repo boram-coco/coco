@@ -14,9 +14,9 @@ title-block-banner: true
 ---
 
 
-coco 블로그는 대학원 강의노트, 논문 리뷰, 공부 등으로 이루어진 블로그입니다!
+coco
 
-* Data Visualization 강의는 데이터 크기 문제로 [DV블로그](https://boram-coco.github.io/DV/) 따로 개설
+* [Data Visualization 블로그](https://boram-coco.github.io/DV/) 따로 개설
 
 * [낙서장](https://boram-coco.github.io/Scribbling/)
 
