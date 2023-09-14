@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1625,7 +1619,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#prototype-selection-under-sampling-by-selecting-existing-samples" id="toc-prototype-selection-under-sampling-by-selecting-existing-samples" class="nav-link" data-scroll-target="#prototype-selection-under-sampling-by-selecting-existing-samples">Prototype selection: under-sampling by selecting existing samples</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="plot_comparison_under_sampling.out.ipynb" download="plot_comparison_under_sampling.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1662,114 +1656,114 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>ref: <a href="https://imbalanced-learn.org/stable/index.html">imbalaced-learn</a></p>
 <div id="cell-2" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="compare-under-sampling-samplers" class="level1">
 <h1>Compare under-sampling samplers</h1>
 <p>The following example attends to make a qualitative comparison between the different under-sampling algorithms available in the imbalanced-learn package.</p>
 <div id="cell-4" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Authors: Guillaume Lemaitre &lt;g.lemaitre58@gmail.com&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># License: MIT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Authors: Guillaume Lemaitre &lt;g.lemaitre58@gmail.com&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># License: MIT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-5" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">print</span>(__doc__)</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a>sns.set_context(<span class="st">"poster"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(__doc__)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sns.set_context(<span class="st">"poster"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Automatically created module for IPython interactive environment</code></pre>
 </div>
 </div>
 <p>The following function will be used to create toy dataset. It uses the :func:<code>~sklearn.datasets.make_classification</code> from scikit-learn but fixing some parameters.</p>
 <div id="cell-7" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">def</span> create_dataset(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    n_samples<span class="op">=</span><span class="dv">1000</span>,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    weights<span class="op">=</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>, <span class="fl">0.98</span>),</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    n_classes<span class="op">=</span><span class="dv">3</span>,</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    class_sep<span class="op">=</span><span class="fl">0.8</span>,</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    n_clusters<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb5-10"><a href="#cb5-10"></a>):</span>
-<span id="cb5-11"><a href="#cb5-11"></a>    <span class="cf">return</span> make_classification(</span>
-<span id="cb5-12"><a href="#cb5-12"></a>        n_samples<span class="op">=</span>n_samples,</span>
-<span id="cb5-13"><a href="#cb5-13"></a>        n_features<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb5-14"><a href="#cb5-14"></a>        n_informative<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb5-15"><a href="#cb5-15"></a>        n_redundant<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb5-16"><a href="#cb5-16"></a>        n_repeated<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb5-17"><a href="#cb5-17"></a>        n_classes<span class="op">=</span>n_classes,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>        n_clusters_per_class<span class="op">=</span>n_clusters,</span>
-<span id="cb5-19"><a href="#cb5-19"></a>        weights<span class="op">=</span><span class="bu">list</span>(weights),</span>
-<span id="cb5-20"><a href="#cb5-20"></a>        class_sep<span class="op">=</span>class_sep,</span>
-<span id="cb5-21"><a href="#cb5-21"></a>        random_state<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb5-22"><a href="#cb5-22"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_dataset(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    n_samples<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    weights<span class="op">=</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>, <span class="fl">0.98</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    n_classes<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    class_sep<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    n_clusters<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> make_classification(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        n_samples<span class="op">=</span>n_samples,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        n_features<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        n_informative<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        n_redundant<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        n_repeated<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        n_classes<span class="op">=</span>n_classes,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        n_clusters_per_class<span class="op">=</span>n_clusters,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        weights<span class="op">=</span><span class="bu">list</span>(weights),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        class_sep<span class="op">=</span>class_sep,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        random_state<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following function will be used to plot the sample space after resampling to illustrate the specificities of an algorithm.</p>
 <div id="cell-9" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> plot_resampling(X, y, sampler, ax, title<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    X_res, y_res <span class="op">=</span> sampler.fit_resample(X, y)</span>
-<span id="cb6-3"><a href="#cb6-3"></a>    ax.scatter(X_res[:, <span class="dv">0</span>], X_res[:, <span class="dv">1</span>], c<span class="op">=</span>y_res, alpha<span class="op">=</span><span class="fl">0.8</span>, edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="cf">if</span> title <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb6-5"><a href="#cb6-5"></a>        title <span class="op">=</span> <span class="ss">f"Resampling with </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>    ax.set_title(title)</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    sns.despine(ax<span class="op">=</span>ax, offset<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_resampling(X, y, sampler, ax, title<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    X_res, y_res <span class="op">=</span> sampler.fit_resample(X, y)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X_res[:, <span class="dv">0</span>], X_res[:, <span class="dv">1</span>], c<span class="op">=</span>y_res, alpha<span class="op">=</span><span class="fl">0.8</span>, edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> title <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> <span class="ss">f"Resampling with </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    sns.despine(ax<span class="op">=</span>ax, offset<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following function will be used to plot the decision function of a classifier given some data.</p>
 <div id="cell-11" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">def</span> plot_decision_function(X, y, clf, ax, title<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    plot_step <span class="op">=</span> <span class="fl">0.02</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>    x_min, x_max <span class="op">=</span> X[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, X[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    y_min, y_max <span class="op">=</span> X[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, X[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>    xx, yy <span class="op">=</span> np.meshgrid(</span>
-<span id="cb7-9"><a href="#cb7-9"></a>        np.arange(x_min, x_max, plot_step), np.arange(y_min, y_max, plot_step)</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    )</span>
-<span id="cb7-11"><a href="#cb7-11"></a></span>
-<span id="cb7-12"><a href="#cb7-12"></a>    Z <span class="op">=</span> clf.predict(np.c_[xx.ravel(), yy.ravel()])</span>
-<span id="cb7-13"><a href="#cb7-13"></a>    Z <span class="op">=</span> Z.reshape(xx.shape)</span>
-<span id="cb7-14"><a href="#cb7-14"></a>    ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
-<span id="cb7-15"><a href="#cb7-15"></a>    ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.8</span>, c<span class="op">=</span>y, edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16"></a>    <span class="cf">if</span> title <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb7-17"><a href="#cb7-17"></a>        ax.set_title(title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_decision_function(X, y, clf, ax, title<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    plot_step <span class="op">=</span> <span class="fl">0.02</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    x_min, x_max <span class="op">=</span> X[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, X[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    y_min, y_max <span class="op">=</span> X[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, X[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    xx, yy <span class="op">=</span> np.meshgrid(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        np.arange(x_min, x_max, plot_step), np.arange(y_min, y_max, plot_step)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> clf.predict(np.c_[xx.ravel(), yy.ravel()])</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> Z.reshape(xx.shape)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.8</span>, c<span class="op">=</span>y, edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> title <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        ax.set_title(title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-12" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>clf <span class="op">=</span> LogisticRegression()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LogisticRegression()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="prototype-generation-under-sampling-by-generating-new-samples" class="level2">
 <h2 class="anchored" data-anchor-id="prototype-generation-under-sampling-by-generating-new-samples">Prototype generation: under-sampling by generating new samples</h2>
 <p>:class:<code>~imblearn.under_sampling.ClusterCentroids</code> under-samples by replacing the original samples by the centroids of the cluster found.</p>
 <div id="cell-14" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> MiniBatchKMeans</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="im">from</span> imblearn <span class="im">import</span> FunctionSampler</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="im">from</span> imblearn.pipeline <span class="im">import</span> make_pipeline</span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> ClusterCentroids</span>
-<span id="cb9-7"><a href="#cb9-7"></a></span>
-<span id="cb9-8"><a href="#cb9-8"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">400</span>, weights<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>), class_sep<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb9-9"><a href="#cb9-9"></a></span>
-<span id="cb9-10"><a href="#cb9-10"></a>samplers <span class="op">=</span> {</span>
-<span id="cb9-11"><a href="#cb9-11"></a>    FunctionSampler(),  <span class="co"># identity resampler</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>    ClusterCentroids(</span>
-<span id="cb9-13"><a href="#cb9-13"></a>        estimator<span class="op">=</span>MiniBatchKMeans(n_init<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span><span class="dv">0</span>), random_state<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a>    ),</span>
-<span id="cb9-15"><a href="#cb9-15"></a>}</span>
-<span id="cb9-16"><a href="#cb9-16"></a></span>
-<span id="cb9-17"><a href="#cb9-17"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>))</span>
-<span id="cb9-18"><a href="#cb9-18"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
-<span id="cb9-19"><a href="#cb9-19"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
-<span id="cb9-20"><a href="#cb9-20"></a>    plot_decision_function(</span>
-<span id="cb9-21"><a href="#cb9-21"></a>        X, y, model, ax[<span class="dv">0</span>], title<span class="op">=</span><span class="ss">f"Decision function with </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb9-22"><a href="#cb9-22"></a>    )</span>
-<span id="cb9-23"><a href="#cb9-23"></a>    plot_resampling(X, y, sampler, ax[<span class="dv">1</span>])</span>
-<span id="cb9-24"><a href="#cb9-24"></a></span>
-<span id="cb9-25"><a href="#cb9-25"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> MiniBatchKMeans</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn <span class="im">import</span> FunctionSampler</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> ClusterCentroids</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">400</span>, weights<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>), class_sep<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>samplers <span class="op">=</span> {</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    FunctionSampler(),  <span class="co"># identity resampler</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    ClusterCentroids(</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        estimator<span class="op">=</span>MiniBatchKMeans(n_init<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span><span class="dv">0</span>), random_state<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>))</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    plot_decision_function(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        X, y, model, ax[<span class="dv">0</span>], title<span class="op">=</span><span class="ss">f"Decision function with </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    plot_resampling(X, y, sampler, ax[<span class="dv">1</span>])</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="plot_comparison_under_sampling_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
@@ -1780,54 +1774,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The algorithm performing prototype selection can be subdivided into two groups: (i) the controlled under-sampling methods and (ii) the cleaning under-sampling methods.</p>
 <p>With the controlled under-sampling methods, the number of samples to be selected can be specified. :class:<code>~imblearn.under_sampling.RandomUnderSampler</code> is the most naive way of performing such selection by randomly selecting a given number of samples by the targetted class.</p>
 <div id="cell-16" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> RandomUnderSampler</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">400</span>, weights<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>), class_sep<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a>samplers <span class="op">=</span> {</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    FunctionSampler(),  <span class="co"># identity resampler</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a>    RandomUnderSampler(random_state<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb10-8"><a href="#cb10-8"></a>}</span>
-<span id="cb10-9"><a href="#cb10-9"></a></span>
-<span id="cb10-10"><a href="#cb10-10"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>))</span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
-<span id="cb10-12"><a href="#cb10-12"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
-<span id="cb10-13"><a href="#cb10-13"></a>    plot_decision_function(</span>
-<span id="cb10-14"><a href="#cb10-14"></a>        X, y, model, ax[<span class="dv">0</span>], title<span class="op">=</span><span class="ss">f"Decision function with </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a>    )</span>
-<span id="cb10-16"><a href="#cb10-16"></a>    plot_resampling(X, y, sampler, ax[<span class="dv">1</span>])</span>
-<span id="cb10-17"><a href="#cb10-17"></a></span>
-<span id="cb10-18"><a href="#cb10-18"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> RandomUnderSampler</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">400</span>, weights<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>), class_sep<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>samplers <span class="op">=</span> {</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    FunctionSampler(),  <span class="co"># identity resampler</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    RandomUnderSampler(random_state<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    plot_decision_function(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        X, y, model, ax[<span class="dv">0</span>], title<span class="op">=</span><span class="ss">f"Decision function with </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    plot_resampling(X, y, sampler, ax[<span class="dv">1</span>])</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="plot_comparison_under_sampling_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>:class:<code>~imblearn.under_sampling.NearMiss</code> algorithms implement some heuristic rules in order to select samples. NearMiss-1 selects samples from the majority class for which the average distance of the <span class="math inline">\(k\)</span>` nearest samples of the minority class is the smallest. NearMiss-2 selects the samples from the majority class for which the average distance to the farthest samples of the negative class is the smallest. NearMiss-3 is a 2-step algorithm: first, for each minority sample, their <span class="math inline">\(m\)</span> nearest-neighbors will be kept; then, the majority samples selected are the on for which the average distance to the <span class="math inline">\(k\)</span> nearest neighbors is the largest.</p>
 <div id="cell-18" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> NearMiss</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">1000</span>, weights<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>), class_sep<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a>samplers <span class="op">=</span> [NearMiss(version<span class="op">=</span><span class="dv">1</span>), NearMiss(version<span class="op">=</span><span class="dv">2</span>), NearMiss(version<span class="op">=</span><span class="dv">3</span>)]</span>
-<span id="cb11-6"><a href="#cb11-6"></a></span>
-<span id="cb11-7"><a href="#cb11-7"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">3</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">25</span>))</span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
-<span id="cb11-9"><a href="#cb11-9"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
-<span id="cb11-10"><a href="#cb11-10"></a>    plot_decision_function(</span>
-<span id="cb11-11"><a href="#cb11-11"></a>        X,</span>
-<span id="cb11-12"><a href="#cb11-12"></a>        y,</span>
-<span id="cb11-13"><a href="#cb11-13"></a>        model,</span>
-<span id="cb11-14"><a href="#cb11-14"></a>        ax[<span class="dv">0</span>],</span>
-<span id="cb11-15"><a href="#cb11-15"></a>        title<span class="op">=</span><span class="ss">f"Decision function for </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>sampler<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb11-16"><a href="#cb11-16"></a>    )</span>
-<span id="cb11-17"><a href="#cb11-17"></a>    plot_resampling(</span>
-<span id="cb11-18"><a href="#cb11-18"></a>        X,</span>
-<span id="cb11-19"><a href="#cb11-19"></a>        y,</span>
-<span id="cb11-20"><a href="#cb11-20"></a>        sampler,</span>
-<span id="cb11-21"><a href="#cb11-21"></a>        ax[<span class="dv">1</span>],</span>
-<span id="cb11-22"><a href="#cb11-22"></a>        title<span class="op">=</span><span class="ss">f"Resampling using </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>sampler<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb11-23"><a href="#cb11-23"></a>    )</span>
-<span id="cb11-24"><a href="#cb11-24"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> NearMiss</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">1000</span>, weights<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>), class_sep<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>samplers <span class="op">=</span> [NearMiss(version<span class="op">=</span><span class="dv">1</span>), NearMiss(version<span class="op">=</span><span class="dv">2</span>), NearMiss(version<span class="op">=</span><span class="dv">3</span>)]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">3</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">25</span>))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    plot_decision_function(</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        X,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        y,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        model,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        ax[<span class="dv">0</span>],</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="ss">f"Decision function for </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>sampler<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    plot_resampling(</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        X,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        y,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        sampler,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        ax[<span class="dv">1</span>],</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="ss">f"Resampling using </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>sampler<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/imblearn/under_sampling/_prototype_selection/_nearmiss.py:203: UserWarning: The number of the samples to be selected is larger than the number of samples available. The balancing ratio cannot be ensure and all samples will be returned.
   warnings.warn(
@@ -1844,94 +1838,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>:class:<code>~imblearn.under_sampling.EditedNearestNeighbours</code> removes samples of the majority class for which their class differ from the one of their nearest-neighbors. This sieve can be repeated which is the principle of the :class:<code>~imblearn.under_sampling.RepeatedEditedNearestNeighbours</code>. :class:<code>~imblearn.under_sampling.AllKNN</code> is slightly different from the :class:<code>~imblearn.under_sampling.RepeatedEditedNearestNeighbours</code> by changing the <span class="math inline">\(k\)</span> parameter of the internal nearest neighors algorithm, increasing it at each iteration.</p>
 <div id="cell-20" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> (</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    AllKNN,</span>
-<span id="cb13-3"><a href="#cb13-3"></a>    EditedNearestNeighbours,</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    RepeatedEditedNearestNeighbours,</span>
-<span id="cb13-5"><a href="#cb13-5"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6"></a></span>
-<span id="cb13-7"><a href="#cb13-7"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">500</span>, weights<span class="op">=</span>(<span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>), class_sep<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb13-8"><a href="#cb13-8"></a></span>
-<span id="cb13-9"><a href="#cb13-9"></a>samplers <span class="op">=</span> [</span>
-<span id="cb13-10"><a href="#cb13-10"></a>    EditedNearestNeighbours(),</span>
-<span id="cb13-11"><a href="#cb13-11"></a>    RepeatedEditedNearestNeighbours(),</span>
-<span id="cb13-12"><a href="#cb13-12"></a>    AllKNN(allow_minority<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb13-13"><a href="#cb13-13"></a>]</span>
-<span id="cb13-14"><a href="#cb13-14"></a></span>
-<span id="cb13-15"><a href="#cb13-15"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">25</span>))</span>
-<span id="cb13-16"><a href="#cb13-16"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
-<span id="cb13-17"><a href="#cb13-17"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
-<span id="cb13-18"><a href="#cb13-18"></a>    plot_decision_function(</span>
-<span id="cb13-19"><a href="#cb13-19"></a>        X, y, clf, ax[<span class="dv">0</span>], title<span class="op">=</span><span class="ss">f"Decision function for </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb13-20"><a href="#cb13-20"></a>    )</span>
-<span id="cb13-21"><a href="#cb13-21"></a>    plot_resampling(</span>
-<span id="cb13-22"><a href="#cb13-22"></a>        X, y, sampler, ax[<span class="dv">1</span>], title<span class="op">=</span><span class="ss">f"Resampling using </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb13-23"><a href="#cb13-23"></a>    )</span>
-<span id="cb13-24"><a href="#cb13-24"></a></span>
-<span id="cb13-25"><a href="#cb13-25"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> (</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    AllKNN,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    EditedNearestNeighbours,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    RepeatedEditedNearestNeighbours,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">500</span>, weights<span class="op">=</span>(<span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>), class_sep<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>samplers <span class="op">=</span> [</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    EditedNearestNeighbours(),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    RepeatedEditedNearestNeighbours(),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    AllKNN(allow_minority<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">25</span>))</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    plot_decision_function(</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        X, y, clf, ax[<span class="dv">0</span>], title<span class="op">=</span><span class="ss">f"Decision function for </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    plot_resampling(</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        X, y, sampler, ax[<span class="dv">1</span>], title<span class="op">=</span><span class="ss">f"Resampling using </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="plot_comparison_under_sampling_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>:class:<code>~imblearn.under_sampling.CondensedNearestNeighbour</code> makes use of a 1-NN to iteratively decide if a sample should be kept in a dataset or not. The issue is that :class:<code>~imblearn.under_sampling.CondensedNearestNeighbour</code> is sensitive to noise by preserving the noisy samples. :class:<code>~imblearn.under_sampling.OneSidedSelection</code> also used the 1-NN and use :class:<code>~imblearn.under_sampling.TomekLinks</code> to remove the samples considered noisy. The :class:<code>~imblearn.under_sampling.NeighbourhoodCleaningRule</code> use a :class:<code>~imblearn.under_sampling.EditedNearestNeighbours</code> to remove some sample. Additionally, they use a 3 nearest-neighbors to remove samples which do not agree with this rule.</p>
 <div id="cell-22" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> (</span>
-<span id="cb14-2"><a href="#cb14-2"></a>    CondensedNearestNeighbour,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>    NeighbourhoodCleaningRule,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>    OneSidedSelection,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a></span>
-<span id="cb14-7"><a href="#cb14-7"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">500</span>, weights<span class="op">=</span>(<span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>), class_sep<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb14-8"><a href="#cb14-8"></a></span>
-<span id="cb14-9"><a href="#cb14-9"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">3</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">25</span>))</span>
-<span id="cb14-10"><a href="#cb14-10"></a></span>
-<span id="cb14-11"><a href="#cb14-11"></a>samplers <span class="op">=</span> [</span>
-<span id="cb14-12"><a href="#cb14-12"></a>    CondensedNearestNeighbour(random_state<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb14-13"><a href="#cb14-13"></a>    OneSidedSelection(random_state<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb14-14"><a href="#cb14-14"></a>    NeighbourhoodCleaningRule(),</span>
-<span id="cb14-15"><a href="#cb14-15"></a>]</span>
-<span id="cb14-16"><a href="#cb14-16"></a></span>
-<span id="cb14-17"><a href="#cb14-17"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
-<span id="cb14-18"><a href="#cb14-18"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
-<span id="cb14-19"><a href="#cb14-19"></a>    plot_decision_function(</span>
-<span id="cb14-20"><a href="#cb14-20"></a>        X, y, clf, ax[<span class="dv">0</span>], title<span class="op">=</span><span class="ss">f"Decision function for </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb14-21"><a href="#cb14-21"></a>    )</span>
-<span id="cb14-22"><a href="#cb14-22"></a>    plot_resampling(</span>
-<span id="cb14-23"><a href="#cb14-23"></a>        X, y, sampler, ax[<span class="dv">1</span>], title<span class="op">=</span><span class="ss">f"Resampling using </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb14-24"><a href="#cb14-24"></a>    )</span>
-<span id="cb14-25"><a href="#cb14-25"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> (</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    CondensedNearestNeighbour,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    NeighbourhoodCleaningRule,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    OneSidedSelection,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> create_dataset(n_samples<span class="op">=</span><span class="dv">500</span>, weights<span class="op">=</span>(<span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>), class_sep<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">3</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">25</span>))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>samplers <span class="op">=</span> [</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    CondensedNearestNeighbour(random_state<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    OneSidedSelection(random_state<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    NeighbourhoodCleaningRule(),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    plot_decision_function(</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        X, y, clf, ax[<span class="dv">0</span>], title<span class="op">=</span><span class="ss">f"Decision function for </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    plot_resampling(</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        X, y, sampler, ax[<span class="dv">1</span>], title<span class="op">=</span><span class="ss">f"Resampling using </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="plot_comparison_under_sampling_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>:class:<code>~imblearn.under_sampling.InstanceHardnessThreshold</code> uses the prediction of classifier to exclude samples. All samples which are classified with a low probability will be removed.</p>
 <div id="cell-24" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> InstanceHardnessThreshold</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a>samplers <span class="op">=</span> {</span>
-<span id="cb15-4"><a href="#cb15-4"></a>    FunctionSampler(),  <span class="co"># identity resampler</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>    InstanceHardnessThreshold(</span>
-<span id="cb15-6"><a href="#cb15-6"></a>        estimator<span class="op">=</span>LogisticRegression(),</span>
-<span id="cb15-7"><a href="#cb15-7"></a>        random_state<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb15-8"><a href="#cb15-8"></a>    ),</span>
-<span id="cb15-9"><a href="#cb15-9"></a>}</span>
-<span id="cb15-10"><a href="#cb15-10"></a></span>
-<span id="cb15-11"><a href="#cb15-11"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>))</span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
-<span id="cb15-13"><a href="#cb15-13"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
-<span id="cb15-14"><a href="#cb15-14"></a>    plot_decision_function(</span>
-<span id="cb15-15"><a href="#cb15-15"></a>        X,</span>
-<span id="cb15-16"><a href="#cb15-16"></a>        y,</span>
-<span id="cb15-17"><a href="#cb15-17"></a>        model,</span>
-<span id="cb15-18"><a href="#cb15-18"></a>        ax[<span class="dv">0</span>],</span>
-<span id="cb15-19"><a href="#cb15-19"></a>        title<span class="op">=</span><span class="ss">f"Decision function with </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb15-20"><a href="#cb15-20"></a>    )</span>
-<span id="cb15-21"><a href="#cb15-21"></a>    plot_resampling(</span>
-<span id="cb15-22"><a href="#cb15-22"></a>        X, y, sampler, ax[<span class="dv">1</span>], title<span class="op">=</span><span class="ss">f"Resampling using </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a>    )</span>
-<span id="cb15-24"><a href="#cb15-24"></a></span>
-<span id="cb15-25"><a href="#cb15-25"></a>fig.tight_layout()</span>
-<span id="cb15-26"><a href="#cb15-26"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.under_sampling <span class="im">import</span> InstanceHardnessThreshold</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>samplers <span class="op">=</span> {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    FunctionSampler(),  <span class="co"># identity resampler</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    InstanceHardnessThreshold(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        estimator<span class="op">=</span>LogisticRegression(),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        random_state<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">15</span>))</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, sampler <span class="kw">in</span> <span class="bu">zip</span>(axs, samplers):</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> make_pipeline(sampler, clf).fit(X, y)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    plot_decision_function(</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        X,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        y,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        model,</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        ax[<span class="dv">0</span>],</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="ss">f"Decision function with </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    plot_resampling(</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        X, y, sampler, ax[<span class="dv">1</span>], title<span class="op">=</span><span class="ss">f"Resampling using </span><span class="ch">\n</span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="plot_comparison_under_sampling_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>

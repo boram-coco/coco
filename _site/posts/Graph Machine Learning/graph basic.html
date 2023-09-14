@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -565,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1521,12 +1521,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1638,7 +1632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#예제k-means" id="toc-예제k-means" class="nav-link" data-scroll-target="#예제k-means">예제(k-means)</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="graph basic.out.ipynb" download="graph basic.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1695,33 +1689,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="math inline">\(v\)</span>의 근방(neighbor): <span class="math inline">\(v\)</span>에 연결된 모든 노드 <span class="math inline">\(V\)</span>의 부분집합</p></li>
 </ul>
 <div id="a232b621-5b6c-4335-9e8a-d5544fa7022d" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3"></a>G<span class="op">=</span>nx.Graph()</span>
-<span id="cb1-4"><a href="#cb1-4"></a>V<span class="op">=</span>{<span class="st">'D'</span>,<span class="st">'P'</span>,<span class="st">'M'</span>,<span class="st">'R'</span>}</span>
-<span id="cb1-5"><a href="#cb1-5"></a>E<span class="op">=</span>[(<span class="st">'M'</span>,<span class="st">'A'</span>),(<span class="st">'M'</span>,<span class="st">'P'</span>),(<span class="st">'P'</span>,<span class="st">'D'</span>),(<span class="st">'M'</span>,<span class="st">'R'</span>)]</span>
-<span id="cb1-6"><a href="#cb1-6"></a>G.add_nodes_from(V)</span>
-<span id="cb1-7"><a href="#cb1-7"></a>G.add_edges_from(E)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>G<span class="op">=</span>nx.Graph()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>V<span class="op">=</span>{<span class="st">'D'</span>,<span class="st">'P'</span>,<span class="st">'M'</span>,<span class="st">'R'</span>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>E<span class="op">=</span>[(<span class="st">'M'</span>,<span class="st">'A'</span>),(<span class="st">'M'</span>,<span class="st">'P'</span>),(<span class="st">'P'</span>,<span class="st">'D'</span>),(<span class="st">'M'</span>,<span class="st">'R'</span>)]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(V)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(E)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="88fc7e59-1801-422b-a0c5-a9fe3ae71ac9" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">print</span>(<span class="ss">f"V=</span><span class="sc">{</span>G<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">print</span>(<span class="ss">f"E=</span><span class="sc">{</span>G<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"V=</span><span class="sc">{</span>G<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E=</span><span class="sc">{</span>G<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>V=['M', 'R', 'P', 'D', 'A']
 E=[('M', 'A'), ('M', 'P'), ('M', 'R'), ('P', 'D')]</code></pre>
 </div>
 </div>
 <div id="e0483157-72b4-4f00-b8ca-7b8e396665a0" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>{G.degree(v): v <span class="cf">for</span> v <span class="kw">in</span> G.nodes}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>{G.degree(v): v <span class="cf">for</span> v <span class="kw">in</span> G.nodes}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>{3: 'M', 1: 'A', 2: 'P'}</code></pre>
 </div>
 </div>
 <div id="9694867a-87c6-4211-b02b-ac49c993f458" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="bu">print</span>(<span class="ss">f"Graph Order위수: </span><span class="sc">{</span>G<span class="sc">.</span>number_of_nodes()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">print</span>(<span class="ss">f"Graph Size크기: </span><span class="sc">{</span>G<span class="sc">.</span>number_of_edges()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="bu">print</span>(<span class="ss">f"Degree for nodes노드의 차수: </span><span class="sc">{</span> {v: G.degree(v) <span class="cf">for</span> v <span class="kw">in</span> G.nodes} <span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="bu">print</span>(<span class="ss">f"Neighbors for nodes근방노드: </span><span class="sc">{</span> {v: <span class="bu">list</span>(G.neighbors(v)) <span class="cf">for</span> v <span class="kw">in</span> G.nodes} <span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Graph Order위수: </span><span class="sc">{</span>G<span class="sc">.</span>number_of_nodes()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Graph Size크기: </span><span class="sc">{</span>G<span class="sc">.</span>number_of_edges()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Degree for nodes노드의 차수: </span><span class="sc">{</span> {v: G.degree(v) <span class="cf">for</span> v <span class="kw">in</span> G.nodes} <span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Neighbors for nodes근방노드: </span><span class="sc">{</span> {v: <span class="bu">list</span>(G.neighbors(v)) <span class="cf">for</span> v <span class="kw">in</span> G.nodes} <span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Graph Order위수: 5
 Graph Size크기: 4
@@ -1730,52 +1724,52 @@ Neighbors for nodes근방노드: {'M': ['A', 'P', 'R'], 'R': ['M'], 'P': ['M', '
 </div>
 </div>
 <div id="84e49c75-03e5-4726-96e5-adb5c16b47d3" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>ego_graph_milan <span class="op">=</span> nx.ego_graph(G, <span class="st">"M"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="bu">print</span>(<span class="ss">f"Nodes: </span><span class="sc">{</span>ego_graph_milan<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="bu">print</span>(<span class="ss">f"Edges: </span><span class="sc">{</span>ego_graph_milan<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ego_graph_milan <span class="op">=</span> nx.ego_graph(G, <span class="st">"M"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nodes: </span><span class="sc">{</span>ego_graph_milan<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Edges: </span><span class="sc">{</span>ego_graph_milan<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nodes: ['M', 'R', 'P', 'A']
 Edges: [('M', 'A'), ('M', 'P'), ('M', 'R')]</code></pre>
 </div>
 </div>
 <div id="07cbcc55-820b-489a-acd1-34db4aac74e4" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 새로운 노드나 간선 추가</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>new_nodes <span class="op">=</span> {<span class="st">'L'</span>, <span class="st">'M'</span>}</span>
-<span id="cb10-3"><a href="#cb10-3"></a>new_edges <span class="op">=</span> [(<span class="st">'L'</span>,<span class="st">'R'</span>), (<span class="st">'M'</span>,<span class="st">'P'</span>)]</span>
-<span id="cb10-4"><a href="#cb10-4"></a>G.add_nodes_from(new_nodes)</span>
-<span id="cb10-5"><a href="#cb10-5"></a>G.add_edges_from(new_edges)</span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="bu">print</span>(<span class="ss">f"V = </span><span class="sc">{</span>G<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="bu">print</span>(<span class="ss">f"E = </span><span class="sc">{</span>G<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 노드나 간선 추가</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>new_nodes <span class="op">=</span> {<span class="st">'L'</span>, <span class="st">'M'</span>}</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>new_edges <span class="op">=</span> [(<span class="st">'L'</span>,<span class="st">'R'</span>), (<span class="st">'M'</span>,<span class="st">'P'</span>)]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(new_nodes)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(new_edges)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"V = </span><span class="sc">{</span>G<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E = </span><span class="sc">{</span>G<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>V = ['M', 'R', 'P', 'D', 'A', 'L']
 E = [('M', 'A'), ('M', 'P'), ('M', 'R'), ('R', 'L'), ('P', 'D')]</code></pre>
 </div>
 </div>
 <div id="ace23b67-a58f-438c-8b0e-606a04ec0033" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># 노드 삭제</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>node_remove <span class="op">=</span> {<span class="st">'L'</span>, <span class="st">'M'</span>}</span>
-<span id="cb12-3"><a href="#cb12-3"></a>G.remove_nodes_from(node_remove)</span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="bu">print</span>(<span class="ss">f"V = </span><span class="sc">{</span>G<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="bu">print</span>(<span class="ss">f"E = </span><span class="sc">{</span>G<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 노드 삭제</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>node_remove <span class="op">=</span> {<span class="st">'L'</span>, <span class="st">'M'</span>}</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>G.remove_nodes_from(node_remove)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"V = </span><span class="sc">{</span>G<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E = </span><span class="sc">{</span>G<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>V = ['R', 'P', 'D', 'A']
 E = [('P', 'D')]</code></pre>
 </div>
 </div>
 <div id="a6a433d9-be02-47bb-9c34-a7aa09e037da" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># 간선 삭제</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>node_edges <span class="op">=</span> [(<span class="st">'M'</span>,<span class="st">'D'</span>), (<span class="st">'M'</span>,<span class="st">'P'</span>)]</span>
-<span id="cb14-3"><a href="#cb14-3"></a>G.remove_edges_from(node_edges)</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="bu">print</span>(<span class="ss">f"V = </span><span class="sc">{</span>G<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="bu">print</span>(<span class="ss">f"E = </span><span class="sc">{</span>G<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 간선 삭제</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>node_edges <span class="op">=</span> [(<span class="st">'M'</span>,<span class="st">'D'</span>), (<span class="st">'M'</span>,<span class="st">'P'</span>)]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>G.remove_edges_from(node_edges)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"V = </span><span class="sc">{</span>G<span class="sc">.</span>nodes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E = </span><span class="sc">{</span>G<span class="sc">.</span>edges<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>V = ['R', 'P', 'D', 'A']
 E = [('P', 'D')]</code></pre>
 </div>
 </div>
 <div id="8a1eed33-09fa-4ec4-b6b2-22f46eae0765" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="bu">print</span>(nx.to_edgelist(G))</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="bu">print</span>(nx.to_pandas_adjacency(G))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nx.to_edgelist(G))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nx.to_pandas_adjacency(G))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[('P', 'D', {})]
      R    P    D    A
@@ -1829,21 +1823,21 @@ A  0.0  0.0  0.0  0.0</code></pre>
 <section id="그래프신호-기본" class="level1">
 <h1>그래프신호 기본</h1>
 <div id="fb4a7268-6eae-48c2-b30c-e4513bb83773" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb18-3"><a href="#cb18-3"></a></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="co"># x축 값 생성</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
-<span id="cb18-6"><a href="#cb18-6"></a></span>
-<span id="cb18-7"><a href="#cb18-7"></a><span class="co"># y축 값 생성</span></span>
-<span id="cb18-8"><a href="#cb18-8"></a>y <span class="op">=</span> np.sin(x)</span>
-<span id="cb18-9"><a href="#cb18-9"></a></span>
-<span id="cb18-10"><a href="#cb18-10"></a><span class="co"># 그래프 그리기</span></span>
-<span id="cb18-11"><a href="#cb18-11"></a>plt.plot(x, y)</span>
-<span id="cb18-12"><a href="#cb18-12"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb18-13"><a href="#cb18-13"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb18-14"><a href="#cb18-14"></a>plt.title(<span class="st">'Sine Wave'</span>)</span>
-<span id="cb18-15"><a href="#cb18-15"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># x축 값 생성</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># y축 값 생성</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 그래프 그리기</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sine Wave'</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="graph basic_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
@@ -1852,23 +1846,23 @@ A  0.0  0.0  0.0  0.0</code></pre>
 <section id="그래프-클러스터링-기본" class="level1">
 <h1>그래프 클러스터링 기본</h1>
 <div id="dfa3d684-a445-437f-b50f-779a61147e67" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb19-3"><a href="#cb19-3"></a></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># 그래프 생성</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a>G <span class="op">=</span> nx.karate_club_graph()</span>
-<span id="cb19-6"><a href="#cb19-6"></a></span>
-<span id="cb19-7"><a href="#cb19-7"></a><span class="co"># 클러스터링 수행</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a>clusters <span class="op">=</span> nx.algorithms.community.greedy_modularity_communities(G)</span>
-<span id="cb19-9"><a href="#cb19-9"></a></span>
-<span id="cb19-10"><a href="#cb19-10"></a><span class="co"># 클러스터링 결과 출력</span></span>
-<span id="cb19-11"><a href="#cb19-11"></a><span class="cf">for</span> i, c <span class="kw">in</span> <span class="bu">enumerate</span>(clusters):</span>
-<span id="cb19-12"><a href="#cb19-12"></a>    <span class="bu">print</span>(<span class="ss">f"Cluster </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb19-13"><a href="#cb19-13"></a>    nx.draw_networkx_nodes(G, pos<span class="op">=</span>nx.spring_layout(G), nodelist<span class="op">=</span><span class="bu">list</span>(c), node_color<span class="op">=</span>[i]<span class="op">*</span><span class="bu">len</span>(c), cmap<span class="op">=</span>plt.cm.tab20, node_size<span class="op">=</span><span class="dv">200</span>)</span>
-<span id="cb19-14"><a href="#cb19-14"></a></span>
-<span id="cb19-15"><a href="#cb19-15"></a>nx.draw_networkx_edges(G, pos<span class="op">=</span>nx.spring_layout(G), alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb19-16"><a href="#cb19-16"></a>plt.axis(<span class="st">"off"</span>)</span>
-<span id="cb19-17"><a href="#cb19-17"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 그래프 생성</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.karate_club_graph()</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 클러스터링 수행</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>clusters <span class="op">=</span> nx.algorithms.community.greedy_modularity_communities(G)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 클러스터링 결과 출력</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, c <span class="kw">in</span> <span class="bu">enumerate</span>(clusters):</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Cluster </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_nodes(G, pos<span class="op">=</span>nx.spring_layout(G), nodelist<span class="op">=</span><span class="bu">list</span>(c), node_color<span class="op">=</span>[i]<span class="op">*</span><span class="bu">len</span>(c), cmap<span class="op">=</span>plt.cm.tab20, node_size<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos<span class="op">=</span>nx.spring_layout(G), alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cluster 0: frozenset({8, 14, 15, 18, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33})
 Cluster 1: frozenset({1, 2, 3, 7, 9, 12, 13, 17, 21})
@@ -1886,20 +1880,20 @@ Cluster 2: frozenset({0, 16, 19, 4, 5, 6, 10, 11})</code></pre>
 <section id="예제k-means" class="level2">
 <h2 class="anchored" data-anchor-id="예제k-means">예제(k-means)</h2>
 <div id="76eabcbd-809b-47ef-8cc5-3760c21967f7" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="2e763950-12d3-410e-9148-2d5e87f5df7d" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># 데이터셋 로드</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>iris <span class="op">=</span> load_iris()</span>
-<span id="cb22-3"><a href="#cb22-3"></a>df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>iris.data, columns<span class="op">=</span>iris.feature_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터셋 로드</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>iris.data, columns<span class="op">=</span>iris.feature_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="60fecdab-cbb9-4583-8b0c-a8a37977873e" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># 모델 생성 및 학습</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb23-3"><a href="#cb23-3"></a>kmeans.fit(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 모델 생성 및 학습</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>kmeans.fit(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
   warnings.warn(</code></pre>
@@ -1909,12 +1903,12 @@ Cluster 2: frozenset({0, 16, 19, 4, 5, 6, 10, 11})</code></pre>
 </div>
 </div>
 <div id="3dba558f-630c-4fed-b214-078d7f9a871b" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># 클러스터링 결과 시각화</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>df[<span class="st">'cluster'</span>] <span class="op">=</span> kmeans.labels_</span>
-<span id="cb25-3"><a href="#cb25-3"></a>plt.scatter(df[<span class="st">'petal length (cm)'</span>], df[<span class="st">'petal width (cm)'</span>], c<span class="op">=</span>df[<span class="st">'cluster'</span>])</span>
-<span id="cb25-4"><a href="#cb25-4"></a>plt.xlabel(<span class="st">'petal length (cm)'</span>)</span>
-<span id="cb25-5"><a href="#cb25-5"></a>plt.ylabel(<span class="st">'petal width (cm)'</span>)</span>
-<span id="cb25-6"><a href="#cb25-6"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 클러스터링 결과 시각화</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cluster'</span>] <span class="op">=</span> kmeans.labels_</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(df[<span class="st">'petal length (cm)'</span>], df[<span class="st">'petal width (cm)'</span>], c<span class="op">=</span>df[<span class="st">'cluster'</span>])</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'petal length (cm)'</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'petal width (cm)'</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="graph basic_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>

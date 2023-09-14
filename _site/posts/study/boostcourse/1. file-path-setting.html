@@ -551,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -563,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1519,12 +1519,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1617,7 +1611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="1. file-path-setting.out.ipynb" download="1. file-path-setting.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -1655,22 +1649,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <div id="ad9c2bef" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">!</span>move <span class="st">"C:\Users\user\Downloads\도로교통공단_사망 교통사고 정보_20211231.csv"</span> .</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># mv: 다운로드 받은 파일을 같은 경로로 옮긴다. 근데 이건 맥에서만..</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># !move: 이게 윈도우즈 환경. 윈도우즈 환경에서는 맥과 다르게 작성하는듯 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>move <span class="st">"C:\Users\user\Downloads\도로교통공단_사망 교통사고 정보_20211231.csv"</span> .</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mv: 다운로드 받은 파일을 같은 경로로 옮긴다. 근데 이건 맥에서만..</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !move: 이게 윈도우즈 환경. 윈도우즈 환경에서는 맥과 다르게 작성하는듯 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        1개 파일을 이동했습니다.</code></pre>
 </div>
 </div>
 <div id="2db0d43c" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 주피터 노트북이 있는 폴더의 경로를 출력한다.</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="op">%</span>pwd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 주피터 노트북이 있는 폴더의 경로를 출력한다.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pwd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>'C:\\Users\\user\\Untitled Folder'</code></pre>
 </div>
 </div>
 <div id="8ff0a3d6" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">%</span>ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> C 드라이브의 볼륨: system
  볼륨 일련 번호: 0819-B8FC
@@ -1689,15 +1683,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="c8241004" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8dcc5c44" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>pd.read_csv(<span class="st">"data/도로교통공단_사망 교통사고 정보_20211231.csv"</span>, encoding<span class="op">=</span><span class="st">"cp949"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># UnicodeDecodeError 이파일의 인코딩이 UTF8이 아니라는 뜻이다.</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># ()안에서 shift+tab키를 누르면 도움말 본다.</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># 옵션에 encording=None 으로 설정되어 있음. 인코딩 지정을 해줘야 한다. 엑셀은 cp949 </span></span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co"># 파일 옮겨주면 FileNotFoundError 가 난다. -&gt; 파일이 속해있는 곳을  적어주기 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">"data/도로교통공단_사망 교통사고 정보_20211231.csv"</span>, encoding<span class="op">=</span><span class="st">"cp949"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># UnicodeDecodeError 이파일의 인코딩이 UTF8이 아니라는 뜻이다.</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ()안에서 shift+tab키를 누르면 도움말 본다.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 옵션에 encording=None 으로 설정되어 있음. 인코딩 지정을 해줘야 한다. 엑셀은 cp949 </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 파일 옮겨주면 FileNotFoundError 가 난다. -&gt; 파일이 속해있는 곳을  적어주기 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 

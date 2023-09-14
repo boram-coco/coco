@@ -551,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -563,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1519,12 +1519,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1640,7 +1634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#전체-상품군별로-온라인쇼핑-해외직접판매액은-증가했을까" id="toc-전체-상품군별로-온라인쇼핑-해외직접판매액은-증가했을까" class="nav-link" data-scroll-target="#전체-상품군별로-온라인쇼핑-해외직접판매액은-증가했을까">전체 상품군별로 온라인쇼핑 해외직접판매액은 증가했을까?</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="5. K-beauty.out.ipynb" download="5. K-beauty.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1687,34 +1681,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="필요-라이브러리-가져오기" class="level1">
 <h1>필요 라이브러리 가져오기</h1>
 <div id="2a75e814" class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="41ef342c" class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 시각화 위한 폰트 설정</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> os</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="cf">if</span> os.name <span class="op">==</span> <span class="st">"posix"</span>:</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    sns.<span class="bu">set</span>(font<span class="op">=</span><span class="st">"AppleGothic"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="cf">elif</span> os.name <span class="op">==</span> <span class="st">"nt"</span>:</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    sns.<span class="bu">set</span>(font<span class="op">=</span><span class="st">"Malgun Gothic"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 시각화 위한 폰트 설정</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.name <span class="op">==</span> <span class="st">"posix"</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    sns.<span class="bu">set</span>(font<span class="op">=</span><span class="st">"AppleGothic"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> os.name <span class="op">==</span> <span class="st">"nt"</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    sns.<span class="bu">set</span>(font<span class="op">=</span><span class="st">"Malgun Gothic"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="00f59465" class="cell" data-execution_count="116">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 레티나 설정을 하면 글씨가 좀 더 선명하게 보인ㄷ.</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># 폰트의 주변이 흐릿하게 보이는 것을 방지한다.</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 레티나 설정을 하면 글씨가 좀 더 선명하게 보인ㄷ.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 폰트의 주변이 흐릿하게 보이는 것을 방지한다.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="데이터-로드하기" class="level1">
 <h1>데이터 로드하기</h1>
 <div id="ce5f16dc" class="cell" data-execution_count="117">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df_raw <span class="op">=</span> pd.read_csv(<span class="st">"data/국가_대륙_별_상품군별_온라인쇼핑_해외직접판매액_20221122201127.csv"</span>, encoding<span class="op">=</span><span class="st">"cp949"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> pd.read_csv(<span class="st">"data/국가_대륙_별_상품군별_온라인쇼핑_해외직접판매액_20221122201127.csv"</span>, encoding<span class="op">=</span><span class="st">"cp949"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="56cd74ee" class="cell" data-execution_count="118">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df_raw.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_raw.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="118">
 <div>
 
@@ -1875,13 +1869,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="171f7e9c" class="cell" data-execution_count="119">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df_raw.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_raw.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="119">
 <pre><code>(450, 27)</code></pre>
 </div>
 </div>
 <div id="93760169" class="cell" data-execution_count="120">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>df_raw[<span class="st">"국가(대륙)별"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_raw[<span class="st">"국가(대륙)별"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="120">
 <pre><code>합계            45
 미국            45
@@ -1897,8 +1891,8 @@ Name: 국가(대륙)별, dtype: int64</code></pre>
 </div>
 </div>
 <div id="ee0df6e0" class="cell" data-execution_count="121">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 미국 데이터만 따로 보기</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>df_raw[df_raw[<span class="st">"국가(대륙)별"</span>]<span class="op">==</span> <span class="st">"미국"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 미국 데이터만 따로 보기</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_raw[df_raw[<span class="st">"국가(대륙)별"</span>]<span class="op">==</span> <span class="st">"미국"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="121">
 <div>
 
@@ -3022,11 +3016,11 @@ Name: 국가(대륙)별, dtype: int64</code></pre>
 <section id="분산과-시각화를-위한-tidy-data-만들기" class="level1">
 <h1>분산과 시각화를 위한 tidy data 만들기</h1>
 <div id="94178788" class="cell" data-execution_count="122">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 컬럼에 있는 데이터를 행으로?</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>df_raw.melt?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 컬럼에 있는 데이터를 행으로?</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_raw.melt?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="f9e43193" class="cell" data-execution_count="123">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df_raw.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_raw.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="123">
 <pre><code>Index(['국가(대륙)별', '상품군별', '판매유형별', '2014.1/4', '2014.2/4', '2014.3/4',
        '2014.4/4', '2015.1/4', '2015.2/4', '2015.3/4', '2015.4/4', '2016.1/4',
@@ -3037,13 +3031,13 @@ Name: 국가(대륙)별, dtype: int64</code></pre>
 </div>
 </div>
 <div id="488ad077" class="cell" data-execution_count="124">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df<span class="op">=</span>df_raw.melt(id_vars<span class="op">=</span>[<span class="st">"국가(대륙)별"</span>, <span class="st">"상품군별"</span>, <span class="st">"판매유형별"</span>],var_name<span class="op">=</span><span class="st">"기간"</span>, value_name<span class="op">=</span><span class="st">"백만원"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co"># id_vars:어떤 컬럼이 기준이 되는지? 여러개하려면 리스트 형태로</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="co"># variable : 나머지 컬럼값들.. 2014~ var_name 통해서 이름 바꿔줄수 있다. </span></span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="co"># value : df_raw.values에 들어가있던 값들이 다 value로 들어가 있따.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>df_raw.melt(id_vars<span class="op">=</span>[<span class="st">"국가(대륙)별"</span>, <span class="st">"상품군별"</span>, <span class="st">"판매유형별"</span>],var_name<span class="op">=</span><span class="st">"기간"</span>, value_name<span class="op">=</span><span class="st">"백만원"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># id_vars:어떤 컬럼이 기준이 되는지? 여러개하려면 리스트 형태로</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># variable : 나머지 컬럼값들.. 2014~ var_name 통해서 이름 바꿔줄수 있다. </span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># value : df_raw.values에 들어가있던 값들이 다 value로 들어가 있따.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="7f01466c" class="cell" data-execution_count="125">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="125">
 <div>
 
@@ -3107,14 +3101,14 @@ Name: 국가(대륙)별, dtype: int64</code></pre>
 </div>
 </div>
 <div id="4083801d" class="cell" data-execution_count="126">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df.shape</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># 기간이 다 행으로 와서 행이 늘어났다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df.shape</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 기간이 다 행으로 와서 행이 늘어났다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="126">
 <pre><code>(10800, 5)</code></pre>
 </div>
 </div>
 <div id="301335a1" class="cell" data-execution_count="127">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 10800 entries, 0 to 10799
@@ -3136,8 +3130,8 @@ memory usage: 422.0+ KB</code></pre>
 <section id="기간에서-연도를-분리하기" class="level2">
 <h2 class="anchored" data-anchor-id="기간에서-연도를-분리하기">기간에서 연도를 분리하기</h2>
 <div id="d1157d07" class="cell" data-execution_count="128">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df[<span class="st">"기간"</span>]</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="co"># object : string데이터를 의미</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"기간"</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># object : string데이터를 의미</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="128">
 <pre><code>0        2014.1/4
 1        2014.1/4
@@ -3155,25 +3149,25 @@ Name: 기간, Length: 10800, dtype: object</code></pre>
 </div>
 <p>df[“기간”].map?</p>
 <div id="3bf85a54" class="cell" data-execution_count="129">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a></span>
-<span id="cb22-2"><a href="#cb22-2"></a>df[<span class="st">"연도"</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x : <span class="bu">int</span>(x.split(<span class="st">"."</span>)[<span class="dv">0</span>]), df[<span class="st">"기간"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"연도"</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x : <span class="bu">int</span>(x.split(<span class="st">"."</span>)[<span class="dv">0</span>]), df[<span class="st">"기간"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="78e3f6da" class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># 기간에서 분기만 분리하기</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>df[<span class="st">"분기"</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x : <span class="bu">int</span>(x.split(<span class="st">"."</span>)[<span class="dv">1</span>].split()[<span class="dv">0</span>].split(<span class="st">"/"</span>)[<span class="dv">0</span>]), df[<span class="st">"기간"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 기간에서 분기만 분리하기</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"분기"</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x : <span class="bu">int</span>(x.split(<span class="st">"."</span>)[<span class="dv">1</span>].split()[<span class="dv">0</span>].split(<span class="st">"/"</span>)[<span class="dv">0</span>]), df[<span class="st">"기간"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="3519eea7" class="cell" data-execution_count="131">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># (1) "." 을 기준으로 split하고 (["2022", "1/4 p"]) 1번째 인덱스를 취함 -&gt; "1/4 p"</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="co"># (2) " " 을 기준으로 split하고 (["1/4", "p"]) 0번째 인덱스를 취함 -&gt; "1/4"</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="co"># (3) "/"을 기준으로 split하고 (["1", "4"]) 0번째 인덱스를 취함</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="co"># (4) "1"에 int() 형변환 함수를 씌워 int64형으로 변환</span></span>
-<span id="cb24-8"><a href="#cb24-8"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) "." 을 기준으로 split하고 (["2022", "1/4 p"]) 1번째 인덱스를 취함 -&gt; "1/4 p"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) " " 을 기준으로 split하고 (["1/4", "p"]) 0번째 인덱스를 취함 -&gt; "1/4"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (3) "/"을 기준으로 split하고 (["1", "4"]) 0번째 인덱스를 취함</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (4) "1"에 int() 형변환 함수를 씌워 int64형으로 변환</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d3833016" class="cell" data-execution_count="132">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="132">
 <div>
 
@@ -3252,9 +3246,9 @@ Name: 기간, Length: 10800, dtype: object</code></pre>
 <section id="금액을-수치데이터로-표현하기-위해-데이터-타입-변경하기" class="level2">
 <h2 class="anchored" data-anchor-id="금액을-수치데이터로-표현하기-위해-데이터-타입-변경하기">금액을 수치데이터로 표현하기 위해 데이터 타입 변경하기</h2>
 <div id="613784a8" class="cell" data-execution_count="133">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># - 문자를 결측치로 변경하고 float타입으로 변경하기</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>df[<span class="st">"백만원"</span>] <span class="op">=</span> df[<span class="st">"백만원"</span>].replace(<span class="st">"-"</span>,pd.np.nan).astype(<span class="bu">float</span>)</span>
-<span id="cb26-3"><a href="#cb26-3"></a>df[<span class="st">"백만원"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># - 문자를 결측치로 변경하고 float타입으로 변경하기</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"백만원"</span>] <span class="op">=</span> df[<span class="st">"백만원"</span>].replace(<span class="st">"-"</span>,pd.np.nan).astype(<span class="bu">float</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"백만원"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Users\Public\Documents\ESTsoft\CreatorTemp\ipykernel_117660\99655999.py:2: FutureWarning: The pandas.np module is deprecated and will be removed from pandas in a future version. Import numpy directly instead.
   df["백만원"] = df["백만원"].replace("-",pd.np.nan).astype(float)</code></pre>
@@ -3275,7 +3269,7 @@ Name: 백만원, Length: 10800, dtype: float64</code></pre>
 </div>
 </div>
 <div id="4ed4140e" class="cell" data-execution_count="134">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="134">
 <div>
 
@@ -3354,7 +3348,7 @@ Name: 백만원, Length: 10800, dtype: float64</code></pre>
 <section id="필요없는-데이터-제거하기" class="level2">
 <h2 class="anchored" data-anchor-id="필요없는-데이터-제거하기">필요없는 데이터 제거하기</h2>
 <div id="a1df182d" class="cell" data-execution_count="135">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 10800 entries, 0 to 10799
@@ -3373,10 +3367,10 @@ memory usage: 590.8+ KB</code></pre>
 </div>
 </div>
 <div id="ace37d3b" class="cell" data-execution_count="136">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># 합계 데이터는 따로 구할 수 있으므로 전체 데이터에서 제거한다.</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a></span>
-<span id="cb32-3"><a href="#cb32-3"></a>df <span class="op">=</span> df[(df[<span class="st">"국가(대륙)별"</span>] <span class="op">!=</span> <span class="st">"합계"</span>) <span class="op">&amp;</span> (df[<span class="st">"상품군별"</span>] <span class="op">!=</span> <span class="st">"합계"</span>)].copy()</span>
-<span id="cb32-4"><a href="#cb32-4"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 합계 데이터는 따로 구할 수 있으므로 전체 데이터에서 제거한다.</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[(df[<span class="st">"국가(대륙)별"</span>] <span class="op">!=</span> <span class="st">"합계"</span>) <span class="op">&amp;</span> (df[<span class="st">"상품군별"</span>] <span class="op">!=</span> <span class="st">"합계"</span>)].copy()</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 9072 entries, 48 to 10799
@@ -3395,8 +3389,8 @@ memory usage: 567.0+ KB</code></pre>
 </div>
 </div>
 <div id="b0678480" class="cell" data-execution_count="137">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># 결측치 보기</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 결측치 보기</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="137">
 <pre><code>국가(대륙)별       0
 상품군별          0
@@ -3415,12 +3409,12 @@ dtype: int64</code></pre>
 <section id="전체-상품군-판매액" class="level2">
 <h2 class="anchored" data-anchor-id="전체-상품군-판매액">전체 상품군 판매액</h2>
 <div id="0bf489ad" class="cell" data-execution_count="138">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># 판매유형별 데이터는 일부 기간에는 "계"만 존재하기 때문에</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="co"># 판매유형별 == "계" 데이터만 가져와서 봐야지</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="co"># 평균값을 구하는 그래프에서 올바른 값을 표현할 수 있다.</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a></span>
-<span id="cb36-5"><a href="#cb36-5"></a>df_total<span class="op">=</span>df[df[<span class="st">"판매유형별"</span>] <span class="op">==</span> <span class="st">"계"</span>].copy()</span>
-<span id="cb36-6"><a href="#cb36-6"></a>df_total.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 판매유형별 데이터는 일부 기간에는 "계"만 존재하기 때문에</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 판매유형별 == "계" 데이터만 가져와서 봐야지</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 평균값을 구하는 그래프에서 올바른 값을 표현할 수 있다.</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>df_total<span class="op">=</span>df[df[<span class="st">"판매유형별"</span>] <span class="op">==</span> <span class="st">"계"</span>].copy()</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>df_total.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="138">
 <div>
 
@@ -3496,9 +3490,9 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="237786f8" class="cell" data-execution_count="139">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># 연도, 판매액 lineplot으로 그리기</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a></span>
-<span id="cb37-3"><a href="#cb37-3"></a>sns.lineplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 연도, 판매액 lineplot으로 그리기</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="139">
 <pre><code>&lt;AxesSubplot:xlabel='연도', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3507,10 +3501,10 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="b9f66670" class="cell" data-execution_count="140">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># 연도, 판매액 lineplot으로 그리고 상품군별로 다른 색상으로 표시하기</span></span>
-<span id="cb39-2"><a href="#cb39-2"></a>sns.lineplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"상품군별"</span>)</span>
-<span id="cb39-3"><a href="#cb39-3"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="dv">2</span>, borderaxespad<span class="op">=</span><span class="fl">0.</span>)</span>
-<span id="cb39-4"><a href="#cb39-4"></a><span class="co"># 오른쪽으로 범례 옮기는거 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 연도, 판매액 lineplot으로 그리고 상품군별로 다른 색상으로 표시하기</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"상품군별"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="dv">2</span>, borderaxespad<span class="op">=</span><span class="fl">0.</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 오른쪽으로 범례 옮기는거 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="140">
 <pre><code>&lt;matplotlib.legend.Legend at 0x15f495c10a0&gt;</code></pre>
 </div>
@@ -3519,24 +3513,24 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="49c14fb6" class="cell" data-execution_count="141">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># 위에 그린 그래프를 자세히 보기 위해 서브플롯으로 표시하기</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>sns.relplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"상품군별"</span>, kind<span class="op">=</span><span class="st">"line"</span>, col<span class="op">=</span><span class="st">"상품군별"</span>, col_wrap<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 위에 그린 그래프를 자세히 보기 위해 서브플롯으로 표시하기</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"상품군별"</span>, kind<span class="op">=</span><span class="st">"line"</span>, col<span class="op">=</span><span class="st">"상품군별"</span>, col_wrap<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="5. K-beauty_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="3fdadd37" class="cell" data-execution_count="142">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># isin을 사용해 화장품만 제외하고 df_sb이라는 변수에 담기</span></span>
-<span id="cb42-2"><a href="#cb42-2"></a></span>
-<span id="cb42-3"><a href="#cb42-3"></a>df_sub<span class="op">=</span>df_total[<span class="op">~</span>df_total[<span class="st">"상품군별"</span>].isin([<span class="st">"화장품"</span>,<span class="st">"의류 및 패션 관련상품"</span>])].copy()</span>
-<span id="cb42-4"><a href="#cb42-4"></a></span>
-<span id="cb42-5"><a href="#cb42-5"></a><span class="co"># 앞에 ~ 물결 표시해ㅜㅈ면 화장품만 빼고...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># isin을 사용해 화장품만 제외하고 df_sb이라는 변수에 담기</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>df_sub<span class="op">=</span>df_total[<span class="op">~</span>df_total[<span class="st">"상품군별"</span>].isin([<span class="st">"화장품"</span>,<span class="st">"의류 및 패션 관련상품"</span>])].copy()</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 앞에 ~ 물결 표시해ㅜㅈ면 화장품만 빼고...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="79ef4489" class="cell" data-execution_count="143">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># 연도별 판매액을 상품군별로 relplot을 활용해 서브플롯으로 그려보기</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a></span>
-<span id="cb43-3"><a href="#cb43-3"></a>sns.relplot(data<span class="op">=</span>df_sub, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"상품군별"</span>, col<span class="op">=</span><span class="st">"상품군별"</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, kind<span class="op">=</span><span class="st">"line"</span>)</span>
-<span id="cb43-4"><a href="#cb43-4"></a><span class="co">#kind기본값은 scatter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 연도별 판매액을 상품군별로 relplot을 활용해 서브플롯으로 그려보기</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>sns.relplot(data<span class="op">=</span>df_sub, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"상품군별"</span>, col<span class="op">=</span><span class="st">"상품군별"</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, kind<span class="op">=</span><span class="st">"line"</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#kind기본값은 scatter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="5. K-beauty_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
 </div>
@@ -3545,10 +3539,10 @@ dtype: int64</code></pre>
 <section id="화장품의-온라인-쇼핑-해외직접판매액" class="level2">
 <h2 class="anchored" data-anchor-id="화장품의-온라인-쇼핑-해외직접판매액">화장품의 온라인 쇼핑 해외직접판매액</h2>
 <div id="43a7eb55" class="cell" data-execution_count="144">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># df_cosmetic이라는 변수에 상품군별이 화장품인 데이터만 가져오기</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a></span>
-<span id="cb44-3"><a href="#cb44-3"></a>df_cosmetic <span class="op">=</span> df_total[df_total[<span class="st">"상품군별"</span>]<span class="op">==</span><span class="st">"화장품"</span>].copy()</span>
-<span id="cb44-4"><a href="#cb44-4"></a>df_cosmetic.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_cosmetic이라는 변수에 상품군별이 화장품인 데이터만 가져오기</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>df_cosmetic <span class="op">=</span> df_total[df_total[<span class="st">"상품군별"</span>]<span class="op">==</span><span class="st">"화장품"</span>].copy()</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>df_cosmetic.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="144">
 <div>
 
@@ -3624,15 +3618,15 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="e33f89c8" class="cell" data-execution_count="145">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>df_cosmetic[<span class="st">"상품군별"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>df_cosmetic[<span class="st">"상품군별"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="145">
 <pre><code>array(['화장품'], dtype=object)</code></pre>
 </div>
 </div>
 <div id="591a42ab" class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="co"># 연도와 판매액을 lineplot으로 그리고 분기별로 다른 색상으로 표현해 보기</span></span>
-<span id="cb47-2"><a href="#cb47-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb47-3"><a href="#cb47-3"></a>sns.lineplot(data<span class="op">=</span>df_cosmetic, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"분기"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 연도와 판매액을 lineplot으로 그리고 분기별로 다른 색상으로 표현해 보기</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_cosmetic, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"분기"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="146">
 <pre><code>&lt;AxesSubplot:xlabel='연도', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3641,7 +3635,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="9a3bc7e5" class="cell" data-execution_count="147">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>df_cosmetic.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>df_cosmetic.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="147">
 <div>
 
@@ -3717,10 +3711,10 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="2818fd2a" class="cell" data-execution_count="148">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># 화장품 판매액에 대한 기간별 금액 데이터 시각화 하기</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb50-3"><a href="#cb50-3"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
-<span id="cb50-4"><a href="#cb50-4"></a>sns.lineplot(data<span class="op">=</span>df_cosmetic, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 화장품 판매액에 대한 기간별 금액 데이터 시각화 하기</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_cosmetic, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="148">
 <pre><code>&lt;AxesSubplot:xlabel='기간', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3729,11 +3723,11 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="17c9e3f7" class="cell" data-execution_count="149">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># 화장품 판매액에 대한 기간별 금액 데이터 시각화하고 "국가(대륙)별"로 다른 색상으로 표시하기</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a></span>
-<span id="cb52-3"><a href="#cb52-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb52-4"><a href="#cb52-4"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
-<span id="cb52-5"><a href="#cb52-5"></a>sns.lineplot(data<span class="op">=</span>df_cosmetic, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 화장품 판매액에 대한 기간별 금액 데이터 시각화하고 "국가(대륙)별"로 다른 색상으로 표시하기</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_cosmetic, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="149">
 <pre><code>&lt;AxesSubplot:xlabel='기간', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3742,11 +3736,11 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="ef9c114d" class="cell" data-execution_count="150">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># 중국빼고 보기</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a></span>
-<span id="cb54-3"><a href="#cb54-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb54-4"><a href="#cb54-4"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
-<span id="cb54-5"><a href="#cb54-5"></a>sns.lineplot(data<span class="op">=</span>df_cosmetic[df_cosmetic[<span class="st">"국가(대륙)별"</span>]<span class="op">!=</span><span class="st">"중국"</span>], x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 중국빼고 보기</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_cosmetic[df_cosmetic[<span class="st">"국가(대륙)별"</span>]<span class="op">!=</span><span class="st">"중국"</span>], x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="150">
 <pre><code>&lt;AxesSubplot:xlabel='기간', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3755,11 +3749,11 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="d6633f5e" class="cell" data-execution_count="155">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># 화장품 판매액에 대한 기간별 금액 데이터를 시각화하고 "판매유형별"로 다른색상으로 표현하기</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb56-3"><a href="#cb56-3"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
-<span id="cb56-4"><a href="#cb56-4"></a>df_sub <span class="op">=</span> df[df[<span class="st">"판매유형별"</span>] <span class="op">!=</span> <span class="st">"계"</span>].copy()</span>
-<span id="cb56-5"><a href="#cb56-5"></a>sns.lineplot(data<span class="op">=</span>df_sub, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"판매유형별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 화장품 판매액에 대한 기간별 금액 데이터를 시각화하고 "판매유형별"로 다른색상으로 표현하기</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>df_sub <span class="op">=</span> df[df[<span class="st">"판매유형별"</span>] <span class="op">!=</span> <span class="st">"계"</span>].copy()</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_sub, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"판매유형별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="155">
 <pre><code>&lt;AxesSubplot:xlabel='기간', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3768,11 +3762,11 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="206b8e60" class="cell" data-execution_count="158">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># 화장품 판매액에 대한 기간별 금액 데이터를 시각화하고 "판매유형별"로 다른색상으로 표현하기</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb58-3"><a href="#cb58-3"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
-<span id="cb58-4"><a href="#cb58-4"></a>df_sub <span class="op">=</span> df[(df[<span class="st">"판매유형별"</span>] <span class="op">!=</span> <span class="st">"계"</span>) <span class="op">&amp;</span> (df[<span class="st">"판매유형별"</span>]<span class="op">!=</span><span class="st">"면세점"</span>)].copy()</span>
-<span id="cb58-5"><a href="#cb58-5"></a>sns.lineplot(data<span class="op">=</span>df_sub, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"판매유형별"</span>, ci<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 화장품 판매액에 대한 기간별 금액 데이터를 시각화하고 "판매유형별"로 다른색상으로 표현하기</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>df_sub <span class="op">=</span> df[(df[<span class="st">"판매유형별"</span>] <span class="op">!=</span> <span class="st">"계"</span>) <span class="op">&amp;</span> (df[<span class="st">"판매유형별"</span>]<span class="op">!=</span><span class="st">"면세점"</span>)].copy()</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_sub, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"판매유형별"</span>, ci<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="158">
 <pre><code>&lt;AxesSubplot:xlabel='기간', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3784,11 +3778,11 @@ dtype: int64</code></pre>
 <section id="의류-및-패션관련-상품-온라인쇼핑-해외직접판매액" class="level2">
 <h2 class="anchored" data-anchor-id="의류-및-패션관련-상품-온라인쇼핑-해외직접판매액">의류 및 패션관련 상품 온라인쇼핑 해외직접판매액</h2>
 <div id="5e417055" class="cell" data-execution_count="168">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># df_fashion 이라는 변수에 의류 데이터만 가져와 따로 담아두기</span></span>
-<span id="cb60-2"><a href="#cb60-2"></a></span>
-<span id="cb60-3"><a href="#cb60-3"></a></span>
-<span id="cb60-4"><a href="#cb60-4"></a>df_fashion <span class="op">=</span> df[(df[<span class="st">"상품군별"</span>] <span class="op">==</span> <span class="st">"의류 및 패션 관련상품"</span>) <span class="op">&amp;</span> (df[<span class="st">"판매유형별"</span>]<span class="op">==</span><span class="st">"계"</span>)].copy()</span>
-<span id="cb60-5"><a href="#cb60-5"></a>df_fashion.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_fashion 이라는 변수에 의류 데이터만 가져와 따로 담아두기</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>df_fashion <span class="op">=</span> df[(df[<span class="st">"상품군별"</span>] <span class="op">==</span> <span class="st">"의류 및 패션 관련상품"</span>) <span class="op">&amp;</span> (df[<span class="st">"판매유형별"</span>]<span class="op">==</span><span class="st">"계"</span>)].copy()</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>df_fashion.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="168">
 <div>
 
@@ -3864,12 +3858,12 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="f0ca752b" class="cell" data-execution_count="170">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># 의류 및 패션 관련상품 판매액에 대한 기간별 금액 데이터를 시각화하고</span></span>
-<span id="cb61-2"><a href="#cb61-2"></a><span class="co"># 국가별로 다른색상으로 표시하기</span></span>
-<span id="cb61-3"><a href="#cb61-3"></a></span>
-<span id="cb61-4"><a href="#cb61-4"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb61-5"><a href="#cb61-5"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
-<span id="cb61-6"><a href="#cb61-6"></a>sns.lineplot(data<span class="op">=</span>df_fashion, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 의류 및 패션 관련상품 판매액에 대한 기간별 금액 데이터를 시각화하고</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 국가별로 다른색상으로 표시하기</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>) <span class="co">#x축 기울기</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_fashion, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="170">
 <pre><code>&lt;AxesSubplot:xlabel='기간', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3878,14 +3872,14 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="52227582" class="cell" data-execution_count="175">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="co"># 의류 및 패션관련 상품 판매엑에 대한 기간별 금액 데이터 시각화</span></span>
-<span id="cb63-2"><a href="#cb63-2"></a><span class="co"># 판매유형별로 다른 색상 표시</span></span>
-<span id="cb63-3"><a href="#cb63-3"></a></span>
-<span id="cb63-4"><a href="#cb63-4"></a>df_fashion2 <span class="op">=</span> df[(df[<span class="st">"상품군별"</span>] <span class="op">==</span> <span class="st">"의류 및 패션 관련상품"</span>) <span class="op">&amp;</span> (df[<span class="st">"판매유형별"</span>] <span class="op">!=</span> <span class="st">"계"</span>)].copy()</span>
-<span id="cb63-5"><a href="#cb63-5"></a></span>
-<span id="cb63-6"><a href="#cb63-6"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
-<span id="cb63-7"><a href="#cb63-7"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb63-8"><a href="#cb63-8"></a>sns.lineplot(data<span class="op">=</span>df_fashion2, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"판매유형별"</span>, ci<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 의류 및 패션관련 상품 판매엑에 대한 기간별 금액 데이터 시각화</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 판매유형별로 다른 색상 표시</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>df_fashion2 <span class="op">=</span> df[(df[<span class="st">"상품군별"</span>] <span class="op">==</span> <span class="st">"의류 및 패션 관련상품"</span>) <span class="op">&amp;</span> (df[<span class="st">"판매유형별"</span>] <span class="op">!=</span> <span class="st">"계"</span>)].copy()</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_fashion2, x<span class="op">=</span><span class="st">"기간"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"판매유형별"</span>, ci<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="175">
 <pre><code>&lt;AxesSubplot:xlabel='기간', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -3897,15 +3891,15 @@ dtype: int64</code></pre>
 <section id="데이터-집계하기" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-집계하기">데이터 집계하기</h2>
 <div id="c9d916f0" class="cell" data-execution_count="178">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># 피봇테이블로 "국가(대륙)별", "연도"별로 합계 금액을 표 형ㅇ태로 구하기</span></span>
-<span id="cb65-2"><a href="#cb65-2"></a></span>
-<span id="cb65-3"><a href="#cb65-3"></a>df_fashion.pivot_table?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 피봇테이블로 "국가(대륙)별", "연도"별로 합계 금액을 표 형ㅇ태로 구하기</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>df_fashion.pivot_table?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d8465ff6" class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a>df_fashion[<span class="st">"판매유형별"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>df_fashion[<span class="st">"판매유형별"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8d7933ab" class="cell" data-execution_count="182">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>df_fashion.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>df_fashion.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="182">
 <div>
 
@@ -3981,10 +3975,10 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="491a8057" class="cell" data-execution_count="184">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a>result <span class="op">=</span> df_fashion.pivot_table(index<span class="op">=</span><span class="st">"국가(대륙)별"</span>, columns<span class="op">=</span><span class="st">"연도"</span>, values<span class="op">=</span><span class="st">"백만원"</span>, aggfunc<span class="op">=</span><span class="st">"sum"</span>)</span>
-<span id="cb68-2"><a href="#cb68-2"></a><span class="co"># 기본은 평균으로 되어있음.. aggfunc</span></span>
-<span id="cb68-3"><a href="#cb68-3"></a></span>
-<span id="cb68-4"><a href="#cb68-4"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> df_fashion.pivot_table(index<span class="op">=</span><span class="st">"국가(대륙)별"</span>, columns<span class="op">=</span><span class="st">"연도"</span>, values<span class="op">=</span><span class="st">"백만원"</span>, aggfunc<span class="op">=</span><span class="st">"sum"</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 기본은 평균으로 되어있음.. aggfunc</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="184">
 <div>
 
@@ -4102,11 +4096,11 @@ dtype: int64</code></pre>
 <section id="연산결과를-시각적으로-보기" class="level2">
 <h2 class="anchored" data-anchor-id="연산결과를-시각적으로-보기">연산결과를 시각적으로 보기</h2>
 <div id="4293abd8" class="cell" data-execution_count="192">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a><span class="co"># 피봇테이블로 구한 결과를 값의 많고 적음에 따라 시각적으로 표현</span></span>
-<span id="cb69-2"><a href="#cb69-2"></a></span>
-<span id="cb69-3"><a href="#cb69-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>)</span>
-<span id="cb69-4"><a href="#cb69-4"></a>sns.heatmap(result, cmap<span class="op">=</span><span class="st">"Blues"</span>, annot<span class="op">=</span> <span class="va">True</span>, fmt<span class="op">=</span><span class="st">".0f"</span>)</span>
-<span id="cb69-5"><a href="#cb69-5"></a><span class="co"># annot=true 숫자값 표시 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 피봇테이블로 구한 결과를 값의 많고 적음에 따라 시각적으로 표현</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>)</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>sns.heatmap(result, cmap<span class="op">=</span><span class="st">"Blues"</span>, annot<span class="op">=</span> <span class="va">True</span>, fmt<span class="op">=</span><span class="st">".0f"</span>)</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co"># annot=true 숫자값 표시 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="192">
 <pre><code>&lt;AxesSubplot:xlabel='연도', ylabel='국가(대륙)별'&gt;</code></pre>
 </div>
@@ -4115,8 +4109,8 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="2e93b194" class="cell" data-execution_count="188">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a>sns.heatmap(result, cmap<span class="op">=</span><span class="st">"Blues_r"</span>)</span>
-<span id="cb71-2"><a href="#cb71-2"></a><span class="co"># _r 하면 위에랑 반대로.. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(result, cmap<span class="op">=</span><span class="st">"Blues_r"</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _r 하면 위에랑 반대로.. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="188">
 <pre><code>&lt;AxesSubplot:xlabel='연도', ylabel='국가(대륙)별'&gt;</code></pre>
 </div>
@@ -4129,9 +4123,9 @@ dtype: int64</code></pre>
 <section id="전체-상품군별로-온라인쇼핑-해외직접판매액은-증가했을까" class="level1">
 <h1>전체 상품군별로 온라인쇼핑 해외직접판매액은 증가했을까?</h1>
 <div id="9046bed6" class="cell" data-execution_count="193">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># 위에서 판매유형별 데이터의 "계"만 모은 df_total 변수를 통한 연도별 합계 금액을 시각화 하기</span></span>
-<span id="cb73-2"><a href="#cb73-2"></a></span>
-<span id="cb73-3"><a href="#cb73-3"></a>df_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 위에서 판매유형별 데이터의 "계"만 모은 df_total 변수를 통한 연도별 합계 금액을 시각화 하기</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>df_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="193">
 <div>
 
@@ -4268,7 +4262,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="863ef42c" class="cell" data-execution_count="196">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a>sns.barplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="196">
 <pre><code>&lt;AxesSubplot:xlabel='연도', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -4277,9 +4271,9 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="bd95e1c7" class="cell" data-execution_count="199">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a><span class="co"># 연도별 판매액을 그리고 "국가(대륙)별"로 다른 색상으로 표현하기</span></span>
-<span id="cb76-2"><a href="#cb76-2"></a></span>
-<span id="cb76-3"><a href="#cb76-3"></a>sns.barplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 연도별 판매액을 그리고 "국가(대륙)별"로 다른 색상으로 표현하기</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="199">
 <pre><code>&lt;AxesSubplot:xlabel='연도', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -4288,8 +4282,8 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="79815546" class="cell" data-execution_count="200">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb78-2"><a href="#cb78-2"></a>sns.lineplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"국가(대륙)별"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="200">
 <pre><code>&lt;AxesSubplot:xlabel='연도', ylabel='백만원'&gt;</code></pre>
 </div>
@@ -4298,11 +4292,11 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="3eca50f7" class="cell" data-execution_count="203">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a><span class="co"># 연도별 판매액을 그리고 "상품군별"로 다른 색상으로 표현하기</span></span>
-<span id="cb80-2"><a href="#cb80-2"></a></span>
-<span id="cb80-3"><a href="#cb80-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
-<span id="cb80-4"><a href="#cb80-4"></a>sns.lineplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"상품군별"</span>)</span>
-<span id="cb80-5"><a href="#cb80-5"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.02</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="dv">2</span>, borderaxespad<span class="op">=</span><span class="dv">0</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 연도별 판매액을 그리고 "상품군별"로 다른 색상으로 표현하기</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">4</span>))</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df_total, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"백만원"</span>, hue<span class="op">=</span><span class="st">"상품군별"</span>)</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.02</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="dv">2</span>, borderaxespad<span class="op">=</span><span class="dv">0</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="203">
 <pre><code>&lt;matplotlib.legend.Legend at 0x15f55f6bb20&gt;</code></pre>
 </div>

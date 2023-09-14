@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -565,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1521,12 +1521,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1634,7 +1628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#잡담4-우린-뭘-해야-할까-학석사-레벨에서.." id="toc-잡담4-우린-뭘-해야-할까-학석사-레벨에서.." class="nav-link" data-scroll-target="#잡담4-우린-뭘-해야-할까-학석사-레벨에서..">잡담4: 우린 뭘 해야 할까 (학석사 레벨에서..)</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022_12_08_13wk_checkpoint.out.ipynb" download="2022_12_08_13wk_checkpoint.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1684,31 +1678,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import" class="level1">
 <h1>import</h1>
 <div id="9cfc0edd-4a3a-49a3-b601-67691cd8920a" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> torch</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="imdb-자료-to-텍스트-생성" class="level1">
 <h1>IMDB 자료 <span class="math inline">\(\to\)</span> 텍스트 생성</h1>
 <p><code>(1)</code> dls 생성</p>
 <div id="91a1f3fc-8d53-4163-8d91-d420a3bbf777" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="dd6c689f-f6ac-4afe-a43e-106d74288794" class="cell" data-outputid="3277059e-8d8e-42e6-8f0a-81bbeb020a37">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>files <span class="op">=</span> get_text_files(path) </span>
-<span id="cb3-2"><a href="#cb3-2"></a>files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_text_files(path) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>(#100002) [Path('/home/cgb4/.fastai/data/imdb/unsup/8002_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/18305_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/1440_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/43259_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/391_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/14091_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/49382_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/33008_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/24903_0.txt'),Path('/home/cgb4/.fastai/data/imdb/unsup/43058_0.txt')...]</code></pre>
 </div>
 </div>
 <div id="addb1e26-9672-4b3d-b0d2-37bd054504f1" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>dls <span class="op">=</span> DataBlock(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    blocks<span class="op">=</span>TextBlock.from_folder(path,is_lm<span class="op">=</span><span class="va">True</span>), </span>
-<span id="cb5-3"><a href="#cb5-3"></a>    get_items<span class="op">=</span>get_text_files, splitter<span class="op">=</span>RandomSplitter(<span class="fl">0.1</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>).dataloaders(path,seq_len<span class="op">=</span><span class="dv">128</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> DataBlock(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>TextBlock.from_folder(path,is_lm<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_text_files, splitter<span class="op">=</span>RandomSplitter(<span class="fl">0.1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>).dataloaders(path,seq_len<span class="op">=</span><span class="dv">128</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="9a139794-1556-4c78-a01b-9406a7561c79" class="cell" data-outputid="4b6e8314-2346-4591-ca4e-877e475533c7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -1770,14 +1764,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>(2)</code> lrnr 오브젝트 생성</p>
 <div id="34256a50-af7b-4157-a16a-3b855ef49f20" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>lrnr <span class="op">=</span> language_model_learner(dls,AWD_LSTM,metrics<span class="op">=</span>[accuracy,Perplexity()]).to_fp16()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> language_model_learner(dls,AWD_LSTM,metrics<span class="op">=</span>[accuracy,Perplexity()]).to_fp16()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>.to_fp16()</code>은 <code>torch.float16</code>으로 숫자들을 저장하겠다는 의미 (GPU의 메모리를 아낄 수 있음)</li>
 </ul>
 <p><code>(3)</code> 학습</p>
 <div id="34197959-a189-4b6d-88d7-b9f7032483c4" class="cell" data-outputid="405d3d3b-ed76-477d-8f2b-27e792dcef1f">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>lrnr.fine_tune(<span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lrnr.fine_tune(<span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1884,7 +1878,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><code>(4)</code> 예측</p>
 <div id="283801f3-d12a-49f5-ad67-5a64bd60237e" class="cell" data-outputid="678821ee-2fa9-4af5-9c89-b4b67f5241bf">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>lrnr.predict(<span class="st">'I liked this movie'</span>,<span class="dv">40</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lrnr.predict(<span class="st">'I liked this movie'</span>,<span class="dv">40</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1911,7 +1905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="f473a5a8-b65c-4553-ba4b-9d3f8aebbbf8" class="cell" data-outputid="24be8f4d-7fe4-471e-c86e-60e61bca34c9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>lrnr.predict(<span class="st">'I hate this movie'</span>,<span class="dv">40</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lrnr.predict(<span class="st">'I hate this movie'</span>,<span class="dv">40</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1943,21 +1937,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>IMDB 자료 <span class="math inline">\(\to\)</span> 분류</h1>
 <p><code>(1)</code> dls 생성</p>
 <div id="f90cbe36-3155-4868-b505-a83e9f78b10b" class="cell" data-outputid="1a2b3740-fd8c-4416-d22a-8d29328e9123">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>Path('/home/cgb4/.fastai/data/imdb')</code></pre>
 </div>
 </div>
 <div id="12bf44ba-040f-44e2-96a8-d71e29998230" class="cell" data-outputid="a39d301b-ae9d-4629-e834-ef807aa02f8b">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="op">!</span>ls <span class="st">'/home/cgb4/.fastai/data/imdb'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls <span class="st">'/home/cgb4/.fastai/data/imdb'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>README  imdb.vocab  test  tmp_clas  tmp_lm  train  unsup</code></pre>
 </div>
 </div>
 <div id="34252ee8-588a-4ec7-bf3f-537f43deb6eb" class="cell" data-outputid="8772d5af-d5f5-497f-acc7-625a91e68941">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>dls <span class="op">=</span> TextDataLoaders.from_folder(path, valid<span class="op">=</span><span class="st">'test'</span>)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> TextDataLoaders.from_folder(path, valid<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dls.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -2022,11 +2016,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><code>(2)</code> lrnr 오브젝트 생성</p>
 <div id="e679b8f1-406d-44b4-8329-2087bbf482e4" class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>lrnr <span class="op">=</span> text_classifier_learner(dls,AWD_LSTM,metrics<span class="op">=</span>accuracy).to_fp16()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> text_classifier_learner(dls,AWD_LSTM,metrics<span class="op">=</span>accuracy).to_fp16()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>(3)</code> 학습</p>
 <div id="7075a4c2-6288-4f25-88f0-53306560cd3d" class="cell" data-outputid="0e213bf0-ba3d-4fee-aeed-fbe91f726fb5">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>lrnr.fine_tune(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lrnr.fine_tune(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2110,7 +2104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>(4)</code> 예측</p>
 <div id="9341302b-0bf7-4fc3-b9ee-1032ea81a5f5" class="cell" data-outputid="566320b5-16ab-41f8-ece5-fbc7fab5086a">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>lrnr.predict(<span class="st">"this film shows incredibly bad writing and is a complete disaster"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lrnr.predict(<span class="st">"this film shows incredibly bad writing and is a complete disaster"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2137,7 +2131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="6149d13d-f781-427a-a99a-347af5ee1aef" class="cell" data-outputid="0672a311-ebff-423f-cc2c-720b1acd9632">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>lrnr.predict(<span class="st">"this film shows incredible talent and is a complete triumph"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lrnr.predict(<span class="st">"this film shows incredible talent and is a complete triumph"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>

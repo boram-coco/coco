@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1647,7 +1641,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#wasserstein-gan" id="toc-wasserstein-gan" class="nav-link" data-scroll-target="#wasserstein-gan">Wasserstein GAN</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Advaced Deep Learning with TensorFlow 2 and Keras.out.ipynb" download="Advaced Deep Learning with TensorFlow 2 and Keras.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1688,17 +1682,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <div id="aeedcc71-0fa9-4e19-8f59-b4fc9f65eeef" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="16d77e22-a9a7-4b85-85e4-9646754f83ba" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">print</span>(tf.__version__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tf.__version__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2.11.0</code></pre>
 </div>
 </div>
 <div id="8d58ca7d-fb3f-4473-9018-4def070c2a01" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> backend <span class="im">as</span> K</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(K.epsilon())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> backend <span class="im">as</span> K</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(K.epsilon())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1e-07</code></pre>
 </div>
@@ -1753,140 +1747,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="오토인코더-구축" class="level2">
 <h2 class="anchored" data-anchor-id="오토인코더-구축">오토인코더 구축</h2>
 <div id="528cfd2c-ef14-4f6f-9e6d-673135176b44" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">'''Example of autoencoder model on MNIST dataset</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">This autoencoder has modular design. The encoder, decoder and autoencoder</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">are 3 models that share weights. For example, after training the</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">autoencoder, the encoder can be used to  generate latent vectors</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">of input data for low-dim visualization like PCA or TSNE.</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">'''</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="im">from</span> __future__ <span class="im">import</span> absolute_import</span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="im">from</span> __future__ <span class="im">import</span> division</span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="im">from</span> __future__ <span class="im">import</span> print_function</span>
-<span id="cb6-12"><a href="#cb6-12"></a></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Dense, Input</span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Conv2D, Flatten</span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Reshape, Conv2DTranspose</span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="im">from</span> tensorflow.keras.datasets <span class="im">import</span> mnist</span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> plot_model</span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> backend <span class="im">as</span> K</span>
-<span id="cb6-20"><a href="#cb6-20"></a></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-23"><a href="#cb6-23"></a></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="co"># load MNIST dataset</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a>(x_train, _), (x_test, _) <span class="op">=</span> mnist.load_data()</span>
-<span id="cb6-26"><a href="#cb6-26"></a></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="co"># reshape to (28, 28, 1) and normalize input images</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a>image_size <span class="op">=</span> x_train.shape[<span class="dv">1</span>]</span>
-<span id="cb6-29"><a href="#cb6-29"></a>x_train <span class="op">=</span> np.reshape(x_train, [<span class="op">-</span><span class="dv">1</span>, image_size, image_size, <span class="dv">1</span>])</span>
-<span id="cb6-30"><a href="#cb6-30"></a>x_test <span class="op">=</span> np.reshape(x_test, [<span class="op">-</span><span class="dv">1</span>, image_size, image_size, <span class="dv">1</span>])</span>
-<span id="cb6-31"><a href="#cb6-31"></a>x_train <span class="op">=</span> x_train.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="dv">255</span></span>
-<span id="cb6-32"><a href="#cb6-32"></a>x_test <span class="op">=</span> x_test.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="dv">255</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a></span>
-<span id="cb6-34"><a href="#cb6-34"></a><span class="co"># network parameters</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a>input_shape <span class="op">=</span> (image_size, image_size, <span class="dv">1</span>)</span>
-<span id="cb6-36"><a href="#cb6-36"></a>batch_size <span class="op">=</span> <span class="dv">32</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a>latent_dim <span class="op">=</span> <span class="dv">16</span></span>
-<span id="cb6-39"><a href="#cb6-39"></a><span class="co"># encoder/decoder number of CNN layers and filters per layer</span></span>
-<span id="cb6-40"><a href="#cb6-40"></a>layer_filters <span class="op">=</span> [<span class="dv">32</span>, <span class="dv">64</span>]</span>
-<span id="cb6-41"><a href="#cb6-41"></a></span>
-<span id="cb6-42"><a href="#cb6-42"></a><span class="co"># build the autoencoder model</span></span>
-<span id="cb6-43"><a href="#cb6-43"></a><span class="co"># first build the encoder model</span></span>
-<span id="cb6-44"><a href="#cb6-44"></a>inputs <span class="op">=</span> Input(shape<span class="op">=</span>input_shape, name<span class="op">=</span><span class="st">'encoder_input'</span>)</span>
-<span id="cb6-45"><a href="#cb6-45"></a>x <span class="op">=</span> inputs</span>
-<span id="cb6-46"><a href="#cb6-46"></a><span class="co"># stack of Conv2D(32)-Conv2D(64)</span></span>
-<span id="cb6-47"><a href="#cb6-47"></a><span class="cf">for</span> filters <span class="kw">in</span> layer_filters:</span>
-<span id="cb6-48"><a href="#cb6-48"></a>    x <span class="op">=</span> Conv2D(filters<span class="op">=</span>filters,</span>
-<span id="cb6-49"><a href="#cb6-49"></a>               kernel_size<span class="op">=</span>kernel_size,</span>
-<span id="cb6-50"><a href="#cb6-50"></a>               activation<span class="op">=</span><span class="st">'relu'</span>,</span>
-<span id="cb6-51"><a href="#cb6-51"></a>               strides<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb6-52"><a href="#cb6-52"></a>               padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
-<span id="cb6-53"><a href="#cb6-53"></a></span>
-<span id="cb6-54"><a href="#cb6-54"></a><span class="co"># shape info needed to build decoder model</span></span>
-<span id="cb6-55"><a href="#cb6-55"></a><span class="co"># so we don't do hand computation</span></span>
-<span id="cb6-56"><a href="#cb6-56"></a><span class="co"># the input to the decoder's first</span></span>
-<span id="cb6-57"><a href="#cb6-57"></a><span class="co"># Conv2DTranspose will have this shape</span></span>
-<span id="cb6-58"><a href="#cb6-58"></a><span class="co"># shape is (7, 7, 64) which is processed by</span></span>
-<span id="cb6-59"><a href="#cb6-59"></a><span class="co"># the decoder back to (28, 28, 1)</span></span>
-<span id="cb6-60"><a href="#cb6-60"></a>shape <span class="op">=</span> K.int_shape(x)</span>
-<span id="cb6-61"><a href="#cb6-61"></a></span>
-<span id="cb6-62"><a href="#cb6-62"></a><span class="co"># generate latent vector</span></span>
-<span id="cb6-63"><a href="#cb6-63"></a>x <span class="op">=</span> Flatten()(x)</span>
-<span id="cb6-64"><a href="#cb6-64"></a>latent <span class="op">=</span> Dense(latent_dim, name<span class="op">=</span><span class="st">'latent_vector'</span>)(x)</span>
-<span id="cb6-65"><a href="#cb6-65"></a></span>
-<span id="cb6-66"><a href="#cb6-66"></a><span class="co"># instantiate encoder model</span></span>
-<span id="cb6-67"><a href="#cb6-67"></a>encoder <span class="op">=</span> Model(inputs,</span>
-<span id="cb6-68"><a href="#cb6-68"></a>                latent,</span>
-<span id="cb6-69"><a href="#cb6-69"></a>                name<span class="op">=</span><span class="st">'encoder'</span>)</span>
-<span id="cb6-70"><a href="#cb6-70"></a>encoder.summary()</span>
-<span id="cb6-71"><a href="#cb6-71"></a>plot_model(encoder,</span>
-<span id="cb6-72"><a href="#cb6-72"></a>           to_file<span class="op">=</span><span class="st">'encoder.png'</span>,</span>
-<span id="cb6-73"><a href="#cb6-73"></a>           show_shapes<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-74"><a href="#cb6-74"></a></span>
-<span id="cb6-75"><a href="#cb6-75"></a><span class="co"># build the decoder model</span></span>
-<span id="cb6-76"><a href="#cb6-76"></a>latent_inputs <span class="op">=</span> Input(shape<span class="op">=</span>(latent_dim,), name<span class="op">=</span><span class="st">'decoder_input'</span>)</span>
-<span id="cb6-77"><a href="#cb6-77"></a><span class="co"># use the shape (7, 7, 64) that was earlier saved</span></span>
-<span id="cb6-78"><a href="#cb6-78"></a>x <span class="op">=</span> Dense(shape[<span class="dv">1</span>] <span class="op">*</span> shape[<span class="dv">2</span>] <span class="op">*</span> shape[<span class="dv">3</span>])(latent_inputs)</span>
-<span id="cb6-79"><a href="#cb6-79"></a><span class="co"># from vector to suitable shape for transposed conv</span></span>
-<span id="cb6-80"><a href="#cb6-80"></a>x <span class="op">=</span> Reshape((shape[<span class="dv">1</span>], shape[<span class="dv">2</span>], shape[<span class="dv">3</span>]))(x)</span>
-<span id="cb6-81"><a href="#cb6-81"></a></span>
-<span id="cb6-82"><a href="#cb6-82"></a><span class="co"># stack of Conv2DTranspose(64)-Conv2DTranspose(32)</span></span>
-<span id="cb6-83"><a href="#cb6-83"></a><span class="cf">for</span> filters <span class="kw">in</span> layer_filters[::<span class="op">-</span><span class="dv">1</span>]:</span>
-<span id="cb6-84"><a href="#cb6-84"></a>    x <span class="op">=</span> Conv2DTranspose(filters<span class="op">=</span>filters,</span>
-<span id="cb6-85"><a href="#cb6-85"></a>                        kernel_size<span class="op">=</span>kernel_size,</span>
-<span id="cb6-86"><a href="#cb6-86"></a>                        activation<span class="op">=</span><span class="st">'relu'</span>,</span>
-<span id="cb6-87"><a href="#cb6-87"></a>                        strides<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb6-88"><a href="#cb6-88"></a>                        padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
-<span id="cb6-89"><a href="#cb6-89"></a></span>
-<span id="cb6-90"><a href="#cb6-90"></a><span class="co"># reconstruct the input</span></span>
-<span id="cb6-91"><a href="#cb6-91"></a>outputs <span class="op">=</span> Conv2DTranspose(filters<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb6-92"><a href="#cb6-92"></a>                          kernel_size<span class="op">=</span>kernel_size,</span>
-<span id="cb6-93"><a href="#cb6-93"></a>                          activation<span class="op">=</span><span class="st">'sigmoid'</span>,</span>
-<span id="cb6-94"><a href="#cb6-94"></a>                          padding<span class="op">=</span><span class="st">'same'</span>,</span>
-<span id="cb6-95"><a href="#cb6-95"></a>                          name<span class="op">=</span><span class="st">'decoder_output'</span>)(x)</span>
-<span id="cb6-96"><a href="#cb6-96"></a></span>
-<span id="cb6-97"><a href="#cb6-97"></a><span class="co"># instantiate decoder model</span></span>
-<span id="cb6-98"><a href="#cb6-98"></a>decoder <span class="op">=</span> Model(latent_inputs, outputs, name<span class="op">=</span><span class="st">'decoder'</span>)</span>
-<span id="cb6-99"><a href="#cb6-99"></a>decoder.summary()</span>
-<span id="cb6-100"><a href="#cb6-100"></a>plot_model(decoder, to_file<span class="op">=</span><span class="st">'decoder.png'</span>, show_shapes<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-101"><a href="#cb6-101"></a></span>
-<span id="cb6-102"><a href="#cb6-102"></a><span class="co"># autoencoder = encoder + decoder</span></span>
-<span id="cb6-103"><a href="#cb6-103"></a><span class="co"># instantiate autoencoder model</span></span>
-<span id="cb6-104"><a href="#cb6-104"></a>autoencoder <span class="op">=</span> Model(inputs,</span>
-<span id="cb6-105"><a href="#cb6-105"></a>                    decoder(encoder(inputs)),</span>
-<span id="cb6-106"><a href="#cb6-106"></a>                    name<span class="op">=</span><span class="st">'autoencoder'</span>)</span>
-<span id="cb6-107"><a href="#cb6-107"></a>autoencoder.summary()</span>
-<span id="cb6-108"><a href="#cb6-108"></a>plot_model(autoencoder,</span>
-<span id="cb6-109"><a href="#cb6-109"></a>           to_file<span class="op">=</span><span class="st">'autoencoder.png'</span>,</span>
-<span id="cb6-110"><a href="#cb6-110"></a>           show_shapes<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-111"><a href="#cb6-111"></a></span>
-<span id="cb6-112"><a href="#cb6-112"></a><span class="co"># Mean Square Error (MSE) loss function, Adam optimizer</span></span>
-<span id="cb6-113"><a href="#cb6-113"></a>autoencoder.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">'mse'</span>, optimizer<span class="op">=</span><span class="st">'adam'</span>)</span>
-<span id="cb6-114"><a href="#cb6-114"></a></span>
-<span id="cb6-115"><a href="#cb6-115"></a><span class="co"># train the autoencoder</span></span>
-<span id="cb6-116"><a href="#cb6-116"></a>autoencoder.fit(x_train,</span>
-<span id="cb6-117"><a href="#cb6-117"></a>                x_train,</span>
-<span id="cb6-118"><a href="#cb6-118"></a>                validation_data<span class="op">=</span>(x_test, x_test),</span>
-<span id="cb6-119"><a href="#cb6-119"></a>                epochs<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb6-120"><a href="#cb6-120"></a>                batch_size<span class="op">=</span>batch_size)</span>
-<span id="cb6-121"><a href="#cb6-121"></a></span>
-<span id="cb6-122"><a href="#cb6-122"></a><span class="co"># predict the autoencoder output from test data</span></span>
-<span id="cb6-123"><a href="#cb6-123"></a>x_decoded <span class="op">=</span> autoencoder.predict(x_test)</span>
-<span id="cb6-124"><a href="#cb6-124"></a></span>
-<span id="cb6-125"><a href="#cb6-125"></a><span class="co"># display the 1st 8 test input and decoded images</span></span>
-<span id="cb6-126"><a href="#cb6-126"></a>imgs <span class="op">=</span> np.concatenate([x_test[:<span class="dv">8</span>], x_decoded[:<span class="dv">8</span>]])</span>
-<span id="cb6-127"><a href="#cb6-127"></a>imgs <span class="op">=</span> imgs.reshape((<span class="dv">4</span>, <span class="dv">4</span>, image_size, image_size))</span>
-<span id="cb6-128"><a href="#cb6-128"></a>imgs <span class="op">=</span> np.vstack([np.hstack(i) <span class="cf">for</span> i <span class="kw">in</span> imgs])</span>
-<span id="cb6-129"><a href="#cb6-129"></a>plt.figure()</span>
-<span id="cb6-130"><a href="#cb6-130"></a>plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb6-131"><a href="#cb6-131"></a>plt.title(<span class="st">'Input: 1st 2 rows, Decoded: last 2 rows'</span>)</span>
-<span id="cb6-132"><a href="#cb6-132"></a>plt.imshow(imgs, interpolation<span class="op">=</span><span class="st">'none'</span>, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb6-133"><a href="#cb6-133"></a>plt.savefig(<span class="st">'input_and_decoded.png'</span>)</span>
-<span id="cb6-134"><a href="#cb6-134"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''Example of autoencoder model on MNIST dataset</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">This autoencoder has modular design. The encoder, decoder and autoencoder</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">are 3 models that share weights. For example, after training the</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">autoencoder, the encoder can be used to  generate latent vectors</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">of input data for low-dim visualization like PCA or TSNE.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> absolute_import</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> division</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> print_function</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Dense, Input</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Conv2D, Flatten</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Reshape, Conv2DTranspose</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.datasets <span class="im">import</span> mnist</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> plot_model</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> backend <span class="im">as</span> K</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># load MNIST dataset</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>(x_train, _), (x_test, _) <span class="op">=</span> mnist.load_data()</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># reshape to (28, 28, 1) and normalize input images</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>image_size <span class="op">=</span> x_train.shape[<span class="dv">1</span>]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> np.reshape(x_train, [<span class="op">-</span><span class="dv">1</span>, image_size, image_size, <span class="dv">1</span>])</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> np.reshape(x_test, [<span class="op">-</span><span class="dv">1</span>, image_size, image_size, <span class="dv">1</span>])</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> x_train.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> x_test.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># network parameters</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>input_shape <span class="op">=</span> (image_size, image_size, <span class="dv">1</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">32</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>latent_dim <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># encoder/decoder number of CNN layers and filters per layer</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>layer_filters <span class="op">=</span> [<span class="dv">32</span>, <span class="dv">64</span>]</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># build the autoencoder model</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co"># first build the encoder model</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> Input(shape<span class="op">=</span>input_shape, name<span class="op">=</span><span class="st">'encoder_input'</span>)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> inputs</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co"># stack of Conv2D(32)-Conv2D(64)</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filters <span class="kw">in</span> layer_filters:</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Conv2D(filters<span class="op">=</span>filters,</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>               kernel_size<span class="op">=</span>kernel_size,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>               activation<span class="op">=</span><span class="st">'relu'</span>,</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>               strides<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>               padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co"># shape info needed to build decoder model</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co"># so we don't do hand computation</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="co"># the input to the decoder's first</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Conv2DTranspose will have this shape</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co"># shape is (7, 7, 64) which is processed by</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="co"># the decoder back to (28, 28, 1)</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>shape <span class="op">=</span> K.int_shape(x)</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co"># generate latent vector</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Flatten()(x)</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>latent <span class="op">=</span> Dense(latent_dim, name<span class="op">=</span><span class="st">'latent_vector'</span>)(x)</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate encoder model</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>encoder <span class="op">=</span> Model(inputs,</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>                latent,</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>                name<span class="op">=</span><span class="st">'encoder'</span>)</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>encoder.summary()</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>plot_model(encoder,</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>           to_file<span class="op">=</span><span class="st">'encoder.png'</span>,</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>           show_shapes<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="co"># build the decoder model</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>latent_inputs <span class="op">=</span> Input(shape<span class="op">=</span>(latent_dim,), name<span class="op">=</span><span class="st">'decoder_input'</span>)</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="co"># use the shape (7, 7, 64) that was earlier saved</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dense(shape[<span class="dv">1</span>] <span class="op">*</span> shape[<span class="dv">2</span>] <span class="op">*</span> shape[<span class="dv">3</span>])(latent_inputs)</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co"># from vector to suitable shape for transposed conv</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Reshape((shape[<span class="dv">1</span>], shape[<span class="dv">2</span>], shape[<span class="dv">3</span>]))(x)</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="co"># stack of Conv2DTranspose(64)-Conv2DTranspose(32)</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filters <span class="kw">in</span> layer_filters[::<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Conv2DTranspose(filters<span class="op">=</span>filters,</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>                        kernel_size<span class="op">=</span>kernel_size,</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>                        activation<span class="op">=</span><span class="st">'relu'</span>,</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>                        strides<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>                        padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="co"># reconstruct the input</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> Conv2DTranspose(filters<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>                          kernel_size<span class="op">=</span>kernel_size,</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>                          activation<span class="op">=</span><span class="st">'sigmoid'</span>,</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>                          padding<span class="op">=</span><span class="st">'same'</span>,</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>                          name<span class="op">=</span><span class="st">'decoder_output'</span>)(x)</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate decoder model</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>decoder <span class="op">=</span> Model(latent_inputs, outputs, name<span class="op">=</span><span class="st">'decoder'</span>)</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>decoder.summary()</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>plot_model(decoder, to_file<span class="op">=</span><span class="st">'decoder.png'</span>, show_shapes<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a><span class="co"># autoencoder = encoder + decoder</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate autoencoder model</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>autoencoder <span class="op">=</span> Model(inputs,</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>                    decoder(encoder(inputs)),</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>                    name<span class="op">=</span><span class="st">'autoencoder'</span>)</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>autoencoder.summary()</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>plot_model(autoencoder,</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>           to_file<span class="op">=</span><span class="st">'autoencoder.png'</span>,</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>           show_shapes<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean Square Error (MSE) loss function, Adam optimizer</span></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>autoencoder.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">'mse'</span>, optimizer<span class="op">=</span><span class="st">'adam'</span>)</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="co"># train the autoencoder</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>autoencoder.fit(x_train,</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>                x_train,</span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>                validation_data<span class="op">=</span>(x_test, x_test),</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>                epochs<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>                batch_size<span class="op">=</span>batch_size)</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the autoencoder output from test data</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>x_decoded <span class="op">=</span> autoencoder.predict(x_test)</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="co"># display the 1st 8 test input and decoded images</span></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> np.concatenate([x_test[:<span class="dv">8</span>], x_decoded[:<span class="dv">8</span>]])</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> imgs.reshape((<span class="dv">4</span>, <span class="dv">4</span>, image_size, image_size))</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> np.vstack([np.hstack(i) <span class="cf">for</span> i <span class="kw">in</span> imgs])</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Input: 1st 2 rows, Decoded: last 2 rows'</span>)</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>plt.imshow(imgs, interpolation<span class="op">=</span><span class="st">'none'</span>, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'input_and_decoded.png'</span>)</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "encoder"
 _________________________________________________________________
@@ -1978,160 +1972,160 @@ You must install pydot (`pip install pydot`) and install graphviz (see instructi
 <p>인코더의 목적: 잠재벡터인 <span class="math inline">\(z\)</span>를 생성하는 방법을 찾는 것 <span class="math inline">\(\to\)</span> 잠재 벡터를 디코더가 MSE와 같은 손실 함수의 비 유사성을 최소화하여 <span class="math inline">\(x_{orig}\)</span>로 복원</p>
 <p><span class="math display">\[ L(x_{orig}, \tilde{x}) = MSE = \frac{1}{m} \sum _{i=1} ^{i=m} (x _{origi} - {\tilde{x _{i}}} ) ^{2}\]</span></p>
 <div id="4c9d6135-7d41-40d8-9b8a-15a7dca50c06" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">'''Trains a denoising autoencoder on MNIST dataset.</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">Denoising is one of the classic applications of autoencoders.</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">The denoising process removes unwanted noise that corrupted the</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">true data.</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">Noise + Data ---&gt; Denoising Autoencoder ---&gt; Data</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co">Given a training dataset of corrupted data as input and</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">true data as output, a denoising autoencoder can recover the</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co">hidden structure to generate clean data.</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">This example has modular design. The encoder, decoder and autoencoder</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">are 3 models that share weights. For example, after training the</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="co">autoencoder, the encoder can be used to  generate latent vectors</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co">of input data for low-dim visualization like PCA or TSNE.</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="co">'''</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a></span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="im">from</span> __future__ <span class="im">import</span> absolute_import</span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="im">from</span> __future__ <span class="im">import</span> division</span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="im">from</span> __future__ <span class="im">import</span> print_function</span>
-<span id="cb8-22"><a href="#cb8-22"></a></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Dense, Input</span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Conv2D, Flatten</span>
-<span id="cb8-25"><a href="#cb8-25"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Reshape, Conv2DTranspose</span>
-<span id="cb8-26"><a href="#cb8-26"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
-<span id="cb8-27"><a href="#cb8-27"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> backend <span class="im">as</span> K</span>
-<span id="cb8-28"><a href="#cb8-28"></a><span class="im">from</span> tensorflow.keras.datasets <span class="im">import</span> mnist</span>
-<span id="cb8-29"><a href="#cb8-29"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-30"><a href="#cb8-30"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-31"><a href="#cb8-31"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
-<span id="cb8-32"><a href="#cb8-32"></a></span>
-<span id="cb8-33"><a href="#cb8-33"></a>np.random.seed(<span class="dv">1337</span>)</span>
-<span id="cb8-34"><a href="#cb8-34"></a></span>
-<span id="cb8-35"><a href="#cb8-35"></a><span class="co"># load MNIST dataset</span></span>
-<span id="cb8-36"><a href="#cb8-36"></a>(x_train, _), (x_test, _) <span class="op">=</span> mnist.load_data()</span>
-<span id="cb8-37"><a href="#cb8-37"></a></span>
-<span id="cb8-38"><a href="#cb8-38"></a><span class="co"># reshape to (28, 28, 1) and normalize input images</span></span>
-<span id="cb8-39"><a href="#cb8-39"></a>image_size <span class="op">=</span> x_train.shape[<span class="dv">1</span>]</span>
-<span id="cb8-40"><a href="#cb8-40"></a>x_train <span class="op">=</span> np.reshape(x_train, [<span class="op">-</span><span class="dv">1</span>, image_size, image_size, <span class="dv">1</span>])</span>
-<span id="cb8-41"><a href="#cb8-41"></a>x_test <span class="op">=</span> np.reshape(x_test, [<span class="op">-</span><span class="dv">1</span>, image_size, image_size, <span class="dv">1</span>])</span>
-<span id="cb8-42"><a href="#cb8-42"></a>x_train <span class="op">=</span> x_train.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="dv">255</span></span>
-<span id="cb8-43"><a href="#cb8-43"></a>x_test <span class="op">=</span> x_test.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="dv">255</span></span>
-<span id="cb8-44"><a href="#cb8-44"></a></span>
-<span id="cb8-45"><a href="#cb8-45"></a><span class="co"># generate corrupted MNIST images by adding noise with normal dist</span></span>
-<span id="cb8-46"><a href="#cb8-46"></a><span class="co"># centered at 0.5 and std=0.5</span></span>
-<span id="cb8-47"><a href="#cb8-47"></a>noise <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.5</span>, scale<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span>x_train.shape)</span>
-<span id="cb8-48"><a href="#cb8-48"></a>x_train_noisy <span class="op">=</span> x_train <span class="op">+</span> noise</span>
-<span id="cb8-49"><a href="#cb8-49"></a>noise <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.5</span>, scale<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span>x_test.shape)</span>
-<span id="cb8-50"><a href="#cb8-50"></a>x_test_noisy <span class="op">=</span> x_test <span class="op">+</span> noise</span>
-<span id="cb8-51"><a href="#cb8-51"></a></span>
-<span id="cb8-52"><a href="#cb8-52"></a><span class="co"># adding noise may exceed normalized pixel values&gt;1.0 or &lt;0.0</span></span>
-<span id="cb8-53"><a href="#cb8-53"></a><span class="co"># clip pixel values &gt;1.0 to 1.0 and &lt;0.0 to 0.0</span></span>
-<span id="cb8-54"><a href="#cb8-54"></a>x_train_noisy <span class="op">=</span> np.clip(x_train_noisy, <span class="fl">0.</span>, <span class="fl">1.</span>)</span>
-<span id="cb8-55"><a href="#cb8-55"></a>x_test_noisy <span class="op">=</span> np.clip(x_test_noisy, <span class="fl">0.</span>, <span class="fl">1.</span>)</span>
-<span id="cb8-56"><a href="#cb8-56"></a></span>
-<span id="cb8-57"><a href="#cb8-57"></a><span class="co"># network parameters</span></span>
-<span id="cb8-58"><a href="#cb8-58"></a>input_shape <span class="op">=</span> (image_size, image_size, <span class="dv">1</span>)</span>
-<span id="cb8-59"><a href="#cb8-59"></a>batch_size <span class="op">=</span> <span class="dv">32</span></span>
-<span id="cb8-60"><a href="#cb8-60"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb8-61"><a href="#cb8-61"></a>latent_dim <span class="op">=</span> <span class="dv">16</span></span>
-<span id="cb8-62"><a href="#cb8-62"></a><span class="co"># encoder/decoder number of CNN layers and filters per layer</span></span>
-<span id="cb8-63"><a href="#cb8-63"></a>layer_filters <span class="op">=</span> [<span class="dv">32</span>, <span class="dv">64</span>]</span>
-<span id="cb8-64"><a href="#cb8-64"></a></span>
-<span id="cb8-65"><a href="#cb8-65"></a><span class="co"># build the autoencoder model</span></span>
-<span id="cb8-66"><a href="#cb8-66"></a><span class="co"># first build the encoder model</span></span>
-<span id="cb8-67"><a href="#cb8-67"></a>inputs <span class="op">=</span> Input(shape<span class="op">=</span>input_shape, name<span class="op">=</span><span class="st">'encoder_input'</span>)</span>
-<span id="cb8-68"><a href="#cb8-68"></a>x <span class="op">=</span> inputs</span>
-<span id="cb8-69"><a href="#cb8-69"></a></span>
-<span id="cb8-70"><a href="#cb8-70"></a><span class="co"># stack of Conv2D(32)-Conv2D(64)</span></span>
-<span id="cb8-71"><a href="#cb8-71"></a><span class="cf">for</span> filters <span class="kw">in</span> layer_filters:</span>
-<span id="cb8-72"><a href="#cb8-72"></a>    x <span class="op">=</span> Conv2D(filters<span class="op">=</span>filters,</span>
-<span id="cb8-73"><a href="#cb8-73"></a>               kernel_size<span class="op">=</span>kernel_size,</span>
-<span id="cb8-74"><a href="#cb8-74"></a>               strides<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb8-75"><a href="#cb8-75"></a>               activation<span class="op">=</span><span class="st">'relu'</span>,</span>
-<span id="cb8-76"><a href="#cb8-76"></a>               padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
-<span id="cb8-77"><a href="#cb8-77"></a></span>
-<span id="cb8-78"><a href="#cb8-78"></a><span class="co"># shape info needed to build decoder model so we don't do hand computation</span></span>
-<span id="cb8-79"><a href="#cb8-79"></a><span class="co"># the input to the decoder's first Conv2DTranspose will have this shape</span></span>
-<span id="cb8-80"><a href="#cb8-80"></a><span class="co"># shape is (7, 7, 64) which can be processed by the decoder back to (28, 28, 1)</span></span>
-<span id="cb8-81"><a href="#cb8-81"></a>shape <span class="op">=</span> K.int_shape(x)</span>
-<span id="cb8-82"><a href="#cb8-82"></a></span>
-<span id="cb8-83"><a href="#cb8-83"></a><span class="co"># generate the latent vector</span></span>
-<span id="cb8-84"><a href="#cb8-84"></a>x <span class="op">=</span> Flatten()(x)</span>
-<span id="cb8-85"><a href="#cb8-85"></a>latent <span class="op">=</span> Dense(latent_dim, name<span class="op">=</span><span class="st">'latent_vector'</span>)(x)</span>
-<span id="cb8-86"><a href="#cb8-86"></a></span>
-<span id="cb8-87"><a href="#cb8-87"></a><span class="co"># instantiate encoder model</span></span>
-<span id="cb8-88"><a href="#cb8-88"></a>encoder <span class="op">=</span> Model(inputs, latent, name<span class="op">=</span><span class="st">'encoder'</span>)</span>
-<span id="cb8-89"><a href="#cb8-89"></a>encoder.summary()</span>
-<span id="cb8-90"><a href="#cb8-90"></a></span>
-<span id="cb8-91"><a href="#cb8-91"></a><span class="co"># build the decoder model</span></span>
-<span id="cb8-92"><a href="#cb8-92"></a>latent_inputs <span class="op">=</span> Input(shape<span class="op">=</span>(latent_dim,), name<span class="op">=</span><span class="st">'decoder_input'</span>)</span>
-<span id="cb8-93"><a href="#cb8-93"></a><span class="co"># use the shape (7, 7, 64) that was earlier saved</span></span>
-<span id="cb8-94"><a href="#cb8-94"></a>x <span class="op">=</span> Dense(shape[<span class="dv">1</span>] <span class="op">*</span> shape[<span class="dv">2</span>] <span class="op">*</span> shape[<span class="dv">3</span>])(latent_inputs)</span>
-<span id="cb8-95"><a href="#cb8-95"></a><span class="co"># from vector to suitable shape for transposed conv</span></span>
-<span id="cb8-96"><a href="#cb8-96"></a>x <span class="op">=</span> Reshape((shape[<span class="dv">1</span>], shape[<span class="dv">2</span>], shape[<span class="dv">3</span>]))(x)</span>
-<span id="cb8-97"><a href="#cb8-97"></a></span>
-<span id="cb8-98"><a href="#cb8-98"></a><span class="co"># stack of Conv2DTranspose(64)-Conv2DTranspose(32)</span></span>
-<span id="cb8-99"><a href="#cb8-99"></a><span class="cf">for</span> filters <span class="kw">in</span> layer_filters[::<span class="op">-</span><span class="dv">1</span>]:</span>
-<span id="cb8-100"><a href="#cb8-100"></a>    x <span class="op">=</span> Conv2DTranspose(filters<span class="op">=</span>filters,</span>
-<span id="cb8-101"><a href="#cb8-101"></a>                        kernel_size<span class="op">=</span>kernel_size,</span>
-<span id="cb8-102"><a href="#cb8-102"></a>                        strides<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb8-103"><a href="#cb8-103"></a>                        activation<span class="op">=</span><span class="st">'relu'</span>,</span>
-<span id="cb8-104"><a href="#cb8-104"></a>                        padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
-<span id="cb8-105"><a href="#cb8-105"></a></span>
-<span id="cb8-106"><a href="#cb8-106"></a><span class="co"># reconstruct the denoised input</span></span>
-<span id="cb8-107"><a href="#cb8-107"></a>outputs <span class="op">=</span> Conv2DTranspose(filters<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb8-108"><a href="#cb8-108"></a>                          kernel_size<span class="op">=</span>kernel_size,</span>
-<span id="cb8-109"><a href="#cb8-109"></a>                          padding<span class="op">=</span><span class="st">'same'</span>,</span>
-<span id="cb8-110"><a href="#cb8-110"></a>                          activation<span class="op">=</span><span class="st">'sigmoid'</span>,</span>
-<span id="cb8-111"><a href="#cb8-111"></a>                          name<span class="op">=</span><span class="st">'decoder_output'</span>)(x)</span>
-<span id="cb8-112"><a href="#cb8-112"></a></span>
-<span id="cb8-113"><a href="#cb8-113"></a><span class="co"># instantiate decoder model</span></span>
-<span id="cb8-114"><a href="#cb8-114"></a>decoder <span class="op">=</span> Model(latent_inputs, outputs, name<span class="op">=</span><span class="st">'decoder'</span>)</span>
-<span id="cb8-115"><a href="#cb8-115"></a>decoder.summary()</span>
-<span id="cb8-116"><a href="#cb8-116"></a></span>
-<span id="cb8-117"><a href="#cb8-117"></a><span class="co"># autoencoder = encoder + decoder</span></span>
-<span id="cb8-118"><a href="#cb8-118"></a><span class="co"># instantiate autoencoder model</span></span>
-<span id="cb8-119"><a href="#cb8-119"></a>autoencoder <span class="op">=</span> Model(inputs, decoder(encoder(inputs)), name<span class="op">=</span><span class="st">'autoencoder'</span>)</span>
-<span id="cb8-120"><a href="#cb8-120"></a>autoencoder.summary()</span>
-<span id="cb8-121"><a href="#cb8-121"></a></span>
-<span id="cb8-122"><a href="#cb8-122"></a><span class="co"># Mean Square Error (MSE) loss function, Adam optimizer</span></span>
-<span id="cb8-123"><a href="#cb8-123"></a>autoencoder.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">'mse'</span>, optimizer<span class="op">=</span><span class="st">'adam'</span>)</span>
-<span id="cb8-124"><a href="#cb8-124"></a></span>
-<span id="cb8-125"><a href="#cb8-125"></a><span class="co"># train the autoencoder</span></span>
-<span id="cb8-126"><a href="#cb8-126"></a>autoencoder.fit(x_train_noisy,</span>
-<span id="cb8-127"><a href="#cb8-127"></a>                x_train,</span>
-<span id="cb8-128"><a href="#cb8-128"></a>                validation_data<span class="op">=</span>(x_test_noisy, x_test),</span>
-<span id="cb8-129"><a href="#cb8-129"></a>                epochs<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb8-130"><a href="#cb8-130"></a>                batch_size<span class="op">=</span>batch_size)</span>
-<span id="cb8-131"><a href="#cb8-131"></a></span>
-<span id="cb8-132"><a href="#cb8-132"></a><span class="co"># predict the autoencoder output from corrupted test images</span></span>
-<span id="cb8-133"><a href="#cb8-133"></a>x_decoded <span class="op">=</span> autoencoder.predict(x_test_noisy)</span>
-<span id="cb8-134"><a href="#cb8-134"></a></span>
-<span id="cb8-135"><a href="#cb8-135"></a><span class="co"># 3 sets of images with 9 MNIST digits</span></span>
-<span id="cb8-136"><a href="#cb8-136"></a><span class="co"># 1st rows - original images</span></span>
-<span id="cb8-137"><a href="#cb8-137"></a><span class="co"># 2nd rows - images corrupted by noise</span></span>
-<span id="cb8-138"><a href="#cb8-138"></a><span class="co"># 3rd rows - denoised images</span></span>
-<span id="cb8-139"><a href="#cb8-139"></a>rows, cols <span class="op">=</span> <span class="dv">3</span>, <span class="dv">9</span></span>
-<span id="cb8-140"><a href="#cb8-140"></a>num <span class="op">=</span> rows <span class="op">*</span> cols</span>
-<span id="cb8-141"><a href="#cb8-141"></a>imgs <span class="op">=</span> np.concatenate([x_test[:num], x_test_noisy[:num], x_decoded[:num]])</span>
-<span id="cb8-142"><a href="#cb8-142"></a>imgs <span class="op">=</span> imgs.reshape((rows <span class="op">*</span> <span class="dv">3</span>, cols, image_size, image_size))</span>
-<span id="cb8-143"><a href="#cb8-143"></a>imgs <span class="op">=</span> np.vstack(np.split(imgs, rows, axis<span class="op">=</span><span class="dv">1</span>))</span>
-<span id="cb8-144"><a href="#cb8-144"></a>imgs <span class="op">=</span> imgs.reshape((rows <span class="op">*</span> <span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>, image_size, image_size))</span>
-<span id="cb8-145"><a href="#cb8-145"></a>imgs <span class="op">=</span> np.vstack([np.hstack(i) <span class="cf">for</span> i <span class="kw">in</span> imgs])</span>
-<span id="cb8-146"><a href="#cb8-146"></a>imgs <span class="op">=</span> (imgs <span class="op">*</span> <span class="dv">255</span>).astype(np.uint8)</span>
-<span id="cb8-147"><a href="#cb8-147"></a>plt.figure()</span>
-<span id="cb8-148"><a href="#cb8-148"></a>plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb8-149"><a href="#cb8-149"></a>plt.title(<span class="st">'Original images: top rows, '</span></span>
-<span id="cb8-150"><a href="#cb8-150"></a>          <span class="st">'Corrupted Input: middle rows, '</span></span>
-<span id="cb8-151"><a href="#cb8-151"></a>          <span class="st">'Denoised Input:  third rows'</span>)</span>
-<span id="cb8-152"><a href="#cb8-152"></a>plt.imshow(imgs, interpolation<span class="op">=</span><span class="st">'none'</span>, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb8-153"><a href="#cb8-153"></a>Image.fromarray(imgs).save(<span class="st">'corrupted_and_denoised.png'</span>)</span>
-<span id="cb8-154"><a href="#cb8-154"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''Trains a denoising autoencoder on MNIST dataset.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">Denoising is one of the classic applications of autoencoders.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">The denoising process removes unwanted noise that corrupted the</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">true data.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">Noise + Data ---&gt; Denoising Autoencoder ---&gt; Data</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">Given a training dataset of corrupted data as input and</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">true data as output, a denoising autoencoder can recover the</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">hidden structure to generate clean data.</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">This example has modular design. The encoder, decoder and autoencoder</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">are 3 models that share weights. For example, after training the</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">autoencoder, the encoder can be used to  generate latent vectors</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">of input data for low-dim visualization like PCA or TSNE.</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> absolute_import</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> division</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> print_function</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Dense, Input</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Conv2D, Flatten</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Reshape, Conv2DTranspose</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> backend <span class="im">as</span> K</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.datasets <span class="im">import</span> mnist</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1337</span>)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co"># load MNIST dataset</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>(x_train, _), (x_test, _) <span class="op">=</span> mnist.load_data()</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># reshape to (28, 28, 1) and normalize input images</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>image_size <span class="op">=</span> x_train.shape[<span class="dv">1</span>]</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> np.reshape(x_train, [<span class="op">-</span><span class="dv">1</span>, image_size, image_size, <span class="dv">1</span>])</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> np.reshape(x_test, [<span class="op">-</span><span class="dv">1</span>, image_size, image_size, <span class="dv">1</span>])</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> x_train.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> x_test.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="co"># generate corrupted MNIST images by adding noise with normal dist</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="co"># centered at 0.5 and std=0.5</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.5</span>, scale<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span>x_train.shape)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>x_train_noisy <span class="op">=</span> x_train <span class="op">+</span> noise</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.5</span>, scale<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span>x_test.shape)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>x_test_noisy <span class="op">=</span> x_test <span class="op">+</span> noise</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="co"># adding noise may exceed normalized pixel values&gt;1.0 or &lt;0.0</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="co"># clip pixel values &gt;1.0 to 1.0 and &lt;0.0 to 0.0</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>x_train_noisy <span class="op">=</span> np.clip(x_train_noisy, <span class="fl">0.</span>, <span class="fl">1.</span>)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>x_test_noisy <span class="op">=</span> np.clip(x_test_noisy, <span class="fl">0.</span>, <span class="fl">1.</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="co"># network parameters</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>input_shape <span class="op">=</span> (image_size, image_size, <span class="dv">1</span>)</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">32</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>latent_dim <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="co"># encoder/decoder number of CNN layers and filters per layer</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>layer_filters <span class="op">=</span> [<span class="dv">32</span>, <span class="dv">64</span>]</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="co"># build the autoencoder model</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a><span class="co"># first build the encoder model</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> Input(shape<span class="op">=</span>input_shape, name<span class="op">=</span><span class="st">'encoder_input'</span>)</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> inputs</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a><span class="co"># stack of Conv2D(32)-Conv2D(64)</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filters <span class="kw">in</span> layer_filters:</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Conv2D(filters<span class="op">=</span>filters,</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>               kernel_size<span class="op">=</span>kernel_size,</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>               strides<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>               activation<span class="op">=</span><span class="st">'relu'</span>,</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>               padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a><span class="co"># shape info needed to build decoder model so we don't do hand computation</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a><span class="co"># the input to the decoder's first Conv2DTranspose will have this shape</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a><span class="co"># shape is (7, 7, 64) which can be processed by the decoder back to (28, 28, 1)</span></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>shape <span class="op">=</span> K.int_shape(x)</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the latent vector</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Flatten()(x)</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>latent <span class="op">=</span> Dense(latent_dim, name<span class="op">=</span><span class="st">'latent_vector'</span>)(x)</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate encoder model</span></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>encoder <span class="op">=</span> Model(inputs, latent, name<span class="op">=</span><span class="st">'encoder'</span>)</span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>encoder.summary()</span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="co"># build the decoder model</span></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>latent_inputs <span class="op">=</span> Input(shape<span class="op">=</span>(latent_dim,), name<span class="op">=</span><span class="st">'decoder_input'</span>)</span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a><span class="co"># use the shape (7, 7, 64) that was earlier saved</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dense(shape[<span class="dv">1</span>] <span class="op">*</span> shape[<span class="dv">2</span>] <span class="op">*</span> shape[<span class="dv">3</span>])(latent_inputs)</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a><span class="co"># from vector to suitable shape for transposed conv</span></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Reshape((shape[<span class="dv">1</span>], shape[<span class="dv">2</span>], shape[<span class="dv">3</span>]))(x)</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a><span class="co"># stack of Conv2DTranspose(64)-Conv2DTranspose(32)</span></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filters <span class="kw">in</span> layer_filters[::<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Conv2DTranspose(filters<span class="op">=</span>filters,</span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>                        kernel_size<span class="op">=</span>kernel_size,</span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>                        strides<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>                        activation<span class="op">=</span><span class="st">'relu'</span>,</span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a>                        padding<span class="op">=</span><span class="st">'same'</span>)(x)</span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="co"># reconstruct the denoised input</span></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> Conv2DTranspose(filters<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>                          kernel_size<span class="op">=</span>kernel_size,</span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a>                          padding<span class="op">=</span><span class="st">'same'</span>,</span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a>                          activation<span class="op">=</span><span class="st">'sigmoid'</span>,</span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a>                          name<span class="op">=</span><span class="st">'decoder_output'</span>)(x)</span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate decoder model</span></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a>decoder <span class="op">=</span> Model(latent_inputs, outputs, name<span class="op">=</span><span class="st">'decoder'</span>)</span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a>decoder.summary()</span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a><span class="co"># autoencoder = encoder + decoder</span></span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a><span class="co"># instantiate autoencoder model</span></span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a>autoencoder <span class="op">=</span> Model(inputs, decoder(encoder(inputs)), name<span class="op">=</span><span class="st">'autoencoder'</span>)</span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>autoencoder.summary()</span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean Square Error (MSE) loss function, Adam optimizer</span></span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a>autoencoder.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">'mse'</span>, optimizer<span class="op">=</span><span class="st">'adam'</span>)</span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a><span class="co"># train the autoencoder</span></span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a>autoencoder.fit(x_train_noisy,</span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a>                x_train,</span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a>                validation_data<span class="op">=</span>(x_test_noisy, x_test),</span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>                epochs<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>                batch_size<span class="op">=</span>batch_size)</span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the autoencoder output from corrupted test images</span></span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a>x_decoded <span class="op">=</span> autoencoder.predict(x_test_noisy)</span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 sets of images with 9 MNIST digits</span></span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a><span class="co"># 1st rows - original images</span></span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a><span class="co"># 2nd rows - images corrupted by noise</span></span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a><span class="co"># 3rd rows - denoised images</span></span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a>rows, cols <span class="op">=</span> <span class="dv">3</span>, <span class="dv">9</span></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> rows <span class="op">*</span> cols</span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> np.concatenate([x_test[:num], x_test_noisy[:num], x_decoded[:num]])</span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> imgs.reshape((rows <span class="op">*</span> <span class="dv">3</span>, cols, image_size, image_size))</span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> np.vstack(np.split(imgs, rows, axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> imgs.reshape((rows <span class="op">*</span> <span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>, image_size, image_size))</span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> np.vstack([np.hstack(i) <span class="cf">for</span> i <span class="kw">in</span> imgs])</span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a>imgs <span class="op">=</span> (imgs <span class="op">*</span> <span class="dv">255</span>).astype(np.uint8)</span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Original images: top rows, '</span></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Corrupted Input: middle rows, '</span></span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Denoised Input:  third rows'</span>)</span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a>plt.imshow(imgs, interpolation<span class="op">=</span><span class="st">'none'</span>, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a>Image.fromarray(imgs).save(<span class="st">'corrupted_and_denoised.png'</span>)</span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "encoder"
 _________________________________________________________________
@@ -2242,65 +2236,65 @@ Epoch 10/10
 </ul>
 <section id="생성기-개발을-위한-클래스" class="level2">
 <h2 class="anchored" data-anchor-id="생성기-개발을-위한-클래스">생성기 개발을 위한 클래스</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">class</span> Generator:</span>
-<span id="cb10-2"><a href="#cb10-2"></a>    </span>
-<span id="cb10-3"><a href="#cb10-3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb10-4"><a href="#cb10-4"></a>        <span class="va">self</span>.initVariable <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>        </span>
-<span id="cb10-6"><a href="#cb10-6"></a>    <span class="kw">def</span> lossFunction(<span class="va">self</span>):</span>
-<span id="cb10-7"><a href="#cb10-7"></a>        </span>
-<span id="cb10-8"><a href="#cb10-8"></a>        <span class="cf">return</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a>    </span>
-<span id="cb10-10"><a href="#cb10-10"></a>    <span class="kw">def</span> buldModel(<span class="va">self</span>):</span>
-<span id="cb10-11"><a href="#cb10-11"></a>        </span>
-<span id="cb10-12"><a href="#cb10-12"></a>        <span class="cf">return</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a>    </span>
-<span id="cb10-14"><a href="#cb10-14"></a>    <span class="kw">def</span> trainModel(<span class="va">self</span>, inputX, inputY):</span>
-<span id="cb10-15"><a href="#cb10-15"></a>        </span>
-<span id="cb10-16"><a href="#cb10-16"></a>        <span class="cf">return</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a></span>
-<span id="cb10-18"><a href="#cb10-18"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Generator:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.initVariable <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> lossFunction(<span class="va">self</span>):</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> buldModel(<span class="va">self</span>):</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> trainModel(<span class="va">self</span>, inputX, inputY):</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="판별기-개발을-위한-클래스" class="level2">
 <h2 class="anchored" data-anchor-id="판별기-개발을-위한-클래스">판별기 개발을 위한 클래스</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">class</span> Discriminator:</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    </span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb11-5"><a href="#cb11-5"></a>        <span class="va">self</span>.initVariable <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a>        </span>
-<span id="cb11-7"><a href="#cb11-7"></a>    <span class="kw">def</span> lossFunction(<span class="va">self</span>):</span>
-<span id="cb11-8"><a href="#cb11-8"></a>        </span>
-<span id="cb11-9"><a href="#cb11-9"></a>        <span class="cf">return</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a>    </span>
-<span id="cb11-11"><a href="#cb11-11"></a>    <span class="kw">def</span> buildModel(<span class="va">self</span>):</span>
-<span id="cb11-12"><a href="#cb11-12"></a>        </span>
-<span id="cb11-13"><a href="#cb11-13"></a>        <span class="cf">return</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a>    </span>
-<span id="cb11-15"><a href="#cb11-15"></a>    <span class="kw">def</span> trainModel(<span class="va">self</span>,inputX,inputY):</span>
-<span id="cb11-16"><a href="#cb11-16"></a>        </span>
-<span id="cb11-17"><a href="#cb11-17"></a>        <span class="cf">return</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Discriminator:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.initVariable <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> lossFunction(<span class="va">self</span>):</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> buildModel(<span class="va">self</span>):</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> trainModel(<span class="va">self</span>,inputX,inputY):</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="손실-함수" class="level2">
 <h2 class="anchored" data-anchor-id="손실-함수">손실 함수</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">class</span> Loss:</span>
-<span id="cb12-3"><a href="#cb12-3"></a>    </span>
-<span id="cb12-4"><a href="#cb12-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb12-5"><a href="#cb12-5"></a>        <span class="va">self</span>.initVariable <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>        </span>
-<span id="cb12-7"><a href="#cb12-7"></a>    <span class="kw">def</span> lossBaseFunction1(<span class="va">self</span>):</span>
-<span id="cb12-8"><a href="#cb12-8"></a>        </span>
-<span id="cb12-9"><a href="#cb12-9"></a>        <span class="cf">return</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a>    </span>
-<span id="cb12-11"><a href="#cb12-11"></a>    <span class="kw">def</span> lossBaseFunction2(<span class="va">self</span>):</span>
-<span id="cb12-12"><a href="#cb12-12"></a>        </span>
-<span id="cb12-13"><a href="#cb12-13"></a>        <span class="cf">return</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a>    </span>
-<span id="cb12-15"><a href="#cb12-15"></a>    </span>
-<span id="cb12-16"><a href="#cb12-16"></a>    <span class="kw">def</span> lossBaseFunction3(<span class="va">self</span>):</span>
-<span id="cb12-17"><a href="#cb12-17"></a>        </span>
-<span id="cb12-18"><a href="#cb12-18"></a>        <span class="cf">return</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Loss:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.initVariable <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> lossBaseFunction1(<span class="va">self</span>):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> lossBaseFunction2(<span class="va">self</span>):</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> lossBaseFunction3(<span class="va">self</span>):</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>-</code> 적대적 훈련을 할 때 생성기에서 사용하는 손실함수</p>
 <p><span class="math display">\[\nabla \theta_g \sum_{i=1}^{m} log(1-D(G(z^{(i)}))) \]</span></p>
 <p><code>-</code> GAN에서 적용되는 표준 교차 엔트로피 구현</p>

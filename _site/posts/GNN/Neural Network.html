@@ -548,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -560,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1516,12 +1516,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1631,7 +1625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#adding-a-run-method" id="toc-adding-a-run-method" class="nav-link" data-scroll-target="#adding-a-run-method">Adding a run Method</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Neural Network.out.ipynb" download="Neural Network.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1680,22 +1674,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p><img src="https://python-course.eu/images/machine-learning/example_network_3_4_2_without_bias.webp" class="img-fluid"></p>
 <div id="a2214a2a-e87f-4bd5-a10b-dc8b8c8795e4" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>input_vector <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">11</span>])</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="bu">print</span>(input_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>input_vector <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">11</span>])</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(input_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[ 2  4 11]</code></pre>
 </div>
 </div>
 <div id="31e8b6f8-b6dc-41f6-ba8f-f8a3e1f3d7eb" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>input_vector <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">11</span>])</span>
-<span id="cb3-4"><a href="#cb3-4"></a>input_vector <span class="op">=</span> np.array(input_vector, ndmin<span class="op">=</span><span class="dv">2</span>).T</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="bu">print</span>(<span class="st">"The input vector:</span><span class="ch">\n</span><span class="st">"</span>, input_vector)</span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="bu">print</span>(<span class="st">"The shape of this vector: "</span>, input_vector.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>input_vector <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">11</span>])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>input_vector <span class="op">=</span> np.array(input_vector, ndmin<span class="op">=</span><span class="dv">2</span>).T</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The input vector:</span><span class="ch">\n</span><span class="st">"</span>, input_vector)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The shape of this vector: "</span>, input_vector.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The input vector:
  [[ 2]
@@ -1713,83 +1707,83 @@ The shape of this vector:  (3, 1)</code></pre>
 <section id="initializing-the-weight-matrices" class="level2">
 <h2 class="anchored" data-anchor-id="initializing-the-weight-matrices">Initializing the weight matrices</h2>
 <div id="c217034a-75be-44c0-acf2-9e905fbebb84" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>number_of_samples <span class="op">=</span> <span class="dv">1200</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>low <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>high <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>s <span class="op">=</span> np.random.uniform(low, high, number_of_samples)</span>
-<span id="cb5-7"><a href="#cb5-7"></a></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co"># all values of s are within the half open interval [-1, 0) :</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="bu">print</span>(np.<span class="bu">all</span>(s <span class="op">&gt;=</span> <span class="op">-</span><span class="dv">1</span>) <span class="kw">and</span> np.<span class="bu">all</span>(s <span class="op">&lt;</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>number_of_samples <span class="op">=</span> <span class="dv">1200</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>low <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>high <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.random.uniform(low, high, number_of_samples)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># all values of s are within the half open interval [-1, 0) :</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">all</span>(s <span class="op">&gt;=</span> <span class="op">-</span><span class="dv">1</span>) <span class="kw">and</span> np.<span class="bu">all</span>(s <span class="op">&lt;</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
 </div>
 <div id="5ccf375b-d90e-44c3-94bc-f744a45d657c" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-2"><a href="#cb7-2"></a>plt.hist(s)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.hist(s)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Neural Network_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="192e6b9e-7d59-4158-9a9a-7335f4e838ba" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>s <span class="op">=</span> np.random.binomial(<span class="dv">100</span>, <span class="fl">0.5</span>, <span class="dv">1200</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>plt.hist(s)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.random.binomial(<span class="dv">100</span>, <span class="fl">0.5</span>, <span class="dv">1200</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.hist(s)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Neural Network_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="00a799c2-934d-471a-b369-c9a7e246b1db" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> truncnorm</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>s <span class="op">=</span> truncnorm(a<span class="op">=-</span><span class="dv">2</span><span class="op">/</span><span class="fl">3.</span>, b<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="fl">3.</span>, scale<span class="op">=</span><span class="dv">1</span>, loc<span class="op">=</span><span class="dv">0</span>).rvs(size<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a>plt.hist(s)</span>
-<span id="cb9-6"><a href="#cb9-6"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> truncnorm</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> truncnorm(a<span class="op">=-</span><span class="dv">2</span><span class="op">/</span><span class="fl">3.</span>, b<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="fl">3.</span>, scale<span class="op">=</span><span class="dv">1</span>, loc<span class="op">=</span><span class="dv">0</span>).rvs(size<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.hist(s)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Neural Network_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="9555a22a-11d4-4718-b90c-170947377c71" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">0</span>, upp<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb10-2"><a href="#cb10-2"></a>    <span class="cf">return</span> truncnorm(</span>
-<span id="cb10-3"><a href="#cb10-3"></a>        (low <span class="op">-</span> mean) <span class="op">/</span> sd, (upp <span class="op">-</span> mean) <span class="op">/</span> sd, loc<span class="op">=</span>mean, scale<span class="op">=</span>sd)</span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a>X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="fl">0.4</span>, low<span class="op">=-</span><span class="fl">0.5</span>, upp<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>s <span class="op">=</span> X.rvs(<span class="dv">10000</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a>plt.hist(s)</span>
-<span id="cb10-9"><a href="#cb10-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">0</span>, upp<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> truncnorm(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        (low <span class="op">-</span> mean) <span class="op">/</span> sd, (upp <span class="op">-</span> mean) <span class="op">/</span> sd, loc<span class="op">=</span>mean, scale<span class="op">=</span>sd)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="fl">0.4</span>, low<span class="op">=-</span><span class="fl">0.5</span>, upp<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> X.rvs(<span class="dv">10000</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.hist(s)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Neural Network_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="340719f9-200d-4bbf-bd96-a77c9c8b5938" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>X1 <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">2</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">1</span>, upp<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>X2 <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="fl">5.5</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">1</span>, upp<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>X3 <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">8</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">1</span>, upp<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb11-6"><a href="#cb11-6"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-7"><a href="#cb11-7"></a>ax[<span class="dv">0</span>].hist(X1.rvs(<span class="dv">10000</span>), density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a>ax[<span class="dv">1</span>].hist(X2.rvs(<span class="dv">10000</span>), density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-9"><a href="#cb11-9"></a>ax[<span class="dv">2</span>].hist(X3.rvs(<span class="dv">10000</span>), density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-10"><a href="#cb11-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">2</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">1</span>, upp<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="fl">5.5</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">1</span>, upp<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>X3 <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">8</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">1</span>, upp<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].hist(X1.rvs(<span class="dv">10000</span>), density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].hist(X2.rvs(<span class="dv">10000</span>), density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].hist(X3.rvs(<span class="dv">10000</span>), density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Neural Network_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="2f47ebae-4ef2-454d-b347-4c753ed25f34" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>no_of_input_nodes <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>no_of_hidden_nodes <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(no_of_input_nodes)</span>
-<span id="cb12-4"><a href="#cb12-4"></a></span>
-<span id="cb12-5"><a href="#cb12-5"></a>X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">2</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
-<span id="cb12-6"><a href="#cb12-6"></a>wih <span class="op">=</span> X.rvs((no_of_hidden_nodes, no_of_input_nodes))</span>
-<span id="cb12-7"><a href="#cb12-7"></a>wih</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>no_of_input_nodes <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>no_of_hidden_nodes <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(no_of_input_nodes)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">2</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>wih <span class="op">=</span> X.rvs((no_of_hidden_nodes, no_of_input_nodes))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>wih</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>array([[ 0.38185974,  0.26766393,  0.3533069 ],
        [-0.320298  ,  0.18587275, -0.33873619],
@@ -1798,13 +1792,13 @@ The shape of this vector:  (3, 1)</code></pre>
 </div>
 </div>
 <div id="b66504c4-2373-494a-8a70-44942e1a566c" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>no_of_hidden_nodes <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>no_of_output_nodes <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(no_of_hidden_nodes)  <span class="co"># this is the input in this layer!</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a></span>
-<span id="cb14-5"><a href="#cb14-5"></a>X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">2</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
-<span id="cb14-6"><a href="#cb14-6"></a>who <span class="op">=</span> X.rvs((no_of_output_nodes, no_of_hidden_nodes))</span>
-<span id="cb14-7"><a href="#cb14-7"></a>who</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>no_of_hidden_nodes <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>no_of_output_nodes <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(no_of_hidden_nodes)  <span class="co"># this is the input in this layer!</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">2</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>who <span class="op">=</span> X.rvs((no_of_output_nodes, no_of_hidden_nodes))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>who</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>array([[ 0.32899603,  0.11932429,  0.19259498, -0.12701962],
        [-0.09709214,  0.4111771 ,  0.43259814,  0.43646957]])</code></pre>
@@ -1817,50 +1811,50 @@ The shape of this vector:  (3, 1)</code></pre>
 <section id="a-neural-network-class" class="level2">
 <h2 class="anchored" data-anchor-id="a-neural-network-class">A Neural Network Class</h2>
 <div id="aafa999d-7829-4fea-9517-babf4d4ce996" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> truncnorm</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="kw">def</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">0</span>, upp<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb16-5"><a href="#cb16-5"></a>    <span class="cf">return</span> truncnorm(</span>
-<span id="cb16-6"><a href="#cb16-6"></a>        (low <span class="op">-</span> mean) <span class="op">/</span> sd, (upp <span class="op">-</span> mean) <span class="op">/</span> sd, loc<span class="op">=</span>mean, scale<span class="op">=</span>sd)</span>
-<span id="cb16-7"><a href="#cb16-7"></a></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="kw">class</span> NeuralNetwork:</span>
-<span id="cb16-9"><a href="#cb16-9"></a>   </span>
-<span id="cb16-10"><a href="#cb16-10"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, </span>
-<span id="cb16-11"><a href="#cb16-11"></a>                 no_of_in_nodes, </span>
-<span id="cb16-12"><a href="#cb16-12"></a>                 no_of_out_nodes,  <span class="co"># corresponds to the number of classes</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a>                 no_of_hidden_nodes,</span>
-<span id="cb16-14"><a href="#cb16-14"></a>                 learning_rate):</span>
-<span id="cb16-15"><a href="#cb16-15"></a>        <span class="va">self</span>.no_of_in_nodes <span class="op">=</span> no_of_in_nodes</span>
-<span id="cb16-16"><a href="#cb16-16"></a>        <span class="va">self</span>.no_of_out_nodes <span class="op">=</span> no_of_out_nodes </span>
-<span id="cb16-17"><a href="#cb16-17"></a>        <span class="va">self</span>.no_of_hidden_nodes <span class="op">=</span> no_of_hidden_nodes</span>
-<span id="cb16-18"><a href="#cb16-18"></a>        <span class="va">self</span>.learning_rate <span class="op">=</span> learning_rate  </span>
-<span id="cb16-19"><a href="#cb16-19"></a>        <span class="va">self</span>.create_weight_matrices()</span>
-<span id="cb16-20"><a href="#cb16-20"></a>        </span>
-<span id="cb16-21"><a href="#cb16-21"></a>    <span class="kw">def</span> create_weight_matrices(<span class="va">self</span>):</span>
-<span id="cb16-22"><a href="#cb16-22"></a>        rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="va">self</span>.no_of_in_nodes)</span>
-<span id="cb16-23"><a href="#cb16-23"></a>        X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
-<span id="cb16-24"><a href="#cb16-24"></a>        <span class="va">self</span>.weights_in_hidden <span class="op">=</span> X.rvs((<span class="va">self</span>.no_of_hidden_nodes, </span>
-<span id="cb16-25"><a href="#cb16-25"></a>                                       <span class="va">self</span>.no_of_in_nodes))</span>
-<span id="cb16-26"><a href="#cb16-26"></a>        rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="va">self</span>.no_of_hidden_nodes)</span>
-<span id="cb16-27"><a href="#cb16-27"></a>        X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
-<span id="cb16-28"><a href="#cb16-28"></a>        <span class="va">self</span>.weights_hidden_out <span class="op">=</span> X.rvs((<span class="va">self</span>.no_of_out_nodes, </span>
-<span id="cb16-29"><a href="#cb16-29"></a>                                        <span class="va">self</span>.no_of_hidden_nodes))</span>
-<span id="cb16-30"><a href="#cb16-30"></a>           </span>
-<span id="cb16-31"><a href="#cb16-31"></a>    </span>
-<span id="cb16-32"><a href="#cb16-32"></a>    <span class="kw">def</span> train(<span class="va">self</span>):</span>
-<span id="cb16-33"><a href="#cb16-33"></a>        <span class="cf">pass</span></span>
-<span id="cb16-34"><a href="#cb16-34"></a>    </span>
-<span id="cb16-35"><a href="#cb16-35"></a>    <span class="kw">def</span> run(<span class="va">self</span>):</span>
-<span id="cb16-36"><a href="#cb16-36"></a>        <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> truncnorm</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">0</span>, upp<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> truncnorm(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        (low <span class="op">-</span> mean) <span class="op">/</span> sd, (upp <span class="op">-</span> mean) <span class="op">/</span> sd, loc<span class="op">=</span>mean, scale<span class="op">=</span>sd)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NeuralNetwork:</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                 no_of_in_nodes, </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                 no_of_out_nodes,  <span class="co"># corresponds to the number of classes</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                 no_of_hidden_nodes,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>                 learning_rate):</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.no_of_in_nodes <span class="op">=</span> no_of_in_nodes</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.no_of_out_nodes <span class="op">=</span> no_of_out_nodes </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.no_of_hidden_nodes <span class="op">=</span> no_of_hidden_nodes</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.learning_rate <span class="op">=</span> learning_rate  </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.create_weight_matrices()</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> create_weight_matrices(<span class="va">self</span>):</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="va">self</span>.no_of_in_nodes)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weights_in_hidden <span class="op">=</span> X.rvs((<span class="va">self</span>.no_of_hidden_nodes, </span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>                                       <span class="va">self</span>.no_of_in_nodes))</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="va">self</span>.no_of_hidden_nodes)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weights_hidden_out <span class="op">=</span> X.rvs((<span class="va">self</span>.no_of_out_nodes, </span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>                                        <span class="va">self</span>.no_of_hidden_nodes))</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> train(<span class="va">self</span>):</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> run(<span class="va">self</span>):</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="c3377507-14db-4f58-a592-b18a7cf15a3c" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>simple_network <span class="op">=</span> NeuralNetwork(no_of_in_nodes <span class="op">=</span> <span class="dv">3</span>, </span>
-<span id="cb17-2"><a href="#cb17-2"></a>                               no_of_out_nodes <span class="op">=</span> <span class="dv">2</span>, </span>
-<span id="cb17-3"><a href="#cb17-3"></a>                               no_of_hidden_nodes <span class="op">=</span> <span class="dv">4</span>,</span>
-<span id="cb17-4"><a href="#cb17-4"></a>                               learning_rate <span class="op">=</span> <span class="fl">0.1</span>)</span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="bu">print</span>(simple_network.weights_in_hidden)</span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="bu">print</span>(simple_network.weights_hidden_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>simple_network <span class="op">=</span> NeuralNetwork(no_of_in_nodes <span class="op">=</span> <span class="dv">3</span>, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                               no_of_out_nodes <span class="op">=</span> <span class="dv">2</span>, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                               no_of_hidden_nodes <span class="op">=</span> <span class="dv">4</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                               learning_rate <span class="op">=</span> <span class="fl">0.1</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(simple_network.weights_in_hidden)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(simple_network.weights_hidden_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[-0.19553012  0.23292966  0.0867214 ]
  [ 0.35698122 -0.04817757  0.55330426]
@@ -1874,34 +1868,34 @@ The shape of this vector:  (3, 1)</code></pre>
 <section id="activation-functions-sigmoid-and-relu" class="level2">
 <h2 class="anchored" data-anchor-id="activation-functions-sigmoid-and-relu">Activation Functions, Sigmoid and ReLU</h2>
 <div id="4df365e5-dff4-493f-b0b6-dd3ffae00eef" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">def</span> sigma(x):</span>
-<span id="cb19-4"><a href="#cb19-4"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>x))</span>
-<span id="cb19-5"><a href="#cb19-5"></a></span>
-<span id="cb19-6"><a href="#cb19-6"></a>X <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
-<span id="cb19-7"><a href="#cb19-7"></a></span>
-<span id="cb19-8"><a href="#cb19-8"></a></span>
-<span id="cb19-9"><a href="#cb19-9"></a>plt.plot(X, sigma(X),<span class="st">'b'</span>)</span>
-<span id="cb19-10"><a href="#cb19-10"></a>plt.xlabel(<span class="st">'X Axis'</span>)</span>
-<span id="cb19-11"><a href="#cb19-11"></a>plt.ylabel(<span class="st">'Y Axis'</span>)</span>
-<span id="cb19-12"><a href="#cb19-12"></a>plt.title(<span class="st">'Sigmoid Function'</span>)</span>
-<span id="cb19-13"><a href="#cb19-13"></a></span>
-<span id="cb19-14"><a href="#cb19-14"></a>plt.grid()</span>
-<span id="cb19-15"><a href="#cb19-15"></a></span>
-<span id="cb19-16"><a href="#cb19-16"></a>plt.text(<span class="fl">2.3</span>, <span class="fl">0.84</span>, <span class="vs">r'$\sigma(x)=\frac</span><span class="sc">{1}</span><span class="vs">{1+e^{-x</span><span class="sc">}}</span><span class="vs">$'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb19-17"><a href="#cb19-17"></a></span>
-<span id="cb19-18"><a href="#cb19-18"></a></span>
-<span id="cb19-19"><a href="#cb19-19"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigma(x):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>x))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plt.plot(X, sigma(X),<span class="st">'b'</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X Axis'</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y Axis'</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sigmoid Function'</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.3</span>, <span class="fl">0.84</span>, <span class="vs">r'$\sigma(x)=\frac</span><span class="sc">{1}</span><span class="vs">{1+e^{-x</span><span class="sc">}}</span><span class="vs">$'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Neural Network_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="c2c430eb-c608-4157-b896-f6af7763d7c2" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="bu">print</span>(expit(<span class="fl">3.4</span>))</span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="bu">print</span>(expit([<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>]))</span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="bu">print</span>(expit(np.array([<span class="fl">0.8</span>, <span class="fl">2.3</span>, <span class="dv">8</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expit(<span class="fl">3.4</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expit([<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>]))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expit(np.array([<span class="fl">0.8</span>, <span class="fl">2.3</span>, <span class="dv">8</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.9677045353015494
 [0.95257413 0.98201379 0.73105858]
@@ -1909,66 +1903,66 @@ The shape of this vector:  (3, 1)</code></pre>
 </div>
 </div>
 <div id="2f6cf4a7-3d59-4cbf-a3fb-d4b318496c38" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="kw">def</span> sigma(x):</span>
-<span id="cb22-4"><a href="#cb22-4"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>x))</span>
-<span id="cb22-5"><a href="#cb22-5"></a></span>
-<span id="cb22-6"><a href="#cb22-6"></a>X <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
-<span id="cb22-7"><a href="#cb22-7"></a></span>
-<span id="cb22-8"><a href="#cb22-8"></a>plt.plot(X, sigma(X))</span>
-<span id="cb22-9"><a href="#cb22-9"></a>plt.plot(X, sigma(X) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> sigma(X)))</span>
-<span id="cb22-10"><a href="#cb22-10"></a></span>
-<span id="cb22-11"><a href="#cb22-11"></a>plt.xlabel(<span class="st">'X Axis'</span>)</span>
-<span id="cb22-12"><a href="#cb22-12"></a>plt.ylabel(<span class="st">'Y Axis'</span>)</span>
-<span id="cb22-13"><a href="#cb22-13"></a>plt.title(<span class="st">'Sigmoid Function'</span>)</span>
-<span id="cb22-14"><a href="#cb22-14"></a></span>
-<span id="cb22-15"><a href="#cb22-15"></a>plt.grid()</span>
-<span id="cb22-16"><a href="#cb22-16"></a></span>
-<span id="cb22-17"><a href="#cb22-17"></a>plt.text(<span class="fl">2.3</span>, <span class="fl">0.84</span>, <span class="vs">r'$\sigma(x)=\frac</span><span class="sc">{1}</span><span class="vs">{1+e^{-x</span><span class="sc">}}</span><span class="vs">$'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb22-18"><a href="#cb22-18"></a>plt.text(<span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="vs">r'$\sigma\'(x) = \sigma(x)(1 - \sigma(x))$'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb22-19"><a href="#cb22-19"></a></span>
-<span id="cb22-20"><a href="#cb22-20"></a></span>
-<span id="cb22-21"><a href="#cb22-21"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigma(x):</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>x))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>plt.plot(X, sigma(X))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>plt.plot(X, sigma(X) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> sigma(X)))</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X Axis'</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y Axis'</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sigmoid Function'</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.3</span>, <span class="fl">0.84</span>, <span class="vs">r'$\sigma(x)=\frac</span><span class="sc">{1}</span><span class="vs">{1+e^{-x</span><span class="sc">}}</span><span class="vs">$'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="vs">r'$\sigma\'(x) = \sigma(x)(1 - \sigma(x))$'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Neural Network_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="f393c400-d656-44ad-9248-2211254f8bc3" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="at">@np.vectorize</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">def</span> sigmoid(x):</span>
-<span id="cb23-3"><a href="#cb23-3"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.e <span class="op">**</span> <span class="op">-</span>x)</span>
-<span id="cb23-4"><a href="#cb23-4"></a></span>
-<span id="cb23-5"><a href="#cb23-5"></a><span class="co">#sigmoid = np.vectorize(sigmoid)</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>sigmoid([<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="at">@np.vectorize</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(x):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.e <span class="op">**</span> <span class="op">-</span>x)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#sigmoid = np.vectorize(sigmoid)</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>sigmoid([<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>array([0.95257413, 0.98201379, 0.99330715])</code></pre>
 </div>
 </div>
 <div id="f43704b2-86ae-417b-8290-d34b528cd0ed" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># alternative activation function</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="kw">def</span> ReLU(x):</span>
-<span id="cb25-3"><a href="#cb25-3"></a>    <span class="cf">return</span> np.maximum(<span class="fl">0.0</span>, x)</span>
-<span id="cb25-4"><a href="#cb25-4"></a></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="co"># derivation of relu</span></span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="kw">def</span> ReLU_derivation(x):</span>
-<span id="cb25-7"><a href="#cb25-7"></a>    <span class="cf">if</span> x <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
-<span id="cb25-8"><a href="#cb25-8"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb25-9"><a href="#cb25-9"></a>    <span class="cf">else</span>:</span>
-<span id="cb25-10"><a href="#cb25-10"></a>        <span class="cf">return</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative activation function</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ReLU(x):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.maximum(<span class="fl">0.0</span>, x)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># derivation of relu</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ReLU_derivation(x):</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ed3a334f-1cc6-4202-9cdb-b1fa30985ffb" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb26-3"><a href="#cb26-3"></a></span>
-<span id="cb26-4"><a href="#cb26-4"></a>X <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">100</span>)</span>
-<span id="cb26-5"><a href="#cb26-5"></a>plt.plot(X, ReLU(X),<span class="st">'b'</span>)</span>
-<span id="cb26-6"><a href="#cb26-6"></a>plt.xlabel(<span class="st">'X Axis'</span>)</span>
-<span id="cb26-7"><a href="#cb26-7"></a>plt.ylabel(<span class="st">'Y Axis'</span>)</span>
-<span id="cb26-8"><a href="#cb26-8"></a>plt.title(<span class="st">'ReLU Function'</span>)</span>
-<span id="cb26-9"><a href="#cb26-9"></a>plt.grid()</span>
-<span id="cb26-10"><a href="#cb26-10"></a>plt.text(<span class="fl">0.8</span>, <span class="fl">0.4</span>, <span class="vs">r'$ReLU(x)=max(0, x)$'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb26-11"><a href="#cb26-11"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">100</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>plt.plot(X, ReLU(X),<span class="st">'b'</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X Axis'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y Axis'</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ReLU Function'</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.8</span>, <span class="fl">0.4</span>, <span class="vs">r'$ReLU(x)=max(0, x)$'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Neural Network_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
@@ -1977,67 +1971,67 @@ The shape of this vector:  (3, 1)</code></pre>
 <section id="adding-a-run-method" class="level2">
 <h2 class="anchored" data-anchor-id="adding-a-run-method">Adding a run Method</h2>
 <div id="9097ab07-6342-4ccf-8546-62b6e148b053" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit <span class="im">as</span> activation_function</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit <span class="im">as</span> activation_function</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ae1fbfb0-7a63-47b5-9fed-3ca0df54cdb7" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit <span class="im">as</span> activation_function</span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> truncnorm</span>
-<span id="cb28-4"><a href="#cb28-4"></a></span>
-<span id="cb28-5"><a href="#cb28-5"></a><span class="kw">def</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">0</span>, upp<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb28-6"><a href="#cb28-6"></a>    <span class="cf">return</span> truncnorm(</span>
-<span id="cb28-7"><a href="#cb28-7"></a>        (low <span class="op">-</span> mean) <span class="op">/</span> sd, (upp <span class="op">-</span> mean) <span class="op">/</span> sd, loc<span class="op">=</span>mean, scale<span class="op">=</span>sd)</span>
-<span id="cb28-8"><a href="#cb28-8"></a></span>
-<span id="cb28-9"><a href="#cb28-9"></a></span>
-<span id="cb28-10"><a href="#cb28-10"></a><span class="kw">class</span> NeuralNetwork:</span>
-<span id="cb28-11"><a href="#cb28-11"></a>           </span>
-<span id="cb28-12"><a href="#cb28-12"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, </span>
-<span id="cb28-13"><a href="#cb28-13"></a>                 no_of_in_nodes, </span>
-<span id="cb28-14"><a href="#cb28-14"></a>                 no_of_out_nodes, </span>
-<span id="cb28-15"><a href="#cb28-15"></a>                 no_of_hidden_nodes,</span>
-<span id="cb28-16"><a href="#cb28-16"></a>                 learning_rate):</span>
-<span id="cb28-17"><a href="#cb28-17"></a>        <span class="va">self</span>.no_of_in_nodes <span class="op">=</span> no_of_in_nodes</span>
-<span id="cb28-18"><a href="#cb28-18"></a>        <span class="va">self</span>.no_of_out_nodes <span class="op">=</span> no_of_out_nodes</span>
-<span id="cb28-19"><a href="#cb28-19"></a>        <span class="va">self</span>.no_of_hidden_nodes <span class="op">=</span> no_of_hidden_nodes</span>
-<span id="cb28-20"><a href="#cb28-20"></a>        <span class="va">self</span>.learning_rate <span class="op">=</span> learning_rate </span>
-<span id="cb28-21"><a href="#cb28-21"></a>        <span class="va">self</span>.create_weight_matrices()</span>
-<span id="cb28-22"><a href="#cb28-22"></a>        </span>
-<span id="cb28-23"><a href="#cb28-23"></a>    <span class="kw">def</span> create_weight_matrices(<span class="va">self</span>):</span>
-<span id="cb28-24"><a href="#cb28-24"></a>        <span class="co">""" A method to initialize the weight matrices of the neural network"""</span></span>
-<span id="cb28-25"><a href="#cb28-25"></a>        rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="va">self</span>.no_of_in_nodes)</span>
-<span id="cb28-26"><a href="#cb28-26"></a>        X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
-<span id="cb28-27"><a href="#cb28-27"></a>        <span class="va">self</span>.weights_in_hidden <span class="op">=</span> X.rvs((<span class="va">self</span>.no_of_hidden_nodes, </span>
-<span id="cb28-28"><a href="#cb28-28"></a>                                       <span class="va">self</span>.no_of_in_nodes))</span>
-<span id="cb28-29"><a href="#cb28-29"></a>        rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="va">self</span>.no_of_hidden_nodes)</span>
-<span id="cb28-30"><a href="#cb28-30"></a>        X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
-<span id="cb28-31"><a href="#cb28-31"></a>        <span class="va">self</span>.weights_hidden_out <span class="op">=</span> X.rvs((<span class="va">self</span>.no_of_out_nodes, </span>
-<span id="cb28-32"><a href="#cb28-32"></a>                                        <span class="va">self</span>.no_of_hidden_nodes))</span>
-<span id="cb28-33"><a href="#cb28-33"></a>    </span>
-<span id="cb28-34"><a href="#cb28-34"></a>    </span>
-<span id="cb28-35"><a href="#cb28-35"></a>    <span class="kw">def</span> train(<span class="va">self</span>, input_vector, target_vector):</span>
-<span id="cb28-36"><a href="#cb28-36"></a>        <span class="cf">pass</span></span>
-<span id="cb28-37"><a href="#cb28-37"></a>            </span>
-<span id="cb28-38"><a href="#cb28-38"></a>    </span>
-<span id="cb28-39"><a href="#cb28-39"></a>    <span class="kw">def</span> run(<span class="va">self</span>, input_vector):</span>
-<span id="cb28-40"><a href="#cb28-40"></a>        <span class="co">"""</span></span>
-<span id="cb28-41"><a href="#cb28-41"></a><span class="co">        running the network with an input vector 'input_vector'. </span></span>
-<span id="cb28-42"><a href="#cb28-42"></a><span class="co">        'input_vector' can be tuple, list or ndarray</span></span>
-<span id="cb28-43"><a href="#cb28-43"></a><span class="co">        """</span></span>
-<span id="cb28-44"><a href="#cb28-44"></a>        <span class="co"># turning the input vector into a column vector</span></span>
-<span id="cb28-45"><a href="#cb28-45"></a>        <span class="co"># turn one-dimensional into 2-dimensional column vector:</span></span>
-<span id="cb28-46"><a href="#cb28-46"></a>        input_vector <span class="op">=</span> np.array(input_vector, ndmin<span class="op">=</span><span class="dv">2</span>).T</span>
-<span id="cb28-47"><a href="#cb28-47"></a>        input_hidden <span class="op">=</span> activation_function(<span class="va">self</span>.weights_in_hidden <span class="op">@</span> input_vector)</span>
-<span id="cb28-48"><a href="#cb28-48"></a>        output_vector <span class="op">=</span> activation_function(<span class="va">self</span>.weights_hidden_out <span class="op">@</span> input_hidden)</span>
-<span id="cb28-49"><a href="#cb28-49"></a>        <span class="cf">return</span> output_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit <span class="im">as</span> activation_function</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> truncnorm</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=</span><span class="dv">0</span>, upp<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> truncnorm(</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        (low <span class="op">-</span> mean) <span class="op">/</span> sd, (upp <span class="op">-</span> mean) <span class="op">/</span> sd, loc<span class="op">=</span>mean, scale<span class="op">=</span>sd)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NeuralNetwork:</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, </span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>                 no_of_in_nodes, </span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>                 no_of_out_nodes, </span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>                 no_of_hidden_nodes,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>                 learning_rate):</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.no_of_in_nodes <span class="op">=</span> no_of_in_nodes</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.no_of_out_nodes <span class="op">=</span> no_of_out_nodes</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.no_of_hidden_nodes <span class="op">=</span> no_of_hidden_nodes</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.learning_rate <span class="op">=</span> learning_rate </span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.create_weight_matrices()</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> create_weight_matrices(<span class="va">self</span>):</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">""" A method to initialize the weight matrices of the neural network"""</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>        rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="va">self</span>.no_of_in_nodes)</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weights_in_hidden <span class="op">=</span> X.rvs((<span class="va">self</span>.no_of_hidden_nodes, </span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>                                       <span class="va">self</span>.no_of_in_nodes))</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>        rad <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="va">self</span>.no_of_hidden_nodes)</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> truncated_normal(mean<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">1</span>, low<span class="op">=-</span>rad, upp<span class="op">=</span>rad)</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weights_hidden_out <span class="op">=</span> X.rvs((<span class="va">self</span>.no_of_out_nodes, </span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>                                        <span class="va">self</span>.no_of_hidden_nodes))</span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> train(<span class="va">self</span>, input_vector, target_vector):</span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> run(<span class="va">self</span>, input_vector):</span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a><span class="co">        running the network with an input vector 'input_vector'. </span></span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="co">        'input_vector' can be tuple, list or ndarray</span></span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># turning the input vector into a column vector</span></span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># turn one-dimensional into 2-dimensional column vector:</span></span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>        input_vector <span class="op">=</span> np.array(input_vector, ndmin<span class="op">=</span><span class="dv">2</span>).T</span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>        input_hidden <span class="op">=</span> activation_function(<span class="va">self</span>.weights_in_hidden <span class="op">@</span> input_vector)</span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a>        output_vector <span class="op">=</span> activation_function(<span class="va">self</span>.weights_hidden_out <span class="op">@</span> input_hidden)</span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="c32e26f4-0e41-48a6-a468-7bbc699864b6" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>simple_network <span class="op">=</span> NeuralNetwork(no_of_in_nodes<span class="op">=</span><span class="dv">2</span>, </span>
-<span id="cb29-2"><a href="#cb29-2"></a>                               no_of_out_nodes<span class="op">=</span><span class="dv">2</span>, </span>
-<span id="cb29-3"><a href="#cb29-3"></a>                               no_of_hidden_nodes<span class="op">=</span><span class="dv">4</span>,</span>
-<span id="cb29-4"><a href="#cb29-4"></a>                               learning_rate<span class="op">=</span><span class="fl">0.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>simple_network <span class="op">=</span> NeuralNetwork(no_of_in_nodes<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                               no_of_out_nodes<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                               no_of_hidden_nodes<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                               learning_rate<span class="op">=</span><span class="fl">0.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="963a4137-4dbd-4997-be8d-c7c657bee9bd" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>simple_network.run([(<span class="dv">3</span>, <span class="dv">4</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>simple_network.run([(<span class="dv">3</span>, <span class="dv">4</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>array([[0.42388305],
        [0.65497086]])</code></pre>

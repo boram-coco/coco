@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -565,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1521,12 +1521,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1632,7 +1626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#예시6-random-sampling-technique" id="toc-예시6-random-sampling-technique" class="nav-link" data-scroll-target="#예시6-random-sampling-technique">예시6: random sampling technique</a></li>
   <li><a href="#예시7-linear-regression-model" id="toc-예시7-linear-regression-model" class="nav-link" data-scroll-target="#예시7-linear-regression-model">예시7: linear regression model</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="synthetic data.out.ipynb" download="synthetic data.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1722,7 +1716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="예시1-faker-데이터-사용" class="level1">
 <h1>예시1: Faker 데이터 사용</h1>
 <div id="a7e17a4d-2075-48b7-b51d-ccb50cb9a009" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">!</span>pip install Faker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install Faker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Collecting Faker
   Downloading Faker-17.6.0-py3-none-any.whl (1.7 MB)
@@ -1737,30 +1731,30 @@ Successfully installed Faker-17.6.0</code></pre>
 <p>Faker: 가짜 데이터 생성하는 라이브러리</p>
 </blockquote>
 <div id="91394beb-702f-4fdd-b842-1a0f705b2610" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="e2ba0afc-4d7b-4e3d-bf34-ce6742611229" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> faker <span class="im">import</span> Faker</span>
-<span id="cb4-2"><a href="#cb4-2"></a>fake <span class="op">=</span> Faker()</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># 가짜 이름, 주소, 전화번호, 이메일 생성하기</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>name <span class="op">=</span> fake.name()</span>
-<span id="cb4-6"><a href="#cb4-6"></a>address <span class="op">=</span> fake.address()</span>
-<span id="cb4-7"><a href="#cb4-7"></a>phone_number <span class="op">=</span> fake.phone_number()</span>
-<span id="cb4-8"><a href="#cb4-8"></a>email <span class="op">=</span> fake.email()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> faker <span class="im">import</span> Faker</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fake <span class="op">=</span> Faker()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 가짜 이름, 주소, 전화번호, 이메일 생성하기</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> fake.name()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>address <span class="op">=</span> fake.address()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>phone_number <span class="op">=</span> fake.phone_number()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> fake.email()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="519a6932-08c7-47a4-a3ae-9beb33386e3b" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>data <span class="op">=</span> np.random.rand(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.rand(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8b4a721b-49d4-4600-a5c9-ebb5c37d6af1" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>names <span class="op">=</span> [fake.name() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span>
-<span id="cb6-2"><a href="#cb6-2"></a>addresses <span class="op">=</span> [fake.address() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span>
-<span id="cb6-3"><a href="#cb6-3"></a>ages <span class="op">=</span> [fake.random_int(<span class="bu">min</span><span class="op">=</span><span class="dv">18</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">80</span>, step<span class="op">=</span><span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [fake.name() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>addresses <span class="op">=</span> [fake.address() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> [fake.random_int(<span class="bu">min</span><span class="op">=</span><span class="dv">18</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">80</span>, step<span class="op">=</span><span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="89e7dc13-cf54-4b1f-8754-868749ad70a2" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'Name'</span>: names, <span class="st">'Address'</span>: addresses, <span class="st">'Age'</span>: ages})</span>
-<span id="cb7-2"><a href="#cb7-2"></a>df <span class="co"># 100개의 가짜 데이터 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'Name'</span>: names, <span class="st">'Address'</span>: addresses, <span class="st">'Age'</span>: ages})</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="co"># 100개의 가짜 데이터 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <div>
 
@@ -1852,9 +1846,9 @@ Successfully installed Faker-17.6.0</code></pre>
 <section id="예시2-gan-사용" class="level1">
 <h1>예시2: GAN 사용</h1>
 <div id="c8f8d985-6ec1-4c45-be22-5c46707795fc" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="op">!</span>pip install tensorflow</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install tensorflow</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Collecting tensorflow
   Downloading tensorflow-2.11.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (588.3 MB)
@@ -1952,61 +1946,61 @@ Successfully installed absl-py-1.4.0 astunparse-1.6.3 cachetools-5.3.0 flatbuffe
 </div>
 </div>
 <div id="5f887071-ee76-42e5-8504-abab10d3b958" class="cell" data-execution_count="55">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Define the generator model</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">def</span> make_generator_model():</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    model <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    model.add(layers.Dense(<span class="dv">256</span>, input_shape<span class="op">=</span>(<span class="dv">100</span>,), use_bias<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    model.add(layers.BatchNormalization())</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    model.add(layers.LeakyReLU())</span>
-<span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a>    model.add(layers.Dense(<span class="dv">512</span>, use_bias<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb10-9"><a href="#cb10-9"></a>    model.add(layers.BatchNormalization())</span>
-<span id="cb10-10"><a href="#cb10-10"></a>    model.add(layers.LeakyReLU())</span>
-<span id="cb10-11"><a href="#cb10-11"></a></span>
-<span id="cb10-12"><a href="#cb10-12"></a>    model.add(layers.Dense(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span><span class="op">*</span><span class="dv">1</span>, use_bias<span class="op">=</span><span class="va">False</span>, activation<span class="op">=</span><span class="st">'tanh'</span>))</span>
-<span id="cb10-13"><a href="#cb10-13"></a>    model.add(layers.Reshape((<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)))</span>
-<span id="cb10-14"><a href="#cb10-14"></a></span>
-<span id="cb10-15"><a href="#cb10-15"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the generator model</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_generator_model():</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    model.add(layers.Dense(<span class="dv">256</span>, input_shape<span class="op">=</span>(<span class="dv">100</span>,), use_bias<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    model.add(layers.BatchNormalization())</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    model.add(layers.LeakyReLU())</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    model.add(layers.Dense(<span class="dv">512</span>, use_bias<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    model.add(layers.BatchNormalization())</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    model.add(layers.LeakyReLU())</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    model.add(layers.Dense(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span><span class="op">*</span><span class="dv">1</span>, use_bias<span class="op">=</span><span class="va">False</span>, activation<span class="op">=</span><span class="st">'tanh'</span>))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    model.add(layers.Reshape((<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>make_generator_model()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>make_generator_model()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>-</code> 생성기 모델 정의</p>
 <ul>
 <li><p>100차원 벡터를 입력으로 사용하고 데이터 세트의 입력 이미지와 동일한 크기의 출력 이미지 생성</p></li>
 <li><p>batch normalization <span class="math inline">\(\to\)</span> leaky ReLU activation function <span class="math inline">\(\to\)</span> dense layer with a hyperbolic tangent activation function</p></li>
 </ul>
 <div id="66bbecc7-ec3c-496e-838b-787d01d4382e" class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Define the discriminator model</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">def</span> make_discriminator_model():</span>
-<span id="cb12-3"><a href="#cb12-3"></a>    model <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb12-4"><a href="#cb12-4"></a>    model.add(layers.Flatten(input_shape<span class="op">=</span>(<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)))</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    model.add(layers.Dense(<span class="dv">512</span>, use_bias<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb12-6"><a href="#cb12-6"></a>    model.add(layers.BatchNormalization())</span>
-<span id="cb12-7"><a href="#cb12-7"></a>    model.add(layers.LeakyReLU())</span>
-<span id="cb12-8"><a href="#cb12-8"></a>    model.add(layers.Dense(<span class="dv">256</span>, use_bias<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb12-9"><a href="#cb12-9"></a>    model.add(layers.BatchNormalization())</span>
-<span id="cb12-10"><a href="#cb12-10"></a>    model.add(layers.LeakyReLU())</span>
-<span id="cb12-11"><a href="#cb12-11"></a>    model.add(layers.Dense(<span class="dv">1</span>))</span>
-<span id="cb12-12"><a href="#cb12-12"></a></span>
-<span id="cb12-13"><a href="#cb12-13"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the discriminator model</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_discriminator_model():</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    model.add(layers.Flatten(input_shape<span class="op">=</span>(<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    model.add(layers.Dense(<span class="dv">512</span>, use_bias<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    model.add(layers.BatchNormalization())</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    model.add(layers.LeakyReLU())</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    model.add(layers.Dense(<span class="dv">256</span>, use_bias<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    model.add(layers.BatchNormalization())</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    model.add(layers.LeakyReLU())</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    model.add(layers.Dense(<span class="dv">1</span>))</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>make_discriminator_model()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>make_discriminator_model()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>-</code> 판별기 모델</p>
 <ul>
 <li><p>이미지를 입력으로 받아 실제여부 구별하여 스칼라 값 출력(마지막 레이어가)</p></li>
 <li><p>batch normalization, leaky ReLU activation function,final dense layer with no activation function</p></li>
 </ul>
 <div id="0bba5b67-e891-45dc-b85e-340c2d9401ab" class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Define the GAN model</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="kw">def</span> make_gan_model(generator, discriminator):</span>
-<span id="cb14-3"><a href="#cb14-3"></a>    discriminator.trainable <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a></span>
-<span id="cb14-5"><a href="#cb14-5"></a>    model <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb14-6"><a href="#cb14-6"></a>    model.add(generator)</span>
-<span id="cb14-7"><a href="#cb14-7"></a>    model.add(discriminator)</span>
-<span id="cb14-8"><a href="#cb14-8"></a></span>
-<span id="cb14-9"><a href="#cb14-9"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the GAN model</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_gan_model(generator, discriminator):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    discriminator.trainable <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    model.add(generator)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    model.add(discriminator)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>make_gan_model( , )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>make_gan_model( , )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>-</code> GAN 모델</p>
 <ul>
 <li><p>생성기와 판별기 모델 단일 모델로 결합</p></li>
@@ -2014,20 +2008,20 @@ Successfully installed absl-py-1.4.0 astunparse-1.6.3 cachetools-5.3.0 flatbuffe
 <li><p>disciminator: generator가 생성하는 실제 이미지와 가짜 이미지 정확하게 분류하도록 훈련</p></li>
 </ul>
 <div id="97d084f7-cf83-438a-8acb-1ac25ce70628" class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Define the loss functions and optimizers</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>cross_entropy <span class="op">=</span> tf.keras.losses.BinaryCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="kw">def</span> discriminator_loss(real_output, fake_output):</span>
-<span id="cb16-5"><a href="#cb16-5"></a>    real_loss <span class="op">=</span> cross_entropy(tf.ones_like(real_output), real_output)</span>
-<span id="cb16-6"><a href="#cb16-6"></a>    fake_loss <span class="op">=</span> cross_entropy(tf.zeros_like(fake_output), fake_output)</span>
-<span id="cb16-7"><a href="#cb16-7"></a>    total_loss <span class="op">=</span> real_loss <span class="op">+</span> fake_loss</span>
-<span id="cb16-8"><a href="#cb16-8"></a>    <span class="cf">return</span> total_loss</span>
-<span id="cb16-9"><a href="#cb16-9"></a></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="kw">def</span> generator_loss(fake_output):</span>
-<span id="cb16-11"><a href="#cb16-11"></a>    <span class="cf">return</span> cross_entropy(tf.ones_like(fake_output), fake_output)</span>
-<span id="cb16-12"><a href="#cb16-12"></a></span>
-<span id="cb16-13"><a href="#cb16-13"></a>generator_optimizer <span class="op">=</span> tf.keras.optimizers.Adam(<span class="fl">1e-4</span>)</span>
-<span id="cb16-14"><a href="#cb16-14"></a>discriminator_optimizer <span class="op">=</span> tf.keras.optimizers.Adam(<span class="fl">1e-4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the loss functions and optimizers</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cross_entropy <span class="op">=</span> tf.keras.losses.BinaryCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> discriminator_loss(real_output, fake_output):</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    real_loss <span class="op">=</span> cross_entropy(tf.ones_like(real_output), real_output)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    fake_loss <span class="op">=</span> cross_entropy(tf.zeros_like(fake_output), fake_output)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    total_loss <span class="op">=</span> real_loss <span class="op">+</span> fake_loss</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total_loss</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generator_loss(fake_output):</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cross_entropy(tf.ones_like(fake_output), fake_output)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>generator_optimizer <span class="op">=</span> tf.keras.optimizers.Adam(<span class="fl">1e-4</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>discriminator_optimizer <span class="op">=</span> tf.keras.optimizers.Adam(<span class="fl">1e-4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>GAN 훈련시키려면 <code>loss functions</code>와 <code>optimizers</code> 정의</p></li>
@@ -2035,119 +2029,119 @@ Successfully installed absl-py-1.4.0 astunparse-1.6.3 cachetools-5.3.0 flatbuffe
 <li><p>Adam:0.0001</p></li>
 </ul>
 <div id="8bff6027-73ec-4efe-a3ff-867ec2c183a8" class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Train the GAN model</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="kw">def</span> train_gan(gan_model, dataset, epochs, batch_size):</span>
-<span id="cb17-3"><a href="#cb17-3"></a>    generator, discriminator <span class="op">=</span> gan_model.layers</span>
-<span id="cb17-4"><a href="#cb17-4"></a></span>
-<span id="cb17-5"><a href="#cb17-5"></a>    <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
-<span id="cb17-6"><a href="#cb17-6"></a>        <span class="cf">for</span> batch <span class="kw">in</span> dataset:</span>
-<span id="cb17-7"><a href="#cb17-7"></a>            noise <span class="op">=</span> tf.random.normal([batch_size, <span class="dv">100</span>])</span>
-<span id="cb17-8"><a href="#cb17-8"></a></span>
-<span id="cb17-9"><a href="#cb17-9"></a>            <span class="cf">with</span> tf.GradientTape() <span class="im">as</span> gen_tape, tf.GradientTape() <span class="im">as</span> disc_tape:</span>
-<span id="cb17-10"><a href="#cb17-10"></a>                generated_images <span class="op">=</span> generator(noise, training<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb17-11"><a href="#cb17-11"></a></span>
-<span id="cb17-12"><a href="#cb17-12"></a>                real_output <span class="op">=</span> discriminator(batch, training<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb17-13"><a href="#cb17-13"></a>                fake_output <span class="op">=</span> discriminator(generated_images, training<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb17-14"><a href="#cb17-14"></a></span>
-<span id="cb17-15"><a href="#cb17-15"></a>                gen_loss <span class="op">=</span> generator_loss(fake_output)</span>
-<span id="cb17-16"><a href="#cb17-16"></a>                disc_loss <span class="op">=</span> discriminator_loss(real_output, fake_output)</span>
-<span id="cb17-17"><a href="#cb17-17"></a></span>
-<span id="cb17-18"><a href="#cb17-18"></a>            gradients_of_generator <span class="op">=</span> gen_tape.gradient(gen_loss, generator.trainable_variables)</span>
-<span id="cb17-19"><a href="#cb17-19"></a>            gradients_of_discriminator <span class="op">=</span> disc_tape.gradient(disc_loss, discriminator.trainable_variables)</span>
-<span id="cb17-20"><a href="#cb17-20"></a></span>
-<span id="cb17-21"><a href="#cb17-21"></a>            generator_optimizer.apply_gradients(<span class="bu">zip</span>(gradients_of_generator, generator.trainable_variables))</span>
-<span id="cb17-22"><a href="#cb17-22"></a>            discriminator_optimizer.apply_gradients(<span class="bu">zip</span>(gradients_of_discriminator, discriminator.trainable_variables))</span>
-<span id="cb17-23"><a href="#cb17-23"></a></span>
-<span id="cb17-24"><a href="#cb17-24"></a>        <span class="bu">print</span>(<span class="st">"Epoch </span><span class="sc">{}</span><span class="st"> complete"</span>.<span class="bu">format</span>(epoch))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the GAN model</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_gan(gan_model, dataset, epochs, batch_size):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    generator, discriminator <span class="op">=</span> gan_model.layers</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> batch <span class="kw">in</span> dataset:</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            noise <span class="op">=</span> tf.random.normal([batch_size, <span class="dv">100</span>])</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> tf.GradientTape() <span class="im">as</span> gen_tape, tf.GradientTape() <span class="im">as</span> disc_tape:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                generated_images <span class="op">=</span> generator(noise, training<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>                real_output <span class="op">=</span> discriminator(batch, training<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>                fake_output <span class="op">=</span> discriminator(generated_images, training<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>                gen_loss <span class="op">=</span> generator_loss(fake_output)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>                disc_loss <span class="op">=</span> discriminator_loss(real_output, fake_output)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>            gradients_of_generator <span class="op">=</span> gen_tape.gradient(gen_loss, generator.trainable_variables)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>            gradients_of_discriminator <span class="op">=</span> disc_tape.gradient(disc_loss, discriminator.trainable_variables)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>            generator_optimizer.apply_gradients(<span class="bu">zip</span>(gradients_of_generator, generator.trainable_variables))</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>            discriminator_optimizer.apply_gradients(<span class="bu">zip</span>(gradients_of_discriminator, discriminator.trainable_variables))</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Epoch </span><span class="sc">{}</span><span class="st"> complete"</span>.<span class="bu">format</span>(epoch))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="21169a45-1711-4e5f-a5e4-2d5147cb35d3" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Generate synthetic images using the trained generator</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">def</span> generate_images(generator, num_images):</span>
-<span id="cb18-3"><a href="#cb18-3"></a>    noise <span class="op">=</span> tf.random.normal([num_images, <span class="dv">100</span>])</span>
-<span id="cb18-4"><a href="#cb18-4"></a>    generated_images <span class="op">=</span> generator(noise, training<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb18-5"><a href="#cb18-5"></a>    generated_images <span class="op">=</span> (generated_images <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="fl">2.0</span>  <span class="co"># scale images to [0, 1]</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>    <span class="cf">return</span> generated_images.numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate synthetic images using the trained generator</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_images(generator, num_images):</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    noise <span class="op">=</span> tf.random.normal([num_images, <span class="dv">100</span>])</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    generated_images <span class="op">=</span> generator(noise, training<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    generated_images <span class="op">=</span> (generated_images <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="fl">2.0</span>  <span class="co"># scale images to [0, 1]</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> generated_images.numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>훈련된 generator로 synthetic imges</li>
 </ul>
 <div id="3235429b-4110-446a-888e-d446585d5bd5" class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Load and preprocess real images for training</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>(x_train, _), (_, _) <span class="op">=</span> tf.keras.datasets.mnist.load_data()</span>
-<span id="cb19-3"><a href="#cb19-3"></a>x_train <span class="op">=</span> x_train.reshape(x_train.shape[<span class="dv">0</span>], <span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and preprocess real images for training</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>(x_train, _), (_, _) <span class="op">=</span> tf.keras.datasets.mnist.load_data()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> x_train.reshape(x_train.shape[<span class="dv">0</span>], <span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="예시3-vae사용-개념부터-알아야할듯.." class="level1">
 <h1>예시3: VAE사용 (개념부터 알아야할듯..)</h1>
 <div id="7cf585a9-40a9-44a2-bd50-91c3d8790e95" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="63dda6ba-079c-439e-8470-9a8dadb4604c" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># load and preprocess the real images for training</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>(train_images, _), (_, _) <span class="op">=</span> keras.datasets.mnist.load_data()</span>
-<span id="cb21-3"><a href="#cb21-3"></a>train_images <span class="op">=</span> train_images.reshape(train_images.shape[<span class="dv">0</span>], <span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>).astype(<span class="st">'float32'</span>)</span>
-<span id="cb21-4"><a href="#cb21-4"></a>train_images <span class="op">=</span> (train_images <span class="op">-</span> <span class="fl">127.5</span>) <span class="op">/</span> <span class="fl">127.5</span>  <span class="co"># Normalize the images to [-1, 1]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load and preprocess the real images for training</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>(train_images, _), (_, _) <span class="op">=</span> keras.datasets.mnist.load_data()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images.reshape(train_images.shape[<span class="dv">0</span>], <span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>).astype(<span class="st">'float32'</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> (train_images <span class="op">-</span> <span class="fl">127.5</span>) <span class="op">/</span> <span class="fl">127.5</span>  <span class="co"># Normalize the images to [-1, 1]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8fe67732-9b4f-487c-ae5b-1ff3281c442e" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># define the VAE model</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>latent_dim <span class="op">=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the VAE model</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>latent_dim <span class="op">=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="5637f026-7e25-47d6-a437-a0b78d97a18d" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>latent_dim <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a>encoder_inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>(<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>))</span>
-<span id="cb23-4"><a href="#cb23-4"></a>x <span class="op">=</span> layers.Conv2D(<span class="dv">32</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"relu"</span>, strides<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="st">"same"</span>)(encoder_inputs)</span>
-<span id="cb23-5"><a href="#cb23-5"></a>x <span class="op">=</span> layers.Conv2D(<span class="dv">64</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"relu"</span>, strides<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="st">"same"</span>)(x)</span>
-<span id="cb23-6"><a href="#cb23-6"></a>x <span class="op">=</span> layers.Flatten()(x)</span>
-<span id="cb23-7"><a href="#cb23-7"></a>x <span class="op">=</span> layers.Dense(<span class="dv">16</span>, activation<span class="op">=</span><span class="st">"relu"</span>)(x)</span>
-<span id="cb23-8"><a href="#cb23-8"></a>z_mean <span class="op">=</span> layers.Dense(latent_dim, name<span class="op">=</span><span class="st">"z_mean"</span>)(x)</span>
-<span id="cb23-9"><a href="#cb23-9"></a>z_log_var <span class="op">=</span> layers.Dense(latent_dim, name<span class="op">=</span><span class="st">"z_log_var"</span>)(x)</span>
-<span id="cb23-10"><a href="#cb23-10"></a>encoder <span class="op">=</span> keras.Model(encoder_inputs, [z_mean, z_log_var], name<span class="op">=</span><span class="st">"encoder"</span>)</span>
-<span id="cb23-11"><a href="#cb23-11"></a></span>
-<span id="cb23-12"><a href="#cb23-12"></a>latent_inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>(latent_dim,))</span>
-<span id="cb23-13"><a href="#cb23-13"></a>x <span class="op">=</span> layers.Dense(<span class="dv">7</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">*</span> <span class="dv">64</span>, activation<span class="op">=</span><span class="st">"relu"</span>)(latent_inputs)</span>
-<span id="cb23-14"><a href="#cb23-14"></a>x <span class="op">=</span> layers.Reshape((<span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">64</span>))(x)</span>
-<span id="cb23-15"><a href="#cb23-15"></a>x <span class="op">=</span> layers.Conv2DTranspose(<span class="dv">64</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"relu"</span>, strides<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="st">"same"</span>)(x)</span>
-<span id="cb23-16"><a href="#cb23-16"></a>x <span class="op">=</span> layers.Conv2DTranspose(<span class="dv">32</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"relu"</span>, strides<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="st">"same"</span>)(x)</span>
-<span id="cb23-17"><a href="#cb23-17"></a>decoder_outputs <span class="op">=</span> layers.Conv2DTranspose(<span class="dv">1</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"sigmoid"</span>, padding<span class="op">=</span><span class="st">"same"</span>)(x)</span>
-<span id="cb23-18"><a href="#cb23-18"></a>decoder <span class="op">=</span> keras.Model(latent_inputs, decoder_outputs, name<span class="op">=</span><span class="st">"decoder"</span>)</span>
-<span id="cb23-19"><a href="#cb23-19"></a></span>
-<span id="cb23-20"><a href="#cb23-20"></a><span class="kw">class</span> Sampling(layers.Layer):</span>
-<span id="cb23-21"><a href="#cb23-21"></a>    <span class="co">"""Uses (z_mean, z_log_var) to sample z, the vector encoding a digit."""</span></span>
-<span id="cb23-22"><a href="#cb23-22"></a></span>
-<span id="cb23-23"><a href="#cb23-23"></a>    <span class="kw">def</span> call(<span class="va">self</span>, inputs):</span>
-<span id="cb23-24"><a href="#cb23-24"></a>        z_mean, z_log_var <span class="op">=</span> inputs</span>
-<span id="cb23-25"><a href="#cb23-25"></a>        batch <span class="op">=</span> keras.backend.shape(z_mean)[<span class="dv">0</span>]</span>
-<span id="cb23-26"><a href="#cb23-26"></a>        dim <span class="op">=</span> keras.backend.int_shape(z_mean)[<span class="dv">1</span>]</span>
-<span id="cb23-27"><a href="#cb23-27"></a>        epsilon <span class="op">=</span> keras.backend.random_normal(shape<span class="op">=</span>(batch, dim))</span>
-<span id="cb23-28"><a href="#cb23-28"></a>        <span class="cf">return</span> z_mean <span class="op">+</span> keras.backend.exp(<span class="fl">0.5</span> <span class="op">*</span> z_log_var) <span class="op">*</span> epsilon</span>
-<span id="cb23-29"><a href="#cb23-29"></a></span>
-<span id="cb23-30"><a href="#cb23-30"></a>z <span class="op">=</span> Sampling()([z_mean, z_log_var])</span>
-<span id="cb23-31"><a href="#cb23-31"></a>outputs <span class="op">=</span> decoder(z)</span>
-<span id="cb23-32"><a href="#cb23-32"></a>vae <span class="op">=</span> keras.Model(encoder_inputs, outputs, name<span class="op">=</span><span class="st">"vae"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>latent_dim <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>encoder_inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>(<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> layers.Conv2D(<span class="dv">32</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"relu"</span>, strides<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="st">"same"</span>)(encoder_inputs)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> layers.Conv2D(<span class="dv">64</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"relu"</span>, strides<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="st">"same"</span>)(x)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> layers.Flatten()(x)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> layers.Dense(<span class="dv">16</span>, activation<span class="op">=</span><span class="st">"relu"</span>)(x)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>z_mean <span class="op">=</span> layers.Dense(latent_dim, name<span class="op">=</span><span class="st">"z_mean"</span>)(x)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>z_log_var <span class="op">=</span> layers.Dense(latent_dim, name<span class="op">=</span><span class="st">"z_log_var"</span>)(x)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>encoder <span class="op">=</span> keras.Model(encoder_inputs, [z_mean, z_log_var], name<span class="op">=</span><span class="st">"encoder"</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>latent_inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>(latent_dim,))</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> layers.Dense(<span class="dv">7</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">*</span> <span class="dv">64</span>, activation<span class="op">=</span><span class="st">"relu"</span>)(latent_inputs)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> layers.Reshape((<span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">64</span>))(x)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> layers.Conv2DTranspose(<span class="dv">64</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"relu"</span>, strides<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="st">"same"</span>)(x)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> layers.Conv2DTranspose(<span class="dv">32</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"relu"</span>, strides<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="st">"same"</span>)(x)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>decoder_outputs <span class="op">=</span> layers.Conv2DTranspose(<span class="dv">1</span>, <span class="dv">3</span>, activation<span class="op">=</span><span class="st">"sigmoid"</span>, padding<span class="op">=</span><span class="st">"same"</span>)(x)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>decoder <span class="op">=</span> keras.Model(latent_inputs, decoder_outputs, name<span class="op">=</span><span class="st">"decoder"</span>)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Sampling(layers.Layer):</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Uses (z_mean, z_log_var) to sample z, the vector encoding a digit."""</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> call(<span class="va">self</span>, inputs):</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        z_mean, z_log_var <span class="op">=</span> inputs</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> keras.backend.shape(z_mean)[<span class="dv">0</span>]</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>        dim <span class="op">=</span> keras.backend.int_shape(z_mean)[<span class="dv">1</span>]</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>        epsilon <span class="op">=</span> keras.backend.random_normal(shape<span class="op">=</span>(batch, dim))</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z_mean <span class="op">+</span> keras.backend.exp(<span class="fl">0.5</span> <span class="op">*</span> z_log_var) <span class="op">*</span> epsilon</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> Sampling()([z_mean, z_log_var])</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> decoder(z)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>vae <span class="op">=</span> keras.Model(encoder_inputs, outputs, name<span class="op">=</span><span class="st">"vae"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="dde9b4aa-a9f4-42a0-a707-cd74a604bfc4" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># define the loss function</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>reconstruction_loss <span class="op">=</span> keras.losses.binary_crossentropy(encoder_inputs, outputs)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>reconstruction_loss <span class="op">*=</span> <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a>kl_loss <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> z_log_var <span class="op">-</span> keras.backend.square(z_mean) <span class="op">-</span> keras.backend.exp(z_log_var)</span>
-<span id="cb24-6"><a href="#cb24-6"></a>kl_loss <span class="op">=</span> keras.backend.<span class="bu">sum</span>(kl_loss, axis<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb24-7"><a href="#cb24-7"></a>kl_loss <span class="op">*=</span> <span class="op">-</span><span class="fl">0.5</span></span>
-<span id="cb24-8"><a href="#cb24-8"></a>vae_loss <span class="op">=</span> keras.backend.mean(reconstruction_loss <span class="op">+</span> kl_loss)</span>
-<span id="cb24-9"><a href="#cb24-9"></a>vae.add_loss(vae_loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># define the loss function</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>reconstruction_loss <span class="op">=</span> keras.losses.binary_crossentropy(encoder_inputs, outputs)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>reconstruction_loss <span class="op">*=</span> <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>kl_loss <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> z_log_var <span class="op">-</span> keras.backend.square(z_mean) <span class="op">-</span> keras.backend.exp(z_log_var)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>kl_loss <span class="op">=</span> keras.backend.<span class="bu">sum</span>(kl_loss, axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>kl_loss <span class="op">*=</span> <span class="op">-</span><span class="fl">0.5</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>vae_loss <span class="op">=</span> keras.backend.mean(reconstruction_loss <span class="op">+</span> kl_loss)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>vae.add_loss(vae_loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="1e55fbe0-31fb-43e4-80b1-a4e86ec943c2" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="co"># compile the model</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>vae.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>vae.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="299c433e-f055-4838-b412-48cbd08782db" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="co"># train the model</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>vae.fit(train_images, epochs<span class="op">=</span><span class="dv">10</span>, batch_size<span class="op">=</span><span class="dv">128</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># train the model</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>vae.fit(train_images, epochs<span class="op">=</span><span class="dv">10</span>, batch_size<span class="op">=</span><span class="dv">128</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/10</code></pre>
 </div>
@@ -2233,19 +2227,19 @@ Incompatible shapes: [128,28,28] vs. [128]
 </div>
 </div>
 <div id="cbed96c8-e01d-4e8f-a348-dfb0d4bd324a" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># generate synthetic data</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a>random_latent_vectors <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n_samples, latent_dim))</span>
-<span id="cb29-4"><a href="#cb29-4"></a>generated_images <span class="op">=</span> decoder.predict(random_latent_vectors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate synthetic data</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>random_latent_vectors <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n_samples, latent_dim))</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>generated_images <span class="op">=</span> decoder.predict(random_latent_vectors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1/1 [==============================] - 0s 55ms/step</code></pre>
 </div>
 </div>
 <div id="f598d505-248d-4dfe-bdd6-ed710bcca340" class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># display the generated images</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_samples):</span>
-<span id="cb31-3"><a href="#cb31-3"></a>    plt.imshow(generated_images[i].reshape(<span class="dv">28</span>, <span class="dv">28</span>))</span>
-<span id="cb31-4"><a href="#cb31-4"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the generated images</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_samples):</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    plt.imshow(generated_images[i].reshape(<span class="dv">28</span>, <span class="dv">28</span>))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="synthetic data_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>
@@ -2281,7 +2275,7 @@ Incompatible shapes: [128,28,28] vs. [128]
 <section id="예시4-a-simple-feedforward-neural-network" class="level1">
 <h1>예시4: a simple feedforward neural network</h1>
 <div id="a084e3d1-1c76-480d-b9ea-205fc0295263" class="cell" data-execution_count="90">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Collecting scikit-learn
   Downloading scikit_learn-1.2.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.8 MB)
@@ -2298,38 +2292,38 @@ Successfully installed joblib-1.2.0 scikit-learn-1.2.2 threadpoolctl-3.1.0</code
 </div>
 </div>
 <div id="35dce7c0-92b5-46df-b640-5183243627f7" class="cell" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># import necessary libraries</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb34-5"><a href="#cb34-5"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
-<span id="cb34-6"><a href="#cb34-6"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb34-7"><a href="#cb34-7"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb34-8"><a href="#cb34-8"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import necessary libraries</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="96668d24-f6eb-4663-ba42-48e7545e65e4" class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># generate and preprocess the real data for training</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">1000</span>, n_features<span class="op">=</span><span class="dv">10</span>, n_classes<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb35-3"><a href="#cb35-3"></a>scaler <span class="op">=</span> StandardScaler()</span>
-<span id="cb35-4"><a href="#cb35-4"></a>X <span class="op">=</span> scaler.fit_transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate and preprocess the real data for training</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">1000</span>, n_features<span class="op">=</span><span class="dv">10</span>, n_classes<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> scaler.fit_transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="e53f617d-50b3-4337-86af-4ead66cb6a6c" class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># define the feedforward neural network</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>model <span class="op">=</span> keras.Sequential([</span>
-<span id="cb36-3"><a href="#cb36-3"></a>    layers.Dense(<span class="dv">16</span>, activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(X.shape[<span class="dv">1</span>],)),</span>
-<span id="cb36-4"><a href="#cb36-4"></a>    layers.Dense(<span class="dv">8</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
-<span id="cb36-5"><a href="#cb36-5"></a>    layers.Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">'sigmoid'</span>)</span>
-<span id="cb36-6"><a href="#cb36-6"></a>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the feedforward neural network</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Sequential([</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">16</span>, activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(X.shape[<span class="dv">1</span>],)),</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">8</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">'sigmoid'</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="302d42e2-b912-49c4-ac63-a1f3d456a30c" class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a></span>
-<span id="cb37-2"><a href="#cb37-2"></a><span class="co"># compile the model</span></span>
-<span id="cb37-3"><a href="#cb37-3"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'binary_crossentropy'</span>)</span>
-<span id="cb37-4"><a href="#cb37-4"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'binary_crossentropy'</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="2498ceb6-1b52-4714-89dd-0294e797514b" class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># train the model</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a>model.fit(X, y, epochs<span class="op">=</span><span class="dv">100</span>, batch_size<span class="op">=</span><span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># train the model</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>model.fit(X, y, epochs<span class="op">=</span><span class="dv">100</span>, batch_size<span class="op">=</span><span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/100
 32/32 [==============================] - 0s 553us/step - loss: 0.5901
@@ -2537,17 +2531,17 @@ Epoch 100/100
 </div>
 </div>
 <div id="1f4b906d-aad4-4951-889c-14afe65767a5" class="cell" data-execution_count="96">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># generate synthetic data</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a>random_vectors <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n_samples, X.shape[<span class="dv">1</span>]))</span>
-<span id="cb41-4"><a href="#cb41-4"></a>generated_data <span class="op">=</span> model.predict(random_vectors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate synthetic data</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>random_vectors <span class="op">=</span> np.random.normal(size<span class="op">=</span>(n_samples, X.shape[<span class="dv">1</span>]))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>generated_data <span class="op">=</span> model.predict(random_vectors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1/1 [==============================] - 0s 22ms/step</code></pre>
 </div>
 </div>
 <div id="5a74734a-38e9-4503-ae7b-e01efca32ab5" class="cell" data-execution_count="97">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># display the generated data</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="bu">print</span>(generated_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display the generated data</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(generated_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[0.00134968]
  [0.11726338]
@@ -2565,25 +2559,25 @@ Epoch 100/100
 <section id="예시5-kdekernel-density-estimation" class="level1">
 <h1>예시5: KDE(Kernel Density Estimation)</h1>
 <div id="c8720518-6875-4277-970d-eab3f0b3b826" class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb45-2"><a href="#cb45-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb45-3"><a href="#cb45-3"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
-<span id="cb45-4"><a href="#cb45-4"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KernelDensity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KernelDensity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="7cb073df-1dfc-44c1-8628-1592d2cf8309" class="cell" data-execution_count="102">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">1000</span>, n_features<span class="op">=</span><span class="dv">10</span>, n_classes<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">1000</span>, n_features<span class="op">=</span><span class="dv">10</span>, n_classes<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="78fe18e7-d2c0-42f7-b646-4ad0f18e6c29" class="cell" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>kde <span class="op">=</span> KernelDensity(kernel<span class="op">=</span><span class="st">'gaussian'</span>, bandwidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb47-2"><a href="#cb47-2"></a>kde.fit(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>kde <span class="op">=</span> KernelDensity(kernel<span class="op">=</span><span class="st">'gaussian'</span>, bandwidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>kde.fit(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="103">
 <style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KernelDensity(bandwidth=0.5)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KernelDensity</label><div class="sk-toggleable__content"><pre>KernelDensity(bandwidth=0.5)</pre></div></div></div></div></div>
 </div>
 </div>
 <div id="0e63f1dd-9627-4127-ab1a-5f7fa39662d3" class="cell" data-execution_count="105">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb48-2"><a href="#cb48-2"></a>synthetic_data <span class="op">=</span> kde.sample(n_samples)</span>
-<span id="cb48-3"><a href="#cb48-3"></a>synthetic_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="op">=</span> kde.sample(n_samples)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>synthetic_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="105">
 <pre><code>array([[-6.40543316e-01, -2.00816029e-01, -1.38112318e+00,
         -5.04647026e-01, -1.16412835e-01,  2.31176462e-01,
@@ -2628,10 +2622,10 @@ Epoch 100/100
 </div>
 </div>
 <div id="018ee2d1-9063-4d6a-927d-e9c45fa938e5" class="cell" data-execution_count="106">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb50-2"><a href="#cb50-2"></a>ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
-<span id="cb50-3"><a href="#cb50-3"></a>ax.scatter(synthetic_data[:, <span class="dv">0</span>], synthetic_data[:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">'r'</span>)</span>
-<span id="cb50-4"><a href="#cb50-4"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(synthetic_data[:, <span class="dv">0</span>], synthetic_data[:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="synthetic data_files/figure-html/cell-37-output-1.png" class="img-fluid"></p>
 </div>
@@ -2640,22 +2634,22 @@ Epoch 100/100
 <section id="예시6-random-sampling-technique" class="level1">
 <h1>예시6: random sampling technique</h1>
 <div id="e0ed4e8d-ae94-4da6-9690-803e690815f5" class="cell" data-execution_count="107">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb51-2"><a href="#cb51-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb51-3"><a href="#cb51-3"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="dfdd6f3c-f6de-455f-ba81-c1c6c525a653" class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">1000</span>, n_features<span class="op">=</span><span class="dv">10</span>, n_classes<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">1000</span>, n_features<span class="op">=</span><span class="dv">10</span>, n_classes<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="4dcd78cf-4c5a-48e7-b55e-ee8a0c51ef1f" class="cell" data-execution_count="109">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb53-2"><a href="#cb53-2"></a>synthetic_data <span class="op">=</span> np.random.rand(n_samples, X.shape[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="op">=</span> np.random.rand(n_samples, X.shape[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8d015751-6612-40de-b0b9-3fa7910b04db" class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb54-2"><a href="#cb54-2"></a>ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
-<span id="cb54-3"><a href="#cb54-3"></a>ax.scatter(synthetic_data[:, <span class="dv">0</span>], synthetic_data[:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">'r'</span>)</span>
-<span id="cb54-4"><a href="#cb54-4"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(synthetic_data[:, <span class="dv">0</span>], synthetic_data[:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="synthetic data_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
@@ -2664,30 +2658,30 @@ Epoch 100/100
 <section id="예시7-linear-regression-model" class="level1">
 <h1>예시7: linear regression model</h1>
 <div id="ca615ffb-b1b1-4778-bfa8-e34668ebfdda" class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb55-2"><a href="#cb55-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb55-3"><a href="#cb55-3"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_regression</span>
-<span id="cb55-4"><a href="#cb55-4"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_regression</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="2707cc14-05d3-49ae-9db2-9c25c5ea3f1d" class="cell" data-execution_count="112">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>X, y <span class="op">=</span> make_regression(n_samples<span class="op">=</span><span class="dv">100</span>, n_features<span class="op">=</span><span class="dv">1</span>, noise<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_regression(n_samples<span class="op">=</span><span class="dv">100</span>, n_features<span class="op">=</span><span class="dv">1</span>, noise<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="9d5d68bc-3d03-4bc3-9188-da7a61b06289" class="cell" data-execution_count="113">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>lr <span class="op">=</span> LinearRegression()</span>
-<span id="cb57-2"><a href="#cb57-2"></a>lr.fit(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> LinearRegression()</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>lr.fit(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 <style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div>
 </div>
 </div>
 <div id="4946ae02-c18c-4764-9725-b3bbf2af092e" class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a>synthetic_data <span class="op">=</span> lr.predict(np.random.rand(n_samples, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="op">=</span> lr.predict(np.random.rand(n_samples, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="c33c033d-8f4b-492f-bd05-222b8a784cc5" class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb59-2"><a href="#cb59-2"></a>ax.scatter(X, y)</span>
-<span id="cb59-3"><a href="#cb59-3"></a>ax.scatter(np.random.rand(n_samples, <span class="dv">1</span>), synthetic_data, c<span class="op">=</span><span class="st">'r'</span>)</span>
-<span id="cb59-4"><a href="#cb59-4"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(X, y)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(np.random.rand(n_samples, <span class="dv">1</span>), synthetic_data, c<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="synthetic data_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
 </div>

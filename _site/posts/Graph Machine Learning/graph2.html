@@ -554,7 +554,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -566,7 +566,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1522,12 +1522,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1650,7 +1644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#그래프-정규화" id="toc-그래프-정규화" class="nav-link" data-scroll-target="#그래프-정규화">그래프 정규화</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="graph2.out.ipynb" download="graph2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1696,31 +1690,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="https://arxiv.org/abs/2005.03675">Machine Learning on Graphs: A Model and Comprehensive Taxonomy</a></p></li>
 </ul>
 <div id="304364c4-8d01-4706-8a50-d48efad14e4f" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">def</span> draw_graph(G, pos_nodes, node_names<span class="op">=</span>{}, node_size<span class="op">=</span><span class="dv">50</span>, plot_weight<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    nx.draw(G, pos_nodes, with_labels<span class="op">=</span><span class="va">False</span>, node_size<span class="op">=</span>node_size, edge_color<span class="op">=</span><span class="st">'gray'</span>, arrowsize<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    </span>
-<span id="cb1-6"><a href="#cb1-6"></a>    pos_attrs <span class="op">=</span> {}</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    <span class="cf">for</span> node, coords <span class="kw">in</span> pos_nodes.items():</span>
-<span id="cb1-8"><a href="#cb1-8"></a>        pos_attrs[node] <span class="op">=</span> (coords[<span class="dv">0</span>], coords[<span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.08</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>        </span>
-<span id="cb1-10"><a href="#cb1-10"></a>    nx.draw_networkx_labels(G, pos_attrs, font_family<span class="op">=</span><span class="st">'serif'</span>, font_size<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>    </span>
-<span id="cb1-12"><a href="#cb1-12"></a>    </span>
-<span id="cb1-13"><a href="#cb1-13"></a>    <span class="cf">if</span> plot_weight:</span>
-<span id="cb1-14"><a href="#cb1-14"></a>        pos_attrs <span class="op">=</span> {}</span>
-<span id="cb1-15"><a href="#cb1-15"></a>        <span class="cf">for</span> node, coords <span class="kw">in</span> pos_nodes.items():</span>
-<span id="cb1-16"><a href="#cb1-16"></a>            pos_attrs[node] <span class="op">=</span> (coords[<span class="dv">0</span>], coords[<span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.08</span>)</span>
-<span id="cb1-17"><a href="#cb1-17"></a>        </span>
-<span id="cb1-18"><a href="#cb1-18"></a>        nx.draw_networkx_labels(G, pos_attrs, font_family<span class="op">=</span><span class="st">'serif'</span>, font_size<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb1-19"><a href="#cb1-19"></a>        edge_labels<span class="op">=</span><span class="bu">dict</span>([((a,b,),d[<span class="st">"weight"</span>]) <span class="cf">for</span> a,b,d <span class="kw">in</span> G.edges(data<span class="op">=</span><span class="va">True</span>)])</span>
-<span id="cb1-20"><a href="#cb1-20"></a>        nx.draw_networkx_edge_labels(G, pos_nodes, edge_labels<span class="op">=</span>edge_labels)</span>
-<span id="cb1-21"><a href="#cb1-21"></a>    </span>
-<span id="cb1-22"><a href="#cb1-22"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb1-23"><a href="#cb1-23"></a>    axis <span class="op">=</span> plt.gca()</span>
-<span id="cb1-24"><a href="#cb1-24"></a>    axis.set_xlim([<span class="fl">1.2</span><span class="op">*</span>x <span class="cf">for</span> x <span class="kw">in</span> axis.get_xlim()])</span>
-<span id="cb1-25"><a href="#cb1-25"></a>    axis.set_ylim([<span class="fl">1.2</span><span class="op">*</span>y <span class="cf">for</span> y <span class="kw">in</span> axis.get_ylim()])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_graph(G, pos_nodes, node_names<span class="op">=</span>{}, node_size<span class="op">=</span><span class="dv">50</span>, plot_weight<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    nx.draw(G, pos_nodes, with_labels<span class="op">=</span><span class="va">False</span>, node_size<span class="op">=</span>node_size, edge_color<span class="op">=</span><span class="st">'gray'</span>, arrowsize<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    pos_attrs <span class="op">=</span> {}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> node, coords <span class="kw">in</span> pos_nodes.items():</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        pos_attrs[node] <span class="op">=</span> (coords[<span class="dv">0</span>], coords[<span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.08</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G, pos_attrs, font_family<span class="op">=</span><span class="st">'serif'</span>, font_size<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> plot_weight:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        pos_attrs <span class="op">=</span> {}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> node, coords <span class="kw">in</span> pos_nodes.items():</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            pos_attrs[node] <span class="op">=</span> (coords[<span class="dv">0</span>], coords[<span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.08</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        nx.draw_networkx_labels(G, pos_attrs, font_family<span class="op">=</span><span class="st">'serif'</span>, font_size<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        edge_labels<span class="op">=</span><span class="bu">dict</span>([((a,b,),d[<span class="st">"weight"</span>]) <span class="cf">for</span> a,b,d <span class="kw">in</span> G.edges(data<span class="op">=</span><span class="va">True</span>)])</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        nx.draw_networkx_edge_labels(G, pos_nodes, edge_labels<span class="op">=</span>edge_labels)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    axis <span class="op">=</span> plt.gca()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    axis.set_xlim([<span class="fl">1.2</span><span class="op">*</span>x <span class="cf">for</span> x <span class="kw">in</span> axis.get_xlim()])</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    axis.set_ylim([<span class="fl">1.2</span><span class="op">*</span>y <span class="cf">for</span> y <span class="kw">in</span> axis.get_ylim()])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="node2vec" class="level1">
@@ -1737,7 +1731,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="node2vec-알고리즘-구현-방법">Node2Vec 알고리즘 구현 방법</h2>
 <p><code>1</code> 그래프 생성</p>
 <p><code>2</code> Node2Vec 객체 생성</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>node2vec <span class="op">=</span> Node2Vec(G, dimensions<span class="op">=</span>, walk_length<span class="op">=</span>, num_walks<span class="op">=</span>, p<span class="op">=</span>, q<span class="op">=</span>, workers<span class="op">=</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>node2vec <span class="op">=</span> Node2Vec(G, dimensions<span class="op">=</span>, walk_length<span class="op">=</span>, num_walks<span class="op">=</span>, p<span class="op">=</span>, q<span class="op">=</span>, workers<span class="op">=</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>dimensions : 임베딩할 벡터의 차원 수</p></li>
 <li><p>walk_length : 랜덤 워크에서 한 번에 이동할 노드 수</p></li>
@@ -1760,16 +1754,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="node2vec-example" class="level2">
 <h2 class="anchored" data-anchor-id="node2vec-example">Node2Vec example</h2>
 <div id="44043a12-6960-4d8e-8eb4-6ad99f8cea6c" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> node2vec <span class="im">import</span> Node2Vec</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a>G <span class="op">=</span> nx.barbell_graph(m1<span class="op">=</span><span class="dv">7</span>, m2<span class="op">=</span><span class="dv">4</span>)  <span class="co"># 바벨 그래프 생성</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>draw_graph(G, nx.spring_layout(G))</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a>node2vec <span class="op">=</span> Node2Vec(G, dimensions<span class="op">=</span><span class="dv">2</span>) <span class="co"># 그래프의 각 노드를 2차원 벡터로 생성</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>model <span class="op">=</span> node2vec.fit(window<span class="op">=</span><span class="dv">10</span>) <span class="co"># 원본 그래프 노드에 임베딩 알고리즘 적용해 생성된 2차원 벡터</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> node2vec <span class="im">import</span> Node2Vec</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.barbell_graph(m1<span class="op">=</span><span class="dv">7</span>, m2<span class="op">=</span><span class="dv">4</span>)  <span class="co"># 바벨 그래프 생성</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>draw_graph(G, nx.spring_layout(G))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>node2vec <span class="op">=</span> Node2Vec(G, dimensions<span class="op">=</span><span class="dv">2</span>) <span class="co"># 그래프의 각 노드를 2차원 벡터로 생성</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> node2vec.fit(window<span class="op">=</span><span class="dv">10</span>) <span class="co"># 원본 그래프 노드에 임베딩 알고리즘 적용해 생성된 2차원 벡터</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"257045b4157a431b9692688c604764c3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -1800,15 +1794,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="edge2vec-example" class="level2">
 <h2 class="anchored" data-anchor-id="edge2vec-example">Edge2Vec example</h2>
 <div id="00641482-0a51-4103-8805-15bbb6e79bfd" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> node2vec.edges <span class="im">import</span> HadamardEmbedder <span class="co"># Node2Vec 모델을 사용하여 학습된 그래프 임베딩 모델에서 HadamardEmbedder를 이용하여 엣지 임베딩 벡터를 생성하고, 그것을 시각화하는 코드</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>edges_embs <span class="op">=</span> HadamardEmbedder(keyed_vectors<span class="op">=</span>model.wv) <span class="co"># model.wv : 학습된 노드 입베딩 벡터를 가지고있는 객체</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>fig, ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="cf">for</span> x <span class="kw">in</span> G.edges():</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    v <span class="op">=</span> edges_embs[(<span class="bu">str</span>(x[<span class="dv">0</span>]), <span class="bu">str</span>(x[<span class="dv">1</span>]))]</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    ax.scatter(v[<span class="dv">0</span>],v[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    ax.annotate(<span class="bu">str</span>(x), (v[<span class="dv">0</span>],v[<span class="dv">1</span>]), fontsize<span class="op">=</span><span class="dv">12</span>)  <span class="co"># 엣지를 해당하는 점위에 텍스트로 나타냄, 즉 해당 점의 x,y좌표를 설정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> node2vec.edges <span class="im">import</span> HadamardEmbedder <span class="co"># Node2Vec 모델을 사용하여 학습된 그래프 임베딩 모델에서 HadamardEmbedder를 이용하여 엣지 임베딩 벡터를 생성하고, 그것을 시각화하는 코드</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>edges_embs <span class="op">=</span> HadamardEmbedder(keyed_vectors<span class="op">=</span>model.wv) <span class="co"># model.wv : 학습된 노드 입베딩 벡터를 가지고있는 객체</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> G.edges():</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> edges_embs[(<span class="bu">str</span>(x[<span class="dv">0</span>]), <span class="bu">str</span>(x[<span class="dv">1</span>]))]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    ax.scatter(v[<span class="dv">0</span>],v[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="bu">str</span>(x), (v[<span class="dv">0</span>],v[<span class="dv">1</span>]), fontsize<span class="op">=</span><span class="dv">12</span>)  <span class="co"># 엣지를 해당하는 점위에 텍스트로 나타냄, 즉 해당 점의 x,y좌표를 설정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="graph2_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
@@ -1835,7 +1829,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="graph2vec-example" class="level2">
 <h2 class="anchored" data-anchor-id="graph2vec-example">Graph2Vec Example</h2>
 <div id="cf9ca485-eb45-407e-87c9-39735ec09fa7" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>pip install karateclub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pip install karateclub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Collecting karateclub
   Downloading karateclub-1.3.3.tar.gz (64 kB)
@@ -1901,31 +1895,31 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 </div>
 </div>
 <div id="142894bb-7a12-485c-a961-164c447b0f08" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> random</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="im">from</span> karateclub <span class="im">import</span> Graph2Vec</span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a>n_graphs <span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="kw">def</span> generate_radom():</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    n <span class="op">=</span> random.randint(<span class="dv">6</span>, <span class="dv">20</span>)  <span class="co"># 노드 갯수</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>    k <span class="op">=</span> random.randint(<span class="dv">5</span>, n)   <span class="co"># k-최근접 이웃 개수</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>    p <span class="op">=</span> random.uniform(<span class="dv">0</span>, <span class="dv">1</span>)   <span class="co"># 연결 확률 파라미터</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a>    <span class="cf">return</span> nx.watts_strogatz_graph(n,k,p), [n,k,p]   <span class="co"># 함수를 사용하여 20개의 무작위 그래프 생성</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a></span>
-<span id="cb8-14"><a href="#cb8-14"></a>Gs <span class="op">=</span> [generate_radom() <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(n_graphs)]</span>
-<span id="cb8-15"><a href="#cb8-15"></a></span>
-<span id="cb8-16"><a href="#cb8-16"></a>model <span class="op">=</span> Graph2Vec(dimensions<span class="op">=</span><span class="dv">2</span>, wl_iterations<span class="op">=</span><span class="dv">10</span>)  <span class="co"># 임베딩 벡터 차원수: 2차원</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a>model.fit([x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> Gs])</span>
-<span id="cb8-18"><a href="#cb8-18"></a>embeddings <span class="op">=</span> model.get_embedding()</span>
-<span id="cb8-19"><a href="#cb8-19"></a></span>
-<span id="cb8-20"><a href="#cb8-20"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb8-21"><a href="#cb8-21"></a></span>
-<span id="cb8-22"><a href="#cb8-22"></a><span class="cf">for</span> i,vec <span class="kw">in</span> <span class="bu">enumerate</span>(embeddings):</span>
-<span id="cb8-23"><a href="#cb8-23"></a>    </span>
-<span id="cb8-24"><a href="#cb8-24"></a>    ax.scatter(vec[<span class="dv">0</span>],vec[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb8-25"><a href="#cb8-25"></a>    ax.annotate(<span class="bu">str</span>(i), (vec[<span class="dv">0</span>],vec[<span class="dv">1</span>]), fontsize<span class="op">=</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> karateclub <span class="im">import</span> Graph2Vec</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>n_graphs <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_radom():</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> random.randint(<span class="dv">6</span>, <span class="dv">20</span>)  <span class="co"># 노드 갯수</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> random.randint(<span class="dv">5</span>, n)   <span class="co"># k-최근접 이웃 개수</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> random.uniform(<span class="dv">0</span>, <span class="dv">1</span>)   <span class="co"># 연결 확률 파라미터</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nx.watts_strogatz_graph(n,k,p), [n,k,p]   <span class="co"># 함수를 사용하여 20개의 무작위 그래프 생성</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>Gs <span class="op">=</span> [generate_radom() <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(n_graphs)]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Graph2Vec(dimensions<span class="op">=</span><span class="dv">2</span>, wl_iterations<span class="op">=</span><span class="dv">10</span>)  <span class="co"># 임베딩 벡터 차원수: 2차원</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>model.fit([x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> Gs])</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>embeddings <span class="op">=</span> model.get_embedding()</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,vec <span class="kw">in</span> <span class="bu">enumerate</span>(embeddings):</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    ax.scatter(vec[<span class="dv">0</span>],vec[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="bu">str</span>(i), (vec[<span class="dv">0</span>],vec[<span class="dv">1</span>]), fontsize<span class="op">=</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="graph2_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
@@ -1943,9 +1937,9 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 <li><p>보이지 않는 데이터에 대한 임베딩 벡터는 못얻는다.</p></li>
 <li><p>지도학습/비지도학습 각각 정의 가능</p></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a></span>
-<span id="cb9-2"><a href="#cb9-2"></a>model.fit(graphs_list) <span class="co">#graphs_list 학습</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>embedding<span class="op">=</span>model.get_embedding()[i]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model.fit(graphs_list) <span class="co">#graphs_list 학습</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>embedding<span class="op">=</span>model.get_embedding()[i]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="그래프-자동-인코딩" class="level2">
 <h2 class="anchored" data-anchor-id="그래프-자동-인코딩">그래프 자동 인코딩</h2>
@@ -1953,9 +1947,9 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 <li><p>보이지 않는 인스턴스에 대한 임베딩 벡터도 생성</p></li>
 <li><p>비지도 학습에 적합</p></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2"></a>model.fit(graphs_list) <span class="co">#graphs_list 학습</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>embedding<span class="op">=</span>model.get_embedding(G) <span class="co">#보이지 않는 새로운 그래프 G의 임베딩 벡터 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>model.fit(graphs_list) <span class="co">#graphs_list 학습</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>embedding<span class="op">=</span>model.get_embedding(G) <span class="co">#보이지 않는 새로운 그래프 G의 임베딩 벡터 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="근방-집계" class="level2">
 <h2 class="anchored" data-anchor-id="근방-집계">근방 집계</h2>

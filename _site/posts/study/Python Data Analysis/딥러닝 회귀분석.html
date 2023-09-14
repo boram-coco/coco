@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -565,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1521,12 +1521,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1636,7 +1630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#입력-노드의-드랍-아웃" id="toc-입력-노드의-드랍-아웃" class="nav-link" data-scroll-target="#입력-노드의-드랍-아웃">9. 입력 노드의 드랍 아웃</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="딥러닝 회귀분석.out.ipynb" download="딥러닝 회귀분석.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1718,60 +1712,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="패키지-설정" class="level2">
 <h2 class="anchored" data-anchor-id="패키지-설정">1. 패키지 설정</h2>
 <p>sklearn에서 2.1 이후로 해당 데이터는 사용할 수 없다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_boston</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_boston</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this special case, you can fetch the dataset from the original source::</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">22</span>, header<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    data <span class="op">=</span> np.hstack([raw_df.values[::<span class="dv">2</span>, :], raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, :<span class="dv">2</span>]])</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    target <span class="op">=</span> raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">22</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> np.hstack([raw_df.values[::<span class="dv">2</span>, :], raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, :<span class="dv">2</span>]])</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    target <span class="op">=</span> raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="96718995-f1f6-4b41-a27c-f3b3c585b900" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split  <span class="co">#학습용과 테스트용 분리</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error       <span class="co">#정규화</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#딥러닝 모형화를 위해 keras를 사용</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="im">from</span> keras.models <span class="im">import</span> Sequential                   <span class="co">#Sequential 한층씩 추가하여 네트워크를 만든다.    </span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dense                        <span class="co">#Dense 층 간 노드들은 모두 연결되는 모형구조를 만든다.</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split  <span class="co">#학습용과 테스트용 분리</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error       <span class="co">#정규화</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#딥러닝 모형화를 위해 keras를 사용</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.models <span class="im">import</span> Sequential                   <span class="co">#Sequential 한층씩 추가하여 네트워크를 만든다.    </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dense                        <span class="co">#Dense 층 간 노드들은 모두 연결되는 모형구조를 만든다.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="981d515f-5d28-47d4-a2de-8f3f81c7f832" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a>data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">22</span>)</span>
-<span id="cb4-6"><a href="#cb4-6"></a>data <span class="op">=</span> raw_df.values[:, :<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb4-7"><a href="#cb4-7"></a>target <span class="op">=</span> raw_df.values[:, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">22</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> raw_df.values[:, :<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> raw_df.values[:, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="9500a383-3737-41f4-8c4e-8088106e88c1" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a>data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">21</span>, header<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># 데이터셋에서 14번째 변수(MEDV)는 target 변수로 사용</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co"># 데이터와 target을 분리</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>data2 <span class="op">=</span> np.hstack([raw_df.values[::<span class="dv">2</span>, :], raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, :<span class="dv">3</span>]])</span>
-<span id="cb5-10"><a href="#cb5-10"></a></span>
-<span id="cb5-11"><a href="#cb5-11"></a>feautre_names<span class="op">=</span>[<span class="st">'CRIM'</span>,<span class="st">'ZN'</span>,<span class="st">'INDUS'</span>,<span class="st">'CHAS'</span>,<span class="st">'NOX'</span>,<span class="st">'RM'</span>,<span class="st">'AGE'</span>,<span class="st">'DIS'</span>,<span class="st">'RAD'</span>,<span class="st">'TAX'</span>,<span class="st">'PTRATIO'</span>,<span class="st">'B'</span>,<span class="st">'LSTAT'</span>]</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># 데이터셋의 크기를 확인</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="bu">print</span>(data2.shape)  <span class="co"># (506, 14)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data_url <span class="op">=</span> <span class="st">"http://lib.stat.cmu.edu/datasets/boston"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>raw_df <span class="op">=</span> pd.read_csv(data_url, sep<span class="op">=</span><span class="st">"\s+"</span>, skiprows<span class="op">=</span><span class="dv">21</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터셋에서 14번째 변수(MEDV)는 target 변수로 사용</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터와 target을 분리</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> np.hstack([raw_df.values[::<span class="dv">2</span>, :], raw_df.values[<span class="dv">1</span>::<span class="dv">2</span>, :<span class="dv">3</span>]])</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>feautre_names<span class="op">=</span>[<span class="st">'CRIM'</span>,<span class="st">'ZN'</span>,<span class="st">'INDUS'</span>,<span class="st">'CHAS'</span>,<span class="st">'NOX'</span>,<span class="st">'RM'</span>,<span class="st">'AGE'</span>,<span class="st">'DIS'</span>,<span class="st">'RAD'</span>,<span class="st">'TAX'</span>,<span class="st">'PTRATIO'</span>,<span class="st">'B'</span>,<span class="st">'LSTAT'</span>]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터셋의 크기를 확인</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data2.shape)  <span class="co"># (506, 14)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(506, 14)</code></pre>
 </div>
 </div>
 <div id="3782aaac-738c-46d2-9495-5169f6430fd1" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>data<span class="op">=</span>data2[:,:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb7-2"><a href="#cb7-2"></a>target<span class="op">=</span>data2[:,<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">print</span>(data.shape)  <span class="co"># (506, 13)</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="bu">print</span>(target.shape)  <span class="co"># (506,)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>data2[:,:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>target<span class="op">=</span>data2[:,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.shape)  <span class="co"># (506, 13)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(target.shape)  <span class="co"># (506,)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(506, 13)
 (506,)</code></pre>
@@ -1781,8 +1775,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="데이터준비" class="level2">
 <h2 class="anchored" data-anchor-id="데이터준비">2. 데이터준비</h2>
 <div id="d6c20d30-61c1-4cdf-a8bf-e5940d8aa8f9" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>X<span class="op">=</span>pd.DataFrame(data, columns<span class="op">=</span>feautre_names)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>pd.DataFrame(data, columns<span class="op">=</span>feautre_names)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        CRIM    ZN  INDUS  CHAS    NOX     RM   AGE     DIS  RAD    TAX  \
 0    0.00632  18.0   2.31   0.0  0.538  6.575  65.2  4.0900  1.0  296.0   
@@ -1815,8 +1809,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>-</code> 더미 변수 CHAS제외</p>
 <div id="440aeafe-6d4f-41f6-b0d6-3da314e49b98" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>X<span class="op">=</span>X.drop([<span class="st">'CHAS'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(X.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>X.drop([<span class="st">'CHAS'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      CRIM    ZN  INDUS    NOX     RM   AGE     DIS  RAD    TAX  PTRATIO  \
 0  0.00632  18.0   2.31  0.538  6.575  65.2  4.0900  1.0  296.0     15.3   
@@ -1834,7 +1828,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="9ff54c0d-7aea-468b-b913-acbab76087d9" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>X.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 506 entries, 0 to 505
@@ -1858,8 +1852,8 @@ memory usage: 47.6 KB</code></pre>
 </div>
 </div>
 <div id="9d5815e6-3799-4167-a0ad-41c85605559a" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>y<span class="op">=</span>pd.DataFrame(target)</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="bu">print</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>pd.DataFrame(target)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        0
 0    24.0
@@ -1881,9 +1875,9 @@ memory usage: 47.6 KB</code></pre>
 <section id="탐색적-데이터-분석" class="level2">
 <h2 class="anchored" data-anchor-id="탐색적-데이터-분석">3. 탐색적 데이터 분석</h2>
 <div id="9e8d909f-141c-4255-a6bc-8c3c866afd9b" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>boston_df<span class="op">=</span>pd.DataFrame(data<span class="op">=</span>X)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>boston_df[<span class="st">"MEDIV"</span>]<span class="op">=</span>target</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="bu">print</span>(boston_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>boston_df<span class="op">=</span>pd.DataFrame(data<span class="op">=</span>X)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>boston_df[<span class="st">"MEDIV"</span>]<span class="op">=</span>target</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(boston_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        CRIM    ZN  INDUS    NOX     RM   AGE     DIS  RAD    TAX  PTRATIO  \
 0    0.00632  18.0   2.31  0.538  6.575  65.2  4.0900  1.0  296.0     15.3   
@@ -1916,19 +1910,19 @@ memory usage: 47.6 KB</code></pre>
 </div>
 <p><code>-</code> 히스토그램</p>
 <div id="db4636e6-9ada-451c-9f45-b7b609612301" class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">#목표변수 값 히스토그램</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">10</span>,<span class="dv">5</span>)})</span>
-<span id="cb19-3"><a href="#cb19-3"></a>sns.distplot(boston_df[<span class="st">'MEDIV'</span>],bins<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb19-4"><a href="#cb19-4"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#목표변수 값 히스토그램</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">10</span>,<span class="dv">5</span>)})</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sns.distplot(boston_df[<span class="st">'MEDIV'</span>],bins<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="딥러닝 회귀분석_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 상관계수</p>
 <div id="db66b582-fc8e-41b7-aba9-3b7d6ad8a685" class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># 각 변수별 상관계수</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>correlation_matrix<span class="op">=</span>boston_df.corr().<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb20-3"><a href="#cb20-3"></a>correlation_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 각 변수별 상관계수</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>correlation_matrix<span class="op">=</span>boston_df.corr().<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>correlation_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <div>
 
@@ -2168,9 +2162,9 @@ memory usage: 47.6 KB</code></pre>
 </div>
 </div>
 <div id="a723107f-0674-49fa-a2c9-3014a3e5bc6d" class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">10</span>,<span class="dv">8</span>)})</span>
-<span id="cb21-2"><a href="#cb21-2"></a>sns.heatmap(data<span class="op">=</span>correlation_matrix,annot<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-3"><a href="#cb21-3"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">10</span>,<span class="dv">8</span>)})</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(data<span class="op">=</span>correlation_matrix,annot<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="딥러닝 회귀분석_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
@@ -2182,14 +2176,14 @@ memory usage: 47.6 KB</code></pre>
 <li>학습용과 테스트용 데이터를 7:3으로 분리하자.</li>
 </ul>
 <div id="ad4901c7-0e7e-4350-9caa-cec03b0ea8a1" class="cell" data-execution_count="97">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>X.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>X.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="97">
 <pre><code>(506, 13)</code></pre>
 </div>
 </div>
 <div id="641078c3-e21c-42d2-bb14-4916c47bc9a7" class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>X<span class="op">=</span>X.drop([<span class="st">'MEDIV'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>X.drop([<span class="st">'MEDIV'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="99">
 <div>
 
@@ -2386,7 +2380,7 @@ memory usage: 47.6 KB</code></pre>
 </div>
 </div>
 <div id="7f107ee1-eb6c-41ec-b05a-efbd4fad867c" class="cell" data-execution_count="100">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X,y,test_size<span class="op">=</span><span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X,y,test_size<span class="op">=</span><span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="피처-스케일링" class="level2">
@@ -2395,20 +2389,20 @@ memory usage: 47.6 KB</code></pre>
 <li>학습용 입력 데이터에 대한 정규화 스케일러 만들고 입력데이터를 0~1로 정규화하기</li>
 </ul>
 <div id="faa1284b-c901-4682-9df7-caf7b3e471d8" class="cell" data-execution_count="101">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># 정규화 스케일러 생성</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>scalerX<span class="op">=</span>MinMaxScaler()</span>
-<span id="cb26-3"><a href="#cb26-3"></a></span>
-<span id="cb26-4"><a href="#cb26-4"></a><span class="co"># 정규화 스케일러를 학습용 데이터에 맞춤</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a>scalerX.fit(X_train)</span>
-<span id="cb26-6"><a href="#cb26-6"></a></span>
-<span id="cb26-7"><a href="#cb26-7"></a><span class="co"># 정규화 스케일러로 학습용 데이터 변환</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a>X_train_norm<span class="op">=</span>scalerX.transform(X_train)</span>
-<span id="cb26-9"><a href="#cb26-9"></a></span>
-<span id="cb26-10"><a href="#cb26-10"></a><span class="co"># 정규화 스케일러로 테스트용 데이터 변환</span></span>
-<span id="cb26-11"><a href="#cb26-11"></a>X_test_norm <span class="op">=</span> scalerX.transform(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화 스케일러 생성</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>scalerX<span class="op">=</span>MinMaxScaler()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화 스케일러를 학습용 데이터에 맞춤</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>scalerX.fit(X_train)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화 스케일러로 학습용 데이터 변환</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>X_train_norm<span class="op">=</span>scalerX.transform(X_train)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화 스케일러로 테스트용 데이터 변환</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>X_test_norm <span class="op">=</span> scalerX.transform(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="0e409092-4a36-4935-aee1-ba8ae74bec1d" class="cell" data-execution_count="102">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="bu">print</span>(X_train_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[0.00680253 0.2        0.11962963 ... 0.04255319 0.98184477 0.08724646]
  [0.07235853 0.         0.64296296 ... 0.80851064 0.24617984 0.27924423]
@@ -2420,13 +2414,13 @@ memory usage: 47.6 KB</code></pre>
 </div>
 </div>
 <div id="9ab280b9-cbbf-4e3a-aeb2-50ae14350255" class="cell" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>X_train_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>X_train_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="103">
 <pre><code>(354, 12)</code></pre>
 </div>
 </div>
 <div id="1fa753ab-f414-4689-b46e-cd9613bbbde2" class="cell" data-execution_count="104">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="bu">print</span>(X_test_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_test_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 2.05400974e-02  0.00000000e+00  6.97777778e-01 ...  2.23404255e-01
    9.81617832e-01 -1.66712976e-03]
@@ -2444,26 +2438,26 @@ memory usage: 47.6 KB</code></pre>
 </div>
 </div>
 <div id="212d2164-4205-4bec-ac0b-813a3a64acfd" class="cell" data-execution_count="105">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>X_test_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>X_test_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="105">
 <pre><code>(152, 12)</code></pre>
 </div>
 </div>
 <div id="98413eff-dfec-4674-abc2-0d46d67c08eb" class="cell" data-execution_count="106">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># 정규화 스케일러 생성</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>scalerY<span class="op">=</span>MinMaxScaler()</span>
-<span id="cb35-3"><a href="#cb35-3"></a></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="co"># 정규화 스케일러를 학습용 데이터에 맞춤</span></span>
-<span id="cb35-5"><a href="#cb35-5"></a>scalerY.fit(y_train)</span>
-<span id="cb35-6"><a href="#cb35-6"></a></span>
-<span id="cb35-7"><a href="#cb35-7"></a><span class="co"># 정규화 스케일러로 학습용 데이터 변환</span></span>
-<span id="cb35-8"><a href="#cb35-8"></a>y_train_norm<span class="op">=</span>scalerY.transform(y_train)</span>
-<span id="cb35-9"><a href="#cb35-9"></a></span>
-<span id="cb35-10"><a href="#cb35-10"></a><span class="co"># 정규화 스케일러로 테스트용 데이터 변환</span></span>
-<span id="cb35-11"><a href="#cb35-11"></a>y_test_norm <span class="op">=</span> scalerY.transform(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화 스케일러 생성</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>scalerY<span class="op">=</span>MinMaxScaler()</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화 스케일러를 학습용 데이터에 맞춤</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>scalerY.fit(y_train)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화 스케일러로 학습용 데이터 변환</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>y_train_norm<span class="op">=</span>scalerY.transform(y_train)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화 스케일러로 테스트용 데이터 변환</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>y_test_norm <span class="op">=</span> scalerY.transform(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="729cbe2d-dcb4-4a07-8cf2-0b21652bf36b" class="cell" data-execution_count="107">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="bu">print</span>(y_train_norm[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train_norm[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1.        ]
  [0.24666667]
@@ -2478,13 +2472,13 @@ memory usage: 47.6 KB</code></pre>
 </div>
 </div>
 <div id="c224e047-25b3-459c-a949-2cf55f079dd5" class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>y_train_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>y_train_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="108">
 <pre><code>(354, 1)</code></pre>
 </div>
 </div>
 <div id="b7af0c7a-e267-426f-9bc3-f3c0864fda48" class="cell" data-execution_count="109">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="bu">print</span>(y_test_norm[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_test_norm[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1.        ]
  [0.23555556]
@@ -2499,7 +2493,7 @@ memory usage: 47.6 KB</code></pre>
 </div>
 </div>
 <div id="d4acf923-81e6-4afd-a413-510191a18526" class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>y_test_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>y_test_norm.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="110">
 <pre><code>(152, 1)</code></pre>
 </div>
@@ -2508,14 +2502,14 @@ memory usage: 47.6 KB</code></pre>
 <section id="모형화-및-학습" class="level2">
 <h2 class="anchored" data-anchor-id="모형화-및-학습">6. 모형화 및 학습</h2>
 <div id="4cf3a4b6-94f7-48d2-b581-9c2311849a99" class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
-<span id="cb44-3"><a href="#cb44-3"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
-<span id="cb44-4"><a href="#cb44-4"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
-<span id="cb44-5"><a href="#cb44-5"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ed0e0e56-0cb7-418e-87d3-90e082f364db" class="cell" data-execution_count="112">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "sequential_3"
 _________________________________________________________________
@@ -2540,15 +2534,15 @@ _________________________________________________________________</code></pre>
 <li>Param : 가중치 12x60=720, 편향:60</li>
 </ul>
 <div id="114bb6c5-0ce0-48b1-92de-96305d4ba4db" class="cell" data-execution_count="113">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
-<span id="cb47-2"><a href="#cb47-2"></a>              loss<span class="op">=</span><span class="st">'mse'</span>,</span>
-<span id="cb47-3"><a href="#cb47-3"></a>              metrics<span class="op">=</span>[<span class="st">'mae'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">'mse'</span>,</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'mae'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 학습</p>
 <div id="7d32464f-da3b-4fc6-9977-04da6e2cac9b" class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>results<span class="op">=</span>model.fit(X_train_norm, y_train_norm,</span>
-<span id="cb48-2"><a href="#cb48-2"></a>                  validation_data<span class="op">=</span>(X_test_norm, y_test_norm),</span>
-<span id="cb48-3"><a href="#cb48-3"></a>                  epochs<span class="op">=</span><span class="dv">200</span>, batch_size<span class="op">=</span><span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>results<span class="op">=</span>model.fit(X_train_norm, y_train_norm,</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>                  validation_data<span class="op">=</span>(X_test_norm, y_test_norm),</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>                  epochs<span class="op">=</span><span class="dv">200</span>, batch_size<span class="op">=</span><span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/200
 12/12 [==============================] - 0s 7ms/step - loss: 0.1031 - mae: 0.2534 - val_loss: 0.0570 - val_mae: 0.1836
@@ -2953,7 +2947,7 @@ Epoch 200/200
 </div>
 </div>
 <div id="67b0c4b0-0702-4387-995c-8dca522610a5" class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="bu">print</span>(results.history.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.history.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>dict_keys(['loss', 'mae', 'val_loss', 'val_mae'])</code></pre>
 </div>
@@ -2965,29 +2959,29 @@ Epoch 200/200
 <li><p>val_mae : 테스트 데이터 오차</p></li>
 </ul>
 <div id="43360a3d-90c0-43b8-9ac5-ed115ada385c" class="cell" data-execution_count="118">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># 학습 수에 따른 loss 변화</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
-<span id="cb52-3"><a href="#cb52-3"></a>plt.plot(results.history[<span class="st">'loss'</span>]) </span>
-<span id="cb52-4"><a href="#cb52-4"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
-<span id="cb52-5"><a href="#cb52-5"></a>plt.title(<span class="st">'loss'</span>)</span>
-<span id="cb52-6"><a href="#cb52-6"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
-<span id="cb52-7"><a href="#cb52-7"></a>plt.ylabel(<span class="st">'loss'</span>)</span>
-<span id="cb52-8"><a href="#cb52-8"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb52-9"><a href="#cb52-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습 수에 따른 loss 변화</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>plt.plot(results.history[<span class="st">'loss'</span>]) </span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'loss'</span>)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'loss'</span>)</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="딥러닝 회귀분석_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="225ea997-bbd2-4113-98fa-a9e4ccd08d13" class="cell" data-execution_count="119">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># 학습 수에 따른 정확도(mae) 변화</span></span>
-<span id="cb53-2"><a href="#cb53-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
-<span id="cb53-3"><a href="#cb53-3"></a>plt.plot(results.history[<span class="st">'mae'</span>]) </span>
-<span id="cb53-4"><a href="#cb53-4"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
-<span id="cb53-5"><a href="#cb53-5"></a>plt.title(<span class="st">'accuracy(MAE)'</span>)</span>
-<span id="cb53-6"><a href="#cb53-6"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
-<span id="cb53-7"><a href="#cb53-7"></a>plt.ylabel(<span class="st">'accuracy'</span>)</span>
-<span id="cb53-8"><a href="#cb53-8"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb53-9"><a href="#cb53-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습 수에 따른 정확도(mae) 변화</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>plt.plot(results.history[<span class="st">'mae'</span>]) </span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'accuracy(MAE)'</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'accuracy'</span>)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="딥러닝 회귀분석_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
 </div>
@@ -2996,12 +2990,12 @@ Epoch 200/200
 <section id="예측" class="level2">
 <h2 class="anchored" data-anchor-id="예측">7. 예측</h2>
 <div id="91236ae6-0679-4fd2-8e5d-fcfefab839a3" class="cell" data-execution_count="120">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># 테스트 데이터 예측</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a>y_pred<span class="op">=</span>model.predict(X_test_norm).flatten()</span>
-<span id="cb54-3"><a href="#cb54-3"></a></span>
-<span id="cb54-4"><a href="#cb54-4"></a><span class="co"># 예측 값의 역변환</span></span>
-<span id="cb54-5"><a href="#cb54-5"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb54-6"><a href="#cb54-6"></a><span class="bu">print</span>(y_pred_inverse[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 예측</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>y_pred<span class="op">=</span>model.predict(X_test_norm).flatten()</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 예측 값의 역변환</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_pred_inverse[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5/5 [==============================] - 0s 540us/step
 [[50.411358 ]
@@ -3017,23 +3011,23 @@ Epoch 200/200
 </div>
 </div>
 <div id="b0e023a7-cb65-45be-aac7-eb6be24efb1d" class="cell" data-execution_count="123">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># 오차측정(MAE)</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a><span class="bu">print</span>(<span class="st">'MAE:</span><span class="sc">%.2f</span><span class="st">'</span> <span class="op">%</span>mean_absolute_error(y_test, y_pred_inverse))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 오차측정(MAE)</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'MAE:</span><span class="sc">%.2f</span><span class="st">'</span> <span class="op">%</span>mean_absolute_error(y_test, y_pred_inverse))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>MAE:2.28</code></pre>
 </div>
 </div>
 <div id="29fff390-7588-4a63-8e79-d28d39ea6225" class="cell" data-execution_count="124">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># 실제 값 대비 예측 값의 산포도</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">7</span>))</span>
-<span id="cb58-3"><a href="#cb58-3"></a>plt.scatter(y_test_norm,y_pred,c<span class="op">=</span><span class="st">'r'</span>)</span>
-<span id="cb58-4"><a href="#cb58-4"></a>plt.xlabel(<span class="st">'TrueValues'</span>)</span>
-<span id="cb58-5"><a href="#cb58-5"></a>plt.ylabel(<span class="st">'Predictions'</span>)</span>
-<span id="cb58-6"><a href="#cb58-6"></a>plt.axis(<span class="st">'equal'</span>)</span>
-<span id="cb58-7"><a href="#cb58-7"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb58-8"><a href="#cb58-8"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb58-9"><a href="#cb58-9"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">0</span>,<span class="dv">1</span>])</span>
-<span id="cb58-10"><a href="#cb58-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 실제 값 대비 예측 값의 산포도</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">7</span>))</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test_norm,y_pred,c<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'TrueValues'</span>)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Predictions'</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">0</span>,<span class="dv">1</span>])</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="딥러닝 회귀분석_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
 </div>
@@ -3042,19 +3036,19 @@ Epoch 200/200
 <section id="드랍아웃-모형-추가" class="level2">
 <h2 class="anchored" data-anchor-id="드랍아웃-모형-추가">8. 드랍아웃 모형 추가</h2>
 <div id="ae71a917-9ef3-45c4-8590-7babb67caff9" class="cell" data-execution_count="125">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dropout</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dropout</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ca47d790-0700-4691-baeb-1802cd36fea3" class="cell" data-execution_count="137">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
-<span id="cb60-2"><a href="#cb60-2"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
-<span id="cb60-3"><a href="#cb60-3"></a>model.add(Dropout(<span class="fl">0.5</span>)) <span class="co"># 제 1은닉충과 2은닉충 사이의 드롭 아웃 50%</span></span>
-<span id="cb60-4"><a href="#cb60-4"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
-<span id="cb60-5"><a href="#cb60-5"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
-<span id="cb60-6"><a href="#cb60-6"></a>model.add(Dropout(<span class="fl">0.2</span>)) <span class="co"># 제 3은닉충과 출력층 사이의 드롭 아웃 20%</span></span>
-<span id="cb60-7"><a href="#cb60-7"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>model.add(Dropout(<span class="fl">0.5</span>)) <span class="co"># 제 1은닉충과 2은닉충 사이의 드롭 아웃 50%</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>model.add(Dropout(<span class="fl">0.2</span>)) <span class="co"># 제 3은닉충과 출력층 사이의 드롭 아웃 20%</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="6faa43b1-cf75-4713-a313-09797559732e" class="cell" data-execution_count="138">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "sequential_5"
 _________________________________________________________________
@@ -3080,56 +3074,56 @@ _________________________________________________________________</code></pre>
 </div>
 </div>
 <div id="bca154c7-0df3-499e-acf6-aed439d4c74b" class="cell" data-execution_count="139">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
-<span id="cb63-2"><a href="#cb63-2"></a>              loss<span class="op">=</span><span class="st">'mse'</span>,</span>
-<span id="cb63-3"><a href="#cb63-3"></a>              metrics<span class="op">=</span>[<span class="st">'mae'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">'mse'</span>,</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'mae'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="60ff24ec-05b7-42ce-bec3-f19f7551702e" class="cell" data-execution_count="143">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a><span class="co"># results=model.fit(X_train_norm, y_train_norm,</span></span>
-<span id="cb64-2"><a href="#cb64-2"></a><span class="co">#                   validation_data=(X_test_norm, y_test_norm),</span></span>
-<span id="cb64-3"><a href="#cb64-3"></a><span class="co">#                   epochs=1000, batch_size=20)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># results=model.fit(X_train_norm, y_train_norm,</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                   validation_data=(X_test_norm, y_test_norm),</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                   epochs=1000, batch_size=20)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="f7e909af-cc38-4823-9e85-5ee3780c86b2" class="cell" data-execution_count="141">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="bu">print</span>(results.history.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.history.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>dict_keys(['loss', 'mae', 'val_loss', 'val_mae'])</code></pre>
 </div>
 </div>
 <div id="76c4cf1d-ca9f-491a-954b-c9357a17fda8" class="cell" data-execution_count="142">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a><span class="co"># 학습 수에 따른 loss 변화</span></span>
-<span id="cb67-2"><a href="#cb67-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
-<span id="cb67-3"><a href="#cb67-3"></a>plt.plot(results.history[<span class="st">'loss'</span>]) </span>
-<span id="cb67-4"><a href="#cb67-4"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
-<span id="cb67-5"><a href="#cb67-5"></a>plt.title(<span class="st">'loss'</span>)</span>
-<span id="cb67-6"><a href="#cb67-6"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
-<span id="cb67-7"><a href="#cb67-7"></a>plt.ylabel(<span class="st">'loss'</span>)</span>
-<span id="cb67-8"><a href="#cb67-8"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb67-9"><a href="#cb67-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습 수에 따른 loss 변화</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>plt.plot(results.history[<span class="st">'loss'</span>]) </span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'loss'</span>)</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'loss'</span>)</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="딥러닝 회귀분석_files/figure-html/cell-43-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="ec2e9c06-ba43-4004-a464-3a186959615f" class="cell" data-execution_count="144">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># 학습 수에 따른 정확도(mae) 변화</span></span>
-<span id="cb68-2"><a href="#cb68-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
-<span id="cb68-3"><a href="#cb68-3"></a>plt.plot(results.history[<span class="st">'mae'</span>]) </span>
-<span id="cb68-4"><a href="#cb68-4"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
-<span id="cb68-5"><a href="#cb68-5"></a>plt.title(<span class="st">'accuracy(MAE)'</span>)</span>
-<span id="cb68-6"><a href="#cb68-6"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
-<span id="cb68-7"><a href="#cb68-7"></a>plt.ylabel(<span class="st">'accuracy'</span>)</span>
-<span id="cb68-8"><a href="#cb68-8"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb68-9"><a href="#cb68-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습 수에 따른 정확도(mae) 변화</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>plt.plot(results.history[<span class="st">'mae'</span>]) </span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>plt.plot(results.history[<span class="st">'val_loss'</span>])</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'accuracy(MAE)'</span>)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'epoch'</span>)</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'accuracy'</span>)</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'train'</span>,<span class="st">'test'</span>],loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="딥러닝 회귀분석_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="614a0045-34d1-492b-9c67-a0491dec678d" class="cell" data-execution_count="145">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a><span class="co"># 테스트 데이터 예측</span></span>
-<span id="cb69-2"><a href="#cb69-2"></a>y_pred<span class="op">=</span>model.predict(X_test_norm).flatten()</span>
-<span id="cb69-3"><a href="#cb69-3"></a></span>
-<span id="cb69-4"><a href="#cb69-4"></a><span class="co"># 예측 값의 역변환</span></span>
-<span id="cb69-5"><a href="#cb69-5"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb69-6"><a href="#cb69-6"></a><span class="bu">print</span>(y_pred_inverse[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 예측</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>y_pred<span class="op">=</span>model.predict(X_test_norm).flatten()</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 예측 값의 역변환</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_pred_inverse[<span class="dv">0</span>:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5/5 [==============================] - 0s 517us/step
 [[36.150234]
@@ -3145,23 +3139,23 @@ _________________________________________________________________</code></pre>
 </div>
 </div>
 <div id="278c643f-fb57-4e35-b720-c688f650090d" class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a><span class="co"># 오차측정(MAE)</span></span>
-<span id="cb71-2"><a href="#cb71-2"></a><span class="bu">print</span>(<span class="st">'MAE:</span><span class="sc">%.2f</span><span class="st">'</span> <span class="op">%</span>mean_absolute_error(y_test, y_pred_inverse))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 오차측정(MAE)</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'MAE:</span><span class="sc">%.2f</span><span class="st">'</span> <span class="op">%</span>mean_absolute_error(y_test, y_pred_inverse))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>MAE:3.00</code></pre>
 </div>
 </div>
 <div id="28dff306-1ad5-4dfe-ae35-0c195838b8bd" class="cell" data-execution_count="147">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># 실제 값 대비 예측 값의 산포도</span></span>
-<span id="cb73-2"><a href="#cb73-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">7</span>))</span>
-<span id="cb73-3"><a href="#cb73-3"></a>plt.scatter(y_test_norm,y_pred,c<span class="op">=</span><span class="st">'r'</span>)</span>
-<span id="cb73-4"><a href="#cb73-4"></a>plt.xlabel(<span class="st">'TrueValues'</span>)</span>
-<span id="cb73-5"><a href="#cb73-5"></a>plt.ylabel(<span class="st">'Predictions'</span>)</span>
-<span id="cb73-6"><a href="#cb73-6"></a>plt.axis(<span class="st">'equal'</span>)</span>
-<span id="cb73-7"><a href="#cb73-7"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb73-8"><a href="#cb73-8"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb73-9"><a href="#cb73-9"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">0</span>,<span class="dv">1</span>])</span>
-<span id="cb73-10"><a href="#cb73-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 실제 값 대비 예측 값의 산포도</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">7</span>))</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test_norm,y_pred,c<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'TrueValues'</span>)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Predictions'</span>)</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">0</span>,<span class="dv">1</span>])</span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="딥러닝 회귀분석_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
 </div>
@@ -3169,12 +3163,12 @@ _________________________________________________________________</code></pre>
 </section>
 <section id="입력-노드의-드랍-아웃" class="level2">
 <h2 class="anchored" data-anchor-id="입력-노드의-드랍-아웃">9. 입력 노드의 드랍 아웃</h2>
-<div class="sourceCode" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
-<span id="cb74-2"><a href="#cb74-2"></a>model.add(Dropout(<span class="fl">0.2</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 입력 노드에 대한 드랍아웃 비율 0.2</span></span>
-<span id="cb74-3"><a href="#cb74-3"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
-<span id="cb74-4"><a href="#cb74-4"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
-<span id="cb74-5"><a href="#cb74-5"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
-<span id="cb74-6"><a href="#cb74-6"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>model<span class="op">=</span>Sequential() <span class="co"># 순차모형</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>model.add(Dropout(<span class="fl">0.2</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 입력 노드에 대한 드랍아웃 비율 0.2</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">12</span>,))) <span class="co"># 제 1은닉충과 입력층</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">60</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 2은닉충</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">30</span>,activation<span class="op">=</span><span class="st">'relu'</span>)) <span class="co"># 제 3은닉충</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">1</span>)) <span class="co"># 출력층 (선형 활섬화함수)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

@@ -552,7 +552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -564,7 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1520,12 +1520,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1623,7 +1617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#기계학습특강" id="toc-기계학습특강" class="nav-link active" data-scroll-target="#기계학습특강">기계학습특강</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022_09_07_(1주차)_9월7일_ipynb의_사본.out.ipynb" download="2022_09_07_(1주차)_9월7일_ipynb의_사본.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1664,14 +1658,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="기계학습특강" class="level1">
 <h1>기계학습특강</h1>
 <div id="5e83e8ba-c757-4852-8e74-d3f92d5ebb51" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 우리의 1차 목표: 이미지 -&gt; 개/고양이 판단하는 모형을 채용하고, 그 모형에 데이터를 넣어서 학습하고, 그 모형의 결과를 판단하고 싶다. (즉 클래시파이어를 만든다는 소리)</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># 우리의 2차 목표: 그 모형에 "새로운" 자료를 전달하여 이미지를 분류할 것이다. (즉 클래시파이어를 쓴다는 소리)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 우리의 1차 목표: 이미지 -&gt; 개/고양이 판단하는 모형을 채용하고, 그 모형에 데이터를 넣어서 학습하고, 그 모형의 결과를 판단하고 싶다. (즉 클래시파이어를 만든다는 소리)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 우리의 2차 목표: 그 모형에 "새로운" 자료를 전달하여 이미지를 분류할 것이다. (즉 클래시파이어를 쓴다는 소리)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="Jh1JOMLsamvn" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="oFTzjshrap6W" class="cell" data-outputid="149b225c-20ff-4f1c-fe06-748100e96c65">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>path<span class="op">=</span>untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>path<span class="op">=</span>untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1700,51 +1694,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="HnuuxTfSn0Ai" class="cell" data-outputid="71b4d7e8-98b1-49e5-b188-da90c0985026">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>Path('/root/.fastai/data/oxford-iiit-pet/images')</code></pre>
 </div>
 </div>
 <div id="h5OmBgfooLgY" class="cell" data-outputid="cf32327b-9ef5-47f5-8bb7-552533f9f63f">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <p><img src="2022_09_07_(1주차)_9월7일_ipynb의_사본_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="DSEVz98go_Ik" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>_lst <span class="op">=</span> <span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>,<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_10.jpg'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>_lst <span class="op">=</span> <span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</span>,<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_10.jpg'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="1v3uKie9pC-p" class="cell" data-outputid="466235fe-fa57-4128-f10c-b2ce284771e6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>_lst[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>_lst[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>'/root/.fastai/data/oxford-iiit-pet/images/Abyssinian_1.jpg'</code></pre>
 </div>
 </div>
 <div id="IKV3TczZpORq" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>faaaa <span class="op">=</span> get_image_files(path)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co">#교수님은 filenames로 설정함</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>faaaa <span class="op">=</span> get_image_files(path)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#교수님은 filenames로 설정함</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="YshSh1joptU8" class="cell" data-outputid="f92ae253-9e40-425b-a795-d84b921d718d">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>faaaa[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>faaaa[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>Path('/root/.fastai/data/oxford-iiit-pet/images/leonberger_137.jpg')</code></pre>
 </div>
 </div>
 <div id="_vN6BY_up4fb" class="cell" data-outputid="44d95246-8273-4b24-ba14-c8e40dbeba24">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/newfoundland_28.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>PILImage.create(<span class="st">'/root/.fastai/data/oxford-iiit-pet/images/newfoundland_28.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <p><img src="2022_09_07_(1주차)_9월7일_ipynb의_사본_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="15PPUyP5qAuT" class="cell" data-outputid="a64a16c1-681d-41d6-97d9-74cf0cf21fa3">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>PILImage.create(faaaa[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PILImage.create(faaaa[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <p><img src="2022_09_07_(1주차)_9월7일_ipynb의_사본_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="qnkyFP8_qOmE" class="cell" data-outputid="6267faa6-8da6-4e11-b94e-8c88afd8b79f">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="bu">print</span>(faaaa[<span class="dv">1</span>])</span>
-<span id="cb15-2"><a href="#cb15-2"></a>PILImage.create(faaaa[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(faaaa[<span class="dv">1</span>])</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(faaaa[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/Birman_139.jpg</code></pre>
 </div>
@@ -1753,8 +1747,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="IPrzQrhDqcUR" class="cell" data-outputid="b9a22934-0fd8-4713-c789-f98873bc9a91">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="bu">print</span>(faaaa[<span class="dv">3</span>])</span>
-<span id="cb17-2"><a href="#cb17-2"></a>PILImage.create(faaaa[<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(faaaa[<span class="dv">3</span>])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(faaaa[<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/Egyptian_Mau_148.jpg</code></pre>
 </div>
@@ -1763,8 +1757,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="OTdOwKdQqjKi" class="cell" data-outputid="0810c0f2-8058-4ee5-f100-12aaacd18845">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="bu">print</span>(faaaa[<span class="dv">6</span>])</span>
-<span id="cb19-2"><a href="#cb19-2"></a>PILImage.create(faaaa[<span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(faaaa[<span class="dv">6</span>])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>PILImage.create(faaaa[<span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/root/.fastai/data/oxford-iiit-pet/images/Siamese_79.jpg</code></pre>
 </div>
@@ -1773,61 +1767,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="rbjQ-UokqvM5" class="cell" data-outputid="c331e84f-e2b1-40be-fa9b-0cb125cedc27">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">'A'</span>.isupper()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">'A'</span>.isupper()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>True</code></pre>
 </div>
 </div>
 <div id="YLpG7GqjrvvJ" class="cell" data-outputid="31f1a29e-1d12-46c5-ba84-c3d791b6791f">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">'abdjlkfwe.jpg'</span>[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">'abdjlkfwe.jpg'</span>[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>'a'</code></pre>
 </div>
 </div>
 <div id="HWNaom3asAKI" class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">def</span> f(fname):</span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="cf">if</span> fname[<span class="dv">0</span>].isupper():</span>
-<span id="cb25-3"><a href="#cb25-3"></a>    <span class="cf">return</span> <span class="st">'cat'</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="cf">else</span>:</span>
-<span id="cb25-5"><a href="#cb25-5"></a>    <span class="cf">return</span> <span class="st">'dog'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(fname):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> fname[<span class="dv">0</span>].isupper():</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'cat'</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'dog'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="Ctn7Y_5Zs60J" class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>dls <span class="op">=</span> ImageDataLoaders.from_name_func(path,faaaa,f,item_tfms<span class="op">=</span>Resize(<span class="dv">224</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> ImageDataLoaders.from_name_func(path,faaaa,f,item_tfms<span class="op">=</span>Resize(<span class="dv">224</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8i-dR6KFtYua" class="cell" data-outputid="4612d15b-e5b3-4029-d3be-807612cc50a1">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022_09_07_(1주차)_9월7일_ipynb의_사본_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="zNsSnCQ2tvQK" class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># 우리의 1차 목표: 이미지 -&gt; 개/고양이 판단하는 모형을 채용하고, 그 모형에 데이터를 넣어서 학습하고, 그 모형의 결과를 판단하고 싶다. (즉 클래시파이어를 만든다는 소리)</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="co"># 우리의 2차 목표: 그 모형에 "새로운" 자료를 전달하여 이미지를 분류할 것이다. (즉 클래시파이어를 쓴다는 소리)</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a></span>
-<span id="cb28-4"><a href="#cb28-4"></a></span>
-<span id="cb28-5"><a href="#cb28-5"></a></span>
-<span id="cb28-6"><a href="#cb28-6"></a><span class="co">## 오브젝트.. 오브젝트에는 동사와 명사 가 있어요</span></span>
-<span id="cb28-7"><a href="#cb28-7"></a></span>
-<span id="cb28-8"><a href="#cb28-8"></a><span class="co">### 명사</span></span>
-<span id="cb28-9"><a href="#cb28-9"></a><span class="co"># (1) 데이터</span></span>
-<span id="cb28-10"><a href="#cb28-10"></a><span class="co"># (2) 채용한 모형의 이론</span></span>
-<span id="cb28-11"><a href="#cb28-11"></a><span class="co"># (3) 평가기준 matric</span></span>
-<span id="cb28-12"><a href="#cb28-12"></a></span>
-<span id="cb28-13"><a href="#cb28-13"></a></span>
-<span id="cb28-14"><a href="#cb28-14"></a></span>
-<span id="cb28-15"><a href="#cb28-15"></a></span>
-<span id="cb28-16"><a href="#cb28-16"></a><span class="co">### 동사</span></span>
-<span id="cb28-17"><a href="#cb28-17"></a><span class="co"># (1) 학습</span></span>
-<span id="cb28-18"><a href="#cb28-18"></a><span class="co"># (2) 판단</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 우리의 1차 목표: 이미지 -&gt; 개/고양이 판단하는 모형을 채용하고, 그 모형에 데이터를 넣어서 학습하고, 그 모형의 결과를 판단하고 싶다. (즉 클래시파이어를 만든다는 소리)</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 우리의 2차 목표: 그 모형에 "새로운" 자료를 전달하여 이미지를 분류할 것이다. (즉 클래시파이어를 쓴다는 소리)</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">## 오브젝트.. 오브젝트에는 동사와 명사 가 있어요</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">### 명사</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) 데이터</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) 채용한 모형의 이론</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co"># (3) 평가기준 matric</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">### 동사</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) 학습</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) 판단</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="7mqqdLf6vVLK" class="cell" data-outputid="be1dab5d-df18-4fc8-fc8c-f19a92c5e0a8">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>ysj <span class="op">=</span> cnn_learner(dls,resnet34,metrics<span class="op">=</span>error_rate)</span>
-<span id="cb29-2"><a href="#cb29-2"></a></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="co">##저항률 확인(잘 파악하는지 확인하기 위해서 metrics=error_rate 이용)</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a></span>
-<span id="cb29-5"><a href="#cb29-5"></a>ysj.fine_tune(<span class="dv">1</span>)                  </span>
-<span id="cb29-6"><a href="#cb29-6"></a>              <span class="co">## 3을 쓰면 1보다는 많이 한다는 뜻  </span></span>
-<span id="cb29-7"><a href="#cb29-7"></a>              <span class="co">## 학습하다..동사,,</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ysj <span class="op">=</span> cnn_learner(dls,resnet34,metrics<span class="op">=</span>error_rate)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">##저항률 확인(잘 파악하는지 확인하기 위해서 metrics=error_rate 이용)</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>ysj.fine_tune(<span class="dv">1</span>)                  </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>              <span class="co">## 3을 쓰면 1보다는 많이 한다는 뜻  </span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>              <span class="co">## 학습하다..동사,,</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/usr/local/lib/python3.7/dist-packages/fastai/vision/learner.py:284: UserWarning: `cnn_learner` has been renamed to `vision_learner` -- please update your code
   warn("`cnn_learner` has been renamed to `vision_learner` -- please update your code")
@@ -1924,16 +1918,16 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="VMOwVvn5w1eg" class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>?cnn_learner</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>?cnn_learner</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="vAj1frtB06rJ" class="cell" data-outputid="f890cb96-8328-43ff-9399-2639be893adb">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>PILImage.create(faaaa[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>PILImage.create(faaaa[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <p><img src="2022_09_07_(1주차)_9월7일_ipynb의_사본_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="PNF3VIFizg1R" class="cell" data-outputid="1a7a60cb-5250-4fed-938a-6dd18f2f0789">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>ysj.predict(PILImage.create(faaaa[<span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ysj.predict(PILImage.create(faaaa[<span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1961,7 +1955,7 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 <p>ysj.predict(PILImage.create(faaaa[6])) #동사이고.. 뒤에 점찍었으니까 함수다 생각하기 # 입력을 이미지 자체로 넣었는데, 이미지가 저장된 path만 넣어도 되지않을까?</p>
 <div id="CuELwzAp15uC" class="cell" data-outputid="8d773d51-5b50-459c-c2c7-9a4146f392f3">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>ysj.predict(faaaa[<span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ysj.predict(faaaa[<span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1988,7 +1982,7 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="F3tBEzdk2Ct7" class="cell" data-outputid="e813cc2b-f6c7-4b5d-b5b0-4393ab7ccb92">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>ysj.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ysj.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2015,9 +2009,9 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="xhiPkniP2H6j" class="cell" data-outputid="afcf0e59-dbb4-466b-c130-23b961f1793e">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="co">##ysj가 잘구현이 되는지 체크를 해야함</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a><span class="co"># 체크를 하는 object를 만들어야함</span></span>
-<span id="cb38-3"><a href="#cb38-3"></a>checker <span class="op">=</span> Interpretation.from_learner(ysj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">##ysj가 잘구현이 되는지 체크를 해야함</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 체크를 하는 object를 만들어야함</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>checker <span class="op">=</span> Interpretation.from_learner(ysj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2041,13 +2035,13 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="55_kZ-yo2tYk" class="cell" data-outputid="c2614d12-0a24-4458-df2d-6f9636c43610">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>checker.plot_top_losses(<span class="dv">16</span>)</span>
-<span id="cb39-2"><a href="#cb39-2"></a></span>
-<span id="cb39-3"><a href="#cb39-3"></a><span class="co"># 첫번째 사진에서 5.59는 로스이고 1퍼의 확률로 강아지라고 생각함</span></span>
-<span id="cb39-4"><a href="#cb39-4"></a><span class="co"># 로스는 몇퍼의 확률로 잘못생각했느냐에 따라서 달라질 수 있음</span></span>
-<span id="cb39-5"><a href="#cb39-5"></a><span class="co"># 맞추는 걸 넘어서 확실해야 로스가 적다. (확신의여부)</span></span>
-<span id="cb39-6"><a href="#cb39-6"></a></span>
-<span id="cb39-7"><a href="#cb39-7"></a><span class="co"># 오버피팅 아냐..? 과대적합..? 자기들이 이미 다학습된 내용 가지고 보여주는거아냐? 생각-&gt;새로운 이미지 부여</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>checker.plot_top_losses(<span class="dv">16</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 첫번째 사진에서 5.59는 로스이고 1퍼의 확률로 강아지라고 생각함</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 로스는 몇퍼의 확률로 잘못생각했느냐에 따라서 달라질 수 있음</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 맞추는 걸 넘어서 확실해야 로스가 적다. (확신의여부)</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 오버피팅 아냐..? 과대적합..? 자기들이 이미 다학습된 내용 가지고 보여주는거아냐? 생각-&gt;새로운 이미지 부여</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2074,8 +2068,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="eOP0QC7H6TbK" class="cell" data-outputid="8080cd2e-2165-444d-e953-711e59b35fbe">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5e/0d/9f/01/5e0d9f011a9ad2738de6.jpg'</span>).content)</span>
-<span id="cb40-2"><a href="#cb40-2"></a>ysj.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://dimg.donga.com/ugc/CDB/SHINDONGA/Article/5e/0d/9f/01/5e0d9f011a9ad2738de6.jpg'</span>).content)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>ysj.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2102,8 +2096,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="8aMuuib-67rT" class="cell" data-outputid="bc3e55ba-37b9-49df-f3eb-a9228c676d74">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A</span><span class="sc">%2F%2F</span><span class="st">blog.kakaocdn.net</span><span class="sc">%2F</span><span class="st">dn</span><span class="sc">%2F</span><span class="st">cnSq1X</span><span class="sc">%2F</span><span class="st">btq4o9AdWTH</span><span class="sc">%2F</span><span class="st">HTm9TZG4AszSwLPFlVfGW0</span><span class="sc">%2F</span><span class="st">img.jpg'</span>).content)</span>
-<span id="cb42-2"><a href="#cb42-2"></a>ysj.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A</span><span class="sc">%2F%2F</span><span class="st">blog.kakaocdn.net</span><span class="sc">%2F</span><span class="st">dn</span><span class="sc">%2F</span><span class="st">cnSq1X</span><span class="sc">%2F</span><span class="st">btq4o9AdWTH</span><span class="sc">%2F</span><span class="st">HTm9TZG4AszSwLPFlVfGW0</span><span class="sc">%2F</span><span class="st">img.jpg'</span>).content)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>ysj.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2130,8 +2124,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="jBC2FzrIMQQH" class="cell" data-outputid="e0a09c63-ce94-4047-c52f-d6bb2428c92c">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://image.edaily.co.kr/images/photo/files/NP/S/2022/04/PS22042501396.jpg'</span>).content)</span>
-<span id="cb44-2"><a href="#cb44-2"></a>ysj.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://image.edaily.co.kr/images/photo/files/NP/S/2022/04/PS22042501396.jpg'</span>).content)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>ysj.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2158,8 +2152,8 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="rDAGc0spQYad" class="cell" data-outputid="23daaa5f-8de1-4051-a008-29041d48e585">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://blog.kakaocdn.net/dn/zfQQi/btrydI0vGzm/3YY3KrPEwKN558e27H6t0k/img.jpg'</span>).content)</span>
-<span id="cb46-2"><a href="#cb46-2"></a>ysj.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>img<span class="op">=</span>PILImage.create(requests.get(<span class="st">'https://blog.kakaocdn.net/dn/zfQQi/btrydI0vGzm/3YY3KrPEwKN558e27H6t0k/img.jpg'</span>).content)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>ysj.predict(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -2186,7 +2180,7 @@ Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /roo
 </div>
 </div>
 <div id="5refAuEGWT9R" class="cell" data-outputid="a4663180-e403-4841-ae16-d560abd9ec10">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>PILImage.create(<span class="st">'/강아지사진1.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>PILImage.create(<span class="st">'/강아지사진1.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
 <p><img src="2022_09_07_(1주차)_9월7일_ipynb의_사본_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
 </div>

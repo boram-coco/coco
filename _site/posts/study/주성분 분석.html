@@ -551,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -563,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1519,12 +1519,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1622,7 +1616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#ref" id="toc-ref" class="nav-link active" data-scroll-target="#ref">REF</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="주성분 분석.out.ipynb" download="주성분 분석.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1665,9 +1659,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>http://rfriend.tistory.com/61</p>
 <p>차원축소(dimension reduction) : PCA(Principal Component Analysis)</p>
 <div id="6c06a056-8d89-421b-a3a8-ff06bbd499f6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>secu_com_finance_2007 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"secu_com_finance_2007.csv"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2"></a>                                  <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb1-3"><a href="#cb1-3"></a>                                  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>secu_com_finance_2007 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"secu_com_finance_2007.csv"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p>V1 : 총자본순이익율</p>
@@ -1677,29 +1671,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>V5 : 자기자본회전율</p>
 </blockquote>
 <div id="68d7a075-a140-4598-891e-aef15a43eb7c" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># 표준화 변환 (standardization)</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>secu_com_finance_2007 <span class="ot">&lt;-</span> <span class="fu">transform</span>(secu_com_finance_2007, </span>
-<span id="cb2-4"><a href="#cb2-4"></a>                                   <span class="at">V1_s =</span> <span class="fu">scale</span>(V1), </span>
-<span id="cb2-5"><a href="#cb2-5"></a>                                   <span class="at">V2_s =</span> <span class="fu">scale</span>(V2), </span>
-<span id="cb2-6"><a href="#cb2-6"></a>                                   <span class="at">V3_s =</span> <span class="fu">scale</span>(V3), </span>
-<span id="cb2-7"><a href="#cb2-7"></a>                                   <span class="at">V4_s =</span> <span class="fu">scale</span>(V4),</span>
-<span id="cb2-8"><a href="#cb2-8"></a>                                   <span class="at">V5_s =</span> <span class="fu">scale</span>(V5))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 표준화 변환 (standardization)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>secu_com_finance_2007 <span class="ot">&lt;-</span> <span class="fu">transform</span>(secu_com_finance_2007, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">V1_s =</span> <span class="fu">scale</span>(V1), </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">V2_s =</span> <span class="fu">scale</span>(V2), </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">V3_s =</span> <span class="fu">scale</span>(V3), </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">V4_s =</span> <span class="fu">scale</span>(V4),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">V5_s =</span> <span class="fu">scale</span>(V5))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>V1,V2,V3,V5는 숫자가 클 수록 좋고 V4는 숫자가 클수록 안좋다.</p>
 <p>즉, V4의 방향을 변환(표준화된 이후의 max 값에서 표준화된 이후의 관찰값을 뺌)</p>
 <div id="b5bda37b-6c27-4c2a-af43-6bc8ceb05378" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 부채비율(V4_s)을 방향(max(V4_s)-V4_s) 변환</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>secu_com_finance_2007 <span class="ot">&lt;-</span> <span class="fu">transform</span>(secu_com_finance_2007, </span>
-<span id="cb3-3"><a href="#cb3-3"></a>                                    <span class="at">V4_s2 =</span> <span class="fu">max</span>(V4_s) <span class="sc">-</span> V4_s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 부채비율(V4_s)을 방향(max(V4_s)-V4_s) 변환</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>secu_com_finance_2007 <span class="ot">&lt;-</span> <span class="fu">transform</span>(secu_com_finance_2007, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">V4_s2 =</span> <span class="fu">max</span>(V4_s) <span class="sc">-</span> V4_s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="96f94be5-f46d-44b1-80cf-c012857abf56" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># variable selection</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>secu_com_finance_2007_2 <span class="ot">&lt;-</span> secu_com_finance_2007[,<span class="fu">c</span>(<span class="st">"company"</span>, <span class="st">"V1_s"</span>, <span class="st">"V2_s"</span>, <span class="st">"V3_s"</span>, <span class="st">"V4_s2"</span>, <span class="st">"V5_s"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variable selection</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>secu_com_finance_2007_2 <span class="ot">&lt;-</span> secu_com_finance_2007[,<span class="fu">c</span>(<span class="st">"company"</span>, <span class="st">"V1_s"</span>, <span class="st">"V2_s"</span>, <span class="st">"V3_s"</span>, <span class="st">"V4_s2"</span>, <span class="st">"V5_s"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="2b02a0e4-b8e0-4722-b02e-52b9cf9d1659" class="cell page-columns page-full" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Correlation analysis</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">round</span>(<span class="fu">cor</span>(secu_com_finance_2007_2[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">digits=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation analysis</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(secu_com_finance_2007_2[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">digits=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1759,17 +1753,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-table-caption margin-caption">A matrix: 5 × 5 of type dbl</div></div>
 </div>
 <div id="b9303d84-d6a5-4316-a8a1-868da4a038f8" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Scatter plot matrix</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">plot</span>(secu_com_finance_2007_2[,<span class="sc">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot matrix</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(secu_com_finance_2007_2[,<span class="sc">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="주성분 분석_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="ddf50ded-2041-4bbf-b0e7-f1f76a43e807" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># 주성분분석 PCA(Principal Component Analysis)</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>secu_prcomp <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(secu_com_finance_2007_2[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)]) <span class="co"># 첫번째 변수 회사명은 빼고 분석</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a> </span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">summary</span>(secu_prcomp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 주성분분석 PCA(Principal Component Analysis)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>secu_prcomp <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(secu_com_finance_2007_2[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)]) <span class="co"># 첫번째 변수 회사명은 빼고 분석</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(secu_prcomp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Importance of components:
                           PC1    PC2    PC3     PC4     PC5
@@ -1779,7 +1773,7 @@ Cumulative Proportion  0.5523 0.8734 0.9835 0.99635 1.00000</code></pre>
 </div>
 </div>
 <div id="91d91f0f-3b33-44bd-8017-00cf554fc82c" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">print</span>(secu_prcomp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(secu_prcomp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Standard deviations (1, .., p=5):
 [1] 1.6617648 1.2671437 0.7419994 0.2531070 0.1351235
@@ -1795,9 +1789,9 @@ V5_s  -0.44778451 0.08636803  0.8881182665  0.003668418 -0.05711464</code></pre>
 </div>
 <p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2164943E55C589FE2D" class="img-fluid"></p>
 <div id="0d2ae3d1-e8e3-4917-9adc-7f2831b115a7" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Scree Plot</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(secu_com_finance_2007_2[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)]), <span class="at">type=</span><span class="st">"l"</span>,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>      <span class="at">sub =</span> <span class="st">"Scree Plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scree Plot</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prcomp</span>(secu_com_finance_2007_2[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)]), <span class="at">type=</span><span class="st">"l"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">sub =</span> <span class="st">"Scree Plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="주성분 분석_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
@@ -1806,16 +1800,16 @@ V5_s  -0.44778451 0.08636803  0.8881182665  0.003668418 -0.05711464</code></pre>
 <li>3개 주성분이 적합</li>
 </ul>
 <div id="8f6cdbe4-ee92-4766-b029-b62d2958856c" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Biplot</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">biplot</span>(<span class="fu">prcomp</span>(secu_com_finance_2007_2[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)]), <span class="at">cex =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.8</span>))</span>
-<span id="cb12-3"><a href="#cb12-3"></a> </span>
-<span id="cb12-4"><a href="#cb12-4"></a> <span class="co"># 관측치별 주성분1, 주성분2 점수 계산(PC1 score, PC2 score)</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>secu_pc1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(secu_prcomp)[,<span class="dv">1</span>]</span>
-<span id="cb12-6"><a href="#cb12-6"></a>secu_pc2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(secu_prcomp)[,<span class="dv">2</span>]</span>
-<span id="cb12-7"><a href="#cb12-7"></a> </span>
-<span id="cb12-8"><a href="#cb12-8"></a> </span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="co"># 관측치별 이름 매핑(rownames mapping)</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a> <span class="fu">text</span>(secu_pc1, secu_pc2, <span class="at">labels =</span> secu_com_finance_2007_2<span class="sc">$</span>company, <span class="at">cex =</span> <span class="fl">0.7</span>, <span class="at">pos =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biplot</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(<span class="fu">prcomp</span>(secu_com_finance_2007_2[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)]), <span class="at">cex =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.8</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># 관측치별 주성분1, 주성분2 점수 계산(PC1 score, PC2 score)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>secu_pc1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(secu_prcomp)[,<span class="dv">1</span>]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>secu_pc2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(secu_prcomp)[,<span class="dv">2</span>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 관측치별 이름 매핑(rownames mapping)</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">text</span>(secu_pc1, secu_pc2, <span class="at">labels =</span> secu_com_finance_2007_2<span class="sc">$</span>company, <span class="at">cex =</span> <span class="fl">0.7</span>, <span class="at">pos =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>ERROR: Error in text.default(secu_pc1, secu_pc2, labels = secu_com_finance_2007_2$company, : invalid string in PangoCairo_Text</code></pre>
 </div>

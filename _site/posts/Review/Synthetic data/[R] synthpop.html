@@ -551,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -563,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1519,12 +1519,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1624,7 +1618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#예제1" id="toc-예제1" class="nav-link" data-scroll-target="#예제1">예제1</a></li>
   <li><a href="#예제2" id="toc-예제2" class="nav-link" data-scroll-target="#예제2">예제2</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="[R] synthpop.out.ipynb" download="[R] synthpop.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1667,19 +1661,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>R에서의 synthpop사용</li>
 </ul>
 <div id="50ab0a32-2189-46ea-a163-ab463aab92ad" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(synthpop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(synthpop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Find out more at https://www.synthpop.org.uk/
 </code></pre>
 </div>
 </div>
 <div id="9de8a592-8456-4af2-8232-2eeff7e40e79" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())                <span class="co"># to clean out workspace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())                <span class="co"># to clean out workspace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="data-sd2011" class="level1">
 <h1>data: SD2011</h1>
 <div id="1acb0b11-770e-4824-a506-3b812e77c0a8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">help</span>(SD2011)                   <span class="co"># this will give you information about it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(SD2011)                   <span class="co"># this will give you information about it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 
@@ -1820,7 +1814,7 @@ Volume 5, Issue 3 (special issue) <a href="http://ce.vizja.pl/en/issues/volume/5
 </div>
 </section></main></div>
 <div id="8b5968b2-a2db-4295-ae9a-f654fbb909c9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">dim</span>(SD2011)                    <span class="co"># get size of data frame </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(SD2011)                    <span class="co"># get size of data frame </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
@@ -1831,7 +1825,7 @@ Volume 5, Issue 3 (special issue) <a href="http://ce.vizja.pl/en/issues/volume/5
 </div>
 </div>
 <div id="7e5c157c-be72-4b71-b899-dea2d9bed5e8" class="cell page-columns page-full" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">codebook.syn</span>(SD2011)<span class="sc">$</span>tab       <span class="co"># get summary info about variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">codebook.syn</span>(SD2011)<span class="sc">$</span>tab       <span class="co"># get summary info about variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2179,8 +2173,8 @@ Volume 5, Issue 3 (special issue) <a href="http://ce.vizja.pl/en/issues/volume/5
 <li>“bmi”변수는 “height”와 “weight”에서 파생</li>
 </ul>
 <div id="984a0a6d-7236-427d-a4de-d93f5fe9cde9" class="cell page-columns page-full" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>mydata <span class="ot">&lt;-</span> SD2011[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">10</span>)] </span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">codebook.syn</span>(mydata)<span class="sc">$</span>tab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> SD2011[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">10</span>)] </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">codebook.syn</span>(mydata)<span class="sc">$</span>tab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2300,7 +2294,7 @@ Volume 5, Issue 3 (special issue) <a href="http://ce.vizja.pl/en/issues/volume/5
 <div class="quarto-table-caption margin-caption">A data.frame: 10 × 6</div></div>
 </div>
 <div id="e16418cd-9ffc-406b-85b8-cb7ac7a495d7" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">table</span>(mydata<span class="sc">$</span>income[mydata<span class="sc">$</span>income <span class="sc">&lt;</span> <span class="dv">0</span>], <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydata<span class="sc">$</span>income[mydata<span class="sc">$</span>income <span class="sc">&lt;</span> <span class="dv">0</span>], <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
   -8 &lt;NA&gt; 
@@ -2311,7 +2305,7 @@ Volume 5, Issue 3 (special issue) <a href="http://ce.vizja.pl/en/issues/volume/5
 <section id="예제1" class="level1 page-columns page-full">
 <h1>예제1</h1>
 <div id="e56a7114-bba6-4759-b006-309658dfb75e" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>mysyn <span class="ot">&lt;-</span> <span class="fu">syn</span>(mydata, <span class="at">cont.na =</span> <span class="fu">list</span>(<span class="at">income =</span> <span class="sc">-</span><span class="dv">8</span>))  <span class="co"># default syntheis but adding -8 missing values for income</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mysyn <span class="ot">&lt;-</span> <span class="fu">syn</span>(mydata, <span class="at">cont.na =</span> <span class="fu">list</span>(<span class="at">income =</span> <span class="sc">-</span><span class="dv">8</span>))  <span class="co"># default syntheis but adding -8 missing values for income</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Synthesis
@@ -2321,8 +2315,8 @@ Synthesis
 </div>
 </div>
 <div id="24f7e329-9872-418c-ad39-3782fe1e179d" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">summary</span>(mysyn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mysyn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Synthetic object with one synthesis using methods:
        sex      agegr        edu    socprof    marital    depress      trust 
@@ -2365,7 +2359,7 @@ Synthesis
 </div>
 </div>
 <div id="5ea85fdd-499a-491f-b114-c3cd672b03ab" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">compare</span>(mysyn, mydata, <span class="at">stat =</span> <span class="st">"counts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compare</span>(mysyn, mydata, <span class="at">stat =</span> <span class="st">"counts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdin">
 <pre><code> 2
  3</code></pre>
@@ -2399,8 +2393,8 @@ income     0.000071 0.941814  6</code></pre>
 </div>
 </div>
 <div id="08d94e49-c6e7-4477-9243-6b3d025a4b6c" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Export to SPSS</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">write.syn</span>(mysyn, <span class="at">filename =</span> <span class="st">"mysyn"</span>, <span class="at">filetype =</span> <span class="st">"SPSS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export to SPSS</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.syn</span>(mysyn, <span class="at">filename =</span> <span class="st">"mysyn"</span>, <span class="at">filetype =</span> <span class="st">"SPSS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Synthetic data exported as SPSS file(s).
 Information on synthetic data written to
@@ -2408,11 +2402,11 @@ Information on synthetic data written to
 </div>
 </div>
 <div id="01377b7d-b6dc-49db-8ced-ff5e36df8067" class="cell page-columns page-full" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">names</span>(mysyn)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>mysyn<span class="sc">$</span>method</span>
-<span id="cb19-3"><a href="#cb19-3"></a>mysyn<span class="sc">$</span>predictor.matrix</span>
-<span id="cb19-4"><a href="#cb19-4"></a>mysyn<span class="sc">$</span>visit.sequence</span>
-<span id="cb19-5"><a href="#cb19-5"></a>mysyn<span class="sc">$</span>cont.na</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mysyn)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mysyn<span class="sc">$</span>method</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>mysyn<span class="sc">$</span>predictor.matrix</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>mysyn<span class="sc">$</span>visit.sequence</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>mysyn<span class="sc">$</span>cont.na</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
@@ -2615,10 +2609,10 @@ Information on synthetic data written to
 </div>
 </div>
 <div id="688d4607-ebb5-403d-acbf-4a4847bb362c" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">multi.compare</span>(mysyn, mydata, <span class="at">var =</span> <span class="st">"marital"</span>, <span class="at">by =</span> <span class="st">"sex"</span>)</span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">multi.compare</span>(mysyn, mydata, <span class="at">var =</span> <span class="st">"income"</span>, <span class="at">by =</span> <span class="st">"agegr"</span>)</span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="fu">multi.compare</span>(mysyn, mydata, <span class="at">var =</span> <span class="st">"income"</span>, <span class="at">by =</span> <span class="st">"edu"</span>, <span class="at">cont.type =</span> <span class="st">"boxplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">multi.compare</span>(mysyn, mydata, <span class="at">var =</span> <span class="st">"marital"</span>, <span class="at">by =</span> <span class="st">"sex"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">multi.compare</span>(mysyn, mydata, <span class="at">var =</span> <span class="st">"income"</span>, <span class="at">by =</span> <span class="st">"agegr"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">multi.compare</span>(mysyn, mydata, <span class="at">var =</span> <span class="st">"income"</span>, <span class="at">by =</span> <span class="st">"edu"</span>, <span class="at">cont.type =</span> <span class="st">"boxplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Plots of  marital  by  sex 
@@ -2672,9 +2666,9 @@ Warning message:
 <section id="예제2" class="level1">
 <h1>예제2</h1>
 <div id="28a3b831-c200-44f3-9c90-b196557a3530" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>test1 <span class="ot">&lt;-</span> SD2011[, <span class="fu">c</span>(<span class="st">"sex"</span>, <span class="st">"age"</span>, <span class="st">"placesize"</span>, <span class="st">"smoke"</span>)]</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">summary</span>(test1)</span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> SD2011[, <span class="fu">c</span>(<span class="st">"sex"</span>, <span class="st">"age"</span>, <span class="st">"placesize"</span>, <span class="st">"smoke"</span>)]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test1)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>     sex            age                         placesize     smoke     
  MALE  :2182   Min.   :16.00   URBAN 500,000 AND OVER: 392   YES :1277  
@@ -2694,8 +2688,8 @@ Warning message:
 </div>
 </div>
 <div id="017da696-565d-4917-8602-8a02ad144652" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>syn1 <span class="ot">&lt;-</span> <span class="fu">syn</span>(test1)</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">compare</span>(syn1, test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>syn1 <span class="ot">&lt;-</span> <span class="fu">syn</span>(test1)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">compare</span>(syn1, test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Synthesis
@@ -2719,8 +2713,8 @@ smoke     0.000006 0.252054  2</code></pre>
 </div>
 </div>
 <div id="923ab125-efd2-4795-9da1-cbec8f3c20b7" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">names</span>(syn1) <span class="co"># to find their names</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>syn1<span class="sc">$</span>call <span class="co"># to examine a specific one</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(syn1) <span class="co"># to find their names</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>syn1<span class="sc">$</span>call <span class="co"># to examine a specific one</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
@@ -2734,9 +2728,9 @@ smoke     0.000006 0.252054  2</code></pre>
 </div>
 </div>
 <div id="768e41ab-f66a-4999-8afd-9a04217e04d1" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>syn2 <span class="ot">&lt;-</span> <span class="fu">syn</span>(test1, <span class="at">visit.sequence =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>,</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="at">method =</span> <span class="fu">c</span>(<span class="st">"sample"</span>, <span class="st">"norm"</span>, <span class="st">"ctree"</span>, <span class="st">"ctree"</span>))</span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">compare</span>(syn2, test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>syn2 <span class="ot">&lt;-</span> <span class="fu">syn</span>(test1, <span class="at">visit.sequence =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>,</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="at">method =</span> <span class="fu">c</span>(<span class="st">"sample"</span>, <span class="st">"norm"</span>, <span class="st">"ctree"</span>, <span class="st">"ctree"</span>))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">compare</span>(syn2, test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Method "ctree" is not valid for a variable without predictors (smoke)
@@ -2764,7 +2758,7 @@ smoke     0.000001  0.042524  2</code></pre>
 </div>
 </div>
 <div id="160d80cf-98b5-42ce-bcfa-a4debfcc527f" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">multi.compare</span>(syn1, test1, <span class="at">var =</span> <span class="st">"placesize"</span>, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"sex"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multi.compare</span>(syn1, test1, <span class="at">var =</span> <span class="st">"placesize"</span>, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"sex"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Plots of  placesize  by  sex 
@@ -2779,7 +2773,7 @@ sex
 </div>
 </div>
 <div id="d2dfcec2-e499-412b-b9db-16228807ed10" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">utility.tab</span>(syn1, test1, <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"sex"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">utility.tab</span>(syn1, test1, <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"sex"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Observed:
@@ -2808,12 +2802,12 @@ Selected utility measures:
 </div>
 </div>
 <div id="6e3bc57b-fea3-40a0-9435-deec74c195a2" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>synfit2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(smoke <span class="sc">~</span> sex <span class="sc">+</span> placesize <span class="sc">+</span> <span class="fu">poly</span>(age,<span class="dv">2</span>), <span class="at">data =</span> syn1<span class="sc">$</span>syn,</span>
-<span id="cb37-2"><a href="#cb37-2"></a> <span class="at">family =</span> <span class="st">"binomial"</span>) <span class="co"># predicting smoke including</span></span>
-<span id="cb37-3"><a href="#cb37-3"></a> <span class="co"># a quadratic age term</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>synfit2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(smoke <span class="sc">~</span> sex <span class="sc">+</span> placesize <span class="sc">+</span> <span class="fu">poly</span>(age,<span class="dv">2</span>), <span class="at">data =</span> syn1<span class="sc">$</span>syn,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a> <span class="at">family =</span> <span class="st">"binomial"</span>) <span class="co"># predicting smoke including</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># a quadratic age term</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="f131326f-6215-49a1-90af-4ffd5067a962" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>synfit2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>synfit2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:  glm(formula = smoke ~ sex + placesize + poly(age, 2), family = "binomial", 
@@ -2838,9 +2832,9 @@ Residual Deviance: 5308     AIC: 5326</code></pre>
 </div>
 </div>
 <div id="8dbfc70a-b4ff-4f42-aacb-ee5ae5a94676" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>synfit.synds <span class="ot">&lt;-</span> <span class="fu">glm.synds</span>(smoke <span class="sc">~</span> sex <span class="sc">+</span> placesize <span class="sc">+</span> <span class="fu">poly</span>(age,<span class="dv">2</span>), <span class="at">data=</span> syn1,</span>
-<span id="cb40-2"><a href="#cb40-2"></a> <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb40-3"><a href="#cb40-3"></a><span class="fu">compare</span>(synfit.synds, test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>synfit.synds <span class="ot">&lt;-</span> <span class="fu">glm.synds</span>(smoke <span class="sc">~</span> sex <span class="sc">+</span> placesize <span class="sc">+</span> <span class="fu">poly</span>(age,<span class="dv">2</span>), <span class="at">data=</span> syn1,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a> <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">compare</span>(synfit.synds, test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call used to fit models to the data:

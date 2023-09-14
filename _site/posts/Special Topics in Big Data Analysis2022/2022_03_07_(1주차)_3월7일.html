@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1624,7 +1618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#선형회귀" id="toc-선형회귀" class="nav-link" data-scroll-target="#선형회귀">선형회귀</a></li>
   <li><a href="#앞으로-할것" id="toc-앞으로-할것" class="nav-link" data-scroll-target="#앞으로-할것">앞으로 할것</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022_03_07_(1주차)_3월7일.out.ipynb" download="2022_03_07_(1주차)_3월7일.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1682,8 +1676,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>-</code> 상황극 - 나는 동네에 커피점을 하나 차렸음. - 장사를 하다보니까 날이 더울수록 아이스아메리카노의 판매량이 증가한다는 사실을 깨달았다. - 일기예보는 미리 나와있으니까 그 정보를 잘 이용하면 ‘온도 -&gt; 아이스아메리카노 판매량 예측’ 이 가능할것 같다. (내가 앞으로 얼마나 벌지 예측가능)</p>
 <p><code>-</code> 가짜자료 생성</p>
 <div id="2a1f6fff-f26b-4dbc-9dae-599c0640058c" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>2023-06-16 10:41:22.228223: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.</code></pre>
@@ -1691,8 +1685,8 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <p>온도 <span class="math inline">\({\bf x}\)</span>가 아래와 같다고 하자.</p>
 <div id="e6a92bfe-5c6d-4ced-b742-ecd5fe175504" class="cell" data-outputid="304e8cc5-c0d2-4ce1-9d70-da95071764bd" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>x<span class="op">=</span>tf.constant([<span class="fl">20.1</span>, <span class="fl">22.2</span>, <span class="fl">22.7</span>, <span class="fl">23.3</span>, <span class="fl">24.4</span>, <span class="fl">25.1</span>, <span class="fl">26.2</span>, <span class="fl">27.3</span>, <span class="fl">28.4</span>, <span class="fl">30.4</span>]) <span class="co"># 기온</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>tf.constant([<span class="fl">20.1</span>, <span class="fl">22.2</span>, <span class="fl">22.7</span>, <span class="fl">23.3</span>, <span class="fl">24.4</span>, <span class="fl">25.1</span>, <span class="fl">26.2</span>, <span class="fl">27.3</span>, <span class="fl">28.4</span>, <span class="fl">30.4</span>]) <span class="co"># 기온</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
 array([20.1, 22.2, 22.7, 23.3, 24.4, 25.1, 26.2, 27.3, 28.4, 30.4],
@@ -1707,10 +1701,10 @@ array([20.1, 22.2, 22.7, 23.3, 24.4, 25.1, 26.2, 27.3, 28.4, 30.4],
 <li>물결의의미: 현실반영. 세상은 꼭 수식대로 정확하게 이루어지지 않음.</li>
 </ul>
 <div id="f8481aed-e5a1-48b7-8145-1b8569b27bf6" class="cell" data-outputid="7727b8f9-9422-4bd1-eebc-0110361ca364" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>epsilon<span class="op">=</span>tf.random.normal([<span class="dv">10</span>])</span>
-<span id="cb5-3"><a href="#cb5-3"></a>y<span class="op">=</span><span class="fl">10.2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">*</span>x <span class="op">+</span> epsilon</span>
-<span id="cb5-4"><a href="#cb5-4"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>epsilon<span class="op">=</span>tf.random.normal([<span class="dv">10</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="fl">10.2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">*</span>x <span class="op">+</span> epsilon</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
 array([55.418365, 58.194283, 61.230827, 62.312557, 63.107002, 63.69569 ,
@@ -1719,7 +1713,7 @@ array([55.418365, 58.194283, 61.230827, 62.312557, 63.107002, 63.69569 ,
 </div>
 <p><code>-</code> 우리는 아래와 같은 자료를 모았다고 생각하자.</p>
 <div id="2f9d8728-6eaf-4ddc-a4e6-2136b1d2ba6a" class="cell" data-outputid="b79e58a0-bee3-482b-fb09-b23142b76ccb" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>tf.transpose(tf.concat([[x],[y]],<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tf.transpose(tf.concat([[x],[y]],<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>&lt;tf.Tensor: shape=(10, 2), dtype=float32, numpy=
 array([[20.1     , 55.418365],
@@ -1736,8 +1730,8 @@ array([[20.1     , 55.418365],
 </div>
 <p><code>-</code> 그려보자.</p>
 <div id="6999c6d1-89a7-4fa8-ab46-c4bfcbc6f26b" class="cell" data-outputid="b99e5eec-a7f0-4c72-b625-49b357350410" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>plt.plot(x,y,<span class="st">'.'</span>) <span class="co"># 파란점, 관측한 데이터</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>plt.plot(x,<span class="fl">10.2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">*</span>x, <span class="st">'--'</span>)  <span class="co"># 주황색점선, 세상의 법칙</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'.'</span>) <span class="co"># 파란점, 관측한 데이터</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,<span class="fl">10.2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">*</span>x, <span class="st">'--'</span>)  <span class="co"># 주황색점선, 세상의 법칙</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022_03_07_(1주차)_3월7일_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
@@ -1747,7 +1741,7 @@ array([[20.1     , 55.418365],
 <p><code>-</code> 어림짐작으로 <span class="math inline">\(a,b\)</span>를 알아내보자.</p>
 <p>데이터를 살펴보자.</p>
 <div id="19f40b1e-ee50-4403-8f17-0c70e2ac0dc6" class="cell" data-outputid="ed1e820c-2332-4425-f365-e8ae3b29cba8" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>tf.transpose(tf.concat([[x],[y]],<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tf.transpose(tf.concat([[x],[y]],<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>&lt;tf.Tensor: shape=(10, 2), dtype=float32, numpy=
 array([[20.1     , 55.418365],
@@ -1770,26 +1764,26 @@ array([[20.1     , 55.418365],
 <p>(관찰에 의한 비교)</p>
 <p>후보1에 대해서 <span class="math inline">\(i=1,2\)</span>를 넣고 관찰하여 보자.</p>
 <div id="5028b9ad-2214-4712-bbca-e81d26ea5412" class="cell" data-outputid="0a6d1a3d-cf00-4571-8cdb-e3d1ccb08b67">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="fl">20.1</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">15</span> , <span class="fl">55.418365</span> <span class="co"># i=1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fl">20.1</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">15</span> , <span class="fl">55.418365</span> <span class="co"># i=1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>(55.2, 55.418365)</code></pre>
 </div>
 </div>
 <div id="b161d672-21f4-4848-a8f6-0b99c8417c90" class="cell" data-outputid="151ae65b-5060-4953-d57b-586fa2e30987">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="fl">22.2</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">15</span> , <span class="fl">58.194283</span> <span class="co"># i=2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fl">22.2</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">15</span> , <span class="fl">58.194283</span> <span class="co"># i=2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>(59.4, 58.194283)</code></pre>
 </div>
 </div>
 <p>후보2에 대하여 <span class="math inline">\(i=1,2\)</span>를 넣고 관찰하여 보자.</p>
 <div id="a4431ef5-2a1f-4417-878e-e671a64e6c05" class="cell" data-outputid="211ea699-913a-42eb-f055-8c9e79190fae">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="fl">20.1</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">14</span> , <span class="fl">55.418365</span> <span class="co"># i=1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fl">20.1</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">14</span> , <span class="fl">55.418365</span> <span class="co"># i=1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>(54.2, 55.418365)</code></pre>
 </div>
 </div>
 <div id="4e76bdba-b655-452c-b621-777960b53105" class="cell" data-outputid="781f68b9-776c-4e60-9ef6-8707e65e5b2c">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="fl">22.2</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">14</span> , <span class="fl">58.194283</span> <span class="co"># i=2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fl">22.2</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">14</span> , <span class="fl">58.194283</span> <span class="co"># i=2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>(58.4, 58.194283)</code></pre>
 </div>
@@ -1799,17 +1793,17 @@ array([[20.1     , 55.418365],
 <p><span class="math inline">\(i=1,2,3, \dots, 10\)</span> 에서 후보1과 후보2중 어떤것이 더 좋은지 비교하는 체계적인 방법을 생각해보자.</p>
 <p>후보 1,2에 대하여 <span class="math inline">\(\sum_{i=1}^{10} (y_i -\beta_0 -\beta_1 x_i)^2\)</span>를 계산하여 비교해보자.</p>
 <div id="9d7be911-4599-40d6-b518-3895d5370f47" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>sum1<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb20-3"><a href="#cb20-3"></a>    sum1<span class="op">=</span>sum1<span class="op">+</span>(y[i]<span class="op">-</span><span class="dv">15</span><span class="op">-</span><span class="dv">2</span><span class="op">*</span>x[i])<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sum1<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    sum1<span class="op">=</span>sum1<span class="op">+</span>(y[i]<span class="op">-</span><span class="dv">15</span><span class="op">-</span><span class="dv">2</span><span class="op">*</span>x[i])<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="b5d8c721-f3ea-425d-aef8-770dd4db6ac6" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>sum2<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb21-3"><a href="#cb21-3"></a>    sum2<span class="op">=</span>sum2<span class="op">+</span>(y[i]<span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">2</span><span class="op">*</span>x[i])<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sum2<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    sum2<span class="op">=</span>sum2<span class="op">+</span>(y[i]<span class="op">-</span><span class="dv">14</span><span class="op">-</span><span class="dv">2</span><span class="op">*</span>x[i])<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="bd2a614d-e23d-465b-af35-fee107471703" class="cell" data-outputid="e79dd4fb-e3a6-419e-b30a-aa0462b089c8" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>sum1,sum2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sum1,sum2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>(&lt;tf.Tensor: shape=(), dtype=float32, numpy=14.734169&gt;,
  &lt;tf.Tensor: shape=(), dtype=float32, numpy=31.521088&gt;)</code></pre>
@@ -1829,37 +1823,37 @@ array([[20.1     , 55.418365],
 <p><span class="math display">\[\hat{\beta}_1= \frac{S_{xy}}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\]</span></p>
 <p><code>-</code> 따라서 최적의 추정치 <span class="math inline">\((\hat{\beta}_0,\hat{\beta}_1)\)</span>를 이용한 추세선을 아래와 같이 계산할 수 있음.</p>
 <div id="ad02f2d4-b81b-4e4d-99c1-5e002516e5bf" class="cell" data-outputid="b99c3298-4fe6-4ae4-d45e-85b351387e31" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>Sxx<span class="op">=</span> <span class="bu">sum</span>((x<span class="op">-</span><span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a>Sxx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Sxx<span class="op">=</span> <span class="bu">sum</span>((x<span class="op">-</span><span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span>)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Sxx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float32, numpy=87.848976&gt;</code></pre>
 </div>
 </div>
 <div id="8d714df9-a3a5-4c9f-9527-a17fc7b82c94" class="cell" data-outputid="d5b13e78-75ed-4a83-d832-62493e69d525" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>Sxy<span class="op">=</span>  <span class="bu">sum</span>((x<span class="op">-</span><span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span>)<span class="op">*</span>(y<span class="op">-</span><span class="bu">sum</span>(y)<span class="op">/</span><span class="dv">10</span>))</span>
-<span id="cb26-2"><a href="#cb26-2"></a>Sxy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Sxy<span class="op">=</span>  <span class="bu">sum</span>((x<span class="op">-</span><span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span>)<span class="op">*</span>(y<span class="op">-</span><span class="bu">sum</span>(y)<span class="op">/</span><span class="dv">10</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Sxy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float32, numpy=194.64737&gt;</code></pre>
 </div>
 </div>
 <div id="4ffc9b70-4175-4792-a141-f34db319181a" class="cell" data-outputid="0ae01414-3b71-4c3f-e3ce-c03bb0742995" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>beta1_estimated <span class="op">=</span> Sxy<span class="op">/</span>Sxx</span>
-<span id="cb28-2"><a href="#cb28-2"></a>beta1_estimated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>beta1_estimated <span class="op">=</span> Sxy<span class="op">/</span>Sxx</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>beta1_estimated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float32, numpy=2.2157044&gt;</code></pre>
 </div>
 </div>
 <div id="28c82e11-2264-4764-8bdb-83f0ff79d699" class="cell" data-outputid="82e87b25-1659-44ae-8347-425396ced0d1" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>beta0_estimated <span class="op">=</span> <span class="bu">sum</span>(y)<span class="op">/</span><span class="dv">10</span> <span class="op">-</span> beta1_estimated <span class="op">*</span> <span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>beta0_estimated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>beta0_estimated <span class="op">=</span> <span class="bu">sum</span>(y)<span class="op">/</span><span class="dv">10</span> <span class="op">-</span> beta1_estimated <span class="op">*</span> <span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>beta0_estimated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float32, numpy=9.944572&gt;</code></pre>
 </div>
 </div>
 <div id="a614304a-4cce-4b21-89a7-266faadd925a" class="cell" data-outputid="5b44594a-ece4-4478-91fc-644259c83891" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>plt.plot(x,y,<span class="st">'.'</span>)</span>
-<span id="cb32-2"><a href="#cb32-2"></a>plt.plot(x,beta0_estimated <span class="op">+</span> beta1_estimated <span class="op">*</span> x, <span class="st">'--'</span>) <span class="co"># 주황색선: 세상의 법칙을 추정한선</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>plt.plot(x,<span class="fl">10.2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">*</span> x, <span class="st">'--'</span>) <span class="co"># 초록색선: ture, 세상의법칙</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'.'</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,beta0_estimated <span class="op">+</span> beta1_estimated <span class="op">*</span> x, <span class="st">'--'</span>) <span class="co"># 주황색선: 세상의 법칙을 추정한선</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,<span class="fl">10.2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">*</span> x, <span class="st">'--'</span>) <span class="co"># 초록색선: ture, 세상의법칙</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022_03_07_(1주차)_3월7일_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
@@ -1898,8 +1892,8 @@ array([[20.1     , 55.418365],
 <p><code>-</code> 적용을 해보자.</p>
 <p>(X를 만드는 방법1)</p>
 <div id="cedbac4c-3664-4518-b809-49cfb21894b7" class="cell" data-outputid="b7ec7108-75f1-460e-ef38-ada8b2f8767d" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>X<span class="op">=</span>tf.transpose(tf.concat([[[<span class="fl">1.0</span>]<span class="op">*</span><span class="dv">10</span>],[x]],<span class="dv">0</span>)) <span class="co">#</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>tf.transpose(tf.concat([[[<span class="fl">1.0</span>]<span class="op">*</span><span class="dv">10</span>],[x]],<span class="dv">0</span>)) <span class="co">#</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>&lt;tf.Tensor: shape=(10, 2), dtype=float32, numpy=
 array([[ 1. , 20.1],
@@ -1919,12 +1913,12 @@ array([[ 1. , 20.1],
 </ul>
 <p>(X를 만드는 방법2)</p>
 <div id="83d3f30e-3b3e-45fd-86c6-794d798c6758" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="im">from</span> tensorflow.python.ops.numpy_ops <span class="im">import</span> np_config</span>
-<span id="cb35-2"><a href="#cb35-2"></a>np_config.enable_numpy_behavior()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.python.ops.numpy_ops <span class="im">import</span> np_config</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>np_config.enable_numpy_behavior()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="52b79c1f-5076-4e18-a0da-2e7a7dd21a47" class="cell" data-outputid="584caab7-55bb-47ed-82c8-d59b757aac49" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>X<span class="op">=</span>tf.concat([[[<span class="fl">1.0</span>]<span class="op">*</span><span class="dv">10</span>],[x]],<span class="dv">0</span>).T</span>
-<span id="cb36-2"><a href="#cb36-2"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>tf.concat([[[<span class="fl">1.0</span>]<span class="op">*</span><span class="dv">10</span>],[x]],<span class="dv">0</span>).T</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>&lt;tf.Tensor: shape=(10, 2), dtype=float32, numpy=
 array([[ 1. , 20.1],
@@ -1940,7 +1934,7 @@ array([[ 1. , 20.1],
 </div>
 </div>
 <div id="a94a8b9b-3978-4da3-94f3-2d7f0944cf8a" class="cell" data-outputid="ca9d54d2-2438-4989-954a-7d54bd72ae84" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>tf.linalg.inv(X.T <span class="op">@</span> X) <span class="op">@</span> X.T <span class="op">@</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>tf.linalg.inv(X.T <span class="op">@</span> X) <span class="op">@</span> X.T <span class="op">@</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>&lt;tf.Tensor: shape=(2,), dtype=float32, numpy=array([9.944702, 2.215706], dtype=float32)&gt;</code></pre>
 </div>
@@ -1948,7 +1942,7 @@ array([[ 1. , 20.1],
 <p><code>-</code> 잘 구해진다.</p>
 <p><code>-</code> 그런데..</p>
 <div id="4ad0739b-6de4-429a-b023-9426c2005cef" class="cell" data-outputid="727cd715-8e67-4f61-e8b9-2448ccea92fc" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>beta0_estimated,beta1_estimated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>beta0_estimated,beta1_estimated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>(&lt;tf.Tensor: shape=(), dtype=float32, numpy=9.944572&gt;,
  &lt;tf.Tensor: shape=(), dtype=float32, numpy=2.2157044&gt;)</code></pre>
@@ -1957,26 +1951,26 @@ array([[ 1. , 20.1],
 <p>값이 좀 다르다..?</p>
 <p><code>-</code> 같은 값입니다! 신경쓰지 마세요! 텐서플로우가 좀 대충계산합니다.</p>
 <div id="00a97646-b2ae-4e38-bd07-125c32744fb5" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="im">import</span> tensorflow.experimental.numpy <span class="im">as</span> tnp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow.experimental.numpy <span class="im">as</span> tnp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="40762229-2c5f-4769-9716-c3322e4b3144" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>x<span class="op">=</span>tnp.array([<span class="fl">20.1</span>, <span class="fl">22.2</span>, <span class="fl">22.7</span>, <span class="fl">23.3</span>, <span class="fl">24.4</span>, <span class="fl">25.1</span>, <span class="fl">26.2</span>, <span class="fl">27.3</span>, <span class="fl">28.4</span>, <span class="fl">30.4</span>])</span>
-<span id="cb43-2"><a href="#cb43-2"></a>y<span class="op">=</span><span class="fl">10.2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">*</span>x <span class="op">+</span> epsilon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>tnp.array([<span class="fl">20.1</span>, <span class="fl">22.2</span>, <span class="fl">22.7</span>, <span class="fl">23.3</span>, <span class="fl">24.4</span>, <span class="fl">25.1</span>, <span class="fl">26.2</span>, <span class="fl">27.3</span>, <span class="fl">28.4</span>, <span class="fl">30.4</span>])</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="fl">10.2</span> <span class="op">+</span> <span class="fl">2.2</span><span class="op">*</span>x <span class="op">+</span> epsilon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ab7d73d0-18bb-4319-9864-fa10ee8b9724" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>beta1_estimated <span class="op">=</span> <span class="bu">sum</span>((x<span class="op">-</span><span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span>)<span class="op">*</span>(y<span class="op">-</span><span class="bu">sum</span>(y)<span class="op">/</span><span class="dv">10</span>)) <span class="op">/</span> <span class="bu">sum</span>((x<span class="op">-</span><span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span>)<span class="op">**</span><span class="dv">2</span>) <span class="co"># Sxy * Sxx</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a>beta0_estimated <span class="op">=</span> <span class="bu">sum</span>(y)<span class="op">/</span><span class="dv">10</span> <span class="op">-</span> beta1_estimated <span class="op">*</span> <span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>beta1_estimated <span class="op">=</span> <span class="bu">sum</span>((x<span class="op">-</span><span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span>)<span class="op">*</span>(y<span class="op">-</span><span class="bu">sum</span>(y)<span class="op">/</span><span class="dv">10</span>)) <span class="op">/</span> <span class="bu">sum</span>((x<span class="op">-</span><span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span>)<span class="op">**</span><span class="dv">2</span>) <span class="co"># Sxy * Sxx</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>beta0_estimated <span class="op">=</span> <span class="bu">sum</span>(y)<span class="op">/</span><span class="dv">10</span> <span class="op">-</span> beta1_estimated <span class="op">*</span> <span class="bu">sum</span>(x)<span class="op">/</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="382dc0b5-0c02-4334-9e2e-bf669fd4a7eb" class="cell" data-outputid="fdf0f793-5ebb-4db5-97b5-c49154028fc4" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>beta0_estimated, beta1_estimated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>beta0_estimated, beta1_estimated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>(&lt;tf.Tensor: shape=(), dtype=float64, numpy=9.944573294798559&gt;,
  &lt;tf.Tensor: shape=(), dtype=float64, numpy=2.2157046054834106&gt;)</code></pre>
 </div>
 </div>
 <div id="ead3a278-c9f8-4c57-b5a3-9d3ef6697619" class="cell" data-outputid="16f74dbb-9f07-4f94-c987-da1e3bec5f94" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>X<span class="op">=</span>tnp.concatenate([[tnp.array([<span class="fl">1.0</span>]<span class="op">*</span><span class="dv">10</span>)],[x]],<span class="dv">0</span>).T</span>
-<span id="cb47-2"><a href="#cb47-2"></a>tf.linalg.inv(X.T <span class="op">@</span> X) <span class="op">@</span> X.T <span class="op">@</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>tnp.concatenate([[tnp.array([<span class="fl">1.0</span>]<span class="op">*</span><span class="dv">10</span>)],[x]],<span class="dv">0</span>).T</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>tf.linalg.inv(X.T <span class="op">@</span> X) <span class="op">@</span> X.T <span class="op">@</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>&lt;tf.Tensor: shape=(2,), dtype=float64, numpy=array([9.94457329, 2.21570461])&gt;</code></pre>
 </div>

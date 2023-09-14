@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1629,7 +1623,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#군집clustering" id="toc-군집clustering" class="nav-link" data-scroll-target="#군집clustering">군집(clustering)</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ml with python 7.out.ipynb" download="ml with python 7.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1677,52 +1671,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="파이프라인" class="level1">
 <h1>파이프라인</h1>
 <div id="cb5d17ad-77f2-492d-94b0-544db16caf92" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>raw_boston <span class="op">=</span> datasets.load_boston()</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>X <span class="op">=</span> raw_boston.data</span>
-<span id="cb2-4"><a href="#cb2-4"></a>y <span class="op">=</span> raw_boston.target</span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># 트레이닝 / 테스트 데이터 분할</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>X_tn, X_te, y_tn, y_te <span class="op">=</span> train_test_split(X,y,random_state<span class="op">=</span><span class="dv">7</span>)</span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># 표준화 스케일링</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>std_scale <span class="op">=</span> StandardScaler()</span>
-<span id="cb2-11"><a href="#cb2-11"></a>X_tn_std <span class="op">=</span> std_scale.fit_transform(X_tn)</span>
-<span id="cb2-12"><a href="#cb2-12"></a>X_te_std  <span class="op">=</span> std_scale.transform(X_te)</span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># 학습</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>clf_linear <span class="op">=</span>  LinearRegression()</span>
-<span id="cb2-16"><a href="#cb2-16"></a>clf_linear.fit(X_tn_std, y_tn)</span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># 예측</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>pred_linear <span class="op">=</span> clf_linear.predict(X_te_std)</span>
-<span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co"># 평가</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>mean_squared_error(y_te, pred_linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 트레이닝 / 테스트 데이터 분할</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>X_tn, X_te, y_tn, y_te <span class="op">=</span> train_test_split(X,y,random_state<span class="op">=</span><span class="dv">7</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># 파이프라인</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>linear_pipline <span class="op">=</span> Pipeline([</span>
-<span id="cb3-6"><a href="#cb3-6"></a>    (<span class="st">'scaler'</span>,StandardScaler()), </span>
-<span id="cb3-7"><a href="#cb3-7"></a>    (<span class="st">'linear_regression'</span>, LinearRegression()) </span>
-<span id="cb3-8"><a href="#cb3-8"></a>])</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># 학습</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>linear_pipline.fit(X_tn, y_tn)</span>
-<span id="cb3-12"><a href="#cb3-12"></a></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co"># 예측</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>pred_linear <span class="op">=</span> linear_pipline.predict(X_te)</span>
-<span id="cb3-15"><a href="#cb3-15"></a></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co"># 평가</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>mean_squared_error(y_te, pred_linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>raw_boston <span class="op">=</span> datasets.load_boston()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> raw_boston.data</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> raw_boston.target</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 트레이닝 / 테스트 데이터 분할</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>X_tn, X_te, y_tn, y_te <span class="op">=</span> train_test_split(X,y,random_state<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 표준화 스케일링</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>std_scale <span class="op">=</span> StandardScaler()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>X_tn_std <span class="op">=</span> std_scale.fit_transform(X_tn)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>X_te_std  <span class="op">=</span> std_scale.transform(X_te)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>clf_linear <span class="op">=</span>  LinearRegression()</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>clf_linear.fit(X_tn_std, y_tn)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 예측</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>pred_linear <span class="op">=</span> clf_linear.predict(X_te_std)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 평가</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>mean_squared_error(y_te, pred_linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 트레이닝 / 테스트 데이터 분할</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X_tn, X_te, y_tn, y_te <span class="op">=</span> train_test_split(X,y,random_state<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 파이프라인</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>linear_pipline <span class="op">=</span> Pipeline([</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'scaler'</span>,StandardScaler()), </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'linear_regression'</span>, LinearRegression()) </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>linear_pipline.fit(X_tn, y_tn)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 예측</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>pred_linear <span class="op">=</span> linear_pipline.predict(X_te)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 평가</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>mean_squared_error(y_te, pred_linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="그리드-서치" class="level1">
 <h1>그리드 서치</h1>
@@ -1730,44 +1724,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>머신러닝 과정에서 관심 있는 매개 변수들을 대상으로 학습하도록 만드는 방식</li>
 </ul>
 <div id="679ec34e-910e-45fe-a3ea-ad2bb6bf4a3e" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># 꽃 데이터 불러오기</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>raw_iris <span class="op">=</span> datasets.load_iris()</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># 피쳐 / 타겟</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>X <span class="op">=</span> raw_iris.data</span>
-<span id="cb4-15"><a href="#cb4-15"></a>y <span class="op">=</span> raw_iris.target</span>
-<span id="cb4-16"><a href="#cb4-16"></a></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># 트레이닝 / 테스트 데이터 분할</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a>X_tn, X_te, y_tn, y_te<span class="op">=</span>train_test_split(X,y,random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb4-19"><a href="#cb4-19"></a></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co"># 표준화 스케일</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>std_scale <span class="op">=</span> StandardScaler()</span>
-<span id="cb4-22"><a href="#cb4-22"></a>std_scale.fit(X_tn)</span>
-<span id="cb4-23"><a href="#cb4-23"></a>X_tn_std <span class="op">=</span> std_scale.transform(X_tn)</span>
-<span id="cb4-24"><a href="#cb4-24"></a>X_te_std  <span class="op">=</span> std_scale.transform(X_te)</span>
-<span id="cb4-25"><a href="#cb4-25"></a></span>
-<span id="cb4-26"><a href="#cb4-26"></a>best_accuracy <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a></span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>]:</span>
-<span id="cb4-29"><a href="#cb4-29"></a>    clf_knn <span class="op">=</span>  KNeighborsClassifier(n_neighbors<span class="op">=</span>k)</span>
-<span id="cb4-30"><a href="#cb4-30"></a>    clf_knn.fit(X_tn_std, y_tn)</span>
-<span id="cb4-31"><a href="#cb4-31"></a>    knn_pred <span class="op">=</span> clf_knn.predict(X_te_std)</span>
-<span id="cb4-32"><a href="#cb4-32"></a>    accuracy <span class="op">=</span> accuracy_score(y_te, knn_pred)</span>
-<span id="cb4-33"><a href="#cb4-33"></a>    <span class="cf">if</span> accuracy <span class="op">&gt;</span> best_accuracy:</span>
-<span id="cb4-34"><a href="#cb4-34"></a>        best_accuracy <span class="op">=</span> accuracy</span>
-<span id="cb4-35"><a href="#cb4-35"></a>        final_k <span class="op">=</span> {<span class="st">'k'</span>: k}</span>
-<span id="cb4-36"><a href="#cb4-36"></a>    </span>
-<span id="cb4-37"><a href="#cb4-37"></a><span class="bu">print</span>(final_k)</span>
-<span id="cb4-38"><a href="#cb4-38"></a><span class="bu">print</span>(accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 꽃 데이터 불러오기</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>raw_iris <span class="op">=</span> datasets.load_iris()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 피쳐 / 타겟</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> raw_iris.data</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> raw_iris.target</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 트레이닝 / 테스트 데이터 분할</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>X_tn, X_te, y_tn, y_te<span class="op">=</span>train_test_split(X,y,random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 표준화 스케일</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>std_scale <span class="op">=</span> StandardScaler()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>std_scale.fit(X_tn)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>X_tn_std <span class="op">=</span> std_scale.transform(X_tn)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>X_te_std  <span class="op">=</span> std_scale.transform(X_te)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>best_accuracy <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>]:</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    clf_knn <span class="op">=</span>  KNeighborsClassifier(n_neighbors<span class="op">=</span>k)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    clf_knn.fit(X_tn_std, y_tn)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    knn_pred <span class="op">=</span> clf_knn.predict(X_te_std)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    accuracy <span class="op">=</span> accuracy_score(y_te, knn_pred)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> accuracy <span class="op">&gt;</span> best_accuracy:</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        best_accuracy <span class="op">=</span> accuracy</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        final_k <span class="op">=</span> {<span class="st">'k'</span>: k}</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(final_k)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'k': 3}
 0.9736842105263158</code></pre>
@@ -1783,24 +1777,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><span class="math display">\[\dfrac{1}{n}\sum_{i=1}^n I(\hat y_i = y_i)\]</span></p>
 <div id="8e4cba36-bbc9-4ddf-b2fc-25664f0dffbd" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 정확도</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#import numpy as np</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
-<span id="cb6-4"><a href="#cb6-4"></a>y_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>]</span>
-<span id="cb6-5"><a href="#cb6-5"></a>y_true <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="bu">print</span>(accuracy_score(y_true, y_pred))</span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="bu">print</span>(accuracy_score(y_true, y_pred, normalize<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 정확도</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#import numpy as np</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(accuracy_score(y_true, y_pred))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(accuracy_score(y_true, y_pred, normalize<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.5
 2</code></pre>
 </div>
 </div>
 <div id="a5efba14-1ebb-4fd6-add3-5207295b897a" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## confusionm matrix</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
-<span id="cb8-3"><a href="#cb8-3"></a>y_true <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
-<span id="cb8-4"><a href="#cb8-4"></a>y_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
-<span id="cb8-5"><a href="#cb8-5"></a>confusion_matrix(y_true, y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## confusionm matrix</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_true, y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>array([[2, 0, 0],
        [0, 0, 1],
@@ -1808,12 +1802,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="62879c54-0e55-463d-8589-f285b54eb101" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## classification report </span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
-<span id="cb10-3"><a href="#cb10-3"></a>y_true <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>]</span>
-<span id="cb10-4"><a href="#cb10-4"></a>y_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
-<span id="cb10-5"><a href="#cb10-5"></a>target_names <span class="op">=</span> [<span class="st">'class 0'</span>, <span class="st">'class 1'</span>, <span class="st">'class 2'</span>]</span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="bu">print</span>(classification_report(y_true, y_pred, target_names<span class="op">=</span>target_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## classification report </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>target_names <span class="op">=</span> [<span class="st">'class 0'</span>, <span class="st">'class 1'</span>, <span class="st">'class 2'</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_true, y_pred, target_names<span class="op">=</span>target_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              precision    recall  f1-score   support
 
@@ -1835,12 +1829,12 @@ weighted avg       0.67      0.60      0.59         5
 </ul>
 <p><span class="math display">\[MAE=\dfrac{1}{n}\sum_{i=1}^n|y_i-\hat y_i|\]</span></p>
 <div id="ae8d8c7b-a76f-48ca-a508-80a5c9e95d87" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># mean absolute error</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error</span>
-<span id="cb12-3"><a href="#cb12-3"></a>y_true <span class="op">=</span> [<span class="dv">3</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">7</span>]</span>
-<span id="cb12-4"><a href="#cb12-4"></a>y_pred <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">0.0</span>, <span class="dv">2</span>, <span class="dv">8</span>]</span>
-<span id="cb12-5"><a href="#cb12-5"></a></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="bu">print</span>(mean_absolute_error(y_true, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean absolute error</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">3</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">7</span>]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">0.0</span>, <span class="dv">2</span>, <span class="dv">8</span>]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_absolute_error(y_true, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.5</code></pre>
 </div>
@@ -1850,21 +1844,21 @@ weighted avg       0.67      0.60      0.59         5
 </ul>
 <p><span class="math display">\[MSE=\dfrac{1}{n}\sum_{i=1}^n(y_i-\hat y_i)^2\]</span></p>
 <div id="59486bea-4d5f-429f-814d-b59e1dfb7875" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># mean squared error</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
-<span id="cb14-3"><a href="#cb14-3"></a>y_true <span class="op">=</span> [<span class="dv">3</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">7</span>]</span>
-<span id="cb14-4"><a href="#cb14-4"></a>y_pred <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">0.0</span>, <span class="dv">2</span>, <span class="dv">8</span>]</span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="bu">print</span>(mean_squared_error(y_true, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean squared error</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">3</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">7</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">0.0</span>, <span class="dv">2</span>, <span class="dv">8</span>]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_squared_error(y_true, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.375</code></pre>
 </div>
 </div>
 <div id="f8294c5f-28a0-44a6-9a97-c2c5248e64ea" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># R2</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span>
-<span id="cb16-3"><a href="#cb16-3"></a>y_true <span class="op">=</span> [<span class="dv">3</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">7</span>]</span>
-<span id="cb16-4"><a href="#cb16-4"></a>y_pred <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">0.0</span>, <span class="dv">2</span>, <span class="dv">8</span>]</span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="bu">print</span>(r2_score(y_true, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R2</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">3</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">7</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">0.0</span>, <span class="dv">2</span>, <span class="dv">8</span>]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r2_score(y_true, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.9486081370449679</code></pre>
 </div>
@@ -1882,23 +1876,23 @@ weighted avg       0.67      0.60      0.59         5
 </ul>
 <p><span class="math display">\[s=\dfrac{b-a}{max(a,b)}\]</span></p>
 <div id="1cbd12ab-abba-421c-a7b3-d1a680c2ba3f" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># silloutte score</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
-<span id="cb18-3"><a href="#cb18-3"></a>X <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">4</span>, <span class="dv">5</span>], [<span class="dv">2</span>, <span class="dv">1</span>], [<span class="dv">6</span>, <span class="dv">7</span>], [<span class="dv">2</span>, <span class="dv">3</span>]]</span>
-<span id="cb18-4"><a href="#cb18-4"></a>labels <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>] </span>
-<span id="cb18-5"><a href="#cb18-5"></a>sil_score <span class="op">=</span> silhouette_score(X, labels)</span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="bu">print</span>(sil_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># silloutte score</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">4</span>, <span class="dv">5</span>], [<span class="dv">2</span>, <span class="dv">1</span>], [<span class="dv">6</span>, <span class="dv">7</span>], [<span class="dv">2</span>, <span class="dv">3</span>]]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>] </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>sil_score <span class="op">=</span> silhouette_score(X, labels)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sil_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.5789497702625118</code></pre>
 </div>
 </div>
 <div id="f4232da2-d216-4018-97d3-f16c11a9e6d7" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># adjusted rand index</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> adjusted_rand_score</span>
-<span id="cb20-3"><a href="#cb20-3"></a>labels_true <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
-<span id="cb20-4"><a href="#cb20-4"></a>labels_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>]</span>
-<span id="cb20-5"><a href="#cb20-5"></a></span>
-<span id="cb20-6"><a href="#cb20-6"></a><span class="bu">print</span>(adjusted_rand_score(labels_true, labels_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted rand index</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> adjusted_rand_score</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>labels_true <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>labels_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adjusted_rand_score(labels_true, labels_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.24242424242424243</code></pre>
 </div>

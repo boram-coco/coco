@@ -548,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -560,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1516,12 +1516,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1621,7 +1615,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ref" id="toc-ref" class="nav-link" data-scroll-target="#ref">Ref</a></li>
   <li><a href="#데이터-변환" id="toc-데이터-변환" class="nav-link" data-scroll-target="#데이터-변환">데이터 변환</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ls4.out.ipynb" download="ls4.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1658,7 +1652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="download-notebook" class="level1">
 <h1>Download notebook</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1"></a>!wget https://raw.githubusercontent.com/miruetoto/yechan3/main/posts/2_Studies/PyG/ls4.ipynb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>!wget https://raw.githubusercontent.com/miruetoto/yechan3/main/posts/2_Studies/PyG/ls4.ipynb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ref" class="level1">
 <h1>Ref</h1>
@@ -1669,23 +1663,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="데이터-변환" class="level1">
 <h1>데이터 변환</h1>
 <div id="e916d9b9-6543-4857-9ca5-883e40bcd358" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> torch_geometric.datasets <span class="im">import</span> ShapeNet</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>dataset <span class="op">=</span> ShapeNet(root<span class="op">=</span><span class="st">'/tmp/ShapeNet'</span>, categories<span class="op">=</span>[<span class="st">'Airplane'</span>])</span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a>dataset[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric.datasets <span class="im">import</span> ShapeNet</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> ShapeNet(root<span class="op">=</span><span class="st">'/tmp/ShapeNet'</span>, categories<span class="op">=</span>[<span class="st">'Airplane'</span>])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>Data(x=[2518, 3], y=[2518], pos=[2518, 3], category=[1])</code></pre>
 </div>
 </div>
 <div id="ae3ceea9-a77b-4813-bf4b-e1291f288491" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> torch_geometric.transforms <span class="im">as</span> T</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> torch_geometric.datasets <span class="im">import</span> ShapeNet</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a>dataset <span class="op">=</span> ShapeNet(root<span class="op">=</span><span class="st">'/tmp/ShapeNet'</span>, categories<span class="op">=</span>[<span class="st">'Airplane'</span>],</span>
-<span id="cb4-5"><a href="#cb4-5"></a>                    pre_transform<span class="op">=</span>T.KNNGraph(k<span class="op">=</span><span class="dv">6</span>))</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a>dataset[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch_geometric.transforms <span class="im">as</span> T</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric.datasets <span class="im">import</span> ShapeNet</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> ShapeNet(root<span class="op">=</span><span class="st">'/tmp/ShapeNet'</span>, categories<span class="op">=</span>[<span class="st">'Airplane'</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                    pre_transform<span class="op">=</span>T.KNNGraph(k<span class="op">=</span><span class="dv">6</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/cgb2/anaconda3/envs/pyg/lib/python3.10/site-packages/torch_geometric/data/dataset.py:209: UserWarning: The `pre_transform` argument differs from the one used in the pre-processed version of this dataset. If you want to make use of another pre-processing technique, make sure to delete '/tmp/ShapeNet/processed' first
   warnings.warn(</code></pre>
@@ -1695,14 +1689,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="7111b530-25a2-4d76-a04a-15b8e3e87360" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> torch_geometric.transforms <span class="im">as</span> T</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> torch_geometric.datasets <span class="im">import</span> ShapeNet</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a>dataset <span class="op">=</span> ShapeNet(root<span class="op">=</span><span class="st">'/tmp/ShapeNet'</span>, categories<span class="op">=</span>[<span class="st">'Airplane'</span>],</span>
-<span id="cb7-5"><a href="#cb7-5"></a>                    pre_transform<span class="op">=</span>T.KNNGraph(k<span class="op">=</span><span class="dv">6</span>),</span>
-<span id="cb7-6"><a href="#cb7-6"></a>                    transform<span class="op">=</span>T.RandomJitter(<span class="fl">0.01</span>))</span>
-<span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a>dataset[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch_geometric.transforms <span class="im">as</span> T</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric.datasets <span class="im">import</span> ShapeNet</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> ShapeNet(root<span class="op">=</span><span class="st">'/tmp/ShapeNet'</span>, categories<span class="op">=</span>[<span class="st">'Airplane'</span>],</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                    pre_transform<span class="op">=</span>T.KNNGraph(k<span class="op">=</span><span class="dv">6</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                    transform<span class="op">=</span>T.RandomJitter(<span class="fl">0.01</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>Data(x=[2518, 3], y=[2518], pos=[2518, 3], category=[1])</code></pre>
 </div>

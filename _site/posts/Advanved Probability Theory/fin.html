@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1623,7 +1617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#확률-40점" id="toc-확률-40점" class="nav-link" data-scroll-target="#확률-40점"><code>2</code>. 확률 (40점)</a></li>
   <li><a href="#확률변수-밀도함수-기대값-30점" id="toc-확률변수-밀도함수-기대값-30점" class="nav-link" data-scroll-target="#확률변수-밀도함수-기대값-30점"><code>3</code>. 확률변수, 밀도함수, 기대값 (30점)</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="fin.out.ipynb" download="fin.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1662,28 +1656,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1><code>1</code>. 다음을 읽고 참거짓을 판단하라. (30점)</h1>
 <p><code>(1)</code> 유리수집합 <span class="math inline">\(\mathbb{Q}\)</span>는 가산집합이며 유리수집합을 르벡메져로 측정하면 그 길이가 0이다. 즉 <span class="math inline">\(\lambda(\mathbb{Q})=0\)</span> 이다.</p>
 <div id="ba3f80e9-a5b4-4497-9ddf-c29c556ef10f" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p><code>(2)</code> 르벡메져 <span class="math inline">\(\lambda\)</span>는 <span class="math inline">\(\mathbb{R}\)</span>의 모든 부분집합에 대하여 그 길이를 모순없이 정의가능하다. 즉 르벡메져는 <span class="math inline">\((\mathbb{R},2^{\mathbb{R}})\)</span> 에서의 메져가 된다.</p>
 <div id="5a7668f9-b5a0-44a5-bd52-bdba36ddf4f1" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">False</span> <span class="co"># 비탈리집합</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="co"># 비탈리집합</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p><code>(3)</code> 르벡메져 <span class="math inline">\(\lambda\)</span>는 임의의 <span class="math inline">\(B \in {\cal R}\)</span>의 길이를 모순없이 정의가능하다. 즉 르벡메져는 <span class="math inline">\((\mathbb{R},{\cal R})\)</span> 에서의 메져가 된다.</p>
 <div id="6a06d6dd-921a-4fe4-8255-324fe11c91f7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p><code>(4)</code> 집합 <span class="math inline">\(\Omega\)</span>의 부분집합을 원소로 가지는 collection <span class="math inline">\({\cal F}\)</span>를 고려하자. 만약에 <span class="math inline">\({\cal F}\)</span>가 파이시스템이면서 동시에 람다시스템이라면 <span class="math inline">\({\cal F}\)</span>는 시그마필드이다.</p>
 <div id="0f394b39-8363-468c-be57-3d52dc515a52" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>True</code></pre>
 </div>
@@ -1692,39 +1686,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[f(x) = \begin{cases} 1 &amp; x \in \mathbb{Q}\\  0 &amp; x \in \mathbb{R}-\mathbb{Q}\end{cases}\]</span></p>
 <p>위의 함수에 대한 르벡적분값은 무한대이다. 즉 <span class="math inline">\(\int_{\mathbb{R}} f d\lambda = \infty\)</span> 이다.</p>
 <div id="a65e8337-4f25-4f36-9384-b1208e4778e3" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p><code>(6)</code> <span class="math inline">\(X\)</span>가 가측공간 <span class="math inline">\((\Omega,{\cal F})\)</span> 에서의 확률변수라는 의미는 모든 <span class="math inline">\(B \in {\cal B}\)</span> 에 대하여 <span class="math inline">\(\{\omega: X(\omega) \in B\} \in {\cal F}\)</span> 를 만족한다는 의미이다.</p>
 <div id="14fcb911-25fc-4187-abd5-863bcd69619a" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="va">None</span> <span class="co"># 문제오류. ${\cal B}$가 아니라 ${\cal R}$ </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">None</span> <span class="co"># 문제오류. ${\cal B}$가 아니라 ${\cal R}$ </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>(7)</code> <span class="math inline">\(X\)</span>가 가측공간 <span class="math inline">\((\Omega,{\cal F})\)</span> 에서의 확률변수라면 <span class="math inline">\(X\)</span>에 대응하는 분포(distribution) <span class="math inline">\(\mu_X\)</span>가 반드시 존재하며 <span class="math inline">\(\mu_X:=P \circ X^{-1}\)</span>로 정의가능하다.</p>
 <div id="14661586-9714-4e99-a8bb-54904d078406" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p><code>(8)</code> <span class="math inline">\(X\)</span>가 가측공간 <span class="math inline">\((\Omega,{\cal F})\)</span> 에서의 확률변수이고, <span class="math inline">\(X\)</span>에 대응하는 분포가 <span class="math inline">\(\mu_X\)</span>라고 하자. <span class="math inline">\(\mu_X\)</span>는 측도의 정의를 만족하지만 확률측도의 정의를 만족하지는 않는다.</p>
 <div id="0ae96c35-4aab-4a97-bce7-364dac1e1f11" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="va">False</span> <span class="co"># 확률측도의 정의도 만족</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="co"># 확률측도의 정의도 만족</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p><code>(9)</code> <span class="math inline">\(X\)</span>가 가측공간 <span class="math inline">\((\Omega,{\cal F})\)</span> 에서의 확률변수이고, <span class="math inline">\(X\)</span>에 대응하는 분포가 <span class="math inline">\(\mu_X\)</span>라고 하자. <span class="math inline">\(\mu_X\)</span>에 대응하는 분포함수 <span class="math inline">\(F_X(x) = \mu_X((-\infty,x])\)</span>는 항상 존재한다.</p>
 <div id="7552bcad-1304-47e5-b45c-4c64d49f52f5" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p><code>(10)</code> <span class="math inline">\(X\)</span>가 가측공간 <span class="math inline">\((\Omega,{\cal F})\)</span> 에서의 확률변수이고 <span class="math inline">\(F_X\)</span>가 <span class="math inline">\(X\)</span>에 대응하는 분포함수라고 하자. 분포함수 <span class="math inline">\(F_X\)</span>가 절대연속이라면 대응하는 <span class="math inline">\(X\)</span>는 연속형확률변수이며 그 밀도함수 <span class="math inline">\(f_X\)</span>가 존재한다.</p>
 <div id="c90a59ac-1e0a-44ae-94bc-340cd1382dfc" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>False</code></pre>
 </div>

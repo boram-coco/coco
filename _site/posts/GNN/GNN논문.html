@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1662,7 +1656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#gaan" id="toc-gaan" class="nav-link" data-scroll-target="#gaan">GaAN</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="GNN논문.out.ipynb" download="GNN논문.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1764,15 +1758,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="section-2">1-2</h2>
 <p>https://ieeexplore.ieee.org/document/4700287</p>
 <div id="33c7d5b5-372f-4591-bb14-f4b7cebcf043" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">@ARTICLE</span>{<span class="dv">4700287</span>,</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  author<span class="op">=</span>{Scarselli, Franco <span class="kw">and</span> Gori, Marco <span class="kw">and</span> Tsoi, Ah Chung <span class="kw">and</span> Hagenbuchner, Markus <span class="kw">and</span> Monfardini, Gabriele},</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  journal<span class="op">=</span>{IEEE Transactions on Neural Networks}, </span>
-<span id="cb1-4"><a href="#cb1-4"></a>  title<span class="op">=</span>{The Graph Neural Network Model}, </span>
-<span id="cb1-5"><a href="#cb1-5"></a>  year<span class="op">=</span>{<span class="dv">2009</span>},</span>
-<span id="cb1-6"><a href="#cb1-6"></a>  volume<span class="op">=</span>{<span class="dv">20</span>},</span>
-<span id="cb1-7"><a href="#cb1-7"></a>  number<span class="op">=</span>{<span class="dv">1</span>},</span>
-<span id="cb1-8"><a href="#cb1-8"></a>  pages<span class="op">=</span>{<span class="dv">61</span><span class="op">-</span><span class="dv">80</span>},</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  doi<span class="op">=</span>{<span class="fl">10.1109</span><span class="op">/</span>TNN<span class="fl">.2008.2005605</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">@ARTICLE</span>{<span class="dv">4700287</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  author<span class="op">=</span>{Scarselli, Franco <span class="kw">and</span> Gori, Marco <span class="kw">and</span> Tsoi, Ah Chung <span class="kw">and</span> Hagenbuchner, Markus <span class="kw">and</span> Monfardini, Gabriele},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  journal<span class="op">=</span>{IEEE Transactions on Neural Networks}, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  title<span class="op">=</span>{The Graph Neural Network Model}, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  year<span class="op">=</span>{<span class="dv">2009</span>},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  volume<span class="op">=</span>{<span class="dv">20</span>},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  number<span class="op">=</span>{<span class="dv">1</span>},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  pages<span class="op">=</span>{<span class="dv">61</span><span class="op">-</span><span class="dv">80</span>},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  doi<span class="op">=</span>{<span class="fl">10.1109</span><span class="op">/</span>TNN<span class="fl">.2008.2005605</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>

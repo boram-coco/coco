@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1643,7 +1637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#flatten-layer" id="toc-flatten-layer" class="nav-link" data-scroll-target="#flatten-layer">flatten layer</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022_05_09_(10주차)_5월9일.out.ipynb" download="2022_05_09_(10주차)_5월9일.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1684,23 +1678,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="imports" class="level2">
 <h2 class="anchored" data-anchor-id="imports">imports</h2>
 <div id="0cfeb127-a213-48dd-a815-12298b527b46" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> tensorflow.experimental.numpy <span class="im">as</span> tnp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow.experimental.numpy <span class="im">as</span> tnp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="7940de87-5af9-4414-8df2-5dbcb45cb57c" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>tnp.experimental_enable_numpy_behavior()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tnp.experimental_enable_numpy_behavior()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="563ebbbc-be73-4d4e-be5e-557d46f512f3" class="cell" data-outputid="f6758ecf-0473-446e-f862-415b3b8dcfb8" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>tf.config.experimental.list_physical_devices()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tf.config.experimental.list_physical_devices()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>[PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU')]</code></pre>
 </div>
 </div>
 <div id="57a9ce84-9d59-4927-90b1-4e0e2f0fc41e" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> graphviz</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">def</span> gv(s): <span class="cf">return</span> graphviz.Source(<span class="st">'digraph G{ rankdir="LR"'</span><span class="op">+</span> s <span class="op">+</span> <span class="st">';}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphviz</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gv(s): <span class="cf">return</span> graphviz.Source(<span class="st">'digraph G{ rankdir="LR"'</span><span class="op">+</span> s <span class="op">+</span> <span class="st">';}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="softmax-function" class="level2">
@@ -1803,86 +1797,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="fashion_mnist-여러클래스의-분류-softmax의-실습">Fashion_MNIST 여러클래스의 분류 (softmax의 실습)</h3>
 <p><code>-</code> 데이터정리</p>
 <div id="0f347528-7089-4dc5-8ddf-7a4d06900eb0" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.fashion_mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.fashion_mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8ed5da05-01b1-4bd7-8227-27fef9f06d7c" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>X<span class="op">=</span> x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>y<span class="op">=</span> tf.keras.utils.to_categorical(y_train)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>XX <span class="op">=</span> x_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)</span>
-<span id="cb7-4"><a href="#cb7-4"></a>yy <span class="op">=</span> tf.keras.utils.to_categorical(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span> x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span> tf.keras.utils.to_categorical(y_train)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> x_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> tf.keras.utils.to_categorical(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 시도1: 간단한 신경망</p>
 <div id="26b82ff3-e96c-4844-ad72-7aeab389fbd2" class="cell" data-outputid="a9dfc79e-1e7e-40e2-9003-e1b525ca4dc5" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#collapse</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>gv(<span class="st">'''</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="st">splines=line</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="st">subgraph cluster_1{</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="st">    style=filled;</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="st">    color=lightgrey;</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="st">    "x1"</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="st">    "x2"</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="st">    ".."</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="st">    "x784"</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="st">    label = "Layer 0"</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="st">}</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="st">subgraph cluster_2{</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="st">    style=filled;</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="st">    color=lightgrey;</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="st">    "x1" -&gt; "node1"</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="st">    "x2" -&gt; "node1"</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="st">    ".." -&gt; "node1"</span></span>
-<span id="cb8-19"><a href="#cb8-19"></a></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="st">    "x784" -&gt; "node1"</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="st">    "x1" -&gt; "node2"</span></span>
-<span id="cb8-22"><a href="#cb8-22"></a><span class="st">    "x2" -&gt; "node2"</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="st">    ".." -&gt; "node2"</span></span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="st">    "x784" -&gt; "node2"</span></span>
-<span id="cb8-25"><a href="#cb8-25"></a></span>
-<span id="cb8-26"><a href="#cb8-26"></a><span class="st">    "x1" -&gt; "..."</span></span>
-<span id="cb8-27"><a href="#cb8-27"></a><span class="st">    "x2" -&gt; "..."</span></span>
-<span id="cb8-28"><a href="#cb8-28"></a><span class="st">    ".." -&gt; "..."</span></span>
-<span id="cb8-29"><a href="#cb8-29"></a><span class="st">    "x784" -&gt; "..."</span></span>
-<span id="cb8-30"><a href="#cb8-30"></a></span>
-<span id="cb8-31"><a href="#cb8-31"></a><span class="st">    "x1" -&gt; "node30"</span></span>
-<span id="cb8-32"><a href="#cb8-32"></a><span class="st">    "x2" -&gt; "node30"</span></span>
-<span id="cb8-33"><a href="#cb8-33"></a><span class="st">    ".." -&gt; "node30"</span></span>
-<span id="cb8-34"><a href="#cb8-34"></a><span class="st">    "x784" -&gt; "node30"</span></span>
-<span id="cb8-35"><a href="#cb8-35"></a></span>
-<span id="cb8-36"><a href="#cb8-36"></a></span>
-<span id="cb8-37"><a href="#cb8-37"></a><span class="st">    label = "Layer 1: relu"</span></span>
-<span id="cb8-38"><a href="#cb8-38"></a><span class="st">}</span></span>
-<span id="cb8-39"><a href="#cb8-39"></a><span class="st">subgraph cluster_3{</span></span>
-<span id="cb8-40"><a href="#cb8-40"></a><span class="st">    style=filled;</span></span>
-<span id="cb8-41"><a href="#cb8-41"></a><span class="st">    color=lightgrey;</span></span>
-<span id="cb8-42"><a href="#cb8-42"></a></span>
-<span id="cb8-43"><a href="#cb8-43"></a><span class="st">    "node1" -&gt; "y10"</span></span>
-<span id="cb8-44"><a href="#cb8-44"></a><span class="st">    "node2" -&gt; "y10"</span></span>
-<span id="cb8-45"><a href="#cb8-45"></a><span class="st">    "..." -&gt; "y10"</span></span>
-<span id="cb8-46"><a href="#cb8-46"></a><span class="st">    "node30" -&gt; "y10"</span></span>
-<span id="cb8-47"><a href="#cb8-47"></a></span>
-<span id="cb8-48"><a href="#cb8-48"></a><span class="st">    "node1" -&gt; "y1"</span></span>
-<span id="cb8-49"><a href="#cb8-49"></a><span class="st">    "node2" -&gt; "y1"</span></span>
-<span id="cb8-50"><a href="#cb8-50"></a><span class="st">    "..." -&gt; "y1"</span></span>
-<span id="cb8-51"><a href="#cb8-51"></a><span class="st">    "node30" -&gt; "y1"</span></span>
-<span id="cb8-52"><a href="#cb8-52"></a></span>
-<span id="cb8-53"><a href="#cb8-53"></a><span class="st">    "node1" -&gt; "."</span></span>
-<span id="cb8-54"><a href="#cb8-54"></a><span class="st">    "node2" -&gt; "."</span></span>
-<span id="cb8-55"><a href="#cb8-55"></a><span class="st">    "..." -&gt; "."</span></span>
-<span id="cb8-56"><a href="#cb8-56"></a><span class="st">    "node30" -&gt; "."</span></span>
-<span id="cb8-57"><a href="#cb8-57"></a></span>
-<span id="cb8-58"><a href="#cb8-58"></a><span class="st">    label = "Layer 2: softmax"</span></span>
-<span id="cb8-59"><a href="#cb8-59"></a><span class="st">}</span></span>
-<span id="cb8-60"><a href="#cb8-60"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">splines=line</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_1{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">    ".."</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 0"</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_2{</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node1"</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node1"</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node1"</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node1"</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node2"</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node2"</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node2"</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node2"</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "..."</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "..."</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "..."</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "..."</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node30"</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node30"</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node30"</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node30"</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 1: relu"</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_3{</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "y10"</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "y10"</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="st">    "..." -&gt; "y10"</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="st">    "node30" -&gt; "y10"</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "y1"</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "y1"</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="st">    "..." -&gt; "y1"</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="st">    "node30" -&gt; "y1"</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "."</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "."</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="st">    "..." -&gt; "."</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="st">    "node30" -&gt; "."</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 2: softmax"</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <p><img src="2022_05_09_(10주차)_5월9일_files/figure-html/cell-9-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <div id="4aec3ee3-912a-4db1-95d8-dd69cebcc8a2" class="cell" data-outputid="da35a23f-0289-4fd0-d846-d477d3151cc0" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb9-2"><a href="#cb9-2"></a>net.add(tf.keras.layers.Dense(<span class="dv">30</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb9-3"><a href="#cb9-3"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
-<span id="cb9-4"><a href="#cb9-4"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
-<span id="cb9-5"><a href="#cb9-5"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">30</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
 1875/1875 [==============================] - 1s 515us/step - loss: 1.9693 - accuracy: 0.4597
@@ -1900,7 +1894,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="648f3d66-4f4a-4052-99b7-8546adfbdcff" class="cell" data-outputid="b09ae022-bade-4916-9562-4f1c2da7e1b6" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>313/313 [==============================] - 0s 394us/step - loss: 0.7765 - accuracy: 0.6829</code></pre>
 </div>
@@ -1909,7 +1903,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="004d9b9a-ade5-481d-98e5-fb00df3119b1" class="cell" data-outputid="45eebec8-5152-4d9b-d5d2-db0dc5a6e7a0" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>net.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>net.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "sequential"
 _________________________________________________________________
@@ -1928,106 +1922,106 @@ _________________________________________________________________</code></pre>
 </div>
 <p><code>-</code> 시도2: 더 깊은 신경망</p>
 <div id="82c577aa-3148-4e25-a8ae-721e9541d82f" class="cell" data-outputid="7bd440e1-eaec-4811-926c-bc130ab638d6" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">#collapse</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>gv(<span class="st">'''</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="st">splines=line</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="st">subgraph cluster_1{</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="st">    style=filled;</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="st">    color=lightgrey;</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="st">    "x1"</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="st">    "x2"</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="st">    ".."</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a><span class="st">    "x784"</span></span>
-<span id="cb17-11"><a href="#cb17-11"></a><span class="st">    label = "Layer 0"</span></span>
-<span id="cb17-12"><a href="#cb17-12"></a><span class="st">}</span></span>
-<span id="cb17-13"><a href="#cb17-13"></a><span class="st">subgraph cluster_2{</span></span>
-<span id="cb17-14"><a href="#cb17-14"></a><span class="st">    style=filled;</span></span>
-<span id="cb17-15"><a href="#cb17-15"></a><span class="st">    color=lightgrey;</span></span>
-<span id="cb17-16"><a href="#cb17-16"></a><span class="st">    "x1" -&gt; "node1"</span></span>
-<span id="cb17-17"><a href="#cb17-17"></a><span class="st">    "x2" -&gt; "node1"</span></span>
-<span id="cb17-18"><a href="#cb17-18"></a><span class="st">    ".." -&gt; "node1"</span></span>
-<span id="cb17-19"><a href="#cb17-19"></a></span>
-<span id="cb17-20"><a href="#cb17-20"></a><span class="st">    "x784" -&gt; "node1"</span></span>
-<span id="cb17-21"><a href="#cb17-21"></a><span class="st">    "x1" -&gt; "node2"</span></span>
-<span id="cb17-22"><a href="#cb17-22"></a><span class="st">    "x2" -&gt; "node2"</span></span>
-<span id="cb17-23"><a href="#cb17-23"></a><span class="st">    ".." -&gt; "node2"</span></span>
-<span id="cb17-24"><a href="#cb17-24"></a><span class="st">    "x784" -&gt; "node2"</span></span>
-<span id="cb17-25"><a href="#cb17-25"></a></span>
-<span id="cb17-26"><a href="#cb17-26"></a><span class="st">    "x1" -&gt; "..."</span></span>
-<span id="cb17-27"><a href="#cb17-27"></a><span class="st">    "x2" -&gt; "..."</span></span>
-<span id="cb17-28"><a href="#cb17-28"></a><span class="st">    ".." -&gt; "..."</span></span>
-<span id="cb17-29"><a href="#cb17-29"></a><span class="st">    "x784" -&gt; "..."</span></span>
-<span id="cb17-30"><a href="#cb17-30"></a></span>
-<span id="cb17-31"><a href="#cb17-31"></a><span class="st">    "x1" -&gt; "node500"</span></span>
-<span id="cb17-32"><a href="#cb17-32"></a><span class="st">    "x2" -&gt; "node500"</span></span>
-<span id="cb17-33"><a href="#cb17-33"></a><span class="st">    ".." -&gt; "node500"</span></span>
-<span id="cb17-34"><a href="#cb17-34"></a><span class="st">    "x784" -&gt; "node500"</span></span>
-<span id="cb17-35"><a href="#cb17-35"></a></span>
-<span id="cb17-36"><a href="#cb17-36"></a></span>
-<span id="cb17-37"><a href="#cb17-37"></a><span class="st">    label = "Layer 1: relu"</span></span>
-<span id="cb17-38"><a href="#cb17-38"></a><span class="st">}</span></span>
-<span id="cb17-39"><a href="#cb17-39"></a></span>
-<span id="cb17-40"><a href="#cb17-40"></a><span class="st">subgraph cluster_3{</span></span>
-<span id="cb17-41"><a href="#cb17-41"></a><span class="st">    style=filled;</span></span>
-<span id="cb17-42"><a href="#cb17-42"></a><span class="st">    color=lightgrey;</span></span>
-<span id="cb17-43"><a href="#cb17-43"></a></span>
-<span id="cb17-44"><a href="#cb17-44"></a><span class="st">    "node1" -&gt; "node1(2)"</span></span>
-<span id="cb17-45"><a href="#cb17-45"></a><span class="st">    "node2" -&gt; "node1(2)"</span></span>
-<span id="cb17-46"><a href="#cb17-46"></a><span class="st">    "..." -&gt; "node1(2)"</span></span>
-<span id="cb17-47"><a href="#cb17-47"></a><span class="st">    "node500" -&gt; "node1(2)"</span></span>
-<span id="cb17-48"><a href="#cb17-48"></a></span>
-<span id="cb17-49"><a href="#cb17-49"></a><span class="st">    "node1" -&gt; "node2(2)"</span></span>
-<span id="cb17-50"><a href="#cb17-50"></a><span class="st">    "node2" -&gt; "node2(2)"</span></span>
-<span id="cb17-51"><a href="#cb17-51"></a><span class="st">    "..." -&gt; "node2(2)"</span></span>
-<span id="cb17-52"><a href="#cb17-52"></a><span class="st">    "node500" -&gt; "node2(2)"</span></span>
-<span id="cb17-53"><a href="#cb17-53"></a></span>
-<span id="cb17-54"><a href="#cb17-54"></a><span class="st">    "node1" -&gt; "...."</span></span>
-<span id="cb17-55"><a href="#cb17-55"></a><span class="st">    "node2" -&gt; "...."</span></span>
-<span id="cb17-56"><a href="#cb17-56"></a><span class="st">    "..." -&gt; "...."</span></span>
-<span id="cb17-57"><a href="#cb17-57"></a><span class="st">    "node500" -&gt; "...."</span></span>
-<span id="cb17-58"><a href="#cb17-58"></a></span>
-<span id="cb17-59"><a href="#cb17-59"></a><span class="st">    "node1" -&gt; "node500(2)"</span></span>
-<span id="cb17-60"><a href="#cb17-60"></a><span class="st">    "node2" -&gt; "node500(2)"</span></span>
-<span id="cb17-61"><a href="#cb17-61"></a><span class="st">    "..." -&gt; "node500(2)"</span></span>
-<span id="cb17-62"><a href="#cb17-62"></a><span class="st">    "node500" -&gt; "node500(2)"</span></span>
-<span id="cb17-63"><a href="#cb17-63"></a></span>
-<span id="cb17-64"><a href="#cb17-64"></a></span>
-<span id="cb17-65"><a href="#cb17-65"></a><span class="st">    label = "Layer 2: relu"</span></span>
-<span id="cb17-66"><a href="#cb17-66"></a><span class="st">}</span></span>
-<span id="cb17-67"><a href="#cb17-67"></a></span>
-<span id="cb17-68"><a href="#cb17-68"></a><span class="st">subgraph cluster_4{</span></span>
-<span id="cb17-69"><a href="#cb17-69"></a><span class="st">    style=filled;</span></span>
-<span id="cb17-70"><a href="#cb17-70"></a><span class="st">    color=lightgrey;</span></span>
-<span id="cb17-71"><a href="#cb17-71"></a></span>
-<span id="cb17-72"><a href="#cb17-72"></a><span class="st">    "node1(2)" -&gt; "y10"</span></span>
-<span id="cb17-73"><a href="#cb17-73"></a><span class="st">    "node2(2)" -&gt; "y10"</span></span>
-<span id="cb17-74"><a href="#cb17-74"></a><span class="st">    "...." -&gt; "y10"</span></span>
-<span id="cb17-75"><a href="#cb17-75"></a><span class="st">    "node500(2)" -&gt; "y10"</span></span>
-<span id="cb17-76"><a href="#cb17-76"></a></span>
-<span id="cb17-77"><a href="#cb17-77"></a><span class="st">    "node1(2)" -&gt; "y1"</span></span>
-<span id="cb17-78"><a href="#cb17-78"></a><span class="st">    "node2(2)" -&gt; "y1"</span></span>
-<span id="cb17-79"><a href="#cb17-79"></a><span class="st">    "...." -&gt; "y1"</span></span>
-<span id="cb17-80"><a href="#cb17-80"></a><span class="st">    "node500(2)" -&gt; "y1"</span></span>
-<span id="cb17-81"><a href="#cb17-81"></a></span>
-<span id="cb17-82"><a href="#cb17-82"></a><span class="st">    "node1(2)" -&gt; "."</span></span>
-<span id="cb17-83"><a href="#cb17-83"></a><span class="st">    "node2(2)" -&gt; "."</span></span>
-<span id="cb17-84"><a href="#cb17-84"></a><span class="st">    "...." -&gt; "."</span></span>
-<span id="cb17-85"><a href="#cb17-85"></a><span class="st">    "node500(2)" -&gt; "."</span></span>
-<span id="cb17-86"><a href="#cb17-86"></a></span>
-<span id="cb17-87"><a href="#cb17-87"></a><span class="st">    label = "Layer 3: softmax"</span></span>
-<span id="cb17-88"><a href="#cb17-88"></a><span class="st">}</span></span>
-<span id="cb17-89"><a href="#cb17-89"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>gv(<span class="st">'''</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">splines=line</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_1{</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2"</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="st">    ".."</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 0"</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_2{</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node1"</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node1"</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node1"</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node1"</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node2"</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node2"</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node2"</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node2"</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "..."</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "..."</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "..."</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "..."</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="st">    "x1" -&gt; "node500"</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="st">    "x2" -&gt; "node500"</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="st">    ".." -&gt; "node500"</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="st">    "x784" -&gt; "node500"</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 1: relu"</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_3{</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "node1(2)"</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "node1(2)"</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="st">    "..." -&gt; "node1(2)"</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="st">    "node500" -&gt; "node1(2)"</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "node2(2)"</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "node2(2)"</span></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a><span class="st">    "..." -&gt; "node2(2)"</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="st">    "node500" -&gt; "node2(2)"</span></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "...."</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "...."</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a><span class="st">    "..." -&gt; "...."</span></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="st">    "node500" -&gt; "...."</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1" -&gt; "node500(2)"</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2" -&gt; "node500(2)"</span></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="st">    "..." -&gt; "node500(2)"</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="st">    "node500" -&gt; "node500(2)"</span></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 2: relu"</span></span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="st">subgraph cluster_4{</span></span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="st">    style=filled;</span></span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="st">    color=lightgrey;</span></span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1(2)" -&gt; "y10"</span></span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2(2)" -&gt; "y10"</span></span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a><span class="st">    "...." -&gt; "y10"</span></span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a><span class="st">    "node500(2)" -&gt; "y10"</span></span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1(2)" -&gt; "y1"</span></span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2(2)" -&gt; "y1"</span></span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="st">    "...." -&gt; "y1"</span></span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="st">    "node500(2)" -&gt; "y1"</span></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a><span class="st">    "node1(2)" -&gt; "."</span></span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="st">    "node2(2)" -&gt; "."</span></span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="st">    "...." -&gt; "."</span></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="st">    "node500(2)" -&gt; "."</span></span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="st">    label = "Layer 3: softmax"</span></span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <p><img src="2022_05_09_(10주차)_5월9일_files/figure-html/cell-13-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 <div id="9639a6d2-a2e7-4046-9b64-892738cb0c24" class="cell" data-outputid="2e3fcbf1-ce75-4e6c-d2ba-637a185512c7" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb18-2"><a href="#cb18-2"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb18-3"><a href="#cb18-3"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb18-4"><a href="#cb18-4"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
-<span id="cb18-5"><a href="#cb18-5"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
-<span id="cb18-6"><a href="#cb18-6"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
 1875/1875 [==============================] - 3s 1ms/step - loss: 2.1970 - accuracy: 0.7556
@@ -2045,7 +2039,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="689c2fd0-b977-49e8-9a8b-94ac65e72cdc" class="cell" data-outputid="b0317819-cc6d-4de1-a8aa-50a5fb2fb71e" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>313/313 [==============================] - 0s 567us/step - loss: 0.5347 - accuracy: 0.8281</code></pre>
 </div>
@@ -2054,7 +2048,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="8c388a79-e555-449c-b8d0-480a4cadca08" class="cell" data-outputid="26a9dea2-e85e-4d7f-9614-510bde092d03" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>net.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>net.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "sequential_1"
 _________________________________________________________________
@@ -2269,10 +2263,10 @@ _________________________________________________________________</code></pre>
 <h3 class="anchored" data-anchor-id="fashion-mnist-다양한-평가지표활용">Fashion MNIST 다양한 평가지표활용</h3>
 <p><code>-</code> data</p>
 <div id="5487d598-4921-40ad-8f26-5985177e5e5e" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.fashion_mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.fashion_mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="a57ddab6-9c8b-47d4-a27c-14797b43642f" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>x_train.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x_train.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>(60000, 28, 28)</code></pre>
 </div>
@@ -2282,7 +2276,7 @@ _________________________________________________________________</code></pre>
 </ul>
 <p><code>-</code> 따라서 이미지의 차원이 단지 (28,28)이라는 것은 흑백이미지라는 뜻이다.</p>
 <div id="9b878499-f530-485e-8181-442189383f2b" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>plt.imshow(x_train[<span class="dv">0</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(x_train[<span class="dv">0</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>&lt;matplotlib.image.AxesImage at 0x7f0370eaf880&gt;</code></pre>
 </div>
@@ -2294,19 +2288,19 @@ _________________________________________________________________</code></pre>
 <li>아닌데요?! 칼라인데요?! -&gt; 흑백이다. 그냥 밝을수록 노란색, 어두울수록 남색으로 표현한것 뿐임 (colormap이 viridis일 뿐임)</li>
 </ul>
 <div id="3d627356-a40d-4047-bcd3-1e6b60c96d7d" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>X<span class="op">=</span> x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)</span>
-<span id="cb31-2"><a href="#cb31-2"></a>y<span class="op">=</span> tf.keras.utils.to_categorical(y_train)</span>
-<span id="cb31-3"><a href="#cb31-3"></a>XX <span class="op">=</span> x_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)</span>
-<span id="cb31-4"><a href="#cb31-4"></a>yy <span class="op">=</span> tf.keras.utils.to_categorical(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span> x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span> tf.keras.utils.to_categorical(y_train)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> x_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> tf.keras.utils.to_categorical(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 다양한 평가지표를 넣는 방법 (1)</p>
 <div id="b2520525-b628-467f-8bd5-de1137a179a1" class="cell" data-outputid="59be6860-6731-4d5f-8497-f28d5a547723" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb32-2"><a href="#cb32-2"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb32-3"><a href="#cb32-3"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb32-4"><a href="#cb32-4"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
-<span id="cb32-5"><a href="#cb32-5"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[<span class="st">'accuracy'</span>,<span class="st">'Recall'</span>])</span>
-<span id="cb32-6"><a href="#cb32-6"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[<span class="st">'accuracy'</span>,<span class="st">'Recall'</span>])</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
 1875/1875 [==============================] - 3s 1ms/step - loss: 2.1585 - accuracy: 0.7524 - recall: 0.7193
@@ -2324,7 +2318,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="ae250323-8244-4fcf-818d-ab290b380d5c" class="cell" data-outputid="ab41dce2-bbe2-418d-efa7-ab5220e1e7b2" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>313/313 [==============================] - 0s 610us/step - loss: 0.4402 - accuracy: 0.8457 - recall: 0.8152</code></pre>
 </div>
@@ -2334,12 +2328,12 @@ Epoch 5/5
 </div>
 <p><code>-</code> 다양한 평가지표를 넣는 방법 (2)</p>
 <div id="a03a161d-eda3-4a17-b4e5-490758dae9f6" class="cell" data-outputid="f8abb07c-79ca-4c57-a49a-e141a77c8bb5" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb38-2"><a href="#cb38-2"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb38-3"><a href="#cb38-3"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb38-4"><a href="#cb38-4"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
-<span id="cb38-5"><a href="#cb38-5"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[tf.metrics.CategoricalAccuracy(),tf.metrics.Recall()])</span>
-<span id="cb38-6"><a href="#cb38-6"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[tf.metrics.CategoricalAccuracy(),tf.metrics.Recall()])</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
 1875/1875 [==============================] - 3s 1ms/step - loss: 2.2775 - categorical_accuracy: 0.7602 - recall: 0.7325
@@ -2357,7 +2351,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="14abd79c-435b-4ce7-af7b-0719976b7c01" class="cell" data-outputid="00458294-4dac-4d23-bee9-17af9a978006" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>313/313 [==============================] - 0s 620us/step - loss: 0.4263 - categorical_accuracy: 0.8528 - recall: 0.8190</code></pre>
 </div>
@@ -2371,13 +2365,13 @@ Epoch 5/5
 <h2 class="anchored" data-anchor-id="flatten-layer">flatten layer</h2>
 <p><code>-</code> 이미지 데이터를 분류하기 좋은 형태로 자료를 재정리하자.</p>
 <div id="da3ef0bd-3a9c-4ca6-8dbf-2007bd9b5ef2" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>X <span class="op">=</span> tf.constant(x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>),dtype<span class="op">=</span>tf.float64)</span>
-<span id="cb44-2"><a href="#cb44-2"></a>y <span class="op">=</span> tf.keras.utils.to_categorical(y_train)</span>
-<span id="cb44-3"><a href="#cb44-3"></a>XX <span class="op">=</span> tf.constant(x_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>),dtype<span class="op">=</span>tf.float64)</span>
-<span id="cb44-4"><a href="#cb44-4"></a>yy <span class="op">=</span> tf.keras.utils.to_categorical(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> tf.constant(x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>),dtype<span class="op">=</span>tf.float64)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> tf.keras.utils.to_categorical(y_train)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> tf.constant(x_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>),dtype<span class="op">=</span>tf.float64)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> tf.keras.utils.to_categorical(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="21764aed-4319-4d39-ba0a-9fd600128b6a" class="cell" data-outputid="88b79d33-8bb0-47ff-dec7-a7419d7bd939" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>X.shape,XX.shape,y.shape,yy.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>X.shape,XX.shape,y.shape,yy.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>(TensorShape([60000, 28, 28, 1]),
  TensorShape([10000, 28, 28, 1]),
@@ -2388,16 +2382,16 @@ Epoch 5/5
 <p><code>-</code> 일반적인 이미지 분석 모형을 적용하기 용이한 데이터 형태로 정리했다. -&gt; 그런데 모형에 넣고 돌릴려면 다시 차원을 펼쳐야 하지 않을까?</p>
 <p><code>-</code> 안펼치고 하고싶다.</p>
 <div id="c21237c0-5ab2-4324-9abe-4e88a1667be6" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>flttn <span class="op">=</span> tf.keras.layers.Flatten()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>flttn <span class="op">=</span> tf.keras.layers.Flatten()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="81631691-7560-485f-87e0-ad53c8ddac26" class="cell" data-outputid="34a483d8-9172-4ad7-a1c1-ec7849fdb5ad" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a><span class="bu">set</span>(<span class="bu">dir</span>(flttn)) <span class="op">&amp;</span> {<span class="st">'__call__'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>(<span class="bu">dir</span>(flttn)) <span class="op">&amp;</span> {<span class="st">'__call__'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>{'__call__'}</code></pre>
 </div>
 </div>
 <div id="90459f13-c4b5-4f3d-9256-f8178b1f7770" class="cell" data-outputid="473c42ae-1057-461a-b04a-1fe149933a45" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>X.shape,flttn(X).shape, X.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>X.shape,flttn(X).shape, X.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>(TensorShape([60000, 28, 28, 1]),
  TensorShape([60000, 784]),
@@ -2406,13 +2400,13 @@ Epoch 5/5
 </div>
 <p><code>-</code> flttn</p>
 <div id="4a393f7c-8854-4ff6-8219-da599094ed34" class="cell" data-outputid="15acab51-357b-4577-a650-7f39b4165f87" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb52-2"><a href="#cb52-2"></a>net.add(tf.keras.layers.Flatten())</span>
-<span id="cb52-3"><a href="#cb52-3"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb52-4"><a href="#cb52-4"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
-<span id="cb52-5"><a href="#cb52-5"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
-<span id="cb52-6"><a href="#cb52-6"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[tf.metrics.CategoricalAccuracy(),tf.metrics.Recall()])</span>
-<span id="cb52-7"><a href="#cb52-7"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Flatten())</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation <span class="op">=</span> <span class="st">'relu'</span>))</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation <span class="op">=</span> <span class="st">'softmax'</span>))</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span>[tf.metrics.CategoricalAccuracy(),tf.metrics.Recall()])</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
 1875/1875 [==============================] - 3s 1ms/step - loss: 2.1290 - categorical_accuracy: 0.7476 - recall_1: 0.7071
@@ -2430,7 +2424,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="a439eccf-6a79-4b74-a3bb-d532580ccd42" class="cell" data-outputid="d97f1eed-6f51-4bbd-fcd4-ca836bc8dade" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>net.layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>net.layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>[&lt;keras.layers.reshaping.flatten.Flatten at 0x7f03712a2b20&gt;,
  &lt;keras.layers.core.dense.Dense at 0x7f037133d5e0&gt;,
@@ -2439,10 +2433,10 @@ Epoch 5/5
 </div>
 </div>
 <div id="52fb5add-b35d-42ac-8409-c13125525d2f" class="cell" data-outputid="b44a84f5-0a14-45bf-e9c3-a35d0baea9b5" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a><span class="bu">print</span>(X.shape)</span>
-<span id="cb57-2"><a href="#cb57-2"></a><span class="bu">print</span>(net.layers[<span class="dv">0</span>](X).shape)</span>
-<span id="cb57-3"><a href="#cb57-3"></a><span class="bu">print</span>(net.layers[<span class="dv">1</span>](net.layers[<span class="dv">0</span>](X)).shape)</span>
-<span id="cb57-4"><a href="#cb57-4"></a><span class="bu">print</span>(net.layers[<span class="dv">2</span>](net.layers[<span class="dv">1</span>](net.layers[<span class="dv">0</span>](X))).shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(net.layers[<span class="dv">0</span>](X).shape)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(net.layers[<span class="dv">1</span>](net.layers[<span class="dv">0</span>](X)).shape)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(net.layers[<span class="dv">2</span>](net.layers[<span class="dv">1</span>](net.layers[<span class="dv">0</span>](X))).shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(60000, 28, 28, 1)
 (60000, 784)
@@ -2452,16 +2446,16 @@ Epoch 5/5
 </div>
 <p><code>-</code> 좀 더 복잡한 네트워크 -&gt; 하지만 한계가 보인다 -&gt; 좀 더 나은 아키텍처는 없을까</p>
 <div id="2dc10a37-ff44-4c0b-8d7d-301250920ee3" class="cell" data-outputid="0d86f29f-d933-42df-8336-1a64e41c1f49" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
-<span id="cb59-2"><a href="#cb59-2"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb59-3"><a href="#cb59-3"></a>net.add(tf.keras.layers.Flatten())</span>
-<span id="cb59-4"><a href="#cb59-4"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb59-5"><a href="#cb59-5"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb59-6"><a href="#cb59-6"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb59-7"><a href="#cb59-7"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb59-8"><a href="#cb59-8"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation<span class="op">=</span><span class="st">'softmax'</span>))</span>
-<span id="cb59-9"><a href="#cb59-9"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span><span class="st">'accuracy'</span>)</span>
-<span id="cb59-10"><a href="#cb59-10"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Flatten())</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>net.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation<span class="op">=</span><span class="st">'softmax'</span>))</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>net.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.categorical_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>,metrics<span class="op">=</span><span class="st">'accuracy'</span>)</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>net.fit(X,y,epochs<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/10
 1875/1875 [==============================] - 5s 2ms/step - loss: 1.0624 - accuracy: 0.7910
@@ -2489,7 +2483,7 @@ Epoch 10/10
 </div>
 </div>
 <div id="1fbd86a4-0826-4cc9-91fe-3a3350cec69f" class="cell" data-outputid="c218ca0e-5b3f-4e84-c053-2bee3ed3aba3" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>net.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>313/313 [==============================] - 0s 769us/step - loss: 0.4121 - accuracy: 0.8543</code></pre>
 </div>
@@ -2499,7 +2493,7 @@ Epoch 10/10
 </div>
 <p><code>-</code> layer중에 우리는 끽해야 Dense정도 쓰고있었음. <span class="math inline">\(\to\)</span> flatten과 같은 다른 layer도 많음. <span class="math inline">\(\to\)</span> 이런것도 써보자</p>
 <div id="98f930cf-4f67-4a4c-a066-456024501979" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a>net.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>net.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "sequential_5"
 _________________________________________________________________

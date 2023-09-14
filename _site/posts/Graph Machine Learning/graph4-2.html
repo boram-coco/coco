@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1639,7 +1633,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="graph4-2.out.ipynb" download="graph4-2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1693,30 +1687,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="utility-graph-plot-matrix" class="level2">
 <h2 class="anchored" data-anchor-id="utility-graph-plot-matrix">Utility graph plot matrix</h2>
 <div id="928c8f31-8fba-4926-bb66-fa0566b036ee" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">def</span> draw_graph(G, node_names<span class="op">=</span>{}, nodes_label<span class="op">=</span>[], node_size<span class="op">=</span><span class="dv">900</span>):</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    pos_nodes <span class="op">=</span> nx.spring_layout(G)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    </span>
-<span id="cb1-6"><a href="#cb1-6"></a>    col <span class="op">=</span> {<span class="dv">0</span>:<span class="st">"steelblue"</span>,<span class="dv">1</span>:<span class="st">"red"</span>,<span class="dv">2</span>:<span class="st">"green"</span>}</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    </span>
-<span id="cb1-8"><a href="#cb1-8"></a>    colors <span class="op">=</span> [col[x] <span class="cf">for</span> x <span class="kw">in</span> nodes_label]</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    </span>
-<span id="cb1-10"><a href="#cb1-10"></a>    nx.draw_networkx(G, pos_nodes, with_labels<span class="op">=</span><span class="va">True</span>, node_color<span class="op">=</span>colors, node_size<span class="op">=</span>node_size, edge_color<span class="op">=</span><span class="st">'gray'</span>, </span>
-<span id="cb1-11"><a href="#cb1-11"></a>            arrowsize<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb1-12"><a href="#cb1-12"></a>    </span>
-<span id="cb1-13"><a href="#cb1-13"></a>    </span>
-<span id="cb1-14"><a href="#cb1-14"></a>    </span>
-<span id="cb1-15"><a href="#cb1-15"></a>    pos_attrs <span class="op">=</span> {}</span>
-<span id="cb1-16"><a href="#cb1-16"></a>    <span class="cf">for</span> node, coords <span class="kw">in</span> pos_nodes.items():</span>
-<span id="cb1-17"><a href="#cb1-17"></a>        pos_attrs[node] <span class="op">=</span> (coords[<span class="dv">0</span>], coords[<span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.08</span>)</span>
-<span id="cb1-18"><a href="#cb1-18"></a>        </span>
-<span id="cb1-19"><a href="#cb1-19"></a>    </span>
-<span id="cb1-20"><a href="#cb1-20"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb1-21"><a href="#cb1-21"></a>    axis <span class="op">=</span> plt.gca()</span>
-<span id="cb1-22"><a href="#cb1-22"></a>    axis.set_xlim([<span class="fl">1.2</span><span class="op">*</span>x <span class="cf">for</span> x <span class="kw">in</span> axis.get_xlim()])</span>
-<span id="cb1-23"><a href="#cb1-23"></a>    axis.set_ylim([<span class="fl">1.2</span><span class="op">*</span>y <span class="cf">for</span> y <span class="kw">in</span> axis.get_ylim()])</span>
-<span id="cb1-24"><a href="#cb1-24"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_graph(G, node_names<span class="op">=</span>{}, nodes_label<span class="op">=</span>[], node_size<span class="op">=</span><span class="dv">900</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    pos_nodes <span class="op">=</span> nx.spring_layout(G)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    col <span class="op">=</span> {<span class="dv">0</span>:<span class="st">"steelblue"</span>,<span class="dv">1</span>:<span class="st">"red"</span>,<span class="dv">2</span>:<span class="st">"green"</span>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    colors <span class="op">=</span> [col[x] <span class="cf">for</span> x <span class="kw">in</span> nodes_label]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx(G, pos_nodes, with_labels<span class="op">=</span><span class="va">True</span>, node_color<span class="op">=</span>colors, node_size<span class="op">=</span>node_size, edge_color<span class="op">=</span><span class="st">'gray'</span>, </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            arrowsize<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    pos_attrs <span class="op">=</span> {}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> node, coords <span class="kw">in</span> pos_nodes.items():</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        pos_attrs[node] <span class="op">=</span> (coords[<span class="dv">0</span>], coords[<span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.08</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    axis <span class="op">=</span> plt.gca()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    axis.set_xlim([<span class="fl">1.2</span><span class="op">*</span>x <span class="cf">for</span> x <span class="kw">in</span> axis.get_xlim()])</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    axis.set_ylim([<span class="fl">1.2</span><span class="op">*</span>y <span class="cf">for</span> y <span class="kw">in</span> axis.get_ylim()])</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="라벨-전파-알고리즘" class="level2">
@@ -1725,13 +1719,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>주어진 노드의 라벨을 인접 노드 또는 해당 노드에서 도달할 가능성이 높은 노드로 전파</li>
 </ul>
 <div id="d98d07da-933b-4492-8165-590f12bb3cd7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>G <span class="op">=</span> nx.barbell_graph(m1<span class="op">=</span><span class="dv">3</span>, m2<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a>nodes_label <span class="op">=</span> [<span class="dv">0</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(G.nodes()))]</span>
-<span id="cb2-5"><a href="#cb2-5"></a>nodes_label[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>nodes_label[<span class="dv">6</span>] <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>draw_graph(G, nodes_label<span class="op">=</span>nodes_label, node_size<span class="op">=</span><span class="dv">1200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.barbell_graph(m1<span class="op">=</span><span class="dv">3</span>, m2<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nodes_label <span class="op">=</span> [<span class="dv">0</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(G.nodes()))]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nodes_label[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nodes_label[<span class="dv">6</span>] <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>draw_graph(G, nodes_label<span class="op">=</span>nodes_label, node_size<span class="op">=</span><span class="dv">1200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="graph4-2_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
@@ -1743,12 +1737,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="그림의-그래프에-대한-대각-차수-행렬" class="level3">
 <h3 class="anchored" data-anchor-id="그림의-그래프에-대한-대각-차수-행렬">그림의 그래프에 대한 대각 차수 행렬</h3>
 <div id="f257bb03-8abb-468c-8780-9388a6bf8ac6" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> inv</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>D <span class="op">=</span> [G.degree(n) <span class="cf">for</span> n <span class="kw">in</span> G.nodes()]</span>
-<span id="cb3-5"><a href="#cb3-5"></a>D <span class="op">=</span> np.diag(D)</span>
-<span id="cb3-6"><a href="#cb3-6"></a>D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> inv</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> [G.degree(n) <span class="cf">for</span> n <span class="kw">in</span> G.nodes()]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.diag(D)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>array([[2, 0, 0, 0, 0, 0, 0, 0],
        [0, 2, 0, 0, 0, 0, 0, 0],
@@ -1764,8 +1758,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="그림의-그래프에-대한-전이-행렬" class="level3">
 <h3 class="anchored" data-anchor-id="그림의-그래프에-대한-전이-행렬">그림의 그래프에 대한 전이 행렬</h3>
 <div id="08eb5d2b-368b-4f69-805c-ad565deb1a42" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>A <span class="op">=</span> inv(D)<span class="op">*</span>nx.to_numpy_matrix(G)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> inv(D)<span class="op">*</span>nx.to_numpy_matrix(G)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>matrix([[0.        , 0.5       , 0.5       , 0.        , 0.        ,
          0.        , 0.        , 0.        ],
@@ -1792,125 +1786,125 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>행렬의 각 행은 샘플, 각 열은 특징을 나타냄</li>
 </ul>
 <div id="9c97021f-b664-4dac-9be6-8e2e9e7165ab" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> inv</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="im">from</span> abc <span class="im">import</span> ABCMeta, abstractmethod</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="im">from</span> sklearn.base <span class="im">import</span> BaseEstimator, ClassifierMixin</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="im">from</span> sklearn.utils.multiclass <span class="im">import</span> check_classification_targets</span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="im">from</span> sklearn.utils.validation <span class="im">import</span> check_is_fitted, _deprecate_positional_args</span>
-<span id="cb7-8"><a href="#cb7-8"></a></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="kw">class</span> GraphLabelPropagation(ClassifierMixin, BaseEstimator, metaclass<span class="op">=</span>ABCMeta):</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    <span class="co">"""Graph label propagation module.</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">    Parameters</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">    ----------</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">    max_iter : int, default=30</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co">        Change maximum number of iterations allowed.</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co">    tol : float, default=1e-3</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">        Convergence tolerance: threshold to consider the system at steady</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">        state.</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="co">    """</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a></span>
-<span id="cb7-20"><a href="#cb7-20"></a>    <span class="at">@_deprecate_positional_args</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, max_iter<span class="op">=</span><span class="dv">30</span>, tol<span class="op">=</span><span class="fl">1e-3</span>):</span>
-<span id="cb7-22"><a href="#cb7-22"></a></span>
-<span id="cb7-23"><a href="#cb7-23"></a>        <span class="va">self</span>.max_iter <span class="op">=</span> max_iter</span>
-<span id="cb7-24"><a href="#cb7-24"></a>        <span class="va">self</span>.tol <span class="op">=</span> tol</span>
-<span id="cb7-25"><a href="#cb7-25"></a></span>
-<span id="cb7-26"><a href="#cb7-26"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
-<span id="cb7-27"><a href="#cb7-27"></a>        <span class="co">"""Performs inductive inference across the model.</span></span>
-<span id="cb7-28"><a href="#cb7-28"></a><span class="co">        Parameters</span></span>
-<span id="cb7-29"><a href="#cb7-29"></a><span class="co">        ----------</span></span>
-<span id="cb7-30"><a href="#cb7-30"></a><span class="co">        X : A networkx array.</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a><span class="co">            The data matrix.</span></span>
-<span id="cb7-32"><a href="#cb7-32"></a><span class="co">        Returns</span></span>
-<span id="cb7-33"><a href="#cb7-33"></a><span class="co">        -------</span></span>
-<span id="cb7-34"><a href="#cb7-34"></a><span class="co">        y : ndarray of shape (n_samples,)</span></span>
-<span id="cb7-35"><a href="#cb7-35"></a><span class="co">            Predictions for input data.</span></span>
-<span id="cb7-36"><a href="#cb7-36"></a><span class="co">        """</span></span>
-<span id="cb7-37"><a href="#cb7-37"></a>        probas <span class="op">=</span> <span class="va">self</span>.predict_proba(X)</span>
-<span id="cb7-38"><a href="#cb7-38"></a>        <span class="cf">return</span> <span class="va">self</span>.classes_[np.argmax(probas, axis<span class="op">=</span><span class="dv">1</span>)].ravel()</span>
-<span id="cb7-39"><a href="#cb7-39"></a></span>
-<span id="cb7-40"><a href="#cb7-40"></a>    <span class="kw">def</span> predict_proba(<span class="va">self</span>, X):</span>
-<span id="cb7-41"><a href="#cb7-41"></a>        <span class="co">"""Predict probability for each possible outcome.</span></span>
-<span id="cb7-42"><a href="#cb7-42"></a><span class="co">        Compute the probability estimates for each single node in X</span></span>
-<span id="cb7-43"><a href="#cb7-43"></a><span class="co">        and each possible outcome seen during training (categorical</span></span>
-<span id="cb7-44"><a href="#cb7-44"></a><span class="co">        distribution).</span></span>
-<span id="cb7-45"><a href="#cb7-45"></a><span class="co">        Parameters</span></span>
-<span id="cb7-46"><a href="#cb7-46"></a><span class="co">        ----------</span></span>
-<span id="cb7-47"><a href="#cb7-47"></a><span class="co">        X : A networkx array.</span></span>
-<span id="cb7-48"><a href="#cb7-48"></a><span class="co">        Returns</span></span>
-<span id="cb7-49"><a href="#cb7-49"></a><span class="co">        -------</span></span>
-<span id="cb7-50"><a href="#cb7-50"></a><span class="co">        probabilities : ndarray of shape (n_samples, n_classes)</span></span>
-<span id="cb7-51"><a href="#cb7-51"></a><span class="co">            Normalized probability distributions across</span></span>
-<span id="cb7-52"><a href="#cb7-52"></a><span class="co">            class labels.</span></span>
-<span id="cb7-53"><a href="#cb7-53"></a><span class="co">        """</span></span>
-<span id="cb7-54"><a href="#cb7-54"></a>        check_is_fitted(<span class="va">self</span>)</span>
-<span id="cb7-55"><a href="#cb7-55"></a>        </span>
-<span id="cb7-56"><a href="#cb7-56"></a>        <span class="cf">return</span> <span class="va">self</span>.label_distributions_</span>
-<span id="cb7-57"><a href="#cb7-57"></a>    </span>
-<span id="cb7-58"><a href="#cb7-58"></a>    <span class="kw">def</span> _validate_data(<span class="va">self</span>, X, y):</span>
-<span id="cb7-59"><a href="#cb7-59"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(X, nx.Graph):</span>
-<span id="cb7-60"><a href="#cb7-60"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Input should be a networkX graph"</span>)</span>
-<span id="cb7-61"><a href="#cb7-61"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">len</span>(y) <span class="op">==</span> <span class="bu">len</span>(X.nodes()):</span>
-<span id="cb7-62"><a href="#cb7-62"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Label data input shape should be equal to the number of nodes in the graph"</span>)</span>
-<span id="cb7-63"><a href="#cb7-63"></a>        <span class="cf">return</span> X, y</span>
-<span id="cb7-64"><a href="#cb7-64"></a>    </span>
-<span id="cb7-65"><a href="#cb7-65"></a>    <span class="at">@staticmethod</span></span>
-<span id="cb7-66"><a href="#cb7-66"></a>    <span class="kw">def</span> build_label(x,classes):</span>
-<span id="cb7-67"><a href="#cb7-67"></a>        tmp <span class="op">=</span> np.zeros((classes))</span>
-<span id="cb7-68"><a href="#cb7-68"></a>        tmp[x] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb7-69"><a href="#cb7-69"></a>        <span class="cf">return</span> tmp</span>
-<span id="cb7-70"><a href="#cb7-70"></a>    </span>
-<span id="cb7-71"><a href="#cb7-71"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
-<span id="cb7-72"><a href="#cb7-72"></a>        <span class="co">"""Fit a semi-supervised label propagation model based</span></span>
-<span id="cb7-73"><a href="#cb7-73"></a><span class="co">        on the input graph G and corresponding label matrix y with a dedicated marker value for</span></span>
-<span id="cb7-74"><a href="#cb7-74"></a><span class="co">        unlabeled samples.</span></span>
-<span id="cb7-75"><a href="#cb7-75"></a><span class="co">        Parameters</span></span>
-<span id="cb7-76"><a href="#cb7-76"></a><span class="co">        ----------</span></span>
-<span id="cb7-77"><a href="#cb7-77"></a><span class="co">        X : A networkX array.</span></span>
-<span id="cb7-78"><a href="#cb7-78"></a><span class="co">        y : array-like of shape (n_samples,)</span></span>
-<span id="cb7-79"><a href="#cb7-79"></a><span class="co">            `n_labeled_samples` (unlabeled points are marked as -1)</span></span>
-<span id="cb7-80"><a href="#cb7-80"></a><span class="co">            All unlabeled samples will be transductively assigned labels.</span></span>
-<span id="cb7-81"><a href="#cb7-81"></a><span class="co">        Returns</span></span>
-<span id="cb7-82"><a href="#cb7-82"></a><span class="co">        -------</span></span>
-<span id="cb7-83"><a href="#cb7-83"></a><span class="co">        self : object</span></span>
-<span id="cb7-84"><a href="#cb7-84"></a><span class="co">        """</span></span>
-<span id="cb7-85"><a href="#cb7-85"></a>        X, y <span class="op">=</span> <span class="va">self</span>._validate_data(X, y)</span>
-<span id="cb7-86"><a href="#cb7-86"></a>        <span class="va">self</span>.X_ <span class="op">=</span> X</span>
-<span id="cb7-87"><a href="#cb7-87"></a>        check_classification_targets(y)</span>
-<span id="cb7-88"><a href="#cb7-88"></a></span>
-<span id="cb7-89"><a href="#cb7-89"></a>        D <span class="op">=</span> [X.degree(n) <span class="cf">for</span> n <span class="kw">in</span> X.nodes()]</span>
-<span id="cb7-90"><a href="#cb7-90"></a>        D <span class="op">=</span> np.diag(D)</span>
-<span id="cb7-91"><a href="#cb7-91"></a>        </span>
-<span id="cb7-92"><a href="#cb7-92"></a>        <span class="co"># label construction</span></span>
-<span id="cb7-93"><a href="#cb7-93"></a>        <span class="co"># construct a categorical distribution for classification only</span></span>
-<span id="cb7-94"><a href="#cb7-94"></a>        unlabeled_index <span class="op">=</span> np.where(y<span class="op">==-</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb7-95"><a href="#cb7-95"></a>        labeled_index <span class="op">=</span> np.where(y<span class="op">!=-</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb7-96"><a href="#cb7-96"></a>        unique_classes <span class="op">=</span> np.unique(y[labeled_index])</span>
-<span id="cb7-97"><a href="#cb7-97"></a>        </span>
-<span id="cb7-98"><a href="#cb7-98"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> unique_classes</span>
-<span id="cb7-99"><a href="#cb7-99"></a>        </span>
-<span id="cb7-100"><a href="#cb7-100"></a>        Y0 <span class="op">=</span> np.array([<span class="va">self</span>.build_label(y[x], <span class="bu">len</span>(unique_classes)) </span>
-<span id="cb7-101"><a href="#cb7-101"></a>                                 <span class="cf">if</span> x <span class="kw">in</span> labeled_index <span class="cf">else</span> np.zeros(<span class="bu">len</span>(unique_classes)) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y))])</span>
-<span id="cb7-102"><a href="#cb7-102"></a>        </span>
-<span id="cb7-103"><a href="#cb7-103"></a>        A <span class="op">=</span> inv(D)<span class="op">*</span>nx.to_numpy_matrix(G)</span>
-<span id="cb7-104"><a href="#cb7-104"></a>        Y_prev <span class="op">=</span> Y0</span>
-<span id="cb7-105"><a href="#cb7-105"></a>        it <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-106"><a href="#cb7-106"></a>        c_tool <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb7-107"><a href="#cb7-107"></a>        </span>
-<span id="cb7-108"><a href="#cb7-108"></a>        <span class="cf">while</span> it <span class="op">&lt;</span> <span class="va">self</span>.max_iter <span class="op">&amp;</span> c_tool <span class="op">&gt;</span> <span class="va">self</span>.tol:</span>
-<span id="cb7-109"><a href="#cb7-109"></a>            Y <span class="op">=</span> A<span class="op">*</span>Y_prev</span>
-<span id="cb7-110"><a href="#cb7-110"></a>            <span class="co">#force labeled nodes</span></span>
-<span id="cb7-111"><a href="#cb7-111"></a>            Y[labeled_index] <span class="op">=</span> Y0[labeled_index]</span>
-<span id="cb7-112"><a href="#cb7-112"></a>            </span>
-<span id="cb7-113"><a href="#cb7-113"></a>            it <span class="op">+=</span><span class="dv">1</span></span>
-<span id="cb7-114"><a href="#cb7-114"></a>            c_tol <span class="op">=</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(Y<span class="op">-</span>Y_prev))</span>
-<span id="cb7-115"><a href="#cb7-115"></a>            </span>
-<span id="cb7-116"><a href="#cb7-116"></a>            Y_prev <span class="op">=</span> Y</span>
-<span id="cb7-117"><a href="#cb7-117"></a>            </span>
-<span id="cb7-118"><a href="#cb7-118"></a>        <span class="va">self</span>.label_distributions_ <span class="op">=</span> Y</span>
-<span id="cb7-119"><a href="#cb7-119"></a>        <span class="cf">return</span> <span class="va">self</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> inv</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> abc <span class="im">import</span> ABCMeta, abstractmethod</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.base <span class="im">import</span> BaseEstimator, ClassifierMixin</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils.multiclass <span class="im">import</span> check_classification_targets</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils.validation <span class="im">import</span> check_is_fitted, _deprecate_positional_args</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GraphLabelPropagation(ClassifierMixin, BaseEstimator, metaclass<span class="op">=</span>ABCMeta):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Graph label propagation module.</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">    max_iter : int, default=30</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">        Change maximum number of iterations allowed.</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">    tol : float, default=1e-3</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Convergence tolerance: threshold to consider the system at steady</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">        state.</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">@_deprecate_positional_args</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, max_iter<span class="op">=</span><span class="dv">30</span>, tol<span class="op">=</span><span class="fl">1e-3</span>):</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.max_iter <span class="op">=</span> max_iter</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tol <span class="op">=</span> tol</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Performs inductive inference across the model.</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co">        X : A networkx array.</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">            The data matrix.</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co">        y : ndarray of shape (n_samples,)</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">            Predictions for input data.</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        probas <span class="op">=</span> <span class="va">self</span>.predict_proba(X)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.classes_[np.argmax(probas, axis<span class="op">=</span><span class="dv">1</span>)].ravel()</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict_proba(<span class="va">self</span>, X):</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Predict probability for each possible outcome.</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co">        Compute the probability estimates for each single node in X</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co">        and each possible outcome seen during training (categorical</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co">        distribution).</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co">        X : A networkx array.</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co">        probabilities : ndarray of shape (n_samples, n_classes)</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co">            Normalized probability distributions across</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co">            class labels.</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>        check_is_fitted(<span class="va">self</span>)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.label_distributions_</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _validate_data(<span class="va">self</span>, X, y):</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(X, nx.Graph):</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Input should be a networkX graph"</span>)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">len</span>(y) <span class="op">==</span> <span class="bu">len</span>(X.nodes()):</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Label data input shape should be equal to the number of nodes in the graph"</span>)</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> X, y</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> build_label(x,classes):</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> np.zeros((classes))</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>        tmp[x] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tmp</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Fit a semi-supervised label propagation model based</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="co">        on the input graph G and corresponding label matrix y with a dedicated marker value for</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="co">        unlabeled samples.</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="co">        X : A networkX array.</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="co">        y : array-like of shape (n_samples,)</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="co">            `n_labeled_samples` (unlabeled points are marked as -1)</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="co">            All unlabeled samples will be transductively assigned labels.</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a><span class="co">        self : object</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>        X, y <span class="op">=</span> <span class="va">self</span>._validate_data(X, y)</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.X_ <span class="op">=</span> X</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>        check_classification_targets(y)</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>        D <span class="op">=</span> [X.degree(n) <span class="cf">for</span> n <span class="kw">in</span> X.nodes()]</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>        D <span class="op">=</span> np.diag(D)</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>        <span class="co"># label construction</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>        <span class="co"># construct a categorical distribution for classification only</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>        unlabeled_index <span class="op">=</span> np.where(y<span class="op">==-</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>        labeled_index <span class="op">=</span> np.where(y<span class="op">!=-</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>        unique_classes <span class="op">=</span> np.unique(y[labeled_index])</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> unique_classes</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>        Y0 <span class="op">=</span> np.array([<span class="va">self</span>.build_label(y[x], <span class="bu">len</span>(unique_classes)) </span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>                                 <span class="cf">if</span> x <span class="kw">in</span> labeled_index <span class="cf">else</span> np.zeros(<span class="bu">len</span>(unique_classes)) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y))])</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> inv(D)<span class="op">*</span>nx.to_numpy_matrix(G)</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>        Y_prev <span class="op">=</span> Y0</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>        it <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>        c_tool <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> it <span class="op">&lt;</span> <span class="va">self</span>.max_iter <span class="op">&amp;</span> c_tool <span class="op">&gt;</span> <span class="va">self</span>.tol:</span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>            Y <span class="op">=</span> A<span class="op">*</span>Y_prev</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>            <span class="co">#force labeled nodes</span></span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>            Y[labeled_index] <span class="op">=</span> Y0[labeled_index]</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>            it <span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>            c_tol <span class="op">=</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(Y<span class="op">-</span>Y_prev))</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>            Y_prev <span class="op">=</span> Y</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.label_distributions_ <span class="op">=</span> Y</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>이게 뭐시여</li>
@@ -1919,15 +1913,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="label-propagation-execution" class="level3">
 <h3 class="anchored" data-anchor-id="label-propagation-execution">Label propagation execution</h3>
 <div id="c2a2a574-b689-4f66-a952-d1044c909633" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>glp <span class="op">=</span> GraphLabelPropagation()</span>
-<span id="cb8-2"><a href="#cb8-2"></a>y <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(G.nodes()))])</span>
-<span id="cb8-3"><a href="#cb8-3"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>y[<span class="dv">6</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>glp.fit(G,y)</span>
-<span id="cb8-6"><a href="#cb8-6"></a>tmp <span class="op">=</span> glp.predict(G)</span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="bu">print</span>(glp.predict_proba(G))</span>
-<span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a>draw_graph(G, nodes_label<span class="op">=</span>tmp<span class="op">+</span><span class="dv">1</span>, node_size<span class="op">=</span><span class="dv">1200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>glp <span class="op">=</span> GraphLabelPropagation()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(G.nodes()))])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">6</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>glp.fit(G,y)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> glp.predict(G)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(glp.predict_proba(G))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>draw_graph(G, nodes_label<span class="op">=</span>tmp<span class="op">+</span><span class="dv">1</span>, node_size<span class="op">=</span><span class="dv">1200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[0.         1.        ]
  [0.05338542 0.90006109]
@@ -1952,13 +1946,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>라벨이 지정된 제약을 완화해 라벨이 지정된 입력 노드가 교육 프로세스 중에 라벨 변경할 수 있도록 한다.</p></li>
 </ul>
 <div id="28608191-df5f-46c6-917b-a8b0d92fe9ee" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>G <span class="op">=</span> nx.barbell_graph(m1<span class="op">=</span><span class="dv">3</span>, m2<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb10-4"><a href="#cb10-4"></a>nodes_label <span class="op">=</span> [<span class="dv">0</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(G.nodes()))]</span>
-<span id="cb10-5"><a href="#cb10-5"></a>nodes_label[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>nodes_label[<span class="dv">6</span>] <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a>draw_graph(G, nodes_label<span class="op">=</span>nodes_label, node_size<span class="op">=</span><span class="dv">1200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.barbell_graph(m1<span class="op">=</span><span class="dv">3</span>, m2<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>nodes_label <span class="op">=</span> [<span class="dv">0</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(G.nodes()))]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>nodes_label[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>nodes_label[<span class="dv">6</span>] <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>draw_graph(G, nodes_label<span class="op">=</span>nodes_label, node_size<span class="op">=</span><span class="dv">1200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="graph4-2_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
@@ -1966,12 +1960,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="degree-matrix" class="level3">
 <h3 class="anchored" data-anchor-id="degree-matrix">Degree matrix</h3>
 <div id="d7fa8d4c-65d5-4928-9e14-999329e6bda8" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> inv</span>
-<span id="cb11-3"><a href="#cb11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4"></a>D <span class="op">=</span> [G.degree(n) <span class="cf">for</span> n <span class="kw">in</span> G.nodes()]</span>
-<span id="cb11-5"><a href="#cb11-5"></a>D <span class="op">=</span> np.diag(D)</span>
-<span id="cb11-6"><a href="#cb11-6"></a>D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> inv</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> [G.degree(n) <span class="cf">for</span> n <span class="kw">in</span> G.nodes()]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.diag(D)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>array([[2, 0, 0, 0, 0, 0, 0, 0],
        [0, 2, 0, 0, 0, 0, 0, 0],
@@ -1991,10 +1985,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p><img src="라플라시안.png" class="img-fluid"></p>
 <div id="84d42495-b2e4-4923-81eb-e58d33a49164" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> fractional_matrix_power</span>
-<span id="cb13-2"><a href="#cb13-2"></a>D_inv <span class="op">=</span> fractional_matrix_power(D, <span class="op">-</span><span class="fl">0.5</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>L <span class="op">=</span> D_inv<span class="op">*</span>nx.to_numpy_matrix(G)<span class="op">*</span>D_inv</span>
-<span id="cb13-4"><a href="#cb13-4"></a>L</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> fractional_matrix_power</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>D_inv <span class="op">=</span> fractional_matrix_power(D, <span class="op">-</span><span class="fl">0.5</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> D_inv<span class="op">*</span>nx.to_numpy_matrix(G)<span class="op">*</span>D_inv</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>L</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>matrix([[0.        , 0.5       , 0.40824829, 0.        , 0.        ,
          0.        , 0.        , 0.        ],
@@ -2018,88 +2012,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="label-spreading-implementation" class="level3">
 <h3 class="anchored" data-anchor-id="label-spreading-implementation">Label spreading implementation</h3>
 <div id="c1573e39-d4d0-4af4-af1c-0ea56bf2b23f" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> normalize</span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> fractional_matrix_power</span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="im">from</span> sklearn.utils.multiclass <span class="im">import</span> check_classification_targets</span>
-<span id="cb15-6"><a href="#cb15-6"></a></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="kw">class</span> GraphLabelSpreading(GraphLabelPropagation):</span>
-<span id="cb15-8"><a href="#cb15-8"></a>    <span class="co">"""Graph label propagation module.</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co">    Parameters</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="co">    ----------</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="co">    max_iter : int, default=30</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="co">        Change maximum number of iterations allowed.</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="co">    tol : float, default=1e-3</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="co">        Convergence tolerance: threshold to consider the system at steady</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a><span class="co">        state.</span></span>
-<span id="cb15-16"><a href="#cb15-16"></a><span class="co">    """</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a></span>
-<span id="cb15-18"><a href="#cb15-18"></a>    <span class="at">@_deprecate_positional_args</span></span>
-<span id="cb15-19"><a href="#cb15-19"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, max_iter<span class="op">=</span><span class="dv">30</span>, tol<span class="op">=</span><span class="fl">1e-3</span>, alpha<span class="op">=</span><span class="fl">0.6</span>):</span>
-<span id="cb15-20"><a href="#cb15-20"></a></span>
-<span id="cb15-21"><a href="#cb15-21"></a>        <span class="va">self</span>.alpha <span class="op">=</span> alpha</span>
-<span id="cb15-22"><a href="#cb15-22"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(max_iter, tol)</span>
-<span id="cb15-23"><a href="#cb15-23"></a>    </span>
-<span id="cb15-24"><a href="#cb15-24"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
-<span id="cb15-25"><a href="#cb15-25"></a>        <span class="co">"""Fit a semi-supervised label propagation model based</span></span>
-<span id="cb15-26"><a href="#cb15-26"></a><span class="co">        on the input graph G and corresponding label matrix y with a dedicated marker value for</span></span>
-<span id="cb15-27"><a href="#cb15-27"></a><span class="co">        unlabeled samples.</span></span>
-<span id="cb15-28"><a href="#cb15-28"></a><span class="co">        Parameters</span></span>
-<span id="cb15-29"><a href="#cb15-29"></a><span class="co">        ----------</span></span>
-<span id="cb15-30"><a href="#cb15-30"></a><span class="co">        X : A networkX array.</span></span>
-<span id="cb15-31"><a href="#cb15-31"></a><span class="co">        y : array-like of shape (n_samples,)</span></span>
-<span id="cb15-32"><a href="#cb15-32"></a><span class="co">            `n_labeled_samples` (unlabeled points are marked as -1)</span></span>
-<span id="cb15-33"><a href="#cb15-33"></a><span class="co">            All unlabeled samples will be transductively assigned labels.</span></span>
-<span id="cb15-34"><a href="#cb15-34"></a><span class="co">        Returns</span></span>
-<span id="cb15-35"><a href="#cb15-35"></a><span class="co">        -------</span></span>
-<span id="cb15-36"><a href="#cb15-36"></a><span class="co">        self : object</span></span>
-<span id="cb15-37"><a href="#cb15-37"></a><span class="co">        """</span></span>
-<span id="cb15-38"><a href="#cb15-38"></a>        X, y <span class="op">=</span> <span class="va">self</span>._validate_data(X, y)</span>
-<span id="cb15-39"><a href="#cb15-39"></a>        <span class="va">self</span>.X_ <span class="op">=</span> X</span>
-<span id="cb15-40"><a href="#cb15-40"></a>        check_classification_targets(y)</span>
-<span id="cb15-41"><a href="#cb15-41"></a></span>
-<span id="cb15-42"><a href="#cb15-42"></a>        D <span class="op">=</span> [X.degree(n) <span class="cf">for</span> n <span class="kw">in</span> X.nodes()]</span>
-<span id="cb15-43"><a href="#cb15-43"></a>        D <span class="op">=</span> np.diag(D)</span>
-<span id="cb15-44"><a href="#cb15-44"></a>        D_inv <span class="op">=</span> np.matrix(fractional_matrix_power(D,<span class="op">-</span><span class="fl">0.5</span>))</span>
-<span id="cb15-45"><a href="#cb15-45"></a>        L <span class="op">=</span> D_inv<span class="op">*</span>nx.to_numpy_matrix(G)<span class="op">*</span>D_inv</span>
-<span id="cb15-46"><a href="#cb15-46"></a>        </span>
-<span id="cb15-47"><a href="#cb15-47"></a>        <span class="co"># label construction</span></span>
-<span id="cb15-48"><a href="#cb15-48"></a>        <span class="co"># construct a categorical distribution for classification only</span></span>
-<span id="cb15-49"><a href="#cb15-49"></a>        unlabeled_index <span class="op">=</span> np.where(y<span class="op">==-</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb15-50"><a href="#cb15-50"></a>        labeled_index <span class="op">=</span> np.where(y<span class="op">!=-</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb15-51"><a href="#cb15-51"></a>        unique_classes <span class="op">=</span> np.unique(y[labeled_index])</span>
-<span id="cb15-52"><a href="#cb15-52"></a>        </span>
-<span id="cb15-53"><a href="#cb15-53"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> unique_classes</span>
-<span id="cb15-54"><a href="#cb15-54"></a>        </span>
-<span id="cb15-55"><a href="#cb15-55"></a>        Y0 <span class="op">=</span> np.array([<span class="va">self</span>.build_label(y[x], <span class="bu">len</span>(unique_classes)) </span>
-<span id="cb15-56"><a href="#cb15-56"></a>                                 <span class="cf">if</span> x <span class="kw">in</span> labeled_index <span class="cf">else</span> np.zeros(<span class="bu">len</span>(unique_classes)) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y))])</span>
-<span id="cb15-57"><a href="#cb15-57"></a>        </span>
-<span id="cb15-58"><a href="#cb15-58"></a>        Y_prev <span class="op">=</span> Y0</span>
-<span id="cb15-59"><a href="#cb15-59"></a>        it <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb15-60"><a href="#cb15-60"></a>        c_tool <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb15-61"><a href="#cb15-61"></a>        </span>
-<span id="cb15-62"><a href="#cb15-62"></a>        <span class="cf">while</span> it <span class="op">&lt;</span> <span class="va">self</span>.max_iter <span class="op">&amp;</span> c_tool <span class="op">&gt;</span> <span class="va">self</span>.tol:</span>
-<span id="cb15-63"><a href="#cb15-63"></a>            Y <span class="op">=</span> <span class="va">self</span>.alpha<span class="op">*</span>(L<span class="op">*</span>Y_prev)<span class="op">+</span>((<span class="dv">1</span><span class="op">-</span><span class="va">self</span>.alpha)<span class="op">*</span>Y0)</span>
-<span id="cb15-64"><a href="#cb15-64"></a></span>
-<span id="cb15-65"><a href="#cb15-65"></a>            it <span class="op">+=</span><span class="dv">1</span></span>
-<span id="cb15-66"><a href="#cb15-66"></a>            c_tol <span class="op">=</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(Y<span class="op">-</span>Y_prev))</span>
-<span id="cb15-67"><a href="#cb15-67"></a>            Y_prev <span class="op">=</span> Y</span>
-<span id="cb15-68"><a href="#cb15-68"></a>        <span class="va">self</span>.label_distributions_ <span class="op">=</span> Y</span>
-<span id="cb15-69"><a href="#cb15-69"></a>        <span class="cf">return</span> <span class="va">self</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> normalize</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> fractional_matrix_power</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils.multiclass <span class="im">import</span> check_classification_targets</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GraphLabelSpreading(GraphLabelPropagation):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Graph label propagation module.</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">    max_iter : int, default=30</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Change maximum number of iterations allowed.</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">    tol : float, default=1e-3</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">        Convergence tolerance: threshold to consider the system at steady</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">        state.</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">@_deprecate_positional_args</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, max_iter<span class="op">=</span><span class="dv">30</span>, tol<span class="op">=</span><span class="fl">1e-3</span>, alpha<span class="op">=</span><span class="fl">0.6</span>):</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.alpha <span class="op">=</span> alpha</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(max_iter, tol)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Fit a semi-supervised label propagation model based</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co">        on the input graph G and corresponding label matrix y with a dedicated marker value for</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co">        unlabeled samples.</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co">        X : A networkX array.</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co">        y : array-like of shape (n_samples,)</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co">            `n_labeled_samples` (unlabeled points are marked as -1)</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="co">            All unlabeled samples will be transductively assigned labels.</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="co">        self : object</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>        X, y <span class="op">=</span> <span class="va">self</span>._validate_data(X, y)</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.X_ <span class="op">=</span> X</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>        check_classification_targets(y)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>        D <span class="op">=</span> [X.degree(n) <span class="cf">for</span> n <span class="kw">in</span> X.nodes()]</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>        D <span class="op">=</span> np.diag(D)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>        D_inv <span class="op">=</span> np.matrix(fractional_matrix_power(D,<span class="op">-</span><span class="fl">0.5</span>))</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>        L <span class="op">=</span> D_inv<span class="op">*</span>nx.to_numpy_matrix(G)<span class="op">*</span>D_inv</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># label construction</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># construct a categorical distribution for classification only</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>        unlabeled_index <span class="op">=</span> np.where(y<span class="op">==-</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>        labeled_index <span class="op">=</span> np.where(y<span class="op">!=-</span><span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>        unique_classes <span class="op">=</span> np.unique(y[labeled_index])</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> unique_classes</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>        Y0 <span class="op">=</span> np.array([<span class="va">self</span>.build_label(y[x], <span class="bu">len</span>(unique_classes)) </span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>                                 <span class="cf">if</span> x <span class="kw">in</span> labeled_index <span class="cf">else</span> np.zeros(<span class="bu">len</span>(unique_classes)) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y))])</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>        Y_prev <span class="op">=</span> Y0</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>        it <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>        c_tool <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> it <span class="op">&lt;</span> <span class="va">self</span>.max_iter <span class="op">&amp;</span> c_tool <span class="op">&gt;</span> <span class="va">self</span>.tol:</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>            Y <span class="op">=</span> <span class="va">self</span>.alpha<span class="op">*</span>(L<span class="op">*</span>Y_prev)<span class="op">+</span>((<span class="dv">1</span><span class="op">-</span><span class="va">self</span>.alpha)<span class="op">*</span>Y0)</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>            it <span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>            c_tol <span class="op">=</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(Y<span class="op">-</span>Y_prev))</span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>            Y_prev <span class="op">=</span> Y</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.label_distributions_ <span class="op">=</span> Y</span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="label-spreading" class="level3">
 <h3 class="anchored" data-anchor-id="label-spreading">Label Spreading</h3>
 <div id="d10ca302-6de5-4e70-a33c-b78519d6fe32" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>gls <span class="op">=</span> GraphLabelSpreading(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a>y <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(G.nodes()))])</span>
-<span id="cb16-3"><a href="#cb16-3"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>y[<span class="dv">6</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>gls.fit(G,y)</span>
-<span id="cb16-6"><a href="#cb16-6"></a>tmp <span class="op">=</span> gls.predict(G)</span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="bu">print</span>(gls.predict_proba(G))</span>
-<span id="cb16-8"><a href="#cb16-8"></a>draw_graph(G, nodes_label<span class="op">=</span>tmp<span class="op">+</span><span class="dv">1</span>, node_size<span class="op">=</span><span class="dv">1200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gls <span class="op">=</span> GraphLabelSpreading(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(G.nodes()))])</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">6</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>gls.fit(G,y)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> gls.predict(G)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gls.predict_proba(G))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>draw_graph(G, nodes_label<span class="op">=</span>tmp<span class="op">+</span><span class="dv">1</span>, node_size<span class="op">=</span><span class="dv">1200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[0.00148824 0.50403871]
  [0.00148824 0.19630098]

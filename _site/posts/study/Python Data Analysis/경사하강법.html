@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -565,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1521,12 +1521,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1643,7 +1637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#예측-1" id="toc-예측-1" class="nav-link" data-scroll-target="#예측-1">7.예측</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="경사하강법.out.ipynb" download="경사하강법.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1693,31 +1687,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="패키지-설정" class="level2">
 <h2 class="anchored" data-anchor-id="패키지-설정">1. 패키지 설정</h2>
 <div id="6ec23872-39d7-475f-92bd-2de405f34c86" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDRegressor</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDRegressor</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="데이터-준비" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-준비">2. 데이터 준비</h2>
 <div id="3bb61ead-0ec0-474b-b717-c60068e9fc53" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>X_train <span class="op">=</span> np.array([<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">30</span>,<span class="dv">38</span>,<span class="dv">50</span>])</span>
-<span id="cb2-2"><a href="#cb2-2"></a>y_train <span class="op">=</span> np.array([<span class="dv">41</span>,<span class="dv">45</span>,<span class="dv">62</span>,<span class="dv">75</span>,<span class="dv">85</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> np.array([<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">30</span>,<span class="dv">38</span>,<span class="dv">50</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> np.array([<span class="dv">41</span>,<span class="dv">45</span>,<span class="dv">62</span>,<span class="dv">75</span>,<span class="dv">85</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="탐색적-데이터-분석" class="level2">
 <h2 class="anchored" data-anchor-id="탐색적-데이터-분석">3. 탐색적 데이터 분석</h2>
 <div id="0e887218-0dba-4fb9-a988-1d7e808fd5f9" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>plt.scatter(X_train, y_train, color<span class="op">=</span><span class="st">'b'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_train, y_train, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="경사하강법_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="7d75b7c0-adb1-4b24-b87d-1a1b8f0f28d7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>np.corrcoef(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.corrcoef(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>array([[1.        , 0.97319891],
        [0.97319891, 1.        ]])</code></pre>
@@ -1727,10 +1721,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="피처-스케일링" class="level2">
 <h2 class="anchored" data-anchor-id="피처-스케일링">4. 피처 스케일링</h2>
 <div id="8e3c2b08-0a5a-4222-9fc1-b4578475c092" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>X_train <span class="op">=</span> X_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)   <span class="co"># NX1 매트릭스</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">print</span>(X_train)</span>
-<span id="cb6-3"><a href="#cb6-3"></a>y_train<span class="op">=</span> y_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="bu">print</span>(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)   <span class="co"># NX1 매트릭스</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y_train<span class="op">=</span> y_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[10]
  [22]
@@ -1746,10 +1740,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>-</code> 정규화</p>
 <div id="491d28fd-5a90-459e-8769-c5a119eb3c20" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>scalerX<span class="op">=</span>StandardScaler()</span>
-<span id="cb8-2"><a href="#cb8-2"></a>scalerX.fit(X_train)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>X_train<span class="op">=</span>scalerX.transform(X_train)</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="bu">print</span>(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>scalerX<span class="op">=</span>StandardScaler()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>scalerX.fit(X_train)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X_train<span class="op">=</span>scalerX.transform(X_train)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[-1.46805055e+00]
  [-5.87220220e-01]
@@ -1759,10 +1753,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="17d24cd1-3e54-483f-8d43-7119a8896661" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>scalerY<span class="op">=</span>StandardScaler()</span>
-<span id="cb10-2"><a href="#cb10-2"></a>scalerY.fit(y_train)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>y_train<span class="op">=</span>scalerY.transform(y_train)</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="bu">print</span>(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>scalerY<span class="op">=</span>StandardScaler()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>scalerY.fit(y_train)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y_train<span class="op">=</span>scalerY.transform(y_train)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[-1.21929784]
  [-0.98254098]
@@ -1775,10 +1769,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="모형화-및-학습" class="level2">
 <h2 class="anchored" data-anchor-id="모형화-및-학습">5. 모형화 및 학습</h2>
 <div id="58e6a13a-c52c-48c6-b12a-9d0ca871f85c" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>model<span class="op">=</span>SGDRegressor(verbose<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model<span class="op">=</span>SGDRegressor(verbose<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="5edc7919-e229-4f6c-802d-de9acba2677e" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>model.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>-- Epoch 1
 Norm: 0.04, NNZs: 1, Bias: -0.001467, T: 5, Avg. loss: 0.489615
@@ -2049,22 +2043,22 @@ Convergence after 85 epochs took 0.00 seconds</code></pre>
 <section id="예측" class="level2">
 <h2 class="anchored" data-anchor-id="예측">6.예측</h2>
 <div id="ba7d63e8-7928-4a0d-9941-97a60aad99b7" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>X_test <span class="op">=</span> np.array([<span class="dv">45</span>]).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a>X_test<span class="op">=</span>scalerX.transform(X_test)</span>
-<span id="cb16-3"><a href="#cb16-3"></a>X_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> np.array([<span class="dv">45</span>]).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X_test<span class="op">=</span>scalerX.transform(X_test)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>X_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>array([[45.]])</code></pre>
 </div>
 </div>
 <div id="a018a35e-8880-4a73-990e-edfd13a657bb" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>y_pred<span class="op">=</span>model.predict(X_test)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="bu">print</span>(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y_pred<span class="op">=</span>model.predict(X_test)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[31.27270054]</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred)</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="bu">print</span>(y_pred_inverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_pred_inverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="당뇨병-진단" class="level1">
@@ -2072,32 +2066,32 @@ Convergence after 85 epochs took 0.00 seconds</code></pre>
 <section id="패키지-설정-1" class="level2">
 <h2 class="anchored" data-anchor-id="패키지-설정-1">1. 패키지 설정</h2>
 <div id="95b72b34-66cc-4506-81f2-298c6d3809f3" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDRegressor</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
-<span id="cb21-7"><a href="#cb21-7"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb21-8"><a href="#cb21-8"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb21-9"><a href="#cb21-9"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDRegressor</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="데이터-준비-1" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-준비-1">2.데이터 준비</h2>
 <div id="de991eaf-6338-428d-9dc9-b0c33d80c719" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>diabetes_X, diabetes_y <span class="op">=</span> datasets.load_diabetes(return_X_y<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diabetes_X, diabetes_y <span class="op">=</span> datasets.load_diabetes(return_X_y<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="4981a63f-f63e-46c4-bde2-9b5e41d6b78a" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="bu">print</span>(np.shape(diabetes_X))</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="bu">print</span>(np.shape(diabetes_y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(diabetes_X))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(diabetes_y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(442, 10)
 (442,)</code></pre>
 </div>
 </div>
 <div id="43837e5b-0e7c-4e9c-96a8-1f4520a00c0b" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="bu">print</span>(diabetes_X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(diabetes_X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 0.03807591  0.05068012  0.06169621 ... -0.00259226  0.01990749
   -0.01764613]
@@ -2115,7 +2109,7 @@ Convergence after 85 epochs took 0.00 seconds</code></pre>
 </div>
 </div>
 <div id="3f3ad07c-190a-4ed1-801b-f454fd1632b1" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="bu">print</span>(diabetes_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(diabetes_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[151.  75. 141. 206. 135.  97. 138.  63. 110. 310. 101.  69. 179. 185.
  118. 171. 166. 144.  97. 168.  68.  49.  68. 245. 184. 202. 137.  85.
@@ -2153,8 +2147,8 @@ Convergence after 85 epochs took 0.00 seconds</code></pre>
 </div>
 <p><code>-</code> 10열(s6-혈당수치) 할당</p>
 <div id="c1b9612a-c49a-4d3b-8557-5b4d3a2c9b84" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>X_data<span class="op">=</span> diabetes_X[:,<span class="dv">9</span>]</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="bu">print</span>(X_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>X_data<span class="op">=</span> diabetes_X[:,<span class="dv">9</span>]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[-0.01764613 -0.09220405 -0.02593034 -0.00936191 -0.04664087 -0.09634616
  -0.03835666  0.00306441  0.01134862 -0.01350402 -0.03421455 -0.05906719
@@ -2236,34 +2230,34 @@ Convergence after 85 epochs took 0.00 seconds</code></pre>
 <section id="탐색적-데이터-분석-1" class="level2">
 <h2 class="anchored" data-anchor-id="탐색적-데이터-분석-1">3.탐색적 데이터 분석</h2>
 <div id="dbd3dfea-4284-4b9a-8f3e-7d540e032168" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#입력데이터의 박스플롯</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>g1<span class="op">=</span>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
-<span id="cb31-3"><a href="#cb31-3"></a>g1.boxplot(X_data, labels<span class="op">=</span>[<span class="st">'s6'</span>])</span>
-<span id="cb31-4"><a href="#cb31-4"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
-<span id="cb31-5"><a href="#cb31-5"></a>plt.xlabel(<span class="st">'Features'</span>)</span>
-<span id="cb31-6"><a href="#cb31-6"></a></span>
-<span id="cb31-7"><a href="#cb31-7"></a>g2<span class="op">=</span>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb31-8"><a href="#cb31-8"></a>g2.boxplot(diabetes_y, labels<span class="op">=</span>[<span class="st">'disease progression'</span>])</span>
-<span id="cb31-9"><a href="#cb31-9"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
-<span id="cb31-10"><a href="#cb31-10"></a>plt.xlabel(<span class="st">'Target'</span>)</span>
-<span id="cb31-11"><a href="#cb31-11"></a></span>
-<span id="cb31-12"><a href="#cb31-12"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#입력데이터의 박스플롯</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>g1<span class="op">=</span>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>g1.boxplot(X_data, labels<span class="op">=</span>[<span class="st">'s6'</span>])</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Features'</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>g2<span class="op">=</span>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>g2.boxplot(diabetes_y, labels<span class="op">=</span>[<span class="st">'disease progression'</span>])</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Target'</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="경사하강법_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="6ea7a219-6f74-4f09-9c32-c5791802f23a" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>plt.scatter(X_data, diabetes_y, color<span class="op">=</span><span class="st">'b'</span>)</span>
-<span id="cb32-2"><a href="#cb32-2"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
-<span id="cb32-3"><a href="#cb32-3"></a>plt.xlabel(<span class="st">'s6'</span>)</span>
-<span id="cb32-4"><a href="#cb32-4"></a>plt.ylabel(<span class="st">'Disease progression'</span>)</span>
-<span id="cb32-5"><a href="#cb32-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_data, diabetes_y, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'s6'</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Disease progression'</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="경사하강법_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="473a8d87-5b6b-4532-ab9d-bb54a1708b2f" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>np.corrcoef(X_data,diabetes_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>np.corrcoef(X_data,diabetes_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>array([[1.        , 0.38248348],
        [0.38248348, 1.        ]])</code></pre>
@@ -2273,45 +2267,45 @@ Convergence after 85 epochs took 0.00 seconds</code></pre>
 <section id="데이터-분리" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-분리">4.데이터 분리</h2>
 <div id="10003e91-e55f-4fdc-9db0-551df7df7e0f" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_data,diabetes_y,</span>
-<span id="cb35-2"><a href="#cb35-2"></a>                                                    test_size<span class="op">=</span><span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_data,diabetes_y,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                                                    test_size<span class="op">=</span><span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="피처-스케일링-1" class="level2">
 <h2 class="anchored" data-anchor-id="피처-스케일링-1">5.피처 스케일링</h2>
 <div id="f7fca084-d48b-4f94-a253-b83b777f06fb" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># 학습 데이터 정규화</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="co"># 2차원 행렬 변환</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a>X_train <span class="op">=</span> X_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb36-4"><a href="#cb36-4"></a>y_train <span class="op">=</span> y_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb36-5"><a href="#cb36-5"></a></span>
-<span id="cb36-6"><a href="#cb36-6"></a><span class="co"># 입력 데이터 정규화</span></span>
-<span id="cb36-7"><a href="#cb36-7"></a>scalerX<span class="op">=</span>MinMaxScaler()</span>
-<span id="cb36-8"><a href="#cb36-8"></a>scalerX.fit(X_train)</span>
-<span id="cb36-9"><a href="#cb36-9"></a>X_train_scaled <span class="op">=</span> scalerX.transform(X_train)</span>
-<span id="cb36-10"><a href="#cb36-10"></a></span>
-<span id="cb36-11"><a href="#cb36-11"></a><span class="co"># 목표 데이터 정규화</span></span>
-<span id="cb36-12"><a href="#cb36-12"></a>scalerY<span class="op">=</span>MinMaxScaler()</span>
-<span id="cb36-13"><a href="#cb36-13"></a>scalerY.fit(y_train)</span>
-<span id="cb36-14"><a href="#cb36-14"></a>y_train_scaled <span class="op">=</span> scalerY.transform(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습 데이터 정규화</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2차원 행렬 변환</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> y_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 입력 데이터 정규화</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>scalerX<span class="op">=</span>MinMaxScaler()</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>scalerX.fit(X_train)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>X_train_scaled <span class="op">=</span> scalerX.transform(X_train)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 목표 데이터 정규화</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>scalerY<span class="op">=</span>MinMaxScaler()</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>scalerY.fit(y_train)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>y_train_scaled <span class="op">=</span> scalerY.transform(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="aaeb78c3-ba0f-4b9f-aa6c-235f18350eb5" class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># 테스트 데이터 정규화</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a>X_test <span class="op">=</span> X_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb37-3"><a href="#cb37-3"></a>y_test <span class="op">=</span> y_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb37-4"><a href="#cb37-4"></a></span>
-<span id="cb37-5"><a href="#cb37-5"></a><span class="co"># 학습용 데이터의 정규화 스케일에 맞추어 입력과 목표 데이터를 정규화</span></span>
-<span id="cb37-6"><a href="#cb37-6"></a>X_test_scaled<span class="op">=</span>scalerX.transform(X_test)</span>
-<span id="cb37-7"><a href="#cb37-7"></a>y_test_scaled<span class="op">=</span>scalerY.transform(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 정규화</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> X_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> y_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습용 데이터의 정규화 스케일에 맞추어 입력과 목표 데이터를 정규화</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>X_test_scaled<span class="op">=</span>scalerX.transform(X_test)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>y_test_scaled<span class="op">=</span>scalerY.transform(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="모형화-및-학습-1" class="level2">
 <h2 class="anchored" data-anchor-id="모형화-및-학습-1">6.모형화 및 학습</h2>
 <div id="f09d1799-04cc-4ff6-a56e-e9e4e06c4108" class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>model <span class="op">=</span> SGDRegressor(verbose<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SGDRegressor(verbose<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8ca7441d-fcb7-4755-b00a-b857299d3ed5" class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>model.fit(X_train_scaled, y_train_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>model.fit(X_train_scaled, y_train_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>-- Epoch 1
 Norm: 0.11, NNZs: 1, Bias: 0.188126, T: 221, Avg. loss: 0.058981
@@ -2351,19 +2345,19 @@ Convergence after 9 epochs took 0.00 seconds</code></pre>
 </div>
 </div>
 <div id="62f0d676-363f-4190-86b8-7445ebc35efa" class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="bu">print</span>(<span class="st">'y절편:'</span>, model.intercept_)</span>
-<span id="cb42-2"><a href="#cb42-2"></a><span class="bu">print</span>(<span class="st">'기울기:'</span>, model.coef_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'y절편:'</span>, model.intercept_)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'기울기:'</span>, model.coef_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>y절편: [0.29087809]
 기울기: [0.19422995]</code></pre>
 </div>
 </div>
 <div id="94120d90-f9d1-492f-8215-5b58e2413aa2" class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>plt.scatter(X_train_scaled, y_train_scaled, color<span class="op">=</span><span class="st">'b'</span>)</span>
-<span id="cb44-2"><a href="#cb44-2"></a>x<span class="op">=</span>np.array([<span class="bu">min</span>(X_train_scaled),<span class="bu">max</span>(X_train_scaled)])</span>
-<span id="cb44-3"><a href="#cb44-3"></a>y<span class="op">=</span>model.coef_<span class="op">*</span>x<span class="op">+</span>model.intercept_</span>
-<span id="cb44-4"><a href="#cb44-4"></a>plt.plot(x,y,c<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'regression line'</span>)</span>
-<span id="cb44-5"><a href="#cb44-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_train_scaled, y_train_scaled, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.array([<span class="bu">min</span>(X_train_scaled),<span class="bu">max</span>(X_train_scaled)])</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>model.coef_<span class="op">*</span>x<span class="op">+</span>model.intercept_</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,c<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'regression line'</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="경사하강법_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
@@ -2372,23 +2366,23 @@ Convergence after 9 epochs took 0.00 seconds</code></pre>
 <section id="예측-1" class="level2">
 <h2 class="anchored" data-anchor-id="예측-1">7.예측</h2>
 <div id="6b12af4c-7c42-4e93-a72f-b4b419ecb7ce" class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># 테스트 데이터 예측</span></span>
-<span id="cb45-2"><a href="#cb45-2"></a>y_pred<span class="op">=</span>model.predict(X_test_scaled)</span>
-<span id="cb45-3"><a href="#cb45-3"></a></span>
-<span id="cb45-4"><a href="#cb45-4"></a><span class="co"># 테스트 데이터 실제 값</span></span>
-<span id="cb45-5"><a href="#cb45-5"></a>plt.scatter(X_test_scaled, y_test_scaled, color<span class="op">=</span><span class="st">'g'</span>)</span>
-<span id="cb45-6"><a href="#cb45-6"></a></span>
-<span id="cb45-7"><a href="#cb45-7"></a><span class="co"># 테스트 데이터 예측 값</span></span>
-<span id="cb45-8"><a href="#cb45-8"></a>plt.scatter(X_test_scaled, y_pred, color<span class="op">=</span><span class="st">'b'</span>)</span>
-<span id="cb45-9"><a href="#cb45-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 예측</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>y_pred<span class="op">=</span>model.predict(X_test_scaled)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 실제 값</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_test_scaled, y_test_scaled, color<span class="op">=</span><span class="st">'g'</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 예측 값</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_test_scaled, y_pred, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="경사하강법_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="dda0430b-3abf-41db-80ab-ff3e6c2e086e" class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># 예측 값의 역변환(실제 스케일)</span></span>
-<span id="cb46-2"><a href="#cb46-2"></a>y_pred <span class="op">=</span> y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb46-3"><a href="#cb46-3"></a>y_pred_inverse <span class="op">=</span> scalerY.inverse_transform(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 예측 값의 역변환(실제 스케일)</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>y_pred_inverse <span class="op">=</span> scalerY.inverse_transform(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

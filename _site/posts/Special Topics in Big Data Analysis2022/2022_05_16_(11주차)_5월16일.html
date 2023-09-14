@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1624,7 +1618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#conv2d" id="toc-conv2d" class="nav-link" data-scroll-target="#conv2d">Conv2D</a></li>
   <li><a href="#hw" id="toc-hw" class="nav-link" data-scroll-target="#hw">hw</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022_05_16_(11주차)_5월16일.out.ipynb" download="2022_05_16_(11주차)_5월16일.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1665,34 +1659,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="imports" class="level3">
 <h3 class="anchored" data-anchor-id="imports">imports</h3>
 <div id="1f9b3e9e-4af0-47b9-84c9-a82d1b7b9d31" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> tensorflow.experimental.numpy <span class="im">as</span> tnp</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow.experimental.numpy <span class="im">as</span> tnp</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="4aff778e-c93c-425d-8cbb-28652367c5b2" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>tnp.experimental_enable_numpy_behavior()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tnp.experimental_enable_numpy_behavior()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="7207e6aa-0a59-41e2-aac3-89d2efb5f6c1" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.fashion_mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.fashion_mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="da80b9e5-d7dc-40c9-8d00-65bba5638e30" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>X <span class="op">=</span> tf.constant(x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>),dtype<span class="op">=</span>tf.float64)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>y <span class="op">=</span> tf.keras.utils.to_categorical(y_train)</span>
-<span id="cb4-3"><a href="#cb4-3"></a>XX <span class="op">=</span> tf.constant(x_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>),dtype<span class="op">=</span>tf.float64)</span>
-<span id="cb4-4"><a href="#cb4-4"></a>yy <span class="op">=</span> tf.keras.utils.to_categorical(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> tf.constant(x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>),dtype<span class="op">=</span>tf.float64)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> tf.keras.utils.to_categorical(y_train)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> tf.constant(x_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>),dtype<span class="op">=</span>tf.float64)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> tf.keras.utils.to_categorical(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 첫시도</p>
 <div id="d630e3e0-2574-4ad4-91d5-a05c73bf8fc5" class="cell" data-outputid="118d1470-bac6-457b-b3b3-05ffd4daadc6" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>net1 <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb5-2"><a href="#cb5-2"></a>net1.add(tf.keras.layers.Flatten())</span>
-<span id="cb5-3"><a href="#cb5-3"></a>net1.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb5-4"><a href="#cb5-4"></a>net1.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb5-5"><a href="#cb5-5"></a>net1.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb5-6"><a href="#cb5-6"></a>net1.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb5-7"><a href="#cb5-7"></a>net1.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation<span class="op">=</span><span class="st">'softmax'</span>))</span>
-<span id="cb5-8"><a href="#cb5-8"></a>net1.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span>tf.losses.categorical_crossentropy,metrics<span class="op">=</span><span class="st">'accuracy'</span>)</span>
-<span id="cb5-9"><a href="#cb5-9"></a>net1.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>net1 <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>net1.add(tf.keras.layers.Flatten())</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>net1.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>net1.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>net1.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>net1.add(tf.keras.layers.Dense(<span class="dv">500</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>net1.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation<span class="op">=</span><span class="st">'softmax'</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>net1.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span>tf.losses.categorical_crossentropy,metrics<span class="op">=</span><span class="st">'accuracy'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>net1.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
 1875/1875 [==============================] - 5s 3ms/step - loss: 1.0329 - accuracy: 0.7892
@@ -1710,7 +1704,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="2d5f021f-b06f-4cbb-875c-2eff3c2b2e2f" class="cell" data-outputid="b98f6d86-2de5-404a-f86b-1b6d1a0e77a9" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>net1.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>net1.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>313/313 [==============================] - 0s 754us/step - loss: 0.4255 - accuracy: 0.8505</code></pre>
 </div>
@@ -1719,7 +1713,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="2222d929-7784-48d6-af5f-944682165714" class="cell" data-outputid="211bbc68-f39a-470a-d249-fed6d7ccd000" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>net1.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>net1.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "sequential"
 _________________________________________________________________
@@ -1746,16 +1740,16 @@ _________________________________________________________________</code></pre>
 </div>
 <p><code>-</code> 두번째 시도</p>
 <div id="fbd22327-6b70-4294-b035-405747d5e32e" class="cell" data-outputid="9ee58ec9-661b-4db4-d688-653cc775e12d" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>net2 <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb13-2"><a href="#cb13-2"></a>net2.add(tf.keras.layers.Conv2D(<span class="dv">30</span>,(<span class="dv">2</span>,<span class="dv">2</span>),activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb13-3"><a href="#cb13-3"></a>net2.add(tf.keras.layers.MaxPool2D())</span>
-<span id="cb13-4"><a href="#cb13-4"></a>net2.add(tf.keras.layers.Conv2D(<span class="dv">30</span>,(<span class="dv">2</span>,<span class="dv">2</span>),activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb13-5"><a href="#cb13-5"></a>net2.add(tf.keras.layers.MaxPool2D())</span>
-<span id="cb13-6"><a href="#cb13-6"></a>net2.add(tf.keras.layers.Flatten())</span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#net2.add(tf.keras.layers.Dense(500,activation='relu'))</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>net2.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation<span class="op">=</span><span class="st">'softmax'</span>))</span>
-<span id="cb13-9"><a href="#cb13-9"></a>net2.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span>tf.losses.categorical_crossentropy,metrics<span class="op">=</span><span class="st">'accuracy'</span>)</span>
-<span id="cb13-10"><a href="#cb13-10"></a>net2.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>net2 <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>net2.add(tf.keras.layers.Conv2D(<span class="dv">30</span>,(<span class="dv">2</span>,<span class="dv">2</span>),activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>net2.add(tf.keras.layers.MaxPool2D())</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>net2.add(tf.keras.layers.Conv2D(<span class="dv">30</span>,(<span class="dv">2</span>,<span class="dv">2</span>),activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>net2.add(tf.keras.layers.MaxPool2D())</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>net2.add(tf.keras.layers.Flatten())</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#net2.add(tf.keras.layers.Dense(500,activation='relu'))</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>net2.add(tf.keras.layers.Dense(<span class="dv">10</span>,activation<span class="op">=</span><span class="st">'softmax'</span>))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>net2.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span>tf.losses.categorical_crossentropy,metrics<span class="op">=</span><span class="st">'accuracy'</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>net2.fit(X,y,epochs<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
 1875/1875 [==============================] - 4s 2ms/step - loss: 0.7960 - accuracy: 0.8061
@@ -1773,7 +1767,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="3e177600-bdb3-4752-b07c-d46b953b3bf7" class="cell" data-outputid="e4306276-35b8-4a91-d7d1-f85e0e684b9f" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>net2.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>net2.evaluate(XX,yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>313/313 [==============================] - 0s 815us/step - loss: 0.3572 - accuracy: 0.8707</code></pre>
 </div>
@@ -1782,7 +1776,7 @@ Epoch 5/5
 </div>
 </div>
 <div id="9d4f313d-e8b1-44ab-9921-ffef5b34cfa7" class="cell" data-outputid="4f87eafa-21e4-4945-909c-cbe10e327f1e" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>net2.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>net2.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "sequential_1"
 _________________________________________________________________
@@ -1810,22 +1804,22 @@ _________________________________________________________________</code></pre>
 </div>
 </div>
 <div id="792c1fe0-c8cc-4887-83ca-fc644a69067e" class="cell" data-outputid="f8730288-3692-4c2b-ceef-e61a4a53f633" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="dv">14590</span><span class="op">/</span> <span class="dv">1149010</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14590</span><span class="op">/</span> <span class="dv">1149010</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>0.012697887746842934</code></pre>
 </div>
 </div>
 <div id="21ce9fe2-f5f9-49aa-93c4-a51e5efec519" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>c1, m1, c2, m2, flttn, dns <span class="op">=</span> net2.layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>c1, m1, c2, m2, flttn, dns <span class="op">=</span> net2.layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="9f35432b-20ae-4e8e-ae9c-36f5d4937793" class="cell" data-outputid="2e3e3eed-6668-4c7c-eb8d-050930c65973" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="bu">print</span>(X.shape) <span class="co"># 입력이미지 = 2D</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="bu">print</span>(c1(X).shape) <span class="co">#2D</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="bu">print</span>(m1(c1(X)).shape)  <span class="co">#2D</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="bu">print</span>(c2(m1(c1(X))).shape) <span class="co">#2D</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="bu">print</span>(m2(c2(m1(c1(X)))).shape) <span class="co">#2D</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a><span class="bu">print</span>(flttn(m2(c2(m1(c1(X))))).shape)<span class="co"># 1D</span></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="bu">print</span>(dns(flttn(m2(c2(m1(c1(X)))))).shape)<span class="co"># 1D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape) <span class="co"># 입력이미지 = 2D</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c1(X).shape) <span class="co">#2D</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m1(c1(X)).shape)  <span class="co">#2D</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c2(m1(c1(X))).shape) <span class="co">#2D</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m2(c2(m1(c1(X)))).shape) <span class="co">#2D</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flttn(m2(c2(m1(c1(X))))).shape)<span class="co"># 1D</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dns(flttn(m2(c2(m1(c1(X)))))).shape)<span class="co"># 1D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(60000, 28, 28, 1)
 (60000, 27, 27, 30)
@@ -1843,12 +1837,12 @@ _________________________________________________________________</code></pre>
 <h4 class="anchored" data-anchor-id="테스트1">테스트1</h4>
 <p><code>-</code> 레이어생성</p>
 <div id="7791681d-c677-41d9-81ff-d4b0e2d38760" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>m<span class="op">=</span>tf.keras.layers.MaxPool2D()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>m<span class="op">=</span>tf.keras.layers.MaxPool2D()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 입력데이터</p>
 <div id="01cb3396-d796-4182-8887-8ddda02b066d" class="cell" data-outputid="b82f6180-6e27-48e8-a53e-045857b7a439" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>&lt;tf.Tensor: shape=(1, 4, 4), dtype=int64, numpy=
 array([[[ 0,  1,  2,  3],
@@ -1862,7 +1856,7 @@ array([[[ 0,  1,  2,  3],
 </blockquote>
 <p><code>-</code> 입력데이터가 레이어를 통과한 모습</p>
 <div id="f253fa29-e6f1-4e97-b9f2-5d1ecb7e3325" class="cell" data-outputid="57efaaaf-4af1-404f-d4ed-335e69a6194e" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>&lt;tf.Tensor: shape=(1, 2, 2), dtype=int64, numpy=
 array([[[ 5,  7],
@@ -1874,8 +1868,8 @@ array([[[ 5,  7],
 <section id="테스트2" class="level4">
 <h4 class="anchored" data-anchor-id="테스트2">테스트2</h4>
 <div id="a32cd4dc-5ee1-4b06-bfa2-4802662073dc" class="cell" data-outputid="fa187d6a-6df5-4799-897b-6b90d0555357" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">6</span><span class="op">*</span><span class="dv">6</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">1</span>)</span>
-<span id="cb31-2"><a href="#cb31-2"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">6</span><span class="op">*</span><span class="dv">6</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">1</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>&lt;tf.Tensor: shape=(1, 6, 6), dtype=int64, numpy=
 array([[[ 0,  1,  2,  3,  4,  5],
@@ -1887,7 +1881,7 @@ array([[[ 0,  1,  2,  3,  4,  5],
 </div>
 </div>
 <div id="d5022e2c-0ec3-4250-aa43-83f3e4fd0294" class="cell" data-outputid="14b7c1d7-6a31-4a61-d3d3-3e3dcfb1ed97" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>&lt;tf.Tensor: shape=(1, 3, 3), dtype=int64, numpy=
 array([[[ 7,  9, 11],
@@ -1899,11 +1893,11 @@ array([[[ 7,  9, 11],
 <section id="테스트3" class="level4">
 <h4 class="anchored" data-anchor-id="테스트3">테스트3</h4>
 <div id="db7eb3a2-c78c-49ab-a437-f771caecc0b5" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>m<span class="op">=</span>tf.keras.layers.MaxPool2D(pool_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>m<span class="op">=</span>tf.keras.layers.MaxPool2D(pool_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="85a7f0ca-435b-46b9-b8fb-423278d167b7" class="cell" data-outputid="9f4d6b7e-08e7-45ca-c1c0-14603913a480" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">6</span><span class="op">*</span><span class="dv">6</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">1</span>)</span>
-<span id="cb36-2"><a href="#cb36-2"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">6</span><span class="op">*</span><span class="dv">6</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">1</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>&lt;tf.Tensor: shape=(1, 6, 6), dtype=int64, numpy=
 array([[[ 0,  1,  2,  3,  4,  5],
@@ -1915,7 +1909,7 @@ array([[[ 0,  1,  2,  3,  4,  5],
 </div>
 </div>
 <div id="7e220b5d-b351-4364-8107-0ff98fd916da" class="cell" data-outputid="3fd225f9-480c-438f-a816-b63dbd77041e" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>&lt;tf.Tensor: shape=(1, 2, 2), dtype=int64, numpy=
 array([[[14, 17],
@@ -1926,11 +1920,11 @@ array([[[14, 17],
 <section id="테스트4" class="level4">
 <h4 class="anchored" data-anchor-id="테스트4">테스트4</h4>
 <div id="bdafc487-20d0-4c13-83c9-e13eb9e14d8a" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>m<span class="op">=</span>tf.keras.layers.MaxPool2D(pool_size<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>m<span class="op">=</span>tf.keras.layers.MaxPool2D(pool_size<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="5fdc2953-de7c-4542-b7ff-e177581862da" class="cell" data-outputid="faaddd47-af4a-4e27-e4f3-743224fd5c4f" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
-<span id="cb41-2"><a href="#cb41-2"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>&lt;tf.Tensor: shape=(1, 5, 5), dtype=int64, numpy=
 array([[[ 0,  1,  2,  3,  4],
@@ -1941,7 +1935,7 @@ array([[[ 0,  1,  2,  3,  4],
 </div>
 </div>
 <div id="88423b66-9fd6-4a30-a4da-061cbe97017c" class="cell" data-outputid="09b4db35-4635-4238-dcfd-524f4ca92b6e" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>&lt;tf.Tensor: shape=(1, 2, 2), dtype=int64, numpy=
 array([[[ 6,  8],
@@ -1949,11 +1943,11 @@ array([[[ 6,  8],
 </div>
 </div>
 <div id="34b07753-2418-40ca-ac27-870b571a807c" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>m<span class="op">=</span>tf.keras.layers.MaxPool2D(pool_size<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>),padding<span class="op">=</span><span class="st">"same"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>m<span class="op">=</span>tf.keras.layers.MaxPool2D(pool_size<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>),padding<span class="op">=</span><span class="st">"same"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="bf7c74ae-1bf4-4f33-bab3-383d2d6f80be" class="cell" data-outputid="f51b5e21-a37d-480a-d0eb-6c9e20e5ec12" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
-<span id="cb46-2"><a href="#cb46-2"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>&lt;tf.Tensor: shape=(1, 5, 5), dtype=int64, numpy=
 array([[[ 0,  1,  2,  3,  4],
@@ -1964,7 +1958,7 @@ array([[[ 0,  1,  2,  3,  4],
 </div>
 </div>
 <div id="3b485719-ff9d-49b0-a9b4-dbbb391f532e" class="cell" data-outputid="58c6bdf4-68e3-4b54-83b4-b32e3fd63d72" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>m(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>&lt;tf.Tensor: shape=(1, 3, 3), dtype=int64, numpy=
 array([[[ 6,  8,  9],
@@ -1976,8 +1970,8 @@ array([[[ 6,  8,  9],
 <section id="테스트5" class="level4">
 <h4 class="anchored" data-anchor-id="테스트5">테스트5</h4>
 <div id="e7fe1b09-07f7-4746-8bba-ba589b5603dd" class="cell" data-outputid="f2af9272-1589-4a68-c94d-b054bde9eb1d" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">2</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
-<span id="cb50-2"><a href="#cb50-2"></a>XXX.reshape(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">2</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">1</span>).reshape(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>&lt;tf.Tensor: shape=(2, 4, 4), dtype=int64, numpy=
 array([[[ 0,  1,  2,  3],
@@ -1992,7 +1986,7 @@ array([[[ 0,  1,  2,  3],
 </div>
 </div>
 <div id="6a9dee7b-22cc-46b9-9d20-757f5c904b43" class="cell" data-outputid="bce3176f-2eaf-4476-d3c5-5c70af35cadb" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>m(XXX).reshape(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>m(XXX).reshape(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>&lt;tf.Tensor: shape=(2, 2, 2), dtype=int64, numpy=
 array([[[ 5,  7],
@@ -2006,10 +2000,10 @@ array([[[ 5,  7],
 <section id="테스트6" class="level4">
 <h4 class="anchored" data-anchor-id="테스트6">테스트6</h4>
 <div id="feba1874-dc57-4fb1-8b4f-99896602cef9" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">3</span>).reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">3</span>).reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d9e57c14-10d4-405d-aa81-315474f0eedb" class="cell" data-outputid="457352bc-fd70-47d0-d807-7c7027d68022" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>XXX[...,<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>XXX[...,<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>&lt;tf.Tensor: shape=(1, 4, 4), dtype=int64, numpy=
 array([[[ 0,  3,  6,  9],
@@ -2019,7 +2013,7 @@ array([[[ 0,  3,  6,  9],
 </div>
 </div>
 <div id="14d25cc5-4f2a-404c-9380-f5e9a11a51ed" class="cell" data-outputid="e4fcfef7-2079-4d87-a65a-a271871b0d83" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>m(XXX)[...,<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>m(XXX)[...,<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>&lt;tf.Tensor: shape=(1, 2, 2), dtype=int64, numpy=
 array([[[15, 21],
@@ -2034,12 +2028,12 @@ array([[[15, 21],
 <h4 class="anchored" data-anchor-id="테스트1-1">테스트1</h4>
 <p><code>-</code> 레이어생성</p>
 <div id="31abec64-855b-4a27-9299-35c9f78ce6ee" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> XXX생성</p>
 <div id="1d6b3e52-b510-455c-b1dd-fe3f1a52c2c2" class="cell" data-outputid="78d29d11-19fd-47f7-d896-f7fa91e5a09b" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
-<span id="cb60-2"><a href="#cb60-2"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>&lt;tf.Tensor: shape=(1, 4, 4), dtype=float64, numpy=
 array([[[ 0.,  1.,  2.,  3.],
@@ -2052,7 +2046,7 @@ array([[[ 0.,  1.,  2.,  3.],
 <p><span style="color:blue"> dytpe이 int형이면 에러가 나므로 float형으로 바꿔주기</span></p>
 </blockquote>
 <div id="30114419-cafa-4278-b557-c64c4f20a1a7" class="cell" data-outputid="0fc587eb-182d-45ac-fa64-6dddc95b96d8" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>&lt;tf.Tensor: shape=(1, 3, 3), dtype=float32, numpy=
 array([[[3.1202679, 3.3676739, 3.61508  ],
@@ -2066,14 +2060,14 @@ array([[[3.1202679, 3.3676739, 3.61508  ],
 </ul>
 <p><code>-</code> 코드정리 + 시드통일</p>
 <div id="615584b9-7a3a-4064-9ebd-3687a2736bc6" class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
-<span id="cb64-2"><a href="#cb64-2"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb64-3"><a href="#cb64-3"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> conv의 입출력</p>
 <div id="9cb0f4cb-3312-475c-a15c-30581e030e1e" class="cell" data-outputid="bf428e00-17a9-4035-8a00-4bbf78aafa55" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="bu">print</span>(XXX.reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>))</span>
-<span id="cb65-2"><a href="#cb65-2"></a><span class="bu">print</span>(cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(XXX.reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tf.Tensor(
 [[[ 0.  1.  2.  3.]
@@ -2088,13 +2082,13 @@ tf.Tensor(
 </div>
 <p><code>-</code> conv연산 추론</p>
 <div id="b41ec6e1-88d0-4bcf-9683-da8b3c8ad714" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a><span class="bu">type</span>(cnv.weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(cnv.weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>list</code></pre>
 </div>
 </div>
 <div id="fb8240bc-4f38-4d35-9eed-b971503ab0e3" class="cell" data-outputid="bf8638ba-fc90-4739-cae8-7686559cdf30" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a>tf.reshape(cnv.weights[<span class="dv">0</span>],(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>tf.reshape(cnv.weights[<span class="dv">0</span>],(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
 array([[-0.2408014 ,  0.3118649 ],
@@ -2102,27 +2096,27 @@ array([[-0.2408014 ,  0.3118649 ],
 </div>
 </div>
 <div id="22a81c5d-6fb5-4b1f-8469-ac003c1d0997" class="cell" data-outputid="24d084c1-edcf-4f9d-8713-2d632f7deba9" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a><span class="dv">0</span> <span class="op">*</span> <span class="op">-</span><span class="fl">0.2408014</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">*</span> <span class="fl">0.3118649</span> <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> <span class="op">-</span><span class="fl">0.70300657</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> <span class="op">-</span><span class="fl">0.5744659</span> <span class="op">+</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="op">*</span> <span class="op">-</span><span class="fl">0.2408014</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">*</span> <span class="fl">0.3118649</span> <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> <span class="op">-</span><span class="fl">0.70300657</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> <span class="op">-</span><span class="fl">0.5744659</span> <span class="op">+</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>-5.372490879999999</code></pre>
 </div>
 </div>
 <p><code>-</code> 내가 정의한 weights를 대입하여 conv 연산 확인</p>
 <div id="661a2dd8-6e85-4d0c-8d6f-d1e89d1221f5" class="cell" data-outputid="db1b9f99-c5ef-4714-882d-cc4e5b5babfb" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>cnv.get_weights()[<span class="dv">0</span>].shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>cnv.get_weights()[<span class="dv">0</span>].shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="61">
 <pre><code>(2, 2, 1, 1)</code></pre>
 </div>
 </div>
 <div id="8a049192-d97f-40dd-845f-61bde27ee392" class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a>w <span class="op">=</span> np.array([<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>],dtype<span class="op">=</span>np.float32).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb75-2"><a href="#cb75-2"></a>b <span class="op">=</span> np.array([<span class="dv">3</span>],dtype<span class="op">=</span>np.float32)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>],dtype<span class="op">=</span>np.float32).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">3</span>],dtype<span class="op">=</span>np.float32)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="3f691bc3-d9d2-4506-83ac-1ad69685d5b4" class="cell" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a>cnv.set_weights([w,b])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>cnv.set_weights([w,b])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d0a02431-b115-4e72-8aac-c6ba035f2cdf" class="cell" data-outputid="d892c545-72ad-481f-ecc5-c11283cc7091" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>&lt;tf.Tensor: shape=(1, 4, 4), dtype=float64, numpy=
 array([[[ 0.,  1.,  2.,  3.],
@@ -2132,7 +2126,7 @@ array([[[ 0.,  1.,  2.,  3.],
 </div>
 </div>
 <div id="d85618cb-e820-4fd4-a679-9708be4070d5" class="cell" data-outputid="d0a757c0-fb0e-4d21-9f02-237eb537cafd" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="65">
 <pre><code>&lt;tf.Tensor: shape=(1, 3, 3), dtype=float32, numpy=
 array([[[ 5.5,  6.5,  7.5],
@@ -2141,7 +2135,7 @@ array([[[ 5.5,  6.5,  7.5],
 </div>
 </div>
 <div id="548b9b81-85dc-4008-82a5-f14eb3708a75" class="cell" data-outputid="b201ac46-07af-431f-f417-d0909503e2b3" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1"></a>np.mean([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>])<span class="op">+</span><span class="dv">3</span>, np.mean([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">6</span>])<span class="op">+</span><span class="dv">3</span>, np.mean([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">7</span>])<span class="op">+</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>np.mean([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>])<span class="op">+</span><span class="dv">3</span>, np.mean([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">6</span>])<span class="op">+</span><span class="dv">3</span>, np.mean([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">7</span>])<span class="op">+</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>(5.5, 6.5, 7.5)</code></pre>
 </div>
@@ -2161,12 +2155,12 @@ array([[[ 5.5,  6.5,  7.5],
 <h4 class="anchored" data-anchor-id="테스트2-1">테스트2</h4>
 <p><code>-</code> 레이어와 XXX생성</p>
 <div id="7a669c76-4b8c-487c-b3cd-bad69c3537cf" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
-<span id="cb83-2"><a href="#cb83-2"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb83-3"><a href="#cb83-3"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="e45c7cd8-23b4-4df2-b358-dd542d6c81b2" class="cell" data-outputid="82b26c2c-eccf-4980-bb20-5e5997e9f41a" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>) <span class="co">## 입력: XXX</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>) <span class="co">## 입력: XXX</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="71">
 <pre><code>&lt;tf.Tensor: shape=(1, 5, 5), dtype=float64, numpy=
 array([[[ 0.,  1.,  2.,  3.,  4.],
@@ -2177,7 +2171,7 @@ array([[[ 0.,  1.,  2.,  3.,  4.],
 </div>
 </div>
 <div id="88b90786-2370-49c9-b02e-5cae590f1fc5" class="cell" data-outputid="4cfdf017-b76b-4a63-e26a-d7d5b977f699" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>) <span class="co">## 출력: conv(XXX)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>) <span class="co">## 출력: conv(XXX)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
 <pre><code>&lt;tf.Tensor: shape=(1, 3, 3), dtype=float32, numpy=
 array([[[-3.3962166, -3.7455084, -4.0948005],
@@ -2186,7 +2180,7 @@ array([[[-3.3962166, -3.7455084, -4.0948005],
 </div>
 </div>
 <div id="53796db5-e9b9-484b-8698-75b1fd4e894d" class="cell" data-outputid="ac10207b-1a26-4c11-9ff4-7991b6e168a2" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1"></a>tf.reshape(cnv.weights[<span class="dv">0</span>],(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)) <span class="co">## 커널의 가중치</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>tf.reshape(cnv.weights[<span class="dv">0</span>],(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)) <span class="co">## 커널의 가중치</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="76">
 <pre><code>&lt;tf.Tensor: shape=(1, 3, 3), dtype=float32, numpy=
 array([[[ 0.10026586, -0.17371601,  0.16699821],
@@ -2195,7 +2189,7 @@ array([[[ 0.10026586, -0.17371601,  0.16699821],
 </div>
 </div>
 <div id="67a4337a-4640-4a07-8622-c55c870ade0a" class="cell" data-outputid="2876f722-ff84-4357-9398-7e09546dd735" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1"></a>tf.reduce_sum(XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)[<span class="dv">0</span>,:<span class="dv">3</span>,:<span class="dv">3</span>] <span class="op">*</span> tf.reshape(cnv.weights[<span class="dv">0</span>],(<span class="dv">3</span>,<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>tf.reduce_sum(XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)[<span class="dv">0</span>,:<span class="dv">3</span>,:<span class="dv">3</span>] <span class="op">*</span> tf.reshape(cnv.weights[<span class="dv">0</span>],(<span class="dv">3</span>,<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="77">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float64, numpy=-3.396216869354248&gt;</code></pre>
 </div>
@@ -2205,8 +2199,8 @@ array([[[ 0.10026586, -0.17371601,  0.16699821],
 <h4 class="anchored" data-anchor-id="테스트3-1">테스트3</h4>
 <p><img src="https://github.com/guebin/2021BDA/blob/master/_notebooks/2021-11-04-conv.png?raw=true" class="img-fluid"></p>
 <div id="a30e90e8-aa36-4cc7-af7e-cc79647cc9dc" class="cell" data-outputid="c14e2299-9e45-48ce-b6ab-035c6b194c00" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1"></a>XXX <span class="op">=</span> tf.constant([[<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>],[<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]],dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
-<span id="cb92-2"><a href="#cb92-2"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tf.constant([[<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>],[<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]],dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>XXX.reshape(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="78">
 <pre><code>&lt;tf.Tensor: shape=(1, 5, 5), dtype=float64, numpy=
 array([[[3., 3., 2., 1., 0.],
@@ -2217,10 +2211,10 @@ array([[[3., 3., 2., 1., 0.],
 </div>
 </div>
 <div id="411acaf9-6713-4a38-a4e1-92a917db70dc" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="6885e48b-4041-49fd-a070-dd6372c733fc" class="cell" data-outputid="bf40962c-04cb-47b8-fb0a-b2d560aa6215" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1"></a>cnv.weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>cnv.weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="80">
 <pre><code>[]</code></pre>
 </div>
@@ -2229,7 +2223,7 @@ array([[[3., 3., 2., 1., 0.],
 <p><span style="color:blue"> 처음엔 weights가 없다가</span></p>
 </blockquote>
 <div id="9f9d6290-d5a3-439e-b70e-3714b2928fbb" class="cell" data-outputid="954b656a-5a29-484b-b5e2-0b34044c15b0" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <pre><code>&lt;tf.Tensor: shape=(1, 3, 3), dtype=float32, numpy=
 array([[[-0.34136963, -0.7676697 ,  2.3211648 ],
@@ -2238,7 +2232,7 @@ array([[[-0.34136963, -0.7676697 ,  2.3211648 ],
 </div>
 </div>
 <div id="77c800c1-773f-4c3c-a816-4b247684bfed" class="cell" data-outputid="cc921f6a-7453-4cb6-fce6-f8f54a8bb25c" data-execution_count="82">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1"></a>cnv.weights[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>cnv.weights[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="82">
 <pre><code>&lt;tf.Variable 'conv2d_8/kernel:0' shape=(3, 3, 1, 1) dtype=float32, numpy=
 array([[[[ 0.16768384]],
@@ -2266,14 +2260,14 @@ array([[[[ 0.16768384]],
 <p><span style="color:blue"> XXX가 cnv를 통과하면서 weights가 생긴다.</span></p>
 </blockquote>
 <div id="024913a8-7f7a-4556-8eac-e95e9fe9a335" class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1"></a>_w <span class="op">=</span> tf.constant([[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>]],dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb101-2"><a href="#cb101-2"></a>_b <span class="op">=</span> tf.constant([<span class="dv">0</span>],dtype<span class="op">=</span>tf.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>_w <span class="op">=</span> tf.constant([[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>]],dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>_b <span class="op">=</span> tf.constant([<span class="dv">0</span>],dtype<span class="op">=</span>tf.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="7a5c9991-d011-425c-8922-e27fbe915289" class="cell" data-execution_count="87">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1"></a>cnv.set_weights([_w,_b])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>cnv.set_weights([_w,_b])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ba1bddad-9bf5-4489-a730-db41cada6197" class="cell" data-outputid="dc9881b3-b97a-4a0a-e7cd-33b0e8a2a49e" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>cnv(XXX).reshape(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="88">
 <pre><code>&lt;tf.Tensor: shape=(1, 3, 3), dtype=float32, numpy=
 array([[[12., 12., 17.],
@@ -2285,15 +2279,15 @@ array([[[12., 12., 17.],
 <section id="테스트4-1" class="level4">
 <h4 class="anchored" data-anchor-id="테스트4-1">테스트4</h4>
 <div id="d8c19f60-8f35-4cde-8b69-649d5d994322" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
-<span id="cb105-2"><a href="#cb105-2"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb105-3"><a href="#cb105-3"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">2</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">2</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="493c58f5-4163-414b-a293-284882e303e8" class="cell" data-outputid="a7bc1461-0a6b-4f0a-f030-371c53607d77" data-execution_count="90">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1"></a><span class="bu">print</span>(XXX.reshape(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>))</span>
-<span id="cb106-2"><a href="#cb106-2"></a>cnv(XXX) <span class="co"># weights를 초기화 시키기 위해서 레이어를 1회 통과</span></span>
-<span id="cb106-3"><a href="#cb106-3"></a>cnv.set_weights([w,b])</span>
-<span id="cb106-4"><a href="#cb106-4"></a><span class="bu">print</span>(cnv(XXX).reshape(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(XXX.reshape(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>cnv(XXX) <span class="co"># weights를 초기화 시키기 위해서 레이어를 1회 통과</span></span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>cnv.set_weights([w,b])</span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cnv(XXX).reshape(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tf.Tensor(
 [[[ 0.  1.  2.  3.  4.]
@@ -2320,7 +2314,7 @@ tf.Tensor(
 </div>
 </div>
 <div id="b51b503e-740c-4699-a029-7ddc841fcb86" class="cell" data-outputid="f737c8e3-b26d-41b5-9236-e89d9bd8138a" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1"></a>np.mean([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>])<span class="op">+</span><span class="dv">3</span>,np.mean([<span class="dv">25</span>,<span class="dv">26</span>,<span class="dv">30</span>,<span class="dv">31</span>])<span class="op">+</span><span class="dv">3</span>,</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>np.mean([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>])<span class="op">+</span><span class="dv">3</span>,np.mean([<span class="dv">25</span>,<span class="dv">26</span>,<span class="dv">30</span>,<span class="dv">31</span>])<span class="op">+</span><span class="dv">3</span>,</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="91">
 <pre><code>(6.0, 31.0)</code></pre>
 </div>
@@ -2330,12 +2324,12 @@ tf.Tensor(
 <h4 class="anchored" data-anchor-id="테스트5-1">테스트5</h4>
 <p><code>-</code></p>
 <div id="f3d31496-0191-4837-a0c5-4eeec53111b5" class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
-<span id="cb110-2"><a href="#cb110-2"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">4</span>,(<span class="dv">2</span>,<span class="dv">2</span>),activation<span class="op">=</span><span class="st">'relu'</span>)</span>
-<span id="cb110-3"><a href="#cb110-3"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">4</span>,(<span class="dv">2</span>,<span class="dv">2</span>),activation<span class="op">=</span><span class="st">'relu'</span>)</span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.arange(<span class="dv">1</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8d18d8aa-93d7-4e58-bc9a-171551fc144e" class="cell" data-outputid="b9f90497-5c52-4e0e-fa09-b42f70b4207d" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1"></a><span class="bu">print</span>(XXX.reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(XXX.reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tf.Tensor(
 [[[0. 1.]
@@ -2343,7 +2337,7 @@ tf.Tensor(
 </div>
 </div>
 <div id="59842396-9eea-4d17-b92b-82fdfdad144e" class="cell" data-outputid="6ccf7974-4e01-41c7-94d4-8fbc5c34e52f" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1"></a>cnv(XXX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>cnv(XXX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="94">
 <pre><code>&lt;tf.Tensor: shape=(1, 1, 1, 4), dtype=float32, numpy=
 array([[[[1.7573347 , 0.84183925, 1.7484205 , 0.        ]]]],
@@ -2351,7 +2345,7 @@ array([[[[1.7573347 , 0.84183925, 1.7484205 , 0.        ]]]],
 </div>
 </div>
 <div id="aafcd364-c4b4-44b5-89df-20480f566b31" class="cell" data-outputid="991917a5-ea9f-422b-d494-543132595d98" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1"></a>cnv.weights[<span class="dv">0</span>] <span class="co"># (2,2) 커널의 크기 // 1은 XXX의 채널수 // 4는 conv(XXX)의 채널수</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>cnv.weights[<span class="dv">0</span>] <span class="co"># (2,2) 커널의 크기 // 1은 XXX의 채널수 // 4는 conv(XXX)의 채널수</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="95">
 <pre><code>&lt;tf.Variable 'conv2d_10/kernel:0' shape=(2, 2, 1, 4) dtype=float32, numpy=
 array([[[[-0.00448787,  0.17636931,  0.17748284,  0.5281223 ]],
@@ -2366,7 +2360,7 @@ array([[[[-0.00448787,  0.17636931,  0.17748284,  0.5281223 ]],
 </div>
 </div>
 <div id="6a8abf9a-a7d0-4dfd-b9f2-8c657f913683" class="cell" data-outputid="3f06e82d-ae52-4b53-e6fd-fcfe1e48ce15">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1"></a>cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>].reshape(<span class="dv">2</span>,<span class="dv">2</span>) <span class="co">## conv(XXX)의 첫번째채널 출력을 얻기 위해 곱해지는 w</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>].reshape(<span class="dv">2</span>,<span class="dv">2</span>) <span class="co">## conv(XXX)의 첫번째채널 출력을 얻기 위해 곱해지는 w</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="281">
 <pre><code>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
 array([[-0.08230966, -0.36398047],
@@ -2374,19 +2368,19 @@ array([[-0.08230966, -0.36398047],
 </div>
 </div>
 <div id="171f2ae5-06d9-450b-ac15-9723db067f63" class="cell" data-outputid="55f24212-1ffb-47eb-8dc6-d2089cfef3ac">
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1"></a>tf.reduce_sum(XXX.reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>) <span class="op">*</span> cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>].reshape(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co">### conv(XXX)의 첫번째 채널 출력결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>tf.reduce_sum(XXX.reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>) <span class="op">*</span> cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>].reshape(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co">### conv(XXX)의 첫번째 채널 출력결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="282">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float64, numpy=1.0487029552459717&gt;</code></pre>
 </div>
 </div>
 <p><code>-</code> 계산결과를 확인하기 쉽게 하기 위한 약간의 트릭</p>
 <div id="4937eecd-dbdc-4d14-aac1-7e9583e36494" class="cell">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
-<span id="cb121-2"><a href="#cb121-2"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">4</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb121-3"><a href="#cb121-3"></a>XXX <span class="op">=</span> tnp.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">1</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">4</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">1</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">1</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="f863a7f9-2b8a-4bbc-82fc-653b8b30aab4" class="cell" data-outputid="d5c13ed8-04c1-4b9e-800e-b88db4cf0fd3">
-<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1"></a><span class="bu">print</span>(XXX.reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(XXX.reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tf.Tensor(
 [[[1. 1.]
@@ -2397,7 +2391,7 @@ array([[-0.08230966, -0.36398047],
 <li>이렇게 XXX를 설정하면 cnv(XXX)의 결과는 단지 cnv의 weight들의 sum이 된다.</li>
 </ul>
 <div id="24b6931e-771b-4378-9400-c531a06e806e" class="cell" data-outputid="cbcdd4e0-e9da-41b7-c0d0-69e7c42df5a4">
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1"></a>cnv(XXX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>cnv(XXX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="287">
 <pre><code>&lt;tf.Tensor: shape=(1, 1, 1, 4), dtype=float32, numpy=
 array([[[[ 0.09046876, -0.6207629 , -0.25241536, -0.7710641 ]]]],
@@ -2405,7 +2399,7 @@ array([[[[ 0.09046876, -0.6207629 , -0.25241536, -0.7710641 ]]]],
 </div>
 </div>
 <div id="149d1945-22f0-49c9-827f-8b7f2cfab22c" class="cell" data-outputid="daa7ee0b-a28a-4a58-f5c6-89daefc89486">
-<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1"></a>cnv.weights[<span class="dv">0</span>] <span class="co"># (2,2) 커널의 크기 // 1은 XXX의 채널수 // 4는 conv(XXX)의 채널수</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>cnv.weights[<span class="dv">0</span>] <span class="co"># (2,2) 커널의 크기 // 1은 XXX의 채널수 // 4는 conv(XXX)의 채널수</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="288">
 <pre><code>&lt;tf.Variable 'conv2d_24/kernel:0' shape=(2, 2, 1, 4) dtype=float32, numpy=
 array([[[[-0.08230966, -0.15132892, -0.12760344, -0.38952267]],
@@ -2420,7 +2414,7 @@ array([[[[-0.08230966, -0.15132892, -0.12760344, -0.38952267]],
 </div>
 </div>
 <div id="8cbe2c4d-a2ac-4e39-8c1d-729cd67df45b" class="cell" data-outputid="1a39464a-2dfd-4eb1-f4bb-3caf61f56131">
-<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1"></a>cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>].reshape(<span class="dv">2</span>,<span class="dv">2</span>) <span class="co">## conv(XXX)의 첫번째채널 출력을 얻기 위해 곱해지는 w</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>].reshape(<span class="dv">2</span>,<span class="dv">2</span>) <span class="co">## conv(XXX)의 첫번째채널 출력을 얻기 위해 곱해지는 w</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="289">
 <pre><code>&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
 array([[-0.08230966, -0.36398047],
@@ -2428,8 +2422,8 @@ array([[-0.08230966, -0.36398047],
 </div>
 </div>
 <div id="e856dd07-3bc6-4559-976a-41519708c305" class="cell" data-outputid="6ab4f41e-ec5c-4545-9d4c-98b75fa90061">
-<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1"></a>tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>])</span>
-<span id="cb130-2"><a href="#cb130-2"></a><span class="co">#tf.reduce_sum(XXX.reshape(1,2,2) * cnv.weights[0][...,0].reshape(2,2)) </span><span class="al">###</span><span class="co"> conv(XXX)의 첫번째 채널 출력결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>])</span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="co">#tf.reduce_sum(XXX.reshape(1,2,2) * cnv.weights[0][...,0].reshape(2,2)) </span><span class="al">###</span><span class="co"> conv(XXX)의 첫번째 채널 출력결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="294">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.090468764&gt;</code></pre>
 </div>
@@ -2439,12 +2433,12 @@ array([[-0.08230966, -0.36398047],
 <h4 class="anchored" data-anchor-id="테스트6-1">테스트6</h4>
 <p><code>-</code> 결과확인을 쉽게하기 위해서 XXX를 1로 통일</p>
 <div id="f3f12488-e6af-477a-ba2b-5fe1dbb14e97" class="cell">
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
-<span id="cb132-2"><a href="#cb132-2"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">4</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb132-3"><a href="#cb132-3"></a>XXX <span class="op">=</span> tnp.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">1</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>tf.random.set_seed(<span class="dv">43052</span>)</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>cnv <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">4</span>,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>XXX <span class="op">=</span> tnp.array([<span class="dv">1</span>]<span class="op">*</span><span class="dv">1</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span>,dtype<span class="op">=</span>tf.float64).reshape(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="c11e8203-092e-4970-89e6-c3183c6ae2b5" class="cell" data-outputid="d5f4d662-b46a-48cf-a4a6-f467b236fdbb">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1"></a>cnv(XXX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>cnv(XXX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="345">
 <pre><code>&lt;tf.Tensor: shape=(1, 1, 1, 4), dtype=float32, numpy=
 array([[[[ 0.3297621, -0.4498347, -1.0487393, -1.580095 ]]]],
@@ -2452,7 +2446,7 @@ array([[[[ 0.3297621, -0.4498347, -1.0487393, -1.580095 ]]]],
 </div>
 </div>
 <div id="92d999eb-148c-4bc5-a11d-a53e90c560c1" class="cell" data-outputid="4413d810-6df5-4828-8044-7ddae8b72cce">
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1"></a>cnv.weights[<span class="dv">0</span>] <span class="co">## (2,2)는 커널의 사이즈 // 3은 XXX의채널 // 4는 cnv(XXX)의 채널</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>cnv.weights[<span class="dv">0</span>] <span class="co">## (2,2)는 커널의 사이즈 // 3은 XXX의채널 // 4는 cnv(XXX)의 채널</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="346">
 <pre><code>&lt;tf.Variable 'conv2d_33/kernel:0' shape=(2, 2, 3, 4) dtype=float32, numpy=
 array([[[[-0.06956434, -0.12789628, -0.10784459, -0.32920673],
@@ -2475,7 +2469,7 @@ array([[[[-0.06956434, -0.12789628, -0.10784459, -0.32920673],
 </div>
 </div>
 <div id="c0bdec5e-4dfe-428a-bd34-03808c230243" class="cell" data-outputid="cbde156e-f638-4a3e-bf67-6b76d95b73e5">
-<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1"></a>cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>] <span class="co">## cnv(XXX)의 첫번째 채널결과를 얻기 위해서 사용하는 w</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>] <span class="co">## cnv(XXX)의 첫번째 채널결과를 얻기 위해서 사용하는 w</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="347">
 <pre><code>&lt;tf.Tensor: shape=(2, 2, 3), dtype=float32, numpy=
 array([[[-0.06956434, -0.30761963,  0.16699678],
@@ -2486,16 +2480,16 @@ array([[[-0.06956434, -0.30761963,  0.16699678],
 </div>
 </div>
 <div id="04d9bee0-6efc-48f0-aca9-6fe5b1eb9b68" class="cell" data-outputid="b5647639-9ebc-45e9-85cc-dddb17e351d2">
-<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1"></a>tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>]) <span class="co">### cnv(XXX)의 첫번째 채널의 결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>]) <span class="co">### cnv(XXX)의 첫번째 채널의 결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="348">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.32976213&gt;</code></pre>
 </div>
 </div>
 <div id="f45cb0dc-36c7-495d-a260-5134667ea78e" class="cell" data-outputid="252aa9fc-4c69-4a6a-c7fb-e8096d8874f3">
-<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1"></a><span class="bu">print</span>(tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>]))</span>
-<span id="cb141-2"><a href="#cb141-2"></a><span class="bu">print</span>(tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">1</span>]))</span>
-<span id="cb141-3"><a href="#cb141-3"></a><span class="bu">print</span>(tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">2</span>]))</span>
-<span id="cb141-4"><a href="#cb141-4"></a><span class="bu">print</span>(tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">3</span>])) <span class="co">### cnv(XXX)의 결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>]))</span>
+<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">1</span>]))</span>
+<span id="cb141-3"><a href="#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">2</span>]))</span>
+<span id="cb141-4"><a href="#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tf.reduce_sum(cnv.weights[<span class="dv">0</span>][...,<span class="dv">3</span>])) <span class="co">### cnv(XXX)의 결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tf.Tensor(0.32976213, shape=(), dtype=float32)
 tf.Tensor(-0.44983464, shape=(), dtype=float32)
@@ -2504,12 +2498,12 @@ tf.Tensor(-1.5800952, shape=(), dtype=float32)</code></pre>
 </div>
 </div>
 <div id="31045978-ddae-4bf4-9cc3-19b6dd1e521c" class="cell">
-<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1"></a>w_red <span class="op">=</span> cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>][...,<span class="dv">0</span>]</span>
-<span id="cb143-2"><a href="#cb143-2"></a>w_green <span class="op">=</span> cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>][...,<span class="dv">1</span>]</span>
-<span id="cb143-3"><a href="#cb143-3"></a>w_blue <span class="op">=</span> cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>][...,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>w_red <span class="op">=</span> cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>][...,<span class="dv">0</span>]</span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a>w_green <span class="op">=</span> cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>][...,<span class="dv">1</span>]</span>
+<span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a>w_blue <span class="op">=</span> cnv.weights[<span class="dv">0</span>][...,<span class="dv">0</span>][...,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="10923f38-bc02-4338-9a26-d2a49820e74c" class="cell" data-outputid="d96821d6-e1ff-47c3-bd12-fa07212a0ff0">
-<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1"></a>tf.reduce_sum(XXX[...,<span class="dv">0</span>] <span class="op">*</span> w_red <span class="op">+</span> XXX[...,<span class="dv">1</span>] <span class="op">*</span> w_green <span class="op">+</span> XXX[...,<span class="dv">2</span>] <span class="op">*</span> w_blue) <span class="co">## cnv(XXX)의 첫채널 출력결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>tf.reduce_sum(XXX[...,<span class="dv">0</span>] <span class="op">*</span> w_red <span class="op">+</span> XXX[...,<span class="dv">1</span>] <span class="op">*</span> w_green <span class="op">+</span> XXX[...,<span class="dv">2</span>] <span class="op">*</span> w_blue) <span class="co">## cnv(XXX)의 첫채널 출력결과</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="351">
 <pre><code>&lt;tf.Tensor: shape=(), dtype=float64, numpy=0.32976213097572327&gt;</code></pre>
 </div>

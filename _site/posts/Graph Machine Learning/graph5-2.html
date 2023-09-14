@@ -548,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -560,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1516,12 +1516,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1624,7 +1618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#스펙트럼-방법-및-행렬-분해" id="toc-스펙트럼-방법-및-행렬-분해" class="nav-link" data-scroll-target="#스펙트럼-방법-및-행렬-분해">스펙트럼 방법 및 행렬 분해</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="graph5-2.out.ipynb" download="graph5-2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1689,23 +1683,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>바벨 그래프 생성</li>
 </ol>
 <div id="a5d6a6a4-237a-4cf3-a339-3752b2ea10d3" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="b2dd47a3-0640-4a5c-8115-d466e58af899" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx </span>
-<span id="cb2-2"><a href="#cb2-2"></a>G <span class="op">=</span> nx.barbell_graph(m1<span class="op">=</span><span class="dv">10</span>, m2<span class="op">=</span><span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.barbell_graph(m1<span class="op">=</span><span class="dv">10</span>, m2<span class="op">=</span><span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>임베딩 알고리즘(HOPE)를 사용해 감소된 밀집 노드 얻기</li>
 </ol>
 <div id="549e7743-8b4f-437c-9a3e-372667dd1448" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> gem.embedding.hope <span class="im">import</span> HOPE </span>
-<span id="cb3-2"><a href="#cb3-2"></a>gf <span class="op">=</span> HOPE(d<span class="op">=</span><span class="dv">4</span>, beta<span class="op">=</span><span class="fl">0.01</span>) </span>
-<span id="cb3-3"><a href="#cb3-3"></a>gf.learn_embedding(G) </span>
-<span id="cb3-4"><a href="#cb3-4"></a>embeddings <span class="op">=</span> gf.get_embedding() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gem.embedding.hope <span class="im">import</span> HOPE </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gf <span class="op">=</span> HOPE(d<span class="op">=</span><span class="dv">4</span>, beta<span class="op">=</span><span class="fl">0.01</span>) </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gf.learn_embedding(G) </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>embeddings <span class="op">=</span> gf.get_embedding() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>SVD error (low rank): 0.052092</code></pre>
 </div>
@@ -1714,16 +1708,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>클러스터링 알고리즘 실행</li>
 </ol>
 <div id="871e81a4-73c5-447f-8455-fb67708c6e78" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">from</span> sklearn.mixture <span class="im">import</span> GaussianMixture</span>
-<span id="cb5-2"><a href="#cb5-2"></a>gm <span class="op">=</span> GaussianMixture(n_components<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>) <span class="co">#.(embeddings)</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>labels <span class="op">=</span> gm.fit_predict(embeddings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.mixture <span class="im">import</span> GaussianMixture</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gm <span class="op">=</span> GaussianMixture(n_components<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>) <span class="co">#.(embeddings)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> gm.fit_predict(embeddings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
 <li>다양한 색상으로 강조 표시된 계산된 커뮤니티로 네트워크 그리기</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource ptyhon number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>colors = ["blue", "green", "red"]</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>nx.draw_spring(G, node_color=[colors[label] for label in labels])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="ptyhon"><code>colors = ["blue", "green", "red"]
+
+nx.draw_spring(G, node_color=[colors[label] for label in labels])</code></pre>
 <ul>
 <li><p>위 코드 자꾸 <code>'_AxesStack' object is not callable</code> 이렇게 오류가 난다. ㅇ</p></li>
 <li><p>아래와 같이 그림이 표시되어야 함</p></li>
@@ -1737,27 +1731,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>임베딩 기술이 라플라시안 행렬의 첫 번쨰 k-고유 벡터롤 고려해 얻은 스펙트럼 임베딩을 이용한 임베딩 기반 커뮤니티 탐지 알고리즘의 특별한 경우 (?)</p></li>
 </ul>
 <div id="87b70baf-9546-4321-b178-c9be899fdfec" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#pip install communities</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pip install communities</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="32ebb910-4dda-45bd-83ad-0a1eefaee6fd" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> communities.algorithms <span class="im">import</span> spectral_clustering</span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>adj<span class="op">=</span>np.array(nx.adjacency_matrix(G).todense())</span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a>communities <span class="op">=</span> spectral_clustering(adj, k<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> communities.algorithms <span class="im">import</span> spectral_clustering</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>adj<span class="op">=</span>np.array(nx.adjacency_matrix(G).todense())</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>communities <span class="op">=</span> spectral_clustering(adj, k<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/tmp/ipykernel_1863787/1958540878.py:3: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
   adj=np.array(nx.adjacency_matrix(G).todense())</code></pre>
 </div>
 </div>
 <div id="2efc9d72-05da-46c1-9a4e-adb46a5add74" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">5</span>))</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="cf">for</span> ith, community <span class="kw">in</span> <span class="bu">enumerate</span>(communities):</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    cols <span class="op">=</span> [<span class="st">"red"</span> <span class="cf">if</span> node <span class="kw">in</span> community <span class="cf">else</span> <span class="st">"blue"</span> <span class="cf">for</span> node <span class="kw">in</span> G.nodes]</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    plt.subplot(<span class="dv">1</span>,<span class="dv">3</span>,ith<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    plt.title(<span class="ss">f"Community </span><span class="sc">{</span>ith<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    nx.draw_spring(G, node_color<span class="op">=</span>cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">5</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ith, community <span class="kw">in</span> <span class="bu">enumerate</span>(communities):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    cols <span class="op">=</span> [<span class="st">"red"</span> <span class="cf">if</span> node <span class="kw">in</span> community <span class="cf">else</span> <span class="st">"blue"</span> <span class="cf">for</span> node <span class="kw">in</span> G.nodes]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">1</span>,<span class="dv">3</span>,ith<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f"Community </span><span class="sc">{</span>ith<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    nx.draw_spring(G, node_color<span class="op">=</span>cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>TypeError: '_AxesStack' object is not callable</code></pre>
 </div>

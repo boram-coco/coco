@@ -552,7 +552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -564,7 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1520,12 +1520,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1637,7 +1631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#textbook-vs-proposed" id="toc-textbook-vs-proposed" class="nav-link" data-scroll-target="#textbook-vs-proposed">textbook vs proposed</a></li>
   <li><a href="#appedix" id="toc-appedix" class="nav-link" data-scroll-target="#appedix">appedix</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="9999.out.ipynb" download="9999.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1678,84 +1672,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="imports" class="level2">
 <h2 class="anchored" data-anchor-id="imports">imports</h2>
 <div id="899f5545-1e46-4d42-97a6-d4f41a1980d6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> sklearn</span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># split </span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># embedding </span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="im">from</span> node2vec <span class="im">import</span> Node2Vec</span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="im">from</span> node2vec.edges <span class="im">import</span> HadamardEmbedder, AverageEmbedder, WeightedL1Embedder, WeightedL2Embedder</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># models </span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier </span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># 평가 </span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># split </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># embedding </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> node2vec <span class="im">import</span> Node2Vec</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> node2vec.edges <span class="im">import</span> HadamardEmbedder, AverageEmbedder, WeightedL1Embedder, WeightedL2Embedder</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># models </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 평가 </span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ad688491-89ce-4f1e-a848-b6adcdea37bd" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> build_graph_bipartite(df_input, graph_type<span class="op">=</span>nx.Graph()):</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    df<span class="op">=</span>df_input.copy()</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    mapping<span class="op">=</span>{x:node_id <span class="cf">for</span> node_id, x <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">set</span>(df[<span class="st">"cc_num"</span>].values.tolist()<span class="op">+\</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>                                                      df[<span class="st">"merchant"</span>].values.tolist()))}</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    </span>
-<span id="cb2-6"><a href="#cb2-6"></a>    df[<span class="st">"from"</span>]<span class="op">=</span>df[<span class="st">"cc_num"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x:mapping[x])  <span class="co">#엣지의 출발점</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>    df[<span class="st">"to"</span>]<span class="op">=</span>df[<span class="st">"merchant"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x:mapping[x])  <span class="co">#엣지의 도착점</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    </span>
-<span id="cb2-9"><a href="#cb2-9"></a>    df <span class="op">=</span> df[[<span class="st">'from'</span>, <span class="st">'to'</span>, <span class="st">"amt"</span>, <span class="st">"is_fraud"</span>]].groupby([<span class="st">'from'</span>,<span class="st">'to'</span>]).agg({<span class="st">"is_fraud"</span>:<span class="st">"sum"</span>,<span class="st">"amt"</span>:<span class="st">"sum"</span>}).reset_index()</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    df[<span class="st">"is_fraud"</span>]<span class="op">=</span>df[<span class="st">"is_fraud"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x:<span class="dv">1</span> <span class="cf">if</span> x<span class="op">&gt;</span><span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span>)</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    </span>
-<span id="cb2-12"><a href="#cb2-12"></a>    G<span class="op">=</span>nx.from_edgelist(df[[<span class="st">"from"</span>,<span class="st">"to"</span>]].values, create_using<span class="op">=</span>graph_type)</span>
-<span id="cb2-13"><a href="#cb2-13"></a>    </span>
-<span id="cb2-14"><a href="#cb2-14"></a>    nx.set_edge_attributes(G, {(<span class="bu">int</span>(x[<span class="st">"from"</span>]),<span class="bu">int</span>(x[<span class="st">"to"</span>])):x[<span class="st">"is_fraud"</span>] <span class="cf">for</span> idx, x <span class="kw">in</span> df[[<span class="st">"from"</span>,<span class="st">"to"</span>,<span class="st">"is_fraud"</span>]].iterrows()}, <span class="st">"label"</span>)  <span class="co">#엣지 속성 설정,각 속성의 사기 여부부 </span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>    </span>
-<span id="cb2-16"><a href="#cb2-16"></a>    nx.set_edge_attributes(G,{(<span class="bu">int</span>(x[<span class="st">"from"</span>]),<span class="bu">int</span>(x[<span class="st">"to"</span>])):x[<span class="st">"amt"</span>] <span class="cf">for</span> idx,x <span class="kw">in</span> df[[<span class="st">"from"</span>,<span class="st">"to"</span>,<span class="st">"amt"</span>]].iterrows()}, <span class="st">"weight"</span>) <span class="co"># 엣지 속성 설정, 각 엣지의 거래 금액</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a>    <span class="cf">return</span> G</span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="kw">def</span> down_sample_textbook(df):</span>
-<span id="cb2-21"><a href="#cb2-21"></a>    df <span class="op">=</span> df[df[<span class="st">"is_fraud"</span>]<span class="op">==</span><span class="dv">0</span>].sample(frac<span class="op">=</span><span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">42</span>).append(df[df[<span class="st">"is_fraud"</span>] <span class="op">==</span> <span class="dv">1</span>])</span>
-<span id="cb2-22"><a href="#cb2-22"></a>    df_majority <span class="op">=</span> df[df.is_fraud<span class="op">==</span><span class="dv">0</span>]</span>
-<span id="cb2-23"><a href="#cb2-23"></a>    df_minority <span class="op">=</span> df[df.is_fraud<span class="op">==</span><span class="dv">1</span>]</span>
-<span id="cb2-24"><a href="#cb2-24"></a>    df_maj_dowsampled <span class="op">=</span> sklearn.utils.resample(df_majority, n_samples<span class="op">=</span><span class="bu">len</span>(df_minority), random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb2-25"><a href="#cb2-25"></a>    df_downsampled <span class="op">=</span> pd.concat([df_minority, df_maj_dowsampled])</span>
-<span id="cb2-26"><a href="#cb2-26"></a>    <span class="cf">return</span> df_downsampled</span>
-<span id="cb2-27"><a href="#cb2-27"></a></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="kw">def</span> split(Graph,test_size<span class="op">=</span><span class="fl">0.20</span>,random_state<span class="op">=</span><span class="dv">42</span>):</span>
-<span id="cb2-29"><a href="#cb2-29"></a>    edg <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(Graph.edges))) </span>
-<span id="cb2-30"><a href="#cb2-30"></a>    edg_att <span class="op">=</span> <span class="bu">list</span>(nx.get_edge_attributes(Graph, <span class="st">"label"</span>).values())</span>
-<span id="cb2-31"><a href="#cb2-31"></a>    <span class="cf">return</span> train_test_split(edg,edg_att,test_size<span class="op">=</span>test_size,random_state<span class="op">=</span>random_state) </span>
-<span id="cb2-32"><a href="#cb2-32"></a></span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="kw">def</span> embedding(Graph):</span>
-<span id="cb2-34"><a href="#cb2-34"></a>    _edgs <span class="op">=</span> <span class="bu">list</span>(Graph.edges)</span>
-<span id="cb2-35"><a href="#cb2-35"></a>    _train_edges, _test_edges, y, yy <span class="op">=</span> split(Graph)</span>
-<span id="cb2-36"><a href="#cb2-36"></a>    _train_graph <span class="op">=</span> Graph.edge_subgraph([_edgs[x] <span class="cf">for</span> x <span class="kw">in</span> _train_edges]).copy()</span>
-<span id="cb2-37"><a href="#cb2-37"></a>    _train_graph.add_nodes_from(<span class="bu">list</span>(<span class="bu">set</span>(Graph.nodes) <span class="op">-</span> <span class="bu">set</span>(_train_graph.nodes)))</span>
-<span id="cb2-38"><a href="#cb2-38"></a>    _embedded <span class="op">=</span> AverageEmbedder(Node2Vec(_train_graph, weight_key<span class="op">=</span><span class="st">'weight'</span>).fit(window<span class="op">=</span><span class="dv">10</span>).wv)</span>
-<span id="cb2-39"><a href="#cb2-39"></a>    X <span class="op">=</span> [_embedded[<span class="bu">str</span>(_edgs[x][<span class="dv">0</span>]), <span class="bu">str</span>(_edgs[x][<span class="dv">1</span>])] <span class="cf">for</span> x <span class="kw">in</span> _train_edges]</span>
-<span id="cb2-40"><a href="#cb2-40"></a>    XX <span class="op">=</span> [_embedded[<span class="bu">str</span>(_edgs[x][<span class="dv">0</span>]), <span class="bu">str</span>(_edgs[x][<span class="dv">1</span>])] <span class="cf">for</span> x <span class="kw">in</span> _test_edges]</span>
-<span id="cb2-41"><a href="#cb2-41"></a>    <span class="cf">return</span> X,XX,y,yy </span>
-<span id="cb2-42"><a href="#cb2-42"></a></span>
-<span id="cb2-43"><a href="#cb2-43"></a><span class="kw">def</span> evaluate(lrnr,XX,yy):</span>
-<span id="cb2-44"><a href="#cb2-44"></a>    yyhat <span class="op">=</span> lrnr.predict(XX)</span>
-<span id="cb2-45"><a href="#cb2-45"></a>    df <span class="op">=</span> pd.DataFrame({<span class="st">'pre'</span>:[sklearn.metrics.precision_score(yy,yyhat)], </span>
-<span id="cb2-46"><a href="#cb2-46"></a>                  <span class="st">'rec'</span>:[sklearn.metrics.recall_score(yy,yyhat)],</span>
-<span id="cb2-47"><a href="#cb2-47"></a>                  <span class="st">'f1'</span>:[sklearn.metrics.f1_score(yy,yyhat)]})</span>
-<span id="cb2-48"><a href="#cb2-48"></a>    <span class="cf">return</span> df </span>
-<span id="cb2-49"><a href="#cb2-49"></a></span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="kw">def</span> anal(df,n_estimators<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb2-51"><a href="#cb2-51"></a>    Graph <span class="op">=</span> build_graph_bipartite(df)</span>
-<span id="cb2-52"><a href="#cb2-52"></a>    X,XX,y,yy <span class="op">=</span> embedding(Graph)</span>
-<span id="cb2-53"><a href="#cb2-53"></a>    lrnr <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span>n_estimators, random_state<span class="op">=</span><span class="dv">42</span>) </span>
-<span id="cb2-54"><a href="#cb2-54"></a>    lrnr.fit(X,y)</span>
-<span id="cb2-55"><a href="#cb2-55"></a>    <span class="cf">return</span> lrnr, XX,yy, evaluate(lrnr,XX,yy)</span>
-<span id="cb2-56"><a href="#cb2-56"></a></span>
-<span id="cb2-57"><a href="#cb2-57"></a><span class="kw">def</span> our_sampling1(df):</span>
-<span id="cb2-58"><a href="#cb2-58"></a>    cus_list <span class="op">=</span> <span class="bu">set</span>(df.query(<span class="st">'is_fraud==1'</span>).cc_num.tolist())</span>
-<span id="cb2-59"><a href="#cb2-59"></a>    <span class="cf">return</span> df.query(<span class="st">"cc_num in @ cus_list"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_graph_bipartite(df_input, graph_type<span class="op">=</span>nx.Graph()):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    df<span class="op">=</span>df_input.copy()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    mapping<span class="op">=</span>{x:node_id <span class="cf">for</span> node_id, x <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">set</span>(df[<span class="st">"cc_num"</span>].values.tolist()<span class="op">+\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                                      df[<span class="st">"merchant"</span>].values.tolist()))}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"from"</span>]<span class="op">=</span>df[<span class="st">"cc_num"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x:mapping[x])  <span class="co">#엣지의 출발점</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"to"</span>]<span class="op">=</span>df[<span class="st">"merchant"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x:mapping[x])  <span class="co">#엣지의 도착점</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[[<span class="st">'from'</span>, <span class="st">'to'</span>, <span class="st">"amt"</span>, <span class="st">"is_fraud"</span>]].groupby([<span class="st">'from'</span>,<span class="st">'to'</span>]).agg({<span class="st">"is_fraud"</span>:<span class="st">"sum"</span>,<span class="st">"amt"</span>:<span class="st">"sum"</span>}).reset_index()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"is_fraud"</span>]<span class="op">=</span>df[<span class="st">"is_fraud"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x:<span class="dv">1</span> <span class="cf">if</span> x<span class="op">&gt;</span><span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    G<span class="op">=</span>nx.from_edgelist(df[[<span class="st">"from"</span>,<span class="st">"to"</span>]].values, create_using<span class="op">=</span>graph_type)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    nx.set_edge_attributes(G, {(<span class="bu">int</span>(x[<span class="st">"from"</span>]),<span class="bu">int</span>(x[<span class="st">"to"</span>])):x[<span class="st">"is_fraud"</span>] <span class="cf">for</span> idx, x <span class="kw">in</span> df[[<span class="st">"from"</span>,<span class="st">"to"</span>,<span class="st">"is_fraud"</span>]].iterrows()}, <span class="st">"label"</span>)  <span class="co">#엣지 속성 설정,각 속성의 사기 여부부 </span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    nx.set_edge_attributes(G,{(<span class="bu">int</span>(x[<span class="st">"from"</span>]),<span class="bu">int</span>(x[<span class="st">"to"</span>])):x[<span class="st">"amt"</span>] <span class="cf">for</span> idx,x <span class="kw">in</span> df[[<span class="st">"from"</span>,<span class="st">"to"</span>,<span class="st">"amt"</span>]].iterrows()}, <span class="st">"weight"</span>) <span class="co"># 엣지 속성 설정, 각 엣지의 거래 금액</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> G</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> down_sample_textbook(df):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[<span class="st">"is_fraud"</span>]<span class="op">==</span><span class="dv">0</span>].sample(frac<span class="op">=</span><span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">42</span>).append(df[df[<span class="st">"is_fraud"</span>] <span class="op">==</span> <span class="dv">1</span>])</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    df_majority <span class="op">=</span> df[df.is_fraud<span class="op">==</span><span class="dv">0</span>]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    df_minority <span class="op">=</span> df[df.is_fraud<span class="op">==</span><span class="dv">1</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    df_maj_dowsampled <span class="op">=</span> sklearn.utils.resample(df_majority, n_samples<span class="op">=</span><span class="bu">len</span>(df_minority), random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    df_downsampled <span class="op">=</span> pd.concat([df_minority, df_maj_dowsampled])</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_downsampled</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split(Graph,test_size<span class="op">=</span><span class="fl">0.20</span>,random_state<span class="op">=</span><span class="dv">42</span>):</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    edg <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(Graph.edges))) </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    edg_att <span class="op">=</span> <span class="bu">list</span>(nx.get_edge_attributes(Graph, <span class="st">"label"</span>).values())</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> train_test_split(edg,edg_att,test_size<span class="op">=</span>test_size,random_state<span class="op">=</span>random_state) </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> embedding(Graph):</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    _edgs <span class="op">=</span> <span class="bu">list</span>(Graph.edges)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    _train_edges, _test_edges, y, yy <span class="op">=</span> split(Graph)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    _train_graph <span class="op">=</span> Graph.edge_subgraph([_edgs[x] <span class="cf">for</span> x <span class="kw">in</span> _train_edges]).copy()</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    _train_graph.add_nodes_from(<span class="bu">list</span>(<span class="bu">set</span>(Graph.nodes) <span class="op">-</span> <span class="bu">set</span>(_train_graph.nodes)))</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    _embedded <span class="op">=</span> AverageEmbedder(Node2Vec(_train_graph, weight_key<span class="op">=</span><span class="st">'weight'</span>).fit(window<span class="op">=</span><span class="dv">10</span>).wv)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> [_embedded[<span class="bu">str</span>(_edgs[x][<span class="dv">0</span>]), <span class="bu">str</span>(_edgs[x][<span class="dv">1</span>])] <span class="cf">for</span> x <span class="kw">in</span> _train_edges]</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    XX <span class="op">=</span> [_embedded[<span class="bu">str</span>(_edgs[x][<span class="dv">0</span>]), <span class="bu">str</span>(_edgs[x][<span class="dv">1</span>])] <span class="cf">for</span> x <span class="kw">in</span> _test_edges]</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X,XX,y,yy </span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evaluate(lrnr,XX,yy):</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    yyhat <span class="op">=</span> lrnr.predict(XX)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame({<span class="st">'pre'</span>:[sklearn.metrics.precision_score(yy,yyhat)], </span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'rec'</span>:[sklearn.metrics.recall_score(yy,yyhat)],</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'f1'</span>:[sklearn.metrics.f1_score(yy,yyhat)]})</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> anal(df,n_estimators<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    Graph <span class="op">=</span> build_graph_bipartite(df)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    X,XX,y,yy <span class="op">=</span> embedding(Graph)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    lrnr <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span>n_estimators, random_state<span class="op">=</span><span class="dv">42</span>) </span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    lrnr.fit(X,y)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lrnr, XX,yy, evaluate(lrnr,XX,yy)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> our_sampling1(df):</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    cus_list <span class="op">=</span> <span class="bu">set</span>(df.query(<span class="st">'is_fraud==1'</span>).cc_num.tolist())</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.query(<span class="st">"cc_num in @ cus_list"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data1" class="level1">
@@ -1763,7 +1757,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="read-and-define-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-and-define-data">read and define data</h2>
 <div id="5ff6f459-ddcc-4e40-8aff-f274cc99620a" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"~/Desktop/fraudTrain.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"~/Desktop/fraudTrain.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -1924,29 +1918,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="0e8d498f-97da-4442-8272-7bf7637e3917" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># df_downsampled = down_sample_textbook(df)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_downsampled = down_sample_textbook(df)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="embedding" class="level2">
 <h2 class="anchored" data-anchor-id="embedding">embedding</h2>
 <div id="f87e5ee8-80ae-479e-a0fd-ddcdef0f1d53" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#G_down = build_graph_bipartite(df_downsampled)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#G_down = build_graph_bipartite(df_downsampled)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cb9633ac-295f-40c8-b92c-6889a5486975" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># X,XX,y,yy = embedding(G_down)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># X,XX,y,yy = embedding(G_down)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="learn" class="level2">
 <h2 class="anchored" data-anchor-id="learn">learn</h2>
 <div id="51b33ad3-b39f-4c08-b512-5378b3000442" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># lrnr = RandomForestClassifier(n_estimators=10, random_state=42) </span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># lrnr.fit(X,y)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lrnr = RandomForestClassifier(n_estimators=10, random_state=42) </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lrnr.fit(X,y)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="evaluate" class="level2">
 <h2 class="anchored" data-anchor-id="evaluate">evaluate</h2>
 <div id="c0a335c8-7687-40e1-868d-b620f19f8745" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># evaluate(lrnr,XX,yy)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># evaluate(lrnr,XX,yy)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -1954,7 +1948,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data1-다른코드" class="level1">
 <h1>data1 : 다른코드</h1>
 <div id="d54feaa8-cabf-418b-a4af-a3adc928f91f" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>lrnr1, XX_textbook, yy_texbook, results <span class="op">=</span> anal(down_sample_textbook(df),n_estimators<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lrnr1, XX_textbook, yy_texbook, results <span class="op">=</span> anal(down_sample_textbook(df),n_estimators<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"47c48fe3714d41b3860cb9ed671726a3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -1973,8 +1967,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="read-and-define-data-1" class="level2">
 <h2 class="anchored" data-anchor-id="read-and-define-data-1">read and define data</h2>
 <div id="eeadbb6e-e96f-4627-aca0-d93d5ebd26d8" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"~/Desktop/fraudTrain.csv"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a>lrnr2, _,_,_ <span class="op">=</span> anal(down_sample_textbook(our_sampling1(df)),n_estimators<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"~/Desktop/fraudTrain.csv"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lrnr2, _,_,_ <span class="op">=</span> anal(down_sample_textbook(our_sampling1(df)),n_estimators<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"e74e66a4c5f041159c4df840a772d10a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -1992,11 +1986,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="textbook-vs-proposed" class="level1">
 <h1>textbook vs proposed</h1>
 <div id="9c8800b3-c27f-4498-9ccc-0c3008556f63" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>yyhat_textbook <span class="op">=</span> lrnr1.predict(XX_textbook)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>yyhat_proposed <span class="op">=</span> lrnr2.predict(XX_textbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>yyhat_textbook <span class="op">=</span> lrnr1.predict(XX_textbook)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>yyhat_proposed <span class="op">=</span> lrnr2.predict(XX_textbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="445f21ee-072f-4ab9-b8e5-268260dea419" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>evaluate(lrnr1, XX_textbook,yy_texbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>evaluate(lrnr1, XX_textbook,yy_texbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
@@ -2024,7 +2018,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="28d36c39-5843-4cfc-87ba-136a4c4e6223" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>evaluate(lrnr2, XX_textbook,yy_texbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>evaluate(lrnr2, XX_textbook,yy_texbook)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <div>
 

@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25 df02 커널죽음)</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> df05</span></a>
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 그러나 불균형으로 다른 값들은 다 낮음</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1518,12 +1518,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practical Synthetic Data Generation</span></a>
   </div>
@@ -1626,7 +1620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#위조범네트워크의-성능을-향상시키자." id="toc-위조범네트워크의-성능을-향상시키자." class="nav-link" data-scroll-target="#위조범네트워크의-성능을-향상시키자.">위조범네트워크의 성능을 향상시키자.</a></li>
   <li><a href="#두-적대적-네트워크를-경쟁시키자." id="toc-두-적대적-네트워크를-경쟁시키자." class="nav-link" data-scroll-target="#두-적대적-네트워크를-경쟁시키자.">두 적대적 네트워크를 경쟁시키자.</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2022-06-09-(14주차) 6월9일.out.ipynb" download="2022-06-09-(14주차) 6월9일.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1732,23 +1726,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import" class="level4">
 <h4 class="anchored" data-anchor-id="import">import</h4>
 <div id="8b6508cd-99f6-47f1-8450-c8b207016a46" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf  </span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> tensorflow.experimental.numpy <span class="im">as</span> tnp</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow.experimental.numpy <span class="im">as</span> tnp</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="0ec69e15-191a-4b3a-ba6e-934c50928665" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>tnp.experimental_enable_numpy_behavior()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tnp.experimental_enable_numpy_behavior()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="데이터" class="level4">
 <h4 class="anchored" data-anchor-id="데이터">데이터</h4>
 <div id="05bb522e-0366-4797-90d1-87672bc75141" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="0429f629-4e94-4785-938e-8fd56f4b1951" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>Xreal <span class="op">=</span> x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)<span class="op">/</span><span class="dv">255</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Xreal <span class="op">=</span> x_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">784</span>)<span class="op">/</span><span class="dv">255</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="위조지폐범의-설계-noise---가짜이미지를-만들어내는-네트워크를-만들자." class="level4">
@@ -1756,11 +1750,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>-</code> 네트워크의 입력: 적당한 벡터 혹은 매트릭스에 노이즈 (랜덤으로 생성한 어떠한 숫자) 를 채운 것</p>
 <p><code>-</code> 네트워크의 출력: (28,28) shape의 매트릭스 혹은 784개의 원소를 가지는 벡터</p>
 <div id="3f58323e-9c92-4085-a2c0-e2edf4a49072" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>net_counterfeiter<span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb5-2"><a href="#cb5-2"></a>net_counterfeiter.add(tf.keras.layers.Dense(<span class="dv">256</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb5-3"><a href="#cb5-3"></a>net_counterfeiter.add(tf.keras.layers.Dense(<span class="dv">512</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb5-4"><a href="#cb5-4"></a>net_counterfeiter.add(tf.keras.layers.Dense(<span class="dv">1024</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb5-5"><a href="#cb5-5"></a>net_counterfeiter.add(tf.keras.layers.Dense(<span class="dv">784</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>net_counterfeiter<span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>net_counterfeiter.add(tf.keras.layers.Dense(<span class="dv">256</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>net_counterfeiter.add(tf.keras.layers.Dense(<span class="dv">512</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>net_counterfeiter.add(tf.keras.layers.Dense(<span class="dv">1024</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>net_counterfeiter.add(tf.keras.layers.Dense(<span class="dv">784</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>2022-06-09 12:43:21.685836: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:939] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero</code></pre>
 </div>
@@ -1771,21 +1765,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>-</code> 네트워크의 입력? - X: (28,28) shape의 matrix 혹은 784개의 원소를 가지는 벡터</p>
 <p><code>-</code> 네트워크의 출력? yhat - yhat은 진짜이미지일수록1, 가짜이미지일수록 0이 되어야 한다. (왜냐하면 y가 진짜이미지이면 1, 가짜이미지이면 0 이므로)</p>
 <div id="d0861d96-7678-4a74-92e2-9be65acbd62c" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>net_police <span class="op">=</span> tf.keras.Sequential()</span>
-<span id="cb7-2"><a href="#cb7-2"></a>net_police.add(tf.keras.layers.Dense(<span class="dv">1024</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb7-3"><a href="#cb7-3"></a>net_police.add(tf.keras.layers.Dropout(<span class="fl">0.3</span>))</span>
-<span id="cb7-4"><a href="#cb7-4"></a>net_police.add(tf.keras.layers.Dense(<span class="dv">512</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb7-5"><a href="#cb7-5"></a>net_police.add(tf.keras.layers.Dropout(<span class="fl">0.3</span>))</span>
-<span id="cb7-6"><a href="#cb7-6"></a>net_police.add(tf.keras.layers.Dense(<span class="dv">256</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
-<span id="cb7-7"><a href="#cb7-7"></a>net_police.add(tf.keras.layers.Dropout(<span class="fl">0.3</span>))               </span>
-<span id="cb7-8"><a href="#cb7-8"></a>net_police.add(tf.keras.layers.Dense(<span class="dv">1</span>,activation<span class="op">=</span><span class="st">'sigmoid'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>net_police <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>net_police.add(tf.keras.layers.Dense(<span class="dv">1024</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>net_police.add(tf.keras.layers.Dropout(<span class="fl">0.3</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>net_police.add(tf.keras.layers.Dense(<span class="dv">512</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>net_police.add(tf.keras.layers.Dropout(<span class="fl">0.3</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>net_police.add(tf.keras.layers.Dense(<span class="dv">256</span>,activation<span class="op">=</span><span class="st">'relu'</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>net_police.add(tf.keras.layers.Dropout(<span class="fl">0.3</span>))               </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>net_police.add(tf.keras.layers.Dense(<span class="dv">1</span>,activation<span class="op">=</span><span class="st">'sigmoid'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="일단-스토리를-계속-진행해보겠습니다." class="level4">
 <h4 class="anchored" data-anchor-id="일단-스토리를-계속-진행해보겠습니다.">일단 스토리를 계속 진행해보겠습니다.</h4>
 <p><code>-</code> 진짜 이미지가 아래와 같이 있다.</p>
 <div id="8a8ba3a1-1d3b-4e75-8986-e89dab44b739" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>plt.imshow(Xreal[<span class="dv">1</span>].reshape(<span class="dv">28</span>,<span class="dv">28</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(Xreal[<span class="dv">1</span>].reshape(<span class="dv">28</span>,<span class="dv">28</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>&lt;matplotlib.image.AxesImage at 0x7f549c0232b0&gt;</code></pre>
 </div>
@@ -1795,8 +1789,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>-</code> 이 이미지를 경찰이 봤습니다 -&gt; yhat이 나와야 하고, yhat <span class="math inline">\(\approx\)</span> 1 이어야 한다. (왜? 진짜 이미지니까)</p>
 <div id="3ef274ad-2cf3-4416-9e23-ffc9063b72e5" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>policehat_from_realimage <span class="op">=</span> net_police(Xreal)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>policehat_from_realimage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>policehat_from_realimage <span class="op">=</span> net_police(Xreal)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>policehat_from_realimage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>&lt;tf.Tensor: shape=(60000, 1), dtype=float32, numpy=
 array([[0.4638827 ],
@@ -1815,12 +1809,12 @@ array([[0.4638827 ],
 <p><code>-</code> 이번에는 가짜 이미지를 경찰이 봤다고 생각하자.</p>
 <p>(step1) 랜덤으로 아무숫자나 생성한다.</p>
 <div id="a9c018bf-3e53-4c91-b224-2006b78fa883" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>Noise1<span class="op">=</span>tnp.random.randn(<span class="dv">10</span>).reshape(<span class="dv">1</span>,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Noise1<span class="op">=</span>tnp.random.randn(<span class="dv">10</span>).reshape(<span class="dv">1</span>,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(step2) 위조범을 시켜서 이미지를 생성시킨다.</p>
 <div id="9b81bc71-a5ff-4859-8cfe-77a33eb7c2f4" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>Xfake1 <span class="op">=</span> net_counterfeiter(Noise1)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>plt.imshow(Xfake1.reshape(<span class="dv">28</span>,<span class="dv">28</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Xfake1 <span class="op">=</span> net_counterfeiter(Noise1)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(Xfake1.reshape(<span class="dv">28</span>,<span class="dv">28</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>&lt;matplotlib.image.AxesImage at 0x7f549c0eb5b0&gt;</code></pre>
 </div>
@@ -1830,8 +1824,8 @@ array([[0.4638827 ],
 </div>
 <p>(step3) 위조범이 생성한 이미지를 경찰한테 넘겨본다.</p>
 <div id="220f7ecc-e023-4fa0-af08-7c92f3993cfd" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>policehat_from_Xfake1 <span class="op">=</span> net_police(Xfake1)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>policehat_from_Xfake1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>policehat_from_Xfake1 <span class="op">=</span> net_police(Xfake1)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>policehat_from_Xfake1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>&lt;tf.Tensor: shape=(1, 1), dtype=float32, numpy=array([[0.49095842]], dtype=float32)&gt;</code></pre>
 </div>
@@ -1843,23 +1837,23 @@ array([[0.4638827 ],
 <h3 class="anchored" data-anchor-id="경찰네트워크의-실력을-향상하자">경찰네트워크의 실력을 향상하자</h3>
 <p><code>-</code> 데이터정리 - 원래 n=60000개의 real image가 있음. 이 자료중 일부를 batch_size=500 만큼 뽑아 이것을 <span class="math inline">\({\bf X}_{batch}\)</span>라고 하자. 따라서 <span class="math inline">\({\bf X}_{batch}\)</span>의 차원은 (500,784) 이다. - 위조범이 만든 가짜자료를 원래자료의 batch_size와 같은 숫자인 500만큼 만듬. 그리고 이것을 <span class="math inline">\({\bf \tilde X}_{batch}\)</span>라고 하자. 그러면 <span class="math inline">\({\bf \tilde X}_{batch}\)</span>의 차원은 (500,784)이다. - 진짜자료는 1, 가짜자료는 0으로 라벨링</p>
 <div id="e4349c74-308f-40f3-8c0a-e0897d567454" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>batch_size <span class="op">=</span> <span class="dv">500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="1c799f22-9f5d-4d5e-ac96-d3710ffc790b" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>Noise_batch <span class="op">=</span> np.random.normal(<span class="dv">0</span>,<span class="dv">1</span>,size<span class="op">=</span>(batch_size,<span class="dv">10</span>))</span>
-<span id="cb18-2"><a href="#cb18-2"></a>Xfake_batch <span class="op">=</span> net_counterfeiter(Noise_batch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Noise_batch <span class="op">=</span> np.random.normal(<span class="dv">0</span>,<span class="dv">1</span>,size<span class="op">=</span>(batch_size,<span class="dv">10</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Xfake_batch <span class="op">=</span> net_counterfeiter(Noise_batch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8bb35f51-2834-4722-8dd7-9f1dbda8ca0b" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>Xreal_batch <span class="op">=</span> Xreal[:batch_size]</span>
-<span id="cb19-2"><a href="#cb19-2"></a>Xpolice_batch <span class="op">=</span> tf.concat([Xreal_batch,Xfake_batch],axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Xreal_batch <span class="op">=</span> Xreal[:batch_size]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Xpolice_batch <span class="op">=</span> tf.concat([Xreal_batch,Xfake_batch],axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d60bf934-8697-4d86-acd5-8d38e6129370" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>ypolice_batch <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>batch_size) </span>
-<span id="cb20-2"><a href="#cb20-2"></a>ypolice_batch[:batch_size] <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ypolice_batch <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>batch_size) </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ypolice_batch[:batch_size] <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 학습전: yhat(경찰의 예측)을 관찰</p>
 <div id="8b2e9ce4-ea27-46cf-984f-d23e1750f7b8" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>net_police(Xreal_batch)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>net_police(Xreal_batch)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>&lt;tf.Tensor: shape=(5, 1), dtype=float32, numpy=
 array([[0.46388364],
@@ -1870,7 +1864,7 @@ array([[0.46388364],
 </div>
 </div>
 <div id="d6f68edd-6e48-4788-9a7a-8c9125f06fe5" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>net_police(Xfake_batch)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>net_police(Xfake_batch)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>&lt;tf.Tensor: shape=(5, 1), dtype=float32, numpy=
 array([[0.49146503],
@@ -1882,10 +1876,10 @@ array([[0.49146503],
 </div>
 <p><code>-</code> 학습하자: compile and fit</p>
 <div id="e2430951-6a1b-455b-9d15-750d9169dd35" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>net_police.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.binary_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>net_police.<span class="bu">compile</span>(loss<span class="op">=</span>tf.losses.binary_crossentropy, optimizer<span class="op">=</span><span class="st">'adam'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="db1e8d63-cd4c-4116-b0c5-2d1b31b13ef7" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>net_police.fit(Xpolice_batch,ypolice_batch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>net_police.fit(Xpolice_batch,ypolice_batch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>32/32 [==============================] - 0s 1ms/step - loss: 0.0591</code></pre>
 </div>
@@ -1895,7 +1889,7 @@ array([[0.49146503],
 </div>
 <p><code>-</code> 훈련된 경찰의 성능을 살펴보자.</p>
 <div id="57875864-1450-4b59-af27-e086a3c400cb" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>net_police(Xreal_batch)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>net_police(Xreal_batch)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>&lt;tf.Tensor: shape=(5, 1), dtype=float32, numpy=
 array([[1.],
@@ -1906,7 +1900,7 @@ array([[1.],
 </div>
 </div>
 <div id="5dad0c81-d4ca-465a-a546-8c7a82a5c90b" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>net_police(Xfake_batch)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>net_police(Xfake_batch)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>&lt;tf.Tensor: shape=(5, 1), dtype=float32, numpy=
 array([[6.4868483e-13],
@@ -1922,16 +1916,16 @@ array([[6.4868483e-13],
 <p><code>-</code> 자료구조: 네트워크의 입력은 임의의 노이즈, 네트워크의 출력은 fakeimage</p>
 <p><code>-</code> 손실함수의 설계? - 위조범 네트워크의 출력은 fakeimage, 위조범 네트워크의 yhat은 fakeimage 이다! - 이 가짜이미지를 (위조범네트워크의 yhat을) 경찰이 진짜라고 판단해야 위조범 입장에서는 좋은것. 즉 “경찰네트워크(위조범네트워크의yhat) <span class="math inline">\(\approx\)</span> 1” 이어야 함</p>
 <div id="15e4013b-795d-409b-a62b-b15d778f96de" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">def</span> loss_counterfeiter(y,yhat): </span>
-<span id="cb33-2"><a href="#cb33-2"></a>    <span class="co"># note that yhat is fake image! </span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>    <span class="cf">return</span> tf.losses.binary_crossentropy(y,net_police(yhat)) <span class="co"># here label should be 1 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loss_counterfeiter(y,yhat): </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># note that yhat is fake image! </span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tf.losses.binary_crossentropy(y,net_police(yhat)) <span class="co"># here label should be 1 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="c671a031-43d0-4710-93e3-3673fd50f31b" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>ycounterfeiter_batch <span class="op">=</span> np.ones(batch_size) </span>
-<span id="cb34-2"><a href="#cb34-2"></a>net_counterfeiter.<span class="bu">compile</span>(loss<span class="op">=</span>loss_counterfeiter,optimizer <span class="op">=</span> <span class="st">'adam'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ycounterfeiter_batch <span class="op">=</span> np.ones(batch_size) </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>net_counterfeiter.<span class="bu">compile</span>(loss<span class="op">=</span>loss_counterfeiter,optimizer <span class="op">=</span> <span class="st">'adam'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d226eaca-ee58-4866-965c-7877501d40f6" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>net_counterfeiter.fit(Noise_batch, ycounterfeiter_batch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>net_counterfeiter.fit(Noise_batch, ycounterfeiter_batch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>16/16 [==============================] - 0s 1ms/step - loss: 2.0207</code></pre>
 </div>
@@ -1940,7 +1934,7 @@ array([[6.4868483e-13],
 </div>
 </div>
 <div id="45979689-fa98-496a-907e-435e58d217bf" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>plt.imshow(net_counterfeiter(Noise1).reshape(<span class="dv">28</span>,<span class="dv">28</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(net_counterfeiter(Noise1).reshape(<span class="dv">28</span>,<span class="dv">28</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>&lt;matplotlib.image.AxesImage at 0x7f542c24cfa0&gt;</code></pre>
 </div>
@@ -1952,7 +1946,7 @@ array([[6.4868483e-13],
 <li>학습된 이미지의 하나의 샘플 (아직 노이즈같음)</li>
 </ul>
 <div id="fd81a4ce-cf17-4c4a-847f-176cedea2f57" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>net_police(net_counterfeiter(Noise_batch))[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>net_police(net_counterfeiter(Noise_batch))[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>&lt;tf.Tensor: shape=(5, 1), dtype=float32, numpy=
 array([[1.],
@@ -1969,38 +1963,38 @@ array([[1.],
 <section id="두-적대적-네트워크를-경쟁시키자." class="level3">
 <h3 class="anchored" data-anchor-id="두-적대적-네트워크를-경쟁시키자.">두 적대적 네트워크를 경쟁시키자.</h3>
 <div id="ee262c48-9e33-48c8-a1eb-76df68fb402f" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="cf">for</span> _ <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">500</span>)):</span>
-<span id="cb42-2"><a href="#cb42-2"></a>    <span class="co"># step1: 가짜이미지 생성, 데이터정리 </span></span>
-<span id="cb42-3"><a href="#cb42-3"></a>    Noise_batch <span class="op">=</span> np.random.normal(<span class="dv">0</span>,<span class="dv">1</span>,size<span class="op">=</span>(batch_size,<span class="dv">10</span>))</span>
-<span id="cb42-4"><a href="#cb42-4"></a>    Xfake_batch <span class="op">=</span> net_counterfeiter(Noise_batch)</span>
-<span id="cb42-5"><a href="#cb42-5"></a>    Xreal_batch <span class="op">=</span> Xreal[np.random.randint(<span class="dv">0</span>,Xreal.shape[<span class="dv">0</span>],size<span class="op">=</span>batch_size)]</span>
-<span id="cb42-6"><a href="#cb42-6"></a>    </span>
-<span id="cb42-7"><a href="#cb42-7"></a>    <span class="co"># step2: 경찰네트워크용 데이터 정리 </span></span>
-<span id="cb42-8"><a href="#cb42-8"></a>    Xpolice_batch <span class="op">=</span> tf.concat([Xreal_batch,Xfake_batch],axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb42-9"><a href="#cb42-9"></a>    ypolice_batch <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>batch_size)</span>
-<span id="cb42-10"><a href="#cb42-10"></a>    ypolice_batch[:batch_size] <span class="op">=</span> <span class="dv">1</span> </span>
-<span id="cb42-11"><a href="#cb42-11"></a>    </span>
-<span id="cb42-12"><a href="#cb42-12"></a>    <span class="co"># step3: 경찰네트워크 훈련</span></span>
-<span id="cb42-13"><a href="#cb42-13"></a>    net_police.fit(Xpolice_batch,ypolice_batch,verbose<span class="op">=</span><span class="dv">0</span>) </span>
-<span id="cb42-14"><a href="#cb42-14"></a>    </span>
-<span id="cb42-15"><a href="#cb42-15"></a>    <span class="co"># step4: 위조범네트워크 훈련 </span></span>
-<span id="cb42-16"><a href="#cb42-16"></a>    Xcounterfeiter_batch <span class="op">=</span> Noise_batch <span class="co"># &lt;- 위조범 네트워크의 X </span></span>
-<span id="cb42-17"><a href="#cb42-17"></a>    ycounterfeiter_batch <span class="op">=</span> np.ones(batch_size) <span class="co"># &lt;- 위조범네트워크의 y </span></span>
-<span id="cb42-18"><a href="#cb42-18"></a>    net_counterfeiter.fit(Noise_batch, ycounterfeiter_batch, verbose<span class="op">=</span><span class="dv">0</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">500</span>)):</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># step1: 가짜이미지 생성, 데이터정리 </span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    Noise_batch <span class="op">=</span> np.random.normal(<span class="dv">0</span>,<span class="dv">1</span>,size<span class="op">=</span>(batch_size,<span class="dv">10</span>))</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    Xfake_batch <span class="op">=</span> net_counterfeiter(Noise_batch)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    Xreal_batch <span class="op">=</span> Xreal[np.random.randint(<span class="dv">0</span>,Xreal.shape[<span class="dv">0</span>],size<span class="op">=</span>batch_size)]</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># step2: 경찰네트워크용 데이터 정리 </span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    Xpolice_batch <span class="op">=</span> tf.concat([Xreal_batch,Xfake_batch],axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    ypolice_batch <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>batch_size)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    ypolice_batch[:batch_size] <span class="op">=</span> <span class="dv">1</span> </span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># step3: 경찰네트워크 훈련</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    net_police.fit(Xpolice_batch,ypolice_batch,verbose<span class="op">=</span><span class="dv">0</span>) </span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># step4: 위조범네트워크 훈련 </span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    Xcounterfeiter_batch <span class="op">=</span> Noise_batch <span class="co"># &lt;- 위조범 네트워크의 X </span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    ycounterfeiter_batch <span class="op">=</span> np.ones(batch_size) <span class="co"># &lt;- 위조범네트워크의 y </span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>    net_counterfeiter.fit(Noise_batch, ycounterfeiter_batch, verbose<span class="op">=</span><span class="dv">0</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>100%|██████████| 500/500 [00:48&lt;00:00, 10.25it/s]</code></pre>
 </div>
 </div>
 <div id="4027c635-bb17-4ce9-8704-84d4747651d9" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">5</span>,<span class="dv">5</span>)</span>
-<span id="cb44-2"><a href="#cb44-2"></a>k<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb44-3"><a href="#cb44-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb44-4"><a href="#cb44-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>): </span>
-<span id="cb44-5"><a href="#cb44-5"></a>        ax[i][j].imshow(net_counterfeiter.predict(Noise_batch)[k].reshape(<span class="dv">28</span>,<span class="dv">28</span>),cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb44-6"><a href="#cb44-6"></a>        k<span class="op">=</span>k<span class="op">+</span><span class="dv">1</span></span>
-<span id="cb44-7"><a href="#cb44-7"></a>fig.set_figwidth(<span class="dv">16</span>)</span>
-<span id="cb44-8"><a href="#cb44-8"></a>fig.set_figheight(<span class="dv">16</span>)</span>
-<span id="cb44-9"><a href="#cb44-9"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">5</span>,<span class="dv">5</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>): </span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>        ax[i][j].imshow(net_counterfeiter.predict(Noise_batch)[k].reshape(<span class="dv">28</span>,<span class="dv">28</span>),cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>        k<span class="op">=</span>k<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">16</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>fig.set_figheight(<span class="dv">16</span>)</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-06-09-(14주차) 6월9일_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
