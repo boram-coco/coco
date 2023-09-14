@@ -3,9 +3,10 @@
     "listing": "/index.html",
     "items": [
       "/posts/Special Topics in Big Data Analysis2023/Untitled.html",
-      "/posts/GNN/FRAUD/230827 데이터(9, df50 mask만들었는데 결과값이 달라).out.html",
       "/posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html",
+      "/posts/GNN/FRAUD/230827 데이터(9, df50 과 다른 것 시도).out.html",
       "/posts/GNN/FRAUD/230905 데이터(10, df02교수님).html",
+      "/posts/GNN/FRAUD/230913 데이터(11, df50 edge 다르게).html",
       "/posts/GNN/FRAUD/230823 데이터(7, df50_com으로 93퍼 accuracy)_guebin.html",
       "/posts/GNN/FRAUD/230822 데이터(5, matrix로 ls6시도해보기..실패).html",
       "/posts/GNN/FRAUD/230822 데이터(6, df02).html",
