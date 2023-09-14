@@ -1630,7 +1630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">Classification</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="12. 로지스틱 회귀분석.out.ipynb" download="12. 로지스틱 회귀분석.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1672,7 +1672,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>해당 자료는 전북대학교 이영미 교수님 2023응용통계학 자료임</p>
 </blockquote>
 <div id="0ee4a5e5-bf04-4a9e-a1b0-d794b360506e" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ISLR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="data" class="level1 page-columns page-full">
 <h1>Data</h1>
@@ -1685,7 +1685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>income</strong> : Income of customer</p></li>
 </ul>
 <div id="669ea6e0-9173-48ff-9e73-bf18e0571c34" class="cell page-columns page-full" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">head</span>(Default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1753,20 +1753,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-table-caption margin-caption">A data.frame: 6 × 4</div></div>
 </div>
 <div id="a4de74ba-be73-4f62-ae68-ed0f51f4fb2d" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">plot</span>(Default<span class="sc">$</span>balance, Default<span class="sc">$</span>income,<span class="at">type=</span><span class="st">'n'</span>,</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="at">xlab=</span><span class="st">'Balance'</span>,  </span>
-<span id="cb3-3"><a href="#cb3-3"></a>     <span class="at">ylab =</span> <span class="st">'Income'</span>,  </span>
-<span id="cb3-4"><a href="#cb3-4"></a>     <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">points</span>(Default[Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">'No'</span>,]<span class="sc">$</span>balance,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>        Default[Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">'No'</span>,]<span class="sc">$</span>income,<span class="at">col=</span><span class="st">'steelblue'</span>) </span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">points</span>(Default[Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">'Yes'</span>,]<span class="sc">$</span>balance,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>        Default[Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">'Yes'</span>,]<span class="sc">$</span>income,<span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">pch=</span><span class="dv">3</span>)</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"Default = Yes"</span>, <span class="st">"Default = No"</span>),</span>
-<span id="cb3-11"><a href="#cb3-11"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">'darkorange'</span>, <span class="st">'steelblue'</span>),  </span>
-<span id="cb3-12"><a href="#cb3-12"></a>        <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>),</span>
-<span id="cb3-13"><a href="#cb3-13"></a>        <span class="co"># bty = "n",</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>        <span class="at">cex=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Default<span class="sc">$</span>balance, Default<span class="sc">$</span>income,<span class="at">type=</span><span class="st">'n'</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab=</span><span class="st">'Balance'</span>,  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">'Income'</span>,  </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(Default[Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">'No'</span>,]<span class="sc">$</span>balance,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        Default[Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">'No'</span>,]<span class="sc">$</span>income,<span class="at">col=</span><span class="st">'steelblue'</span>) </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(Default[Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">'Yes'</span>,]<span class="sc">$</span>balance,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        Default[Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">'Yes'</span>,]<span class="sc">$</span>income,<span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">pch=</span><span class="dv">3</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"Default = Yes"</span>, <span class="st">"Default = No"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">'darkorange'</span>, <span class="st">'steelblue'</span>),  </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># bty = "n",</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="12. 로지스틱 회귀분석_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
@@ -1775,11 +1775,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Balance와 Income은 상관관계가 없어 보인다.</li>
 </ul>
 <div id="ea2c1bf3-c1b8-43c2-9aa6-4f085fa479e9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">boxplot</span>(balance<span class="sc">~</span>default, <span class="at">data=</span>Default,<span class="at">cex.axis =</span> <span class="fl">0.8</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>           <span class="at">xlab =</span> <span class="st">'Default'</span>, <span class="at">ylab=</span><span class="st">'Balance'</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'darkorange'</span>)) </span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">boxplot</span>(income<span class="sc">~</span>default, <span class="at">data=</span>Default,<span class="at">cex.axis =</span> <span class="fl">0.8</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>         <span class="at">xlab =</span> <span class="st">'Default'</span>, <span class="at">ylab=</span><span class="st">'Income'</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'darkorange'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(balance<span class="sc">~</span>default, <span class="at">data=</span>Default,<span class="at">cex.axis =</span> <span class="fl">0.8</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">'Default'</span>, <span class="at">ylab=</span><span class="st">'Balance'</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'darkorange'</span>)) </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(income<span class="sc">~</span>default, <span class="at">data=</span>Default,<span class="at">cex.axis =</span> <span class="fl">0.8</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">'Default'</span>, <span class="at">ylab=</span><span class="st">'Income'</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'darkorange'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="12. 로지스틱 회귀분석_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
@@ -1797,8 +1797,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[ log \left( \dfrac{p(y=1|x)}{p(y=0|x)} \right) = log \left( \dfrac{p(x)}{1-p(x)} \right) = \beta_0 + \beta_1 x\]</span></p>
 <p><code>-</code> 단순선형회귀모형</p>
 <div id="798cee98-7399-4cb9-a63c-b9b3885e984f" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>lm.fits <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">as.numeric</span>(default)<span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> balance,<span class="at">data =</span> Default) </span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">summary</span>(lm.fits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lm.fits <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">as.numeric</span>(default)<span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> balance,<span class="at">data =</span> Default) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.fits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1829,9 +1829,9 @@ F-statistic:  1397 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>family=binomial 쓰면 logistic 회귀모형</li>
 </ul>
 <div id="1db52631-ec3c-4add-bb7d-0c989ba4a2d8" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>glm.fits <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> balance,</span>
-<span id="cb7-2"><a href="#cb7-2"></a>                <span class="at">data =</span> Default, <span class="at">family =</span> binomial) <span class="co"># logistic regression</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">summary</span>(glm.fits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>glm.fits <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> balance,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> Default, <span class="at">family =</span> binomial) <span class="co"># logistic regression</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1864,7 +1864,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <li><p><code>z value</code> = <span class="math inline">\(\dfrac{\hat \beta_1}{s.e(\hat \beta_1)}\)</span> ~H0 <span class="math inline">\(N\)</span></p></li>
 </ul>
 <div id="5bfc9a89-3eb3-4907-8c66-3f914809ec1f" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">head</span>(<span class="fu">fitted</span>(glm.fits))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">fitted</span>(glm.fits))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -1879,14 +1879,14 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <li><p><span class="math inline">\(p(x) = \dfrac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}\)</span> = <span class="math inline">\(P(y=1|x)\)</span></p></li>
 </ul>
 <div id="71a585d2-e2fd-4ed6-9428-2b38426f0ecf" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">plot</span>(<span class="fu">as.numeric</span>(default)<span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> balance,<span class="at">data =</span> Default, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span><span class="fl">0.8</span>) </span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">grid</span>()</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">abline</span>(lm.fits, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">curve</span>(<span class="fu">predict</span>(glm.fits,<span class="fu">data.frame</span>(<span class="at">balance=</span>x), <span class="at">type =</span> <span class="st">"response"</span>), </span>
-<span id="cb10-6"><a href="#cb10-6"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"Ordinary"</span>, <span class="st">"Logistic"</span>, <span class="st">"Data"</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>),</span>
-<span id="cb10-8"><a href="#cb10-8"></a>        <span class="at">pch =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">20</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"dodgerblue"</span>, <span class="st">"black"</span>), <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">as.numeric</span>(default)<span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> balance,<span class="at">data =</span> Default, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span><span class="fl">0.8</span>) </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(lm.fits, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">predict</span>(glm.fits,<span class="fu">data.frame</span>(<span class="at">balance=</span>x), <span class="at">type =</span> <span class="st">"response"</span>), </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"Ordinary"</span>, <span class="st">"Logistic"</span>, <span class="st">"Data"</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">20</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"dodgerblue"</span>, <span class="st">"black"</span>), <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="12. 로지스틱 회귀분석_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
@@ -1894,7 +1894,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <section id="predict" class="level2">
 <h2 class="anchored" data-anchor-id="predict">Predict</h2>
 <div id="e7e6ab0d-6fba-4da0-8ef9-d0d29a0edde7" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">predict</span>(glm.fits, <span class="fu">data.frame</span>(<span class="at">balance=</span><span class="dv">2000</span>)) <span class="co">#type='link' : default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(glm.fits, <span class="fu">data.frame</span>(<span class="at">balance=</span><span class="dv">2000</span>)) <span class="co">#type='link' : default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <strong>1:</strong> 0.346503247961301
 </div>
@@ -1903,7 +1903,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <li>위의 값은 <span class="math inline">\(log\dfrac{p(x)}{1-p(x)}\)</span>값</li>
 </ul>
 <div id="2fb04145-a0ca-4ef6-a8c1-7488116ffdce" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">predict</span>(glm.fits, <span class="fu">data.frame</span>(<span class="at">balance=</span><span class="dv">2000</span>), <span class="at">type=</span><span class="st">'response'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(glm.fits, <span class="fu">data.frame</span>(<span class="at">balance=</span><span class="dv">2000</span>), <span class="at">type=</span><span class="st">'response'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <strong>1:</strong> 0.585769369615381
 </div>
@@ -1912,7 +1912,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <li><code>type = 'response'</code> 해야 <span class="math inline">\(p(x)\)</span>값을 구할 수 있음.</li>
 </ul>
 <div id="a32c0247-9b3a-43af-b365-bb910b3fac0e" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>y_2000 <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.fits, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">balance=</span><span class="dv">2000</span>), <span class="at">type=</span><span class="st">'response'</span>);y_2000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>y_2000 <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.fits, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">balance=</span><span class="dv">2000</span>), <span class="at">type=</span><span class="st">'response'</span>);y_2000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <strong>1:</strong> 0.585769369615381
 </div>
@@ -1921,27 +1921,27 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <li>$P(Default = “Yes” | Balance = 2000) = 0.585769369615381 $</li>
 </ul>
 <div id="b64feafe-9edf-4810-9495-c0c5f832e9e3" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>y_1000 <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.fits, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">balance=</span><span class="dv">1000</span>), <span class="at">type=</span><span class="st">'response'</span>);y_1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y_1000 <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.fits, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">balance=</span><span class="dv">1000</span>), <span class="at">type=</span><span class="st">'response'</span>);y_1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <strong>1:</strong> 0.00575214508582045
 </div>
 </div>
 <div id="0f8385d4-dcd6-4db8-89c3-d249d399c832" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">plot</span>(<span class="fu">as.numeric</span>(default)<span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> balance,<span class="at">data =</span> Default, </span>
-<span id="cb15-3"><a href="#cb15-3"></a>     <span class="at">ylab =</span> <span class="st">"Probability of Default"</span> ,  </span>
-<span id="cb15-4"><a href="#cb15-4"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span><span class="fl">0.8</span>, <span class="at">type=</span><span class="st">'n'</span>)</span>
-<span id="cb15-5"><a href="#cb15-5"></a></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="fu">curve</span>(<span class="fu">predict</span>(glm.fits,<span class="fu">data.frame</span>(<span class="at">balance=</span>x), <span class="at">type =</span> <span class="st">"response"</span>), </span>
-<span id="cb15-7"><a href="#cb15-7"></a>       <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb15-8"><a href="#cb15-8"></a></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2000</span>),<span class="fu">c</span>(y_2000, y_2000), <span class="at">lty=</span><span class="dv">2</span>) </span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2000</span>),<span class="fu">c</span>(<span class="dv">0</span>, y_2000), <span class="at">lty=</span><span class="dv">2</span>) </span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="fu">points</span>(<span class="dv">2000</span>, y_2000, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb15-12"><a href="#cb15-12"></a></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1000</span>),<span class="fu">c</span>(y_1000, y_1000), <span class="at">lty=</span><span class="dv">2</span>) </span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">1000</span>),<span class="fu">c</span>(<span class="dv">0</span>, y_1000), <span class="at">lty=</span><span class="dv">2</span>) </span>
-<span id="cb15-15"><a href="#cb15-15"></a><span class="fu">points</span>(<span class="dv">1000</span>, y_1000, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">as.numeric</span>(default)<span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> balance,<span class="at">data =</span> Default, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Probability of Default"</span> ,  </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span><span class="fl">0.8</span>, <span class="at">type=</span><span class="st">'n'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">predict</span>(glm.fits,<span class="fu">data.frame</span>(<span class="at">balance=</span>x), <span class="at">type =</span> <span class="st">"response"</span>), </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2000</span>),<span class="fu">c</span>(y_2000, y_2000), <span class="at">lty=</span><span class="dv">2</span>) </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2000</span>),<span class="fu">c</span>(<span class="dv">0</span>, y_2000), <span class="at">lty=</span><span class="dv">2</span>) </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">2000</span>, y_2000, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1000</span>),<span class="fu">c</span>(y_1000, y_1000), <span class="at">lty=</span><span class="dv">2</span>) </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">1000</span>),<span class="fu">c</span>(<span class="dv">0</span>, y_1000), <span class="at">lty=</span><span class="dv">2</span>) </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1000</span>, y_1000, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="12. 로지스틱 회귀분석_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
@@ -1950,7 +1950,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <section id="confidence-interval" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="confidence-interval">Confidence Interval</h2>
 <div id="989964f1-0267-49df-8646-b45bf81e498b" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">summary</span>(glm.fits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1981,7 +1981,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </ul>
 <p><code>-</code> 방법1</p>
 <div id="8e5f5573-bfa3-4c29-8934-d0f1b127006e" class="cell page-columns page-full" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">confint</span>(glm.fits, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(glm.fits, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Waiting for profiling to be done...
 </code></pre>
@@ -2013,7 +2013,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </div>
 <p><code>-</code> 방법2</p>
 <div id="ae084b15-a10b-4a47-a5c6-47ec7fc053a1" class="cell page-columns page-full" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2046,13 +2046,13 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <div class="quarto-table-caption margin-caption">A matrix: 2 × 4 of type dbl</div></div>
 </div>
 <div id="8518a31a-392a-4b7a-859d-6f2f314719d7" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.00593083451913757
 </div>
 </div>
 <div id="86868e5d-b3ee-46f6-aaad-142765ff84d8" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span><span class="fu">summary</span>(glm.fits)<span class="sc">$</span>coef[<span class="dv">2</span>,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.00506699934268553
 </div>
@@ -2067,8 +2067,8 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <li><p>로 바꾸면 classification이 된다. 그럼 저렇게 0.5와 같은 기준값 (<span class="math inline">\(cut-off\)</span>)를 뭘로 정할까?</p></li>
 </ul>
 <div id="0a7ac789-bf89-4b6e-a39a-5a14848f0016" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>fitted.default.prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.fits, <span class="at">type=</span><span class="st">'response'</span>) </span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">head</span>(fitted.default.prob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fitted.default.prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.fits, <span class="at">type=</span><span class="st">'response'</span>) </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fitted.default.prob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2079,8 +2079,8 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </div>
 </div>
 <div id="07702fb1-bd0d-495e-a8f5-b9e41a8bc0ba" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>class.default <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(fitted.default.prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="st">'Yes'</span>, <span class="st">"No"</span>) </span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">head</span>(class.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>class.default <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(fitted.default.prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="st">'Yes'</span>, <span class="st">"No"</span>) </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(class.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2091,7 +2091,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </div>
 </div>
 <div id="7de51ef8-7c3e-49e8-b28b-5bf42de49c69" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">table</span>(Default<span class="sc">$</span>default, class.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Default<span class="sc">$</span>default, class.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>     class.default
         No  Yes
@@ -2104,8 +2104,8 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <li><p>정분류율은 0.9725</p></li>
 </ul>
 <div id="1b406a29-08c3-4c9a-88bd-7e64bd35b7a9" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>class.default <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(fitted.default.prob <span class="sc">&gt;</span> <span class="fl">0.3</span>, <span class="st">'Yes'</span>, <span class="st">"No"</span>) </span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">head</span>(class.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>class.default <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(fitted.default.prob <span class="sc">&gt;</span> <span class="fl">0.3</span>, <span class="st">'Yes'</span>, <span class="st">"No"</span>) </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(class.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2116,7 +2116,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </div>
 </div>
 <div id="af37a066-a679-49a5-bacf-58ef878a9214" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">table</span>(Default<span class="sc">$</span>default, class.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Default<span class="sc">$</span>default, class.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>     class.default
         No  Yes

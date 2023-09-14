@@ -1630,7 +1630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#shapiro-test" id="toc-shapiro-test" class="nav-link" data-scroll-target="#shapiro-test">shapiro test</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="alpha.out.ipynb" download="alpha.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1681,18 +1681,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="f검정">F검정</h2>
 <p>임곘값: 주어진 유의수준을 검정통계량의 값으로 환산한 값</p>
 <p>F검정시 R에서 쓰는 코드</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">qf</span>(<span class="dv">100</span>(<span class="dv">1</span><span class="sc">-</span>𝛼),df1,df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="dv">100</span>(<span class="dv">1</span><span class="sc">-</span>𝛼),df1,df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>검정통계량 <span class="math inline">\(F_0\)</span></p>
 <p><span class="math inline">\(F_0 &gt; F_𝛼\)</span> 이면 귀무가설을 기각</p>
 <p>만약 df=1, 8, 𝛼=0.05이면</p>
 <div id="3e7a5045-6833-4361-a2f3-b66cb2a2e794" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>,<span class="dv">1</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>,<span class="dv">1</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.00418615505332731
 </div>
 </div>
 <div id="67c26315-99c4-4d2d-801e-4c1c5e6a20a2" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">1</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">1</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 5.31765507157871
 </div>
@@ -1704,19 +1704,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="t검정" class="level2">
 <h2 class="anchored" data-anchor-id="t검정">T검정</h2>
 <p>t검정시 R에서 쓰는 코드</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">qt</span>(𝛼,df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(𝛼,df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>t분포에서는 <span class="math inline">\(𝛼/2\)</span>를 해줘야 한다.</p>
 <p>검정통계량 <span class="math inline">\(t_0\)</span></p>
 <p><span class="math inline">\(t_0 &gt; t_{𝛼/2}\)</span> 이면 귀무가설을 기각</p>
 <p>만약 df=8, 𝛼=0.05이면, t분포는 𝛼/2=0.025</p>
 <div id="2bc66bbd-062f-4380-aee6-421adbd63561" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 2.30600413520417
 </div>
 </div>
 <div id="7870e3d6-af60-4e2e-b96a-c1b795c924b4" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 -2.30600413520417
 </div>

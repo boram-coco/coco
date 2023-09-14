@@ -1653,7 +1653,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#번-3" id="toc-번-3" class="nav-link" data-scroll-target="#번-3">4번</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="AS4.out.ipynb" download="AS4.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1693,9 +1693,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <div id="6ffb2f0c-223c-4b59-9410-5c94415d7a6d" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(glmnet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: carData
 
@@ -1719,10 +1719,10 @@ Loaded glmnet 4.1-7
 <p>• hipcenter : horizontal distance of the midpoint of the hips from a fixed location in the car in mm</p>
 <p>“hipcenter”를 예측하기 위한 모형을 적합하려고 한다. 다음 물음에 답하여라.</p>
 <div id="2540efb4-d7b5-4732-b6dc-85d47b5847f6" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ex4 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ex4.1.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ex4 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ex4.1.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="c6023db2-c6bd-489b-918b-e65b34452b5e" class="cell page-columns page-full" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>ex4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ex4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2177,7 +2177,7 @@ Loaded glmnet 4.1-7
 <h2 class="anchored" data-anchor-id="section">(1)</h2>
 <p>변수들 사이의 산점도행렬을 그리고 설명하여라.</p>
 <div id="7f1f43f6-845d-4928-8d37-f2fb4ec9d511" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">pairs</span>(ex4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(ex4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="AS4_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
@@ -2191,7 +2191,7 @@ Loaded glmnet 4.1-7
 <h2 class="anchored" data-anchor-id="section-1">(2)</h2>
 <p>변수들 사이의 상관계수를 구하여라. (소수점 둘째자리까지 반올림) 다중공선성이 존재한다고 할 수 있는가?</p>
 <div id="6b635c48-bf39-4e7b-ac25-529a2c0cd445" class="cell page-columns page-full" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(ex4),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(ex4),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2330,8 +2330,8 @@ Loaded glmnet 4.1-7
 <h2 class="anchored" data-anchor-id="section-2">(3)</h2>
 <p>선형회귀모형을 적합하여라. (계수를 추정. 예 : <span class="math inline">\(\hat y = 3 + 2x\)</span> 이렇게 적어주기)</p>
 <div id="4b9b2022-159b-4c82-9485-6134aacea594" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(hipcenter<span class="sc">~</span>., ex4)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(hipcenter<span class="sc">~</span>., ex4)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2371,7 +2371,7 @@ F-statistic:  7.94 on 8 and 29 DF,  p-value: 1.306e-05</code></pre>
 <h2 class="anchored" data-anchor-id="section-4">(5)</h2>
 <p>car 패키지의 vif 함수를 이용하여 각 설명변수의 vif값을 구하여라.</p>
 <div id="774d4398-543d-46cf-a068-5c822cebc64e" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">vif</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2392,14 +2392,14 @@ F-statistic:  7.94 on 8 and 29 DF,  p-value: 1.306e-05</code></pre>
 <section id="a" class="level3">
 <h3 class="anchored" data-anchor-id="a">(a)</h3>
 <div id="70d66eea-231b-400b-affb-06799068b1a2" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(hipcenter<span class="sc">~</span>., ex4)[,<span class="sc">-</span><span class="dv">1</span>] </span>
-<span id="cb10-2"><a href="#cb10-2"></a>y <span class="ot">&lt;-</span> ex4<span class="sc">$</span>hipcenter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(hipcenter<span class="sc">~</span>., ex4)[,<span class="sc">-</span><span class="dv">1</span>] </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> ex4<span class="sc">$</span>hipcenter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>λ 의 값에 따라 회귀계수가 변하는지 그림으로 보여라. (이 때 0 &lt; λ &lt; 100 으로 설정)</p>
 <div id="27c68e97-ceeb-4998-8c5f-1a1280c7dfd5" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>ridge.fit<span class="ot">&lt;-</span><span class="fu">glmnet</span>(X,y,<span class="at">alpha=</span><span class="dv">0</span>, <span class="at">lambda=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="fl">0.1</span>)) <span class="do">##ridge : alpha=0 </span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">plot</span>(ridge.fit, <span class="at">label=</span><span class="cn">TRUE</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">"grey"</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ridge.fit<span class="ot">&lt;-</span><span class="fu">glmnet</span>(X,y,<span class="at">alpha=</span><span class="dv">0</span>, <span class="at">lambda=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="fl">0.1</span>)) <span class="do">##ridge : alpha=0 </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge.fit, <span class="at">label=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">"grey"</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="AS4_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
@@ -2409,18 +2409,18 @@ F-statistic:  7.94 on 8 and 29 DF,  p-value: 1.306e-05</code></pre>
 <h3 class="anchored" data-anchor-id="b">(b)</h3>
 <p>교차검증을 수행하였을 때, MSE를 가장 작게 하는 λ 는 무엇인가?</p>
 <div id="52c7a5d5-6a07-4f74-939b-0ac209d23bc5" class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(hipcenter<span class="sc">~</span>., ex4)[,<span class="sc">-</span><span class="dv">1</span>] </span>
-<span id="cb12-2"><a href="#cb12-2"></a>y <span class="ot">&lt;-</span> ex4<span class="sc">$</span>hipcenter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(hipcenter<span class="sc">~</span>., ex4)[,<span class="sc">-</span><span class="dv">1</span>] </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> ex4<span class="sc">$</span>hipcenter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="7fc4c8d7-e378-4192-ac2d-4ad928c7ddc8" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>cv.fit<span class="ot">&lt;-</span><span class="fu">cv.glmnet</span>(X,y,<span class="at">alpha=</span><span class="dv">0</span>,<span class="at">nfolds=</span><span class="fu">length</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cv.fit<span class="ot">&lt;-</span><span class="fu">cv.glmnet</span>(X,y,<span class="at">alpha=</span><span class="dv">0</span>,<span class="at">nfolds=</span><span class="fu">length</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning message:
 “Option grouped=FALSE enforced in cv.glmnet, since &lt; 3 observations per fold”</code></pre>
 </div>
 </div>
 <div id="1c2987e5-6d8b-4101-bde7-c20c0d1d0ba4" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>cv.fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cv.fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:  cv.glmnet(x = X, y = y, nfolds = length(y), alpha = 0) 
@@ -2440,19 +2440,19 @@ min  36.41    78    1442 315.7       8
 <h3 class="anchored" data-anchor-id="c-이게-맞나">(c) 이게 맞나…</h3>
 <p>위의 λ에 대한 능형회귀 추정량은 무엇인가?</p>
 <div id="614196d2-14f2-4581-ae86-7781038f6f1b" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>lam<span class="ot">&lt;-</span>cv.fit<span class="sc">$</span>lambda.min;lam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lam<span class="ot">&lt;-</span>cv.fit<span class="sc">$</span>lambda.min;lam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 36.4079887395858
 </div>
 </div>
 <div id="e708c505-4aee-42fc-b443-b862f231fc80" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">log</span>(lam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(lam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 3.59478822143023
 </div>
 </div>
 <div id="e4511825-d110-470a-806e-b007c551c09f" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">predict</span>(ridge.fit,<span class="at">type=</span><span class="st">"coefficients"</span>,<span class="at">s=</span>lam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(ridge.fit,<span class="at">type=</span><span class="st">"coefficients"</span>,<span class="at">s=</span>lam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>9 x 1 sparse Matrix of class "dgCMatrix"
                      s1
@@ -2468,10 +2468,10 @@ Leg          -3.1112979</code></pre>
 </div>
 </div>
 <div id="66c88bb7-ee5d-4c23-9f4b-52c421d8f3a7" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">predict</span>(ridge.fit,<span class="at">type=</span><span class="st">"coefficients"</span>,<span class="at">s=</span>lam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">predict</span>(ridge.fit,<span class="at">type=</span><span class="st">"coefficients"</span>,<span class="at">s=</span>lam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="17297070-9991-4870-ad97-c392dbbf3da1" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>beta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>beta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>9 x 1 sparse Matrix of class "dgCMatrix"
                      s1
@@ -2493,17 +2493,17 @@ Leg          -3.1112979</code></pre>
 <h1>2번</h1>
 <p>Hastie와 Tibshirani (1990, p.282)는 척추가 심하게 앞으로 굽어서 척추 교정 수술을 해야하는 척추후만증(kyphosis)에 대한 위험인자를 결정하는 연구를 하였다. 18명의 척추후만증 환자들을 대상으로 수술했을 때의 나이(월)는 각각 12, 15, 42, 52, 59, 73, 82, 91, 96, 105, 114, 120, 121, 128, 130, 139, 139, 157였고, 척추후만증이 없는 22명의 환자의 나이는 1, 1, 2, 8, 11, 18, 22, 31, 37, 61, 72, 81, 97, 112, 118, 127, 131,140, 151, 159, 177, 206으로 조사되었다. 다음 물음에 답하여라.</p>
 <div id="44260e88-fc94-4aed-a376-a1da1d8ed801" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>kyphosisY <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">42</span>, <span class="dv">52</span>, <span class="dv">59</span>, <span class="dv">73</span>, <span class="dv">82</span>, <span class="dv">91</span>, <span class="dv">96</span>, <span class="dv">105</span>, <span class="dv">114</span>, <span class="dv">120</span>, <span class="dv">121</span>, <span class="dv">128</span>, <span class="dv">130</span>, <span class="dv">139</span>, <span class="dv">139</span>, <span class="dv">157</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a>kyphosisN <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">31</span>, <span class="dv">37</span>, <span class="dv">61</span>, <span class="dv">72</span>, <span class="dv">81</span>, <span class="dv">97</span>, <span class="dv">112</span>, <span class="dv">118</span>, <span class="dv">127</span>, <span class="dv">131</span>,<span class="dv">140</span>, <span class="dv">151</span>, <span class="dv">159</span>, <span class="dv">177</span>, <span class="dv">206</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>kyphosisY <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">42</span>, <span class="dv">52</span>, <span class="dv">59</span>, <span class="dv">73</span>, <span class="dv">82</span>, <span class="dv">91</span>, <span class="dv">96</span>, <span class="dv">105</span>, <span class="dv">114</span>, <span class="dv">120</span>, <span class="dv">121</span>, <span class="dv">128</span>, <span class="dv">130</span>, <span class="dv">139</span>, <span class="dv">139</span>, <span class="dv">157</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>kyphosisN <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">31</span>, <span class="dv">37</span>, <span class="dv">61</span>, <span class="dv">72</span>, <span class="dv">81</span>, <span class="dv">97</span>, <span class="dv">112</span>, <span class="dv">118</span>, <span class="dv">127</span>, <span class="dv">131</span>,<span class="dv">140</span>, <span class="dv">151</span>, <span class="dv">159</span>, <span class="dv">177</span>, <span class="dv">206</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ebb9d413-f1e1-493a-accd-b5ad4025985b" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(kyphosisY)), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(kyphosisN)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(kyphosisY)), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(kyphosisN)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="18737695-117a-411c-9339-e71a97d3a7ed" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age =</span> <span class="fu">c</span>(kyphosisY, kyphosisN), <span class="at">kyphosis =</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age =</span> <span class="fu">c</span>(kyphosisY, kyphosisN), <span class="at">kyphosis =</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="3b458406-d95e-40e9-9a82-b6d12ddafaea" class="cell page-columns page-full" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2686,10 +2686,10 @@ Leg          -3.1112979</code></pre>
 <h2 class="anchored" data-anchor-id="section-6">(1)</h2>
 <p>나이를 예측변수로 하여 척추후만증에 대한 로지스틱 회귀모형을 적합하라. (모형을 정확하게 기재)</p>
 <div id="c468e071-2f8a-4944-a498-0a536796fb32" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(kyphosis <span class="sc">~</span> age, <span class="at">data =</span> dt, <span class="at">family =</span> <span class="fu">binomial</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(kyphosis <span class="sc">~</span> age, <span class="at">data =</span> dt, <span class="at">family =</span> <span class="fu">binomial</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="52daf5e7-9292-46a4-bdd3-81103201c16e" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2724,8 +2724,8 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <h2 class="anchored" data-anchor-id="section-8">(3)</h2>
 <p>자료에 대한 산점도를 그려라. 단, 척추후만증의 두 수준에서 나이의 분포가 차이가 나는 것을 주목하라.(상자그림 확인)</p>
 <div id="7b26ef74-f47c-4fde-aa7f-7de817084918" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">boxplot</span>(age <span class="sc">~</span> kyphosis, <span class="at">data =</span> dt, <span class="at">cex.axis =</span> <span class="fl">0.8</span>,</span>
-<span id="cb31-2"><a href="#cb31-2"></a>        <span class="at">xlab =</span> <span class="st">"Kyphosis"</span>, <span class="at">ylab =</span> <span class="st">"Age"</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"darkorange"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(age <span class="sc">~</span> kyphosis, <span class="at">data =</span> dt, <span class="at">cex.axis =</span> <span class="fl">0.8</span>,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Kyphosis"</span>, <span class="at">ylab =</span> <span class="st">"Age"</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"darkorange"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="AS4_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
 </div>
@@ -2737,8 +2737,8 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <p><span class="math display">\[logit(Pr(x))= log \dfrac{Pr(y = 1|x)}{1 − Pr(y = 1|x)}= α + β_1x + β_2x^2\]</span></p>
 <p>를 적합시킨 후에 나이의 제곱합에 대한 유의성검정을 하여라</p>
 <div id="4701309e-33a3-4a3e-81ae-06031c1c1929" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(kyphosis <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> dt, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(kyphosis <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> dt, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2783,7 +2783,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <h2 class="anchored" data-anchor-id="section-11">(1)</h2>
 <p>사형선고에 대한 추정확률은 피고인이 백인(D=0)이고 피해자가 흑인(V=1)일 때 가장 낮다.</p>
 <div id="c8ad0eef-e33c-42ed-b8da-926c218da9db" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 TRUE
 </div>
@@ -2803,9 +2803,9 @@ TRUE
 <p>피해자의 인종이 주어져 있을 떄 백인 피고인(D=0)이 사형선고를 받을 오즈의 추정값은 흑인 피고인(D=1)의 오즈의 0.87배이다.</p>
 <p>만약 백인 피고인일 경우 D = 1이고 흑인일 경우 D = 0이면 D의 회귀계수의 추정값은 0.87이 아니라 1/0.87 = 1.15가 되었을 것이다.</p>
 <div id="2a550631-8f9f-467a-9730-c636a883f9fb" class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>D의 회귀계수 추정값<span class="sc">:</span> <span class="fl">0.87</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a></span>
-<span id="cb35-3"><a href="#cb35-3"></a>백인 피고인의 오즈가 흑인 피고인의 오즈의 <span class="fl">0.87</span>배</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>D의 회귀계수 추정값<span class="sc">:</span> <span class="fl">0.87</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>백인 피고인의 오즈가 흑인 피고인의 오즈의 <span class="fl">0.87</span>배</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="f" class="level2">
@@ -2817,14 +2817,14 @@ TRUE
 <h2 class="anchored" data-anchor-id="section-12">(4)</h2>
 <p>만약, 백인피해자와 피고인이 500명일 때, 사형선고를 받는 사람에 대해 모형에서 적합된 도수(즉, 추정되는 기대도수)는 <span class="math inline">\(500e^{−2.06}/(1 + e^{−2.06})\)</span>과 같다.</p>
 <div id="ae71fc3e-c8f4-48b1-b5b9-ca29b65f51fd" class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>v<span class="ot">=</span><span class="dv">0</span>, D<span class="ot">=</span><span class="dv">0</span>이므로 대입해보면, </span>
-<span id="cb36-2"><a href="#cb36-2"></a></span>
-<span id="cb36-3"><a href="#cb36-3"></a>로짓값</span>
-<span id="cb36-4"><a href="#cb36-4"></a><span class="sc">$</span><span class="fu">logit</span>(\hat <span class="fu">pr</span>(X)<span class="ot">=</span><span class="sc">-</span><span class="fl">2.06+0.87</span> \times <span class="dv">0</span> <span class="sc">-</span> <span class="fl">2.4</span> \times <span class="dv">0</span><span class="sc">$</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a>       </span>
-<span id="cb36-6"><a href="#cb36-6"></a>확률</span>
-<span id="cb36-7"><a href="#cb36-7"></a></span>
-<span id="cb36-8"><a href="#cb36-8"></a>       <span class="sc">$</span>\hat <span class="fu">pr</span>(<span class="at">y=</span><span class="dv">1</span><span class="sc">|</span>X)<span class="ot">=</span>e<span class="sc">^</span>{<span class="sc">-</span><span class="fl">2.06</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>v<span class="ot">=</span><span class="dv">0</span>, D<span class="ot">=</span><span class="dv">0</span>이므로 대입해보면, </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>로짓값</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span><span class="fu">logit</span>(\hat <span class="fu">pr</span>(X)<span class="ot">=</span><span class="sc">-</span><span class="fl">2.06+0.87</span> \times <span class="dv">0</span> <span class="sc">-</span> <span class="fl">2.4</span> \times <span class="dv">0</span><span class="sc">$</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>확률</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>       <span class="sc">$</span>\hat <span class="fu">pr</span>(<span class="at">y=</span><span class="dv">1</span><span class="sc">|</span>X)<span class="ot">=</span>e<span class="sc">^</span>{<span class="sc">-</span><span class="fl">2.06</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>로짓 l 확률 p라고 놓으면</p>
 <p><span class="math inline">\(L=ln\dfrac{p}{1-p}\)</span></p>

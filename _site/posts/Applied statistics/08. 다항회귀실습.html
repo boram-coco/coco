@@ -1625,7 +1625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#실습1" id="toc-실습1" class="nav-link active" data-scroll-target="#실습1">실습1</a></li>
   <li><a href="#실습2" id="toc-실습2" class="nav-link" data-scroll-target="#실습2">실습2</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="08. 다항회귀실습.out.ipynb" download="08. 다항회귀실습.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1669,9 +1669,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="실습1" class="level1 page-columns page-full">
 <h1>실습1</h1>
 <div id="a72146ec-4f6f-4b4c-8072-02edc60ca580" class="cell page-columns page-full" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2"></a>hard <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"hardwood.csv"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">head</span>(hard)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>hard <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"hardwood.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hard)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1724,23 +1724,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><span class="math inline">\(y = β_0 + β_1x + ϵ\)</span></p>
 <div id="08df7b4a-d945-475d-8bcb-b0c4c9ceaf69" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><span class="math inline">\(y = β_0 + β_1(x − \bar x) + ϵ\)</span></p>
 <div id="759588c7-3824-4a07-ab8a-73389375162d" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>hard<span class="sc">$</span>cx <span class="ot">&lt;-</span> hard<span class="sc">$</span>x <span class="sc">-</span> <span class="fu">mean</span>(hard<span class="sc">$</span>x)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>cx, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hard<span class="sc">$</span>cx <span class="ot">&lt;-</span> hard<span class="sc">$</span>x <span class="sc">-</span> <span class="fu">mean</span>(hard<span class="sc">$</span>x)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>cx, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="096c8397-8b78-4f8b-9923-828159b9830f" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>hard_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, hard)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">summary</span>(hard_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hard_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, hard)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hard_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1764,8 +1764,8 @@ F-statistic: 7.474 on 1 and 17 DF,  p-value: 0.01414</code></pre>
 </div>
 <p><span class="math inline">\(y= \beta_0+\beta_1x + \beta_2 x^2 + \epsilon\)</span></p>
 <div id="a34da2ac-28d1-498f-bebf-c90fb1a39dad" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>hard_fit_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x<span class="sc">+</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), hard)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">summary</span>(hard_fit_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hard_fit_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x<span class="sc">+</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), hard)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hard_fit_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1790,8 +1790,8 @@ F-statistic: 79.43 on 2 and 16 DF,  p-value: 4.912e-09</code></pre>
 </div>
 <p><span class="math inline">\(y= \beta_0+\beta_1cx + \beta_2 cx^2 + \epsilon\)</span></p>
 <div id="1b690da8-3acd-4b54-a4b3-a080ff1005ab" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>hard_fit_c_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>), hard)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">summary</span>(hard_fit_c_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hard_fit_c_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>), hard)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hard_fit_c_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1821,60 +1821,60 @@ F-statistic: 79.43 on 2 and 16 DF,  p-value: 4.912e-09</code></pre>
 <li><p>standard error가 좀 다르게 나온다.</p></li>
 </ul>
 <div id="84b8c900-8cfa-42b4-9629-430ec77daa61" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"corr(x, x^2) = "</span>, <span class="fu">round</span>(<span class="fu">cor</span>(hard<span class="sc">$</span>x, hard<span class="sc">$</span>x<span class="sc">^</span><span class="dv">2</span>),<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"corr(x, x^2) = "</span>, <span class="fu">round</span>(<span class="fu">cor</span>(hard<span class="sc">$</span>x, hard<span class="sc">$</span>x<span class="sc">^</span><span class="dv">2</span>),<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "corr(x, x^2) = 0.97"</code></pre>
 </div>
 </div>
 <div id="9df75b12-2017-4925-a618-1dd29ae21919" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"corr(cx, cx^2) = "</span>, <span class="fu">round</span>(<span class="fu">cor</span>(hard<span class="sc">$</span>cx, hard<span class="sc">$</span>cx<span class="sc">^</span><span class="dv">2</span>),<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"corr(cx, cx^2) = "</span>, <span class="fu">round</span>(<span class="fu">cor</span>(hard<span class="sc">$</span>cx, hard<span class="sc">$</span>cx<span class="sc">^</span><span class="dv">2</span>),<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "corr(cx, cx^2) = 0.297"</code></pre>
 </div>
 </div>
 <div id="99620113-3460-4e23-9f81-10c748483e04" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">abline</span>(hard_fit, <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(hard_fit_c_2),<span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"cx+cx^2"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'blue'</span>,<span class="st">'red'</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(hard_fit, <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(hard_fit_c_2),<span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"cx+cx^2"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'blue'</span>,<span class="st">'red'</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="abf24af4-1c92-4c6a-b8d1-791fc06129ea" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(hard_fit), <span class="fu">rstandard</span>(hard_fit), <span class="at">pch =</span><span class="dv">16</span>, </span>
-<span id="cb15-3"><a href="#cb15-3"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(<span class="fu">hat</span>(y)), </span>
-<span id="cb15-4"><a href="#cb15-4"></a>     <span class="at">ylab =</span> <span class="st">"Standardized Residuals"</span>, </span>
-<span id="cb15-5"><a href="#cb15-5"></a>     <span class="at">main =</span><span class="st">"Fitted vs. Residuals"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="fu">abline</span>(<span class="at">h =</span><span class="dv">0</span>, <span class="at">col =</span><span class="st">"grey"</span>, <span class="at">lwd =</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb15-7"><a href="#cb15-7"></a></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(hard_fit_c_2), <span class="fu">rstandard</span>(hard_fit_c_2), <span class="at">pch =</span><span class="dv">16</span>,</span>
-<span id="cb15-9"><a href="#cb15-9"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(<span class="fu">hat</span>(y)),</span>
-<span id="cb15-10"><a href="#cb15-10"></a>     <span class="at">ylab =</span> <span class="st">"Standardized Residuals"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11"></a>     <span class="at">main =</span> <span class="st">"Fitted vs. Residuals"</span>)</span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span><span class="st">"grey"</span>, <span class="at">lwd =</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(hard_fit), <span class="fu">rstandard</span>(hard_fit), <span class="at">pch =</span><span class="dv">16</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(<span class="fu">hat</span>(y)), </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Standardized Residuals"</span>, </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span><span class="st">"Fitted vs. Residuals"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span><span class="dv">0</span>, <span class="at">col =</span><span class="st">"grey"</span>, <span class="at">lwd =</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(hard_fit_c_2), <span class="fu">rstandard</span>(hard_fit_c_2), <span class="at">pch =</span><span class="dv">16</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(<span class="fu">hat</span>(y)),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Standardized Residuals"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Fitted vs. Residuals"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span><span class="st">"grey"</span>, <span class="at">lwd =</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="6644aa11-070b-4ab9-8785-ac66eb97a8f9" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(hard_fit_c_2),<span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(<span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">3</span>), hard)),<span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>) </span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">c</span>(<span class="fu">expression</span>(ldots<span class="sc">+</span>cx<span class="sc">^</span><span class="dv">2</span>), </span>
-<span id="cb16-6"><a href="#cb16-6"></a>            <span class="fu">expression</span>(ldots<span class="sc">+</span>cx<span class="sc">^</span><span class="dv">3</span>)), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'blue'</span>, <span class="st">'red'</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>)                  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(hard_fit_c_2),<span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(<span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">3</span>), hard)),<span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>) </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">c</span>(<span class="fu">expression</span>(ldots<span class="sc">+</span>cx<span class="sc">^</span><span class="dv">2</span>), </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">expression</span>(ldots<span class="sc">+</span>cx<span class="sc">^</span><span class="dv">3</span>)), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'blue'</span>, <span class="st">'red'</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>)                  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="ef3dcb37-43d2-4e20-baeb-e7104565ead2" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(<span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">3</span>), hard)),<span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(<span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">3</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">4</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">5</span>), hard)),<span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>) </span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="fu">expression</span>(ldots<span class="sc">+</span>cx<span class="sc">^</span><span class="dv">3</span>), </span>
-<span id="cb17-5"><a href="#cb17-5"></a>                    <span class="fu">expression</span>(ldots<span class="sc">+</span>cx<span class="sc">^</span><span class="dv">5</span>)), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'blue'</span>, <span class="st">'red'</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>)                                                                                       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, hard, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"scatter plot : hardwood"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(<span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">3</span>), hard)),<span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(hard<span class="sc">$</span>x, <span class="fu">fitted</span>(<span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">3</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">4</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">5</span>), hard)),<span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="fu">expression</span>(ldots<span class="sc">+</span>cx<span class="sc">^</span><span class="dv">3</span>), </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">expression</span>(ldots<span class="sc">+</span>cx<span class="sc">^</span><span class="dv">5</span>)), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'blue'</span>, <span class="st">'red'</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>)                                                                                       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
@@ -1883,7 +1883,7 @@ F-statistic: 79.43 on 2 and 16 DF,  p-value: 4.912e-09</code></pre>
 <li>5승 들어가면 잔차가 더 작아진다. -&gt; 과적합</li>
 </ul>
 <div id="d4b91270-e1b4-40ca-9f0a-b356688e3d1f" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">3</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">4</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">5</span>), hard))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">3</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">4</span>)<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">5</span>), hard))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1914,18 +1914,18 @@ F-statistic: 233.1 on 5 and 13 DF,  p-value: 3.022e-12</code></pre>
 <section id="실습2" class="level1">
 <h1>실습2</h1>
 <div id="0559ce66-cb12-44a3-872b-5b3aaffefb2a" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
-<span id="cb20-2"><a href="#cb20-2"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="fl">0.05</span>) <span class="co"># 21개의 데이터</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>x2 <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span><span class="sc">+</span><span class="dv">4</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="fl">0.05</span>) <span class="co"># 21개의 데이터</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span><span class="sc">+</span><span class="dv">4</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><span class="math inline">\(y=1+3x+4x^2+N(0,1)\)</span></li>
 </ul>
 <div id="fea8c166-9fae-41ea-9734-cf433c8c4df2" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) </span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">plot</span>(x, y, <span class="at">pch=</span><span class="dv">16</span>) </span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">plot</span>(x2,y, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">pch=</span><span class="dv">16</span>) </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x2,y, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
 </div>
@@ -1935,20 +1935,20 @@ F-statistic: 233.1 on 5 and 13 DF,  p-value: 3.022e-12</code></pre>
 <li><p>커브는 보이지 않고 직선 형태로만 보인다.</p></li>
 </ul>
 <div id="8e4214bd-14bf-4812-b226-b56846161542" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">cor</span>(x,x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.995978098018456
 </div>
 </div>
 <div id="ffbaa4a9-1fea-4659-a54b-e351ad05b95a" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">plot</span>(x,x2,<span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,x2,<span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="5387c829-d9c5-4a05-867e-09e5b1e9c16c" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x<span class="sc">+</span>x2)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x<span class="sc">+</span>x2)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1976,24 +1976,24 @@ F-statistic: 357.8 on 2 and 18 DF,  p-value: 3.226e-15</code></pre>
 <li><p>모형자체는 유의하게 나오지만 x와 계수는 유의하지 않고, x2는 적게 나옴 -&gt; 다중공산성</p></li>
 </ul>
 <div id="9b0def5b-9729-4f36-9dce-db259b926470" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>cx <span class="ot">&lt;-</span> x<span class="sc">-</span><span class="fu">mean</span>(x)</span>
-<span id="cb26-2"><a href="#cb26-2"></a>cx2 <span class="ot">&lt;-</span> cx<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cx <span class="ot">&lt;-</span> x<span class="sc">-</span><span class="fu">mean</span>(x)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>cx2 <span class="ot">&lt;-</span> cx<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="135deb6b-2cf3-49a7-8dab-b95d57d40984" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">cor</span>(cx, cx2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(cx, cx2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 2.28352723203241e-16
 </div>
 </div>
 <div id="b22bf78a-c59e-45d3-b553-09fc7feeeed2" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">plot</span>(cx,cx2, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cx,cx2, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="dbf33db5-394c-4d5f-a7a4-114d3451df59" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>cx<span class="sc">+</span><span class="fu">I</span>(cx<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2023,11 +2023,11 @@ F-statistic: 357.8 on 2 and 18 DF,  p-value: 3.226e-15</code></pre>
 <p><span class="math inline">\(\hat \beta_2\)</span>는 위의 m1모형의 값과 같다.</p>
 <p><span class="math inline">\(\hat \beta_1\)</span>과 <span class="math inline">\(\hat \beta_0\)</span>은 m1모형의 값과 아주 다르다.</p>
 <div id="733ce48a-8953-4a22-ac87-1aa443a156f5" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">plot</span>(x,y, <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(m), <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>) </span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="fu">plot</span>(x,y, <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb31-5"><a href="#cb31-5"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(m2), <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(m), <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>) </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">fitted</span>(m2), <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="08. 다항회귀실습_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>

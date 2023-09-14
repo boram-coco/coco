@@ -1633,7 +1633,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#개별-y" id="toc-개별-y" class="nav-link" data-scroll-target="#개별-y">개별 y</a></li>
   <li><a href="#잔차" id="toc-잔차" class="nav-link" data-scroll-target="#잔차">잔차</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="AS1_3.out.ipynb" download="AS1_3.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1673,8 +1673,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <div id="54ce0009-e7b2-4241-af82-2871ccd5817d" class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: zoo
 
@@ -1692,8 +1692,8 @@ The following objects are masked from ‘package:base’:
 <section id="데이터셋" class="level1 page-columns page-full">
 <h1>데이터셋</h1>
 <div id="2a86b376-2a87-4f42-b003-f52436c6e4ac" class="cell page-columns page-full" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>exams <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/Dropbox/coco/posts/Applied statistics/exams.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">head</span>(exams)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>exams <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/Dropbox/coco/posts/Applied statistics/exams.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(exams)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1793,7 +1793,7 @@ The following objects are masked from ‘package:base’:
 <div class="quarto-table-caption margin-caption">A data.frame: 6 × 8</div></div>
 </div>
 <div id="7cf12027-f204-47e5-a94c-db84153f7636" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">summary</span>(exams)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(exams)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>    gender          race.ethnicity     parental.level.of.education
  Length:1000        Length:1000        Length:1000                
@@ -1819,8 +1819,8 @@ The following objects are masked from ‘package:base’:
 </div>
 </div>
 <div id="37f8a118-9823-47ea-a973-54a424cdcd3d" class="cell page-columns page-full" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>data <span class="ot">&lt;-</span> <span class="fu">filter</span>(exams,race.ethnicity<span class="sc">==</span> <span class="st">'group E'</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">filter</span>(exams,race.ethnicity<span class="sc">==</span> <span class="st">'group E'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1926,8 +1926,8 @@ The following objects are masked from ‘package:base’:
 <li><p>Writing score: The student’s score on a standardized writing test</p></li>
 </ul>
 <div id="1a7c468d-16d5-4cc4-98d2-44197adecf18" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">nrow</span>(data)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">ncol</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 143
 </div>
@@ -1939,13 +1939,13 @@ The following objects are masked from ‘package:base’:
 <section id="산점도" class="level1 page-columns page-full">
 <h1>산점도</h1>
 <div id="0e7f8481-d5bd-468b-94c8-723c8af68b83" class="cell page-columns page-full" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data),</span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="at">x =</span> data<span class="sc">$</span>reading.score,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="at">y =</span> data<span class="sc">$</span>writing.score,</span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="at">x_barx =</span> data<span class="sc">$</span>reading.score <span class="sc">-</span> <span class="fu">mean</span>(data<span class="sc">$</span>reading.score),</span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="at">y_bary =</span> data<span class="sc">$</span>writing.score <span class="sc">-</span> <span class="fu">mean</span>(data<span class="sc">$</span>writing.score)) </span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> data<span class="sc">$</span>reading.score,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> data<span class="sc">$</span>writing.score,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_barx =</span> data<span class="sc">$</span>reading.score <span class="sc">-</span> <span class="fu">mean</span>(data<span class="sc">$</span>reading.score),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_bary =</span> data<span class="sc">$</span>writing.score <span class="sc">-</span> <span class="fu">mean</span>(data<span class="sc">$</span>writing.score)) </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2021,10 +2021,10 @@ The following objects are masked from ‘package:base’:
 <div class="quarto-table-caption margin-caption">A data.frame: 6 × 5</div></div>
 </div>
 <div id="8bc70e92-1449-4c2b-bf65-5072ad24ac62" class="cell page-columns page-full" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>dt<span class="sc">$</span>x_barx2 <span class="ot">&lt;-</span> dt<span class="sc">$</span>x_barx<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>dt<span class="sc">$</span>y_bary2 <span class="ot">&lt;-</span> dt<span class="sc">$</span>y_bary<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>dt<span class="sc">$</span>x_barxy_bary <span class="ot">&lt;-</span>dt<span class="sc">$</span>x_barx <span class="sc">*</span> dt<span class="sc">$</span>y_bary</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dt<span class="sc">$</span>x_barx2 <span class="ot">&lt;-</span> dt<span class="sc">$</span>x_barx<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dt<span class="sc">$</span>y_bary2 <span class="ot">&lt;-</span> dt<span class="sc">$</span>y_bary<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dt<span class="sc">$</span>x_barxy_bary <span class="ot">&lt;-</span>dt<span class="sc">$</span>x_barx <span class="sc">*</span> dt<span class="sc">$</span>y_bary</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2124,14 +2124,14 @@ The following objects are masked from ‘package:base’:
 <div class="quarto-table-caption margin-caption">A data.frame: 6 × 8</div></div>
 </div>
 <div id="66e21ada-31f3-44dd-ac42-13e80f4b4db4" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>x,</span>
-<span id="cb10-3"><a href="#cb10-3"></a>     <span class="at">data=</span>dt,</span>
-<span id="cb10-4"><a href="#cb10-4"></a>     <span class="at">xlab=</span><span class="st">"reading.score"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5"></a>     <span class="at">ylab=</span><span class="st">"writing.score"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6"></a>     <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>     <span class="at">cex=</span><span class="dv">2</span>,</span>
-<span id="cb10-8"><a href="#cb10-8"></a>     <span class="at">col=</span><span class="st">"darkorange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">data=</span>dt,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"reading.score"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"writing.score"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex=</span><span class="dv">2</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"darkorange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="AS1_3_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
@@ -2143,8 +2143,8 @@ The following objects are masked from ‘package:base’:
 <section id="회귀직선" class="level1">
 <h1>회귀직선</h1>
 <div id="d0e988fb-08d7-4f51-9d86-a70a4e1230f0" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>model_ <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x,dt)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>model_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model_ <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x,dt)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2157,7 +2157,7 @@ Coefficients:
 </div>
 <p><span class="math inline">\(\widehat y =-2.506 + 1.012 x\)</span></p>
 <div id="3bb80dc5-1bb1-4b53-965d-ba656df7860d" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">summary</span>(model_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2180,17 +2180,17 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <div id="b99f5542-9b30-4c0f-a839-fbd006ecc037" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>x,</span>
-<span id="cb15-3"><a href="#cb15-3"></a>     <span class="at">data=</span>dt,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>     <span class="at">xlab=</span><span class="st">"reading.score"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>     <span class="at">ylab=</span><span class="st">"writing.score"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>     <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb15-7"><a href="#cb15-7"></a>     <span class="at">cex=</span><span class="dv">2</span>,</span>
-<span id="cb15-8"><a href="#cb15-8"></a>     <span class="at">col=</span><span class="st">"darkorange"</span>)</span>
-<span id="cb15-9"><a href="#cb15-9"></a></span>
-<span id="cb15-10"><a href="#cb15-10"></a></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="fu">abline</span>(model_, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">data=</span>dt,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"reading.score"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"writing.score"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex=</span><span class="dv">2</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"darkorange"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model_, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="AS1_3_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
@@ -2199,7 +2199,7 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="분산분석" class="level1 page-columns page-full">
 <h1>분산분석</h1>
 <div id="03481459-8d20-4288-bfdf-232f62b7a784" class="cell page-columns page-full" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">anova</span>(model_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2246,7 +2246,7 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>가정: <span class="math inline">\(H_0: \beta_1 = 0\)</span> vs <span class="math inline">\(H_1: \beta_1 \neq 0\)</span></li>
 </ul>
 <div id="5faead1b-7de7-4a3f-97e7-cd5cce2b7672" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">1</span>,<span class="dv">141</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">1</span>,<span class="dv">141</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 3.90825811075366
 </div>
@@ -2258,21 +2258,21 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="결정계수-상관계수" class="level1">
 <h1>결정계수, 상관계수</h1>
 <div id="0802d924-96bd-4571-9bef-050cbc1e9851" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">summary</span>(model_)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.893639917777383
 </div>
 </div>
 <div id="0cb4f43a-56f6-4856-b42d-a98d9ef320a6" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>Sxy <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>x <span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>x))<span class="sc">*</span>(dt<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>y)))</span>
-<span id="cb19-2"><a href="#cb19-2"></a>Sxx <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>x <span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>x))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb19-3"><a href="#cb19-3"></a>Syy <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>y))<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Sxy <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>x <span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>x))<span class="sc">*</span>(dt<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>y)))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Sxx <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>x <span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>x))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Syy <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>y))<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="f6200ef7-5c59-4e38-bf40-540dee332805" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>rxy<span class="ot">&lt;-</span>Sxy<span class="sc">/</span><span class="fu">sqrt</span>(Sxx<span class="sc">*</span>Syy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rxy<span class="ot">&lt;-</span>Sxy<span class="sc">/</span><span class="fu">sqrt</span>(Sxx<span class="sc">*</span>Syy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="4c578038-fea3-404f-943c-bf891f19e046" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>rxy<span class="sc">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rxy<span class="sc">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.893639917777383
 </div>
@@ -2283,7 +2283,7 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><span class="math inline">\(β_0, β_1\)</span>에 대한 개별 회귀계수의 유의성검정을 수행하시오.</p>
 <p>가설 <span class="math inline">\(H_0: \beta_1 = 0\)</span> vs <span class="math inline">\(H_1: not H_0\)</span></p>
 <div id="3200e90f-e0d7-46b4-aefa-9063d6ee2720" class="cell page-columns page-full" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">summary</span>(model_)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2316,7 +2316,7 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="quarto-table-caption margin-caption">A matrix: 2 × 4 of type dbl</div></div>
 </div>
 <div id="8d2f5885-2afa-4f8a-a1c2-51aaced03ca8" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">141</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">141</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 1.97693148863425
 </div>
@@ -2326,7 +2326,7 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="신뢰구간" class="level1 page-columns page-full">
 <h1>신뢰구간</h1>
 <div id="8b4ee2d5-241c-42ea-a58b-e80c6e0c6323" class="cell page-columns page-full" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">confint</span>(model_, <span class="at">level=</span><span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model_, <span class="at">level=</span><span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2357,20 +2357,20 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h1>평균반응</h1>
 <p>reading score가 61.2 인 학생의 평균 wiring score 예측하고, 95% 신뢰구간을 구하시오.</p>
 <div id="04f5cb64-e000-4fc6-a2e4-f1b69160fc23" class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>new_score <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fl">61.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>new_score <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fl">61.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 코드</p>
 <div id="eae5836a-0434-49c2-a1ae-ac2b41fcfbce" class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>model_<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> model_<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">*</span><span class="fl">61.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>model_<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> model_<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">*</span><span class="fl">61.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <strong>(Intercept):</strong> 59.4332934119049
 </div>
 </div>
 <div id="fde4992c-4a2e-467f-818a-720304a8219b" class="cell page-columns page-full" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">predict</span>(model_, </span>
-<span id="cb27-2"><a href="#cb27-2"></a>        <span class="at">newdata =</span> new_score,</span>
-<span id="cb27-3"><a href="#cb27-3"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"confidence"</span>),  <span class="co">#구간추정</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)  <span class="do">##평균반응</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model_, </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> new_score,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"confidence"</span>),  <span class="co">#구간추정</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)  <span class="do">##평균반응</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2398,9 +2398,9 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h1>개별 y</h1>
 <p>reading score가 61.2 인 학생의 개별 wiring score 예측하고, 95% 신뢰구간을 구하시오.</p>
 <div id="980078d1-44b4-4cfe-8495-90d785b92f8f" class="cell page-columns page-full" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">predict</span>(model_, <span class="at">newdata =</span> new_score, </span>
-<span id="cb28-2"><a href="#cb28-2"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"prediction"</span>),  </span>
-<span id="cb28-3"><a href="#cb28-3"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)  <span class="do">## 개별 y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model_, <span class="at">newdata =</span> new_score, </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"prediction"</span>),  </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)  <span class="do">## 개별 y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2427,21 +2427,21 @@ F-statistic:  1185 on 1 and 141 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="잔차" class="level1">
 <h1>잔차</h1>
 <div id="e06d2d3f-c62d-4bf4-bee9-51458db2316b" class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>data<span class="sc">$</span>yhat <span class="ot">&lt;-</span> model_<span class="sc">$</span>fitted</span>
-<span id="cb29-2"><a href="#cb29-2"></a>data<span class="sc">$</span>resid <span class="ot">&lt;-</span> model_<span class="sc">$</span>residuals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>yhat <span class="ot">&lt;-</span> model_<span class="sc">$</span>fitted</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>resid <span class="ot">&lt;-</span> model_<span class="sc">$</span>residuals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ffc7c8e0-a71d-4b39-8634-1982db23d1d9" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">plot</span>(resid <span class="sc">~</span> reading.score, data, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">ylab =</span> <span class="st">'Residual'</span>)</span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">'grey'</span>)</span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="fu">plot</span>(resid <span class="sc">~</span> yhat, data, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">ylab =</span> <span class="st">'Residual'</span>)</span>
-<span id="cb30-5"><a href="#cb30-5"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">'grey'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid <span class="sc">~</span> reading.score, data, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">ylab =</span> <span class="st">'Residual'</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">'grey'</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid <span class="sc">~</span> yhat, data, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">ylab =</span> <span class="st">'Residual'</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">'grey'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="AS1_3_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="01001223-24e7-4f8d-9bb5-a33d5ec3fce4" class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">bptest</span>(model_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
     studentized Breusch-Pagan test
@@ -2451,9 +2451,9 @@ BP = 0.057101, df = 1, p-value = 0.8111</code></pre>
 </div>
 </div>
 <div id="9edfc184-726c-4e64-a731-4f5f953f0536" class="cell" data-execution_count="69">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">qqnorm</span>(data<span class="sc">$</span>resid, <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">qqline</span>(data<span class="sc">$</span>resid, <span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="fu">hist</span>(data<span class="sc">$</span>resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(data<span class="sc">$</span>resid, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(data<span class="sc">$</span>resid, <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="AS1_3_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
@@ -2462,7 +2462,7 @@ BP = 0.057101, df = 1, p-value = 0.8111</code></pre>
 </div>
 </div>
 <div id="fb6d392a-3e94-4363-9ab7-2bac76c72fb9" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(model_))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(model_))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
     Shapiro-Wilk normality test
@@ -2476,7 +2476,7 @@ W = 0.9925, p-value = 0.6551</code></pre>
 <li><p>p-value의 값이 0.05 보다 크므로 귀무가설 채택. 즉 정규성 가정을 만족한다.</p></li>
 </ul>
 <div id="409b34a1-38a3-4d1f-a2cb-0a571a59ec25" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">dwtest</span>(model_, <span class="at">alternative =</span> <span class="st">"two.sided"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(model_, <span class="at">alternative =</span> <span class="st">"two.sided"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
     Durbin-Watson test

@@ -1617,7 +1617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-07-01-CTGAN.out.ipynb" download="2023-07-01-CTGAN.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -1652,7 +1652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <div id="03a0311e-5c53-467e-afbc-5dcaeb9b3a43" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">!</span>conda env <span class="bu">list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>conda env <span class="bu">list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># conda environments:
 #
@@ -1663,23 +1663,23 @@ py38                  *  /home/coco/anaconda3/envs/py38
 </div>
 <p><code>-</code> Ref: <a href="https://github.com/sdv-dev/CTGAN" class="uri">https://github.com/sdv-dev/CTGAN</a></p>
 <div id="6fece610-6944-47bd-b79c-32b9563296fc" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> ctgan <span class="im">import</span> CTGAN</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> ctgan <span class="im">import</span> load_demo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ctgan <span class="im">import</span> CTGAN</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ctgan <span class="im">import</span> load_demo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8a9cd818-db4e-4ad1-b622-9f66a7915be3" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">"""Demo module."""</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>DEMO_URL <span class="op">=</span> <span class="st">'http://ctgan-demo.s3.amazonaws.com/census.csv.gz'</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">def</span> load_demo():</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    <span class="co">"""Load the demo."""</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>    <span class="cf">return</span> pd.read_csv(DEMO_URL, compression<span class="op">=</span><span class="st">'gzip'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Demo module."""</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>DEMO_URL <span class="op">=</span> <span class="st">'http://ctgan-demo.s3.amazonaws.com/census.csv.gz'</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_demo():</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Load the demo."""</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.read_csv(DEMO_URL, compression<span class="op">=</span><span class="st">'gzip'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="dfe73ead-1724-4d57-be76-0b35d8349f2b" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>load_demo()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>load_demo()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -1912,26 +1912,26 @@ py38                  *  /home/coco/anaconda3/envs/py38
 </div>
 </div>
 <div id="1ecc5082-f95f-45fc-b3e8-992ed7920dff" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>real_data <span class="op">=</span> load_demo()</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># Names of the columns that are discrete</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>discrete_columns <span class="op">=</span> [</span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="st">'workclass'</span>,</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="st">'education'</span>,</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    <span class="st">'marital-status'</span>,</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="st">'occupation'</span>,</span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="st">'relationship'</span>,</span>
-<span id="cb6-10"><a href="#cb6-10"></a>    <span class="st">'race'</span>,</span>
-<span id="cb6-11"><a href="#cb6-11"></a>    <span class="st">'sex'</span>,</span>
-<span id="cb6-12"><a href="#cb6-12"></a>    <span class="st">'native-country'</span>,</span>
-<span id="cb6-13"><a href="#cb6-13"></a>    <span class="st">'income'</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>]</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a>ctgan <span class="op">=</span> CTGAN(epochs<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb6-17"><a href="#cb6-17"></a>ctgan.fit(real_data, discrete_columns)</span>
-<span id="cb6-18"><a href="#cb6-18"></a></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co"># Create synthetic data</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a>synthetic_data <span class="op">=</span> ctgan.sample(<span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>real_data <span class="op">=</span> load_demo()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Names of the columns that are discrete</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>discrete_columns <span class="op">=</span> [</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'workclass'</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'education'</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'marital-status'</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'occupation'</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'relationship'</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'race'</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sex'</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'native-country'</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'income'</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>ctgan <span class="op">=</span> CTGAN(epochs<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>ctgan.fit(real_data, discrete_columns)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create synthetic data</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="op">=</span> ctgan.sample(<span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Exception ignored on calling ctypes callback function: &lt;function _ThreadpoolInfo._find_modules_with_dl_iterate_phdr.&lt;locals&gt;.match_module_callback at 0x7fd20e2df430&gt;
 Traceback (most recent call last):
@@ -2003,7 +2003,7 @@ AttributeError: 'NoneType' object has no attribute 'split'</code></pre>
 </div>
 <p><code>-</code> 실제자료</p>
 <div id="9b421b89-d026-443c-80c7-1246ea6c365b" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>real_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>real_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
@@ -2237,7 +2237,7 @@ AttributeError: 'NoneType' object has no attribute 'split'</code></pre>
 </div>
 <p><code>-</code> 합성된자료</p>
 <div id="8e9a2697-a0b7-4020-81e2-8f3340e58d76" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>synthetic_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>synthetic_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 

@@ -1643,7 +1643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#자동차-연비-자료-분석" id="toc-자동차-연비-자료-분석" class="nav-link" data-scroll-target="#자동차-연비-자료-분석">자동차 연비 자료 분석</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07. 변수선택 실습.out.ipynb" download="07. 변수선택 실습.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1687,18 +1687,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="변수선택" class="level1 page-columns page-full">
 <h1>변수선택</h1>
 <div id="6b717319-54b0-47ab-b509-c9aecd17f0f5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a> <span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">11</span>,<span class="dv">11</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">21</span>,<span class="dv">1</span>,<span class="dv">11</span>,<span class="dv">10</span>),</span>
-<span id="cb1-4"><a href="#cb1-4"></a> <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">26</span>,<span class="dv">29</span>,<span class="dv">56</span>,<span class="dv">31</span>,<span class="dv">52</span>,<span class="dv">55</span>,<span class="dv">71</span>,<span class="dv">31</span>,<span class="dv">54</span>,<span class="dv">47</span>,<span class="dv">40</span>,<span class="dv">66</span>,<span class="dv">68</span>),</span>
-<span id="cb1-5"><a href="#cb1-5"></a> <span class="at">x3 =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">15</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">17</span>,<span class="dv">22</span>,<span class="dv">18</span>,<span class="dv">4</span>,<span class="dv">23</span>,<span class="dv">9</span>,<span class="dv">8</span>),</span>
-<span id="cb1-6"><a href="#cb1-6"></a> <span class="at">x4 =</span> <span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">52</span>,<span class="dv">20</span>,<span class="dv">47</span>,<span class="dv">33</span>,<span class="dv">22</span>,<span class="dv">6</span>,<span class="dv">44</span>,<span class="dv">22</span>,<span class="dv">26</span>,<span class="dv">34</span>,<span class="dv">12</span>,<span class="dv">12</span>),</span>
-<span id="cb1-7"><a href="#cb1-7"></a> <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">78.5</span>,<span class="fl">74.3</span>,<span class="fl">104.3</span>,<span class="fl">87.6</span>,<span class="fl">95.9</span>,<span class="fl">109.2</span>,<span class="fl">102.7</span>,<span class="fl">72.5</span>,<span class="fl">93.1</span>,<span class="fl">115.9</span>,<span class="fl">83.8</span>,<span class="fl">113.3</span>,<span class="fl">109.4</span>)</span>
-<span id="cb1-8"><a href="#cb1-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">11</span>,<span class="dv">11</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">21</span>,<span class="dv">1</span>,<span class="dv">11</span>,<span class="dv">10</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">26</span>,<span class="dv">29</span>,<span class="dv">56</span>,<span class="dv">31</span>,<span class="dv">52</span>,<span class="dv">55</span>,<span class="dv">71</span>,<span class="dv">31</span>,<span class="dv">54</span>,<span class="dv">47</span>,<span class="dv">40</span>,<span class="dv">66</span>,<span class="dv">68</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="at">x3 =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">15</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">17</span>,<span class="dv">22</span>,<span class="dv">18</span>,<span class="dv">4</span>,<span class="dv">23</span>,<span class="dv">9</span>,<span class="dv">8</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="at">x4 =</span> <span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">52</span>,<span class="dv">20</span>,<span class="dv">47</span>,<span class="dv">33</span>,<span class="dv">22</span>,<span class="dv">6</span>,<span class="dv">44</span>,<span class="dv">22</span>,<span class="dv">26</span>,<span class="dv">34</span>,<span class="dv">12</span>,<span class="dv">12</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">78.5</span>,<span class="fl">74.3</span>,<span class="fl">104.3</span>,<span class="fl">87.6</span>,<span class="fl">95.9</span>,<span class="fl">109.2</span>,<span class="fl">102.7</span>,<span class="fl">72.5</span>,<span class="fl">93.1</span>,<span class="fl">115.9</span>,<span class="fl">83.8</span>,<span class="fl">113.3</span>,<span class="fl">109.4</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="a8fa05cc-2f72-42b5-8dfa-ece155193060" class="cell page-columns page-full" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">pairs</span>(dt, <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">cor</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(dt, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1764,8 +1764,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Full Model : <span class="math inline">\(𝑦 = 𝛽_0 + 𝛽_1𝑥_1 + 𝛽_2𝑥_2 + 𝛽_3𝑥_3 + 𝛽_4𝑥_4 + \epsilon\)</span></li>
 </ul>
 <div id="563a2da7-4faa-49b9-b884-e203ae1fa260" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>., dt) <span class="do">##FM</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>., dt) <span class="do">##FM</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1796,7 +1796,7 @@ F-statistic: 111.5 on 4 and 8 DF,  p-value: 4.756e-07</code></pre>
 <section id="후진제거법" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="후진제거법">후진제거법</h2>
 <div id="a63a1984-823c-4a8b-85af-85d68aa9dd03" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1828,8 +1828,8 @@ F-statistic: 111.5 on 4 and 8 DF,  p-value: 4.756e-07</code></pre>
 <p>t-value의 절대값이 가장 작은 값을 찾아주면 됨 -&gt; x3</p>
 </blockquote>
 <div id="0a242fc6-c0a7-4c26-bbef-b6c0af5d1b7a" class="cell page-columns page-full" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">drop1</span>(m, <span class="at">test =</span> <span class="st">"F"</span>) <span class="co">#x3 제거</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># m에서 F통계량 사요하여 제거한것 확인</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(m, <span class="at">test =</span> <span class="st">"F"</span>) <span class="co">#x3 제거</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># m에서 F통계량 사요하여 제거한것 확인</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1909,8 +1909,8 @@ F-statistic: 111.5 on 4 and 8 DF,  p-value: 4.756e-07</code></pre>
 <p>3번째값이 가장 작은 값을 갖다. 유의확률이 제일 크니까 변수가 제거된다.</p>
 </blockquote>
 <div id="240c5e0c-5a48-4c98-b5d9-3909fca4b7f2" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">update</span>(m, <span class="sc">~</span> . <span class="sc">-</span>x3)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">summary</span>(m1) <span class="co">#x4 제거</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">update</span>(m, <span class="sc">~</span> . <span class="sc">-</span>x3)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1) <span class="co">#x4 제거</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1939,7 +1939,7 @@ F-statistic: 166.8 on 3 and 9 DF,  p-value: 3.323e-08</code></pre>
 <p>x1이 유의해졌다. (x3과 다중공산성이 심했었다)</p>
 </blockquote>
 <div id="1fdf6ec8-3554-46fc-a0ea-856575643f67" class="cell page-columns page-full" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">drop1</span>(m1, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(m1, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2008,8 +2008,8 @@ F-statistic: 166.8 on 3 and 9 DF,  p-value: 3.323e-08</code></pre>
 <p>Fvalue의 x4가 가장 작으므로 제거하자. 유의하지 않다.</p>
 </blockquote>
 <div id="fb1742a8-9c1e-4339-a764-9f65fca5b2b8" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="sc">~</span> . <span class="sc">-</span>x4)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">summary</span>(m2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="sc">~</span> . <span class="sc">-</span>x4)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2033,7 +2033,7 @@ F-statistic: 229.5 on 2 and 10 DF,  p-value: 4.407e-09</code></pre>
 </div>
 </div>
 <div id="994ce7f3-e13b-495d-9da0-da3c38ce3afa" class="cell page-columns page-full" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">drop1</span>(m2, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(m2, <span class="at">test =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2099,12 +2099,12 @@ F-statistic: 229.5 on 2 and 10 DF,  p-value: 4.407e-09</code></pre>
 <li>Start model : <span class="math inline">\(𝑦 = 𝛽_0 + \epsilon\)</span></li>
 </ul>
 <div id="0990d114-b671-460b-a76a-328793d4dc4e" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>m0 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="eca85e12-7703-43fb-a19d-49c9addda259" class="cell page-columns page-full" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">add1</span>(m0,</span>
-<span id="cb15-2"><a href="#cb15-2"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb15-3"><a href="#cb15-3"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x4추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add1</span>(m0,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x4추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2182,8 +2182,8 @@ F-statistic: 229.5 on 2 and 10 DF,  p-value: 4.407e-09</code></pre>
 <p>F값이 크면 좋음. x4가 좋으니까 보면 유의하므로 추가하자.</p>
 </blockquote>
 <div id="f22383d8-4a74-435e-9289-a6b53c658a12" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">update</span>(m0, <span class="sc">~</span> . <span class="sc">+</span>x4)</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">update</span>(m0, <span class="sc">~</span> . <span class="sc">+</span>x4)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2206,9 +2206,9 @@ F-statistic:  22.8 on 1 and 11 DF,  p-value: 0.0005762</code></pre>
 </div>
 </div>
 <div id="66f8922a-9a57-43ff-b701-9eef56700da5" class="cell page-columns page-full" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">add1</span>(m1,</span>
-<span id="cb18-2"><a href="#cb18-2"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb18-3"><a href="#cb18-3"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x1추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add1</span>(m1,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x1추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2277,8 +2277,8 @@ F-statistic:  22.8 on 1 and 11 DF,  p-value: 0.0005762</code></pre>
 <p>x1의 F갑싱 제일 크고 유의하므로 추가</p>
 </blockquote>
 <div id="936bf9be-01f0-4f55-875b-f30884588162" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="sc">~</span> . <span class="sc">+</span>x1)</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="sc">~</span> . <span class="sc">+</span>x1)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2302,9 +2302,9 @@ F-statistic: 176.6 on 2 and 10 DF,  p-value: 1.581e-08</code></pre>
 </div>
 </div>
 <div id="b967813f-e308-45c8-9162-4c3d828982b1" class="cell page-columns page-full" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">add1</span>(m2,</span>
-<span id="cb21-2"><a href="#cb21-2"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb21-3"><a href="#cb21-3"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## stop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add1</span>(m2,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## stop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2368,13 +2368,13 @@ F-statistic: 176.6 on 2 and 10 DF,  p-value: 1.581e-08</code></pre>
 <section id="단계적선택법" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="단계적선택법">단계적선택법</h2>
 <div id="b701b973-96fa-477e-bb85-cdc4306537c9" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>m0 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dt)</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="co"># 절편먼저 시작</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dt)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 절편먼저 시작</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="b4e9bbbd-9c5e-41c8-8289-9edf523c3547" class="cell page-columns page-full" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">add1</span>(m0,</span>
-<span id="cb23-2"><a href="#cb23-2"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb23-3"><a href="#cb23-3"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x4추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add1</span>(m0,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x4추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2449,8 +2449,8 @@ F-statistic: 176.6 on 2 and 10 DF,  p-value: 1.581e-08</code></pre>
 <div class="quarto-table-caption margin-caption">A anova: 5 × 6</div></div>
 </div>
 <div id="0dbe64cf-3a47-4a41-a367-5e19d75cadbb" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">update</span>(m0, <span class="sc">~</span> . <span class="sc">+</span>x4)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">update</span>(m0, <span class="sc">~</span> . <span class="sc">+</span>x4)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2473,9 +2473,9 @@ F-statistic:  22.8 on 1 and 11 DF,  p-value: 0.0005762</code></pre>
 </div>
 </div>
 <div id="49242776-c41d-4dda-b553-d04fc8c5204d" class="cell page-columns page-full" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">add1</span>(m1,</span>
-<span id="cb26-2"><a href="#cb26-2"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb26-3"><a href="#cb26-3"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x1추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add1</span>(m1,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x1추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2541,10 +2541,10 @@ F-statistic:  22.8 on 1 and 11 DF,  p-value: 0.0005762</code></pre>
 <div class="quarto-table-caption margin-caption">A anova: 4 × 6</div></div>
 </div>
 <div id="6f85d1ed-58d8-40c3-94d4-2af53dca33f9" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="sc">~</span> . <span class="sc">+</span>x1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="sc">~</span> . <span class="sc">+</span>x1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="5fd71c79-93cf-4d01-afcf-265d84695605" class="cell page-columns page-full" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">drop1</span>(m2, <span class="at">test =</span> <span class="st">"F"</span>) <span class="co">#제거 없음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(m2, <span class="at">test =</span> <span class="st">"F"</span>) <span class="co">#제거 없음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2604,9 +2604,9 @@ F-statistic:  22.8 on 1 and 11 DF,  p-value: 0.0005762</code></pre>
 <p>x1,x4 유의하니까 그대로 가져가자</p>
 </blockquote>
 <div id="3303f489-ffa1-4c8e-8d3c-2143cdefb058" class="cell page-columns page-full" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">add1</span>(m2,</span>
-<span id="cb29-2"><a href="#cb29-2"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb29-3"><a href="#cb29-3"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x2추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add1</span>(m2,</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="do">## x2추가</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2666,8 +2666,8 @@ F-statistic:  22.8 on 1 and 11 DF,  p-value: 0.0005762</code></pre>
 <p>유의수준 a=0.1로 보자</p>
 </blockquote>
 <div id="71e37e2c-a2d0-46e8-9b87-04f3f9ff8b4d" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">update</span>(m2, <span class="sc">~</span> . <span class="sc">+</span>x2)</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">summary</span>(m3) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">update</span>(m2, <span class="sc">~</span> . <span class="sc">+</span>x2)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2692,7 +2692,7 @@ F-statistic: 166.8 on 3 and 9 DF,  p-value: 3.323e-08</code></pre>
 </div>
 </div>
 <div id="4d6f36d4-c710-46df-b83c-9b286a082157" class="cell page-columns page-full" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">drop1</span>(m3, <span class="at">test=</span><span class="st">"F"</span>) <span class="co">#x4 제거</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(m3, <span class="at">test=</span><span class="st">"F"</span>) <span class="co">#x4 제거</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2761,8 +2761,8 @@ F-statistic: 166.8 on 3 and 9 DF,  p-value: 3.323e-08</code></pre>
 <p>x2를 추가했기 때문에 x2는 보지 않고 x1과 x4만 보면 된다</p>
 </blockquote>
 <div id="f5b12b82-d64a-409b-80d6-d44653d32fa1" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">update</span>(m3, <span class="sc">~</span> . <span class="sc">-</span>x4)</span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">summary</span>(m4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">update</span>(m3, <span class="sc">~</span> . <span class="sc">-</span>x4)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2786,9 +2786,9 @@ F-statistic: 229.5 on 2 and 10 DF,  p-value: 4.407e-09</code></pre>
 </div>
 </div>
 <div id="ca651ed8-3572-478f-add3-766dc59d496b" class="cell page-columns page-full" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">add1</span>(m4,</span>
-<span id="cb35-2"><a href="#cb35-2"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb35-3"><a href="#cb35-3"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="co">#stop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add1</span>(m4,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a> <span class="at">test =</span> <span class="st">"F"</span>) <span class="co">#stop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2857,8 +2857,8 @@ F-statistic: 229.5 on 2 and 10 DF,  p-value: 4.407e-09</code></pre>
 <li><p>step 함수: AIC가 기준임</p></li>
 </ul>
 <div id="ec8431f8-c807-4d2c-b6b7-1c680c4567b6" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>model_back <span class="ot">=</span> <span class="fu">step</span>(m, <span class="at">direction =</span> <span class="st">"backward"</span>)</span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="fu">summary</span>(model_back)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>model_back <span class="ot">=</span> <span class="fu">step</span>(m, <span class="at">direction =</span> <span class="st">"backward"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_back)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=26.94
 y ~ x1 + x2 + x3 + x4
@@ -2902,12 +2902,12 @@ Multiple R-squared:  0.9823,    Adjusted R-squared:  0.9764
 F-statistic: 166.8 on 3 and 9 DF,  p-value: 3.323e-08</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>     Df Sum of Sq    RSS    AIC</span>
-<span id="cb39-2"><a href="#cb39-2"></a><span class="sc">-</span> x3    <span class="dv">1</span>    <span class="fl">0.1091</span> <span class="fl">47.973</span> <span class="fl">24.974</span></span>
-<span id="cb39-3"><a href="#cb39-3"></a><span class="sc">-</span> x4    <span class="dv">1</span>    <span class="fl">0.2470</span> <span class="fl">48.111</span> <span class="fl">25.011</span></span>
-<span id="cb39-4"><a href="#cb39-4"></a><span class="sc">-</span> x2    <span class="dv">1</span>    <span class="fl">2.9725</span> <span class="fl">50.836</span> <span class="fl">25.728</span></span>
-<span id="cb39-5"><a href="#cb39-5"></a><span class="sc">&lt;</span>none<span class="sc">&gt;</span>              <span class="fl">47.864</span> <span class="fl">26.944</span></span>
-<span id="cb39-6"><a href="#cb39-6"></a><span class="sc">-</span> x1    <span class="dv">1</span>   <span class="fl">25.9509</span> <span class="fl">73.815</span> <span class="fl">30.576</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>     Df Sum of Sq    RSS    AIC</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> x3    <span class="dv">1</span>    <span class="fl">0.1091</span> <span class="fl">47.973</span> <span class="fl">24.974</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> x4    <span class="dv">1</span>    <span class="fl">0.2470</span> <span class="fl">48.111</span> <span class="fl">25.011</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> x2    <span class="dv">1</span>    <span class="fl">2.9725</span> <span class="fl">50.836</span> <span class="fl">25.728</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>none<span class="sc">&gt;</span>              <span class="fl">47.864</span> <span class="fl">26.944</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> x1    <span class="dv">1</span>   <span class="fl">25.9509</span> <span class="fl">73.815</span> <span class="fl">30.576</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>-x3을 뺐을때 aic.. -x4을 뺏을때 aic…</p>
 <ul>
 <li><p>AIC가 작으면 작을수록 좋다.그래서 x3빼자</p></li>
@@ -2920,11 +2920,11 @@ F-statistic: 166.8 on 3 and 9 DF,  p-value: 3.323e-08</code></pre>
 <li>전진선택법</li>
 </ul>
 <div id="e4ce9a36-0f97-46cb-ada8-eeb18bdb5e41" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>model_forward <span class="ot">=</span> <span class="fu">step</span>(</span>
-<span id="cb40-2"><a href="#cb40-2"></a> m0,</span>
-<span id="cb40-3"><a href="#cb40-3"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb40-4"><a href="#cb40-4"></a> <span class="at">direction =</span> <span class="st">"forward"</span>)</span>
-<span id="cb40-5"><a href="#cb40-5"></a><span class="fu">summary</span>(model_forward)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>model_forward <span class="ot">=</span> <span class="fu">step</span>(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a> m0,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a> <span class="at">direction =</span> <span class="st">"forward"</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_forward)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=71.44
 y ~ 1
@@ -2987,11 +2987,11 @@ F-statistic: 166.8 on 3 and 9 DF,  p-value: 3.323e-08</code></pre>
 <section id="step---aic" class="level3">
 <h3 class="anchored" data-anchor-id="step---aic">Step - AIC</h3>
 <div id="3b6c77e6-f7bd-4841-bb63-5b33c0deecae" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>model_step <span class="ot">=</span> <span class="fu">step</span>(</span>
-<span id="cb43-2"><a href="#cb43-2"></a> m0,</span>
-<span id="cb43-3"><a href="#cb43-3"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
-<span id="cb43-4"><a href="#cb43-4"></a> <span class="at">direction =</span> <span class="st">"both"</span>)</span>
-<span id="cb43-5"><a href="#cb43-5"></a><span class="fu">summary</span>(model_step)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>model_step <span class="ot">=</span> <span class="fu">step</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a> m0,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a> <span class="at">scope =</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3<span class="sc">+</span> x4,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a> <span class="at">direction =</span> <span class="st">"both"</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_step)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=71.44
 y ~ 1
@@ -3064,8 +3064,8 @@ F-statistic: 166.8 on 3 and 9 DF,  p-value: 3.323e-08</code></pre>
 <section id="regsubsets" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="regsubsets">regsubsets</h2>
 <div id="d93e8179-93fc-43d1-99e8-55b4a3180201" class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>m_full <span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>.,dt)</span>
-<span id="cb46-2"><a href="#cb46-2"></a><span class="fu">summary</span>(m_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>m_full <span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>.,dt)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -3093,10 +3093,10 @@ F-statistic: 111.5 on 4 and 8 DF,  p-value: 4.756e-07</code></pre>
 <section id="nbest1" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="nbest1">nbest=1</h3>
 <div id="5396efa5-4ae3-44a7-99a8-521d2a128277" class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(y<span class="sc">~</span>., <span class="at">data=</span>dt, <span class="at">nbest=</span><span class="dv">1</span>, <span class="at">nvmax=</span><span class="dv">9</span>, <span class="at">method=</span><span class="st">'exhaustive'</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(y<span class="sc">~</span>., <span class="at">data=</span>dt, <span class="at">nbest=</span><span class="dv">1</span>, <span class="at">nvmax=</span><span class="dv">9</span>, <span class="at">method=</span><span class="st">'exhaustive'</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cda25286-bbab-4014-b89c-a8972235639d" class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(y ~ ., data = dt, nbest = 1, nvmax = 9, method = "exhaustive", 
@@ -3120,7 +3120,7 @@ Selection Algorithm: exhaustive
 <li>설명변수 1개, 2개, 3개 , 4개썼을때 제일 좋은 모형을 불러와 :nbest=1</li>
 </ul>
 <div id="43757d10-bf23-4ba6-ae84-54edd72f5e5b" class="cell page-columns page-full" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit), <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit), <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -3200,10 +3200,10 @@ Selection Algorithm: exhaustive
 <section id="nbest2" class="level3">
 <h3 class="anchored" data-anchor-id="nbest2">nbest=2</h3>
 <div id="610fcc39-e05f-4ce7-b888-ef1b11073e78" class="cell" data-execution_count="55">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(y<span class="sc">~</span>., <span class="at">data=</span>dt, <span class="at">nbest=</span><span class="dv">2</span>, <span class="at">nvmax=</span><span class="dv">9</span>, <span class="at">method=</span><span class="st">'exhaustive'</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(y<span class="sc">~</span>., <span class="at">data=</span>dt, <span class="at">nbest=</span><span class="dv">2</span>, <span class="at">nvmax=</span><span class="dv">9</span>, <span class="at">method=</span><span class="st">'exhaustive'</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="c1d43ea5-4667-4aa7-9f46-dc95a33f850c" class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(y ~ ., data = dt, nbest = 2, nvmax = 9, method = "exhaustive", 
@@ -3233,8 +3233,8 @@ Selection Algorithm: exhaustive
 <section id="nbest6" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="nbest6">nbest=6</h3>
 <div id="57efccb4-d485-4a3b-adfa-f9cfe1b3ecca" class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(y<span class="sc">~</span>., <span class="at">data=</span>dt, <span class="at">nbest=</span><span class="dv">6</span>, <span class="at">nvmax=</span><span class="dv">9</span>, <span class="at">method=</span><span class="st">'exhaustive'</span>,)</span>
-<span id="cb55-2"><a href="#cb55-2"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(y<span class="sc">~</span>., <span class="at">data=</span>dt, <span class="at">nbest=</span><span class="dv">6</span>, <span class="at">nvmax=</span><span class="dv">9</span>, <span class="at">method=</span><span class="st">'exhaustive'</span>,)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(y ~ ., data = dt, nbest = 6, nvmax = 9, method = "exhaustive", 
@@ -3266,7 +3266,7 @@ Selection Algorithm: exhaustive
 </div>
 </div>
 <div id="16311109-aab4-4fad-9812-f8c58b908ecd" class="cell page-columns page-full" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit), <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit), <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -3492,8 +3492,8 @@ Selection Algorithm: exhaustive
 <li>설명변수 최대 2개까지만</li>
 </ul>
 <div id="d15627c9-787c-4cc8-9c2f-850204c40754" class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(y<span class="sc">~</span>., <span class="at">data=</span>dt, <span class="at">nbest=</span><span class="dv">6</span>, <span class="at">nvmax=</span><span class="dv">2</span>, <span class="at">method=</span><span class="st">'exhaustive'</span>,)</span>
-<span id="cb58-2"><a href="#cb58-2"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(y<span class="sc">~</span>., <span class="at">data=</span>dt, <span class="at">nbest=</span><span class="dv">6</span>, <span class="at">nvmax=</span><span class="dv">2</span>, <span class="at">method=</span><span class="st">'exhaustive'</span>,)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(y ~ ., data = dt, nbest = 6, nvmax = 2, method = "exhaustive", 
@@ -3525,7 +3525,7 @@ Selection Algorithm: exhaustive
 <section id="자동차-연비-자료-분석" class="level1 page-columns page-full">
 <h1>자동차 연비 자료 분석</h1>
 <div id="4fc7adca-da5c-40cc-9157-895d9e79ca56" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">str</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   32 obs. of  11 variables:
  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
@@ -3542,7 +3542,7 @@ Selection Algorithm: exhaustive
 </div>
 </div>
 <div id="edab0890-27fe-4bcf-8a53-20863def2110" class="cell page-columns page-full" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(mtcars),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(mtcars),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -3725,8 +3725,8 @@ Selection Algorithm: exhaustive
 <p>mpg(연비)가 y이고 y와 상관관계가 가장 높은것은 wt(차무게), hp(마력)</p>
 </blockquote>
 <div id="c56522a1-d80a-42d3-b938-f719fcca66b0" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>m_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>., mtcars)</span>
-<span id="cb63-2"><a href="#cb63-2"></a><span class="fu">summary</span>(m_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>m_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>., mtcars)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -3761,16 +3761,16 @@ F-statistic: 13.93 on 10 and 21 DF,  p-value: 3.793e-07</code></pre>
 <p>다중공산성 떄문에 회귀계수는 다 유의하지 않게 나옴</p>
 </blockquote>
 <div id="23ede06a-1a95-4d19-98fe-fd03c68f5cca" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">library</span>(leaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="b7f1aa54-927e-4a5c-b891-9e405222a55e" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">1</span>,<span class="at">nvmax=</span><span class="dv">9</span>,</span>
-<span id="cb66-2"><a href="#cb66-2"></a><span class="co"># method=c("exhaustive"(모든가능한),"backward", "forward", "seqrep")</span></span>
-<span id="cb66-3"><a href="#cb66-3"></a><span class="at">method=</span><span class="st">'exhaustive'</span>,</span>
-<span id="cb66-4"><a href="#cb66-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">1</span>,<span class="at">nvmax=</span><span class="dv">9</span>,</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># method=c("exhaustive"(모든가능한),"backward", "forward", "seqrep")</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="at">method=</span><span class="st">'exhaustive'</span>,</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ea863335-6b97-4280-9789-ac55d4721533" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(mpg ~ ., data = mtcars, nbest = 1, nvmax = 9, 
@@ -3816,8 +3816,8 @@ Selection Algorithm: exhaustive
 <li><p>10개 쓴거가 full model 이고 설명변수를 1개 2개 3개 쓴…</p></li>
 </ul>
 <div id="04148691-2d1a-4029-be18-b759bbf16362" class="cell page-columns page-full" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit),</span>
-<span id="cb69-2"><a href="#cb69-2"></a>     <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit),</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -4031,8 +4031,8 @@ Selection Algorithm: exhaustive
 <p>3개를 쓰는게 좋을 거 같다.</p>
 </blockquote>
 <div id="7e6489d9-ebec-4031-973c-4ece69c8ab06" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>fit_3<span class="ot">&lt;-</span><span class="fu">lm</span>(mpg<span class="sc">~</span>wt<span class="sc">+</span>qsec<span class="sc">+</span>am,mtcars)</span>
-<span id="cb70-2"><a href="#cb70-2"></a><span class="fu">summary</span>(fit_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>fit_3<span class="ot">&lt;-</span><span class="fu">lm</span>(mpg<span class="sc">~</span>wt<span class="sc">+</span>qsec<span class="sc">+</span>am,mtcars)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -4057,8 +4057,8 @@ F-statistic: 52.75 on 3 and 28 DF,  p-value: 1.21e-11</code></pre>
 </div>
 </div>
 <div id="855781e0-4156-4152-a1b1-267dcb1eef33" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>fit_4<span class="ot">&lt;-</span><span class="fu">lm</span>(mpg<span class="sc">~</span>hp<span class="sc">+</span>wt<span class="sc">+</span>qsec<span class="sc">+</span>am,mtcars)</span>
-<span id="cb72-2"><a href="#cb72-2"></a><span class="fu">summary</span>(fit_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>fit_4<span class="ot">&lt;-</span><span class="fu">lm</span>(mpg<span class="sc">~</span>hp<span class="sc">+</span>wt<span class="sc">+</span>qsec<span class="sc">+</span>am,mtcars)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -4084,11 +4084,11 @@ F-statistic: 40.74 on 4 and 27 DF,  p-value: 4.589e-11</code></pre>
 </div>
 </div>
 <div id="36d67640-eeee-4849-9347-299b5c10bb03" class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">1</span>,<span class="at">nvmax=</span><span class="dv">9</span>,</span>
-<span id="cb74-2"><a href="#cb74-2"></a><span class="co"># method=c("exhaustive"(모든가능한),"backward", "forward", "seqrep")</span></span>
-<span id="cb74-3"><a href="#cb74-3"></a><span class="at">method=</span><span class="st">'backward'</span>,</span>
-<span id="cb74-4"><a href="#cb74-4"></a>)</span>
-<span id="cb74-5"><a href="#cb74-5"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">1</span>,<span class="at">nvmax=</span><span class="dv">9</span>,</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># method=c("exhaustive"(모든가능한),"backward", "forward", "seqrep")</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="at">method=</span><span class="st">'backward'</span>,</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(mpg ~ ., data = mtcars, nbest = 1, nvmax = 9, 
@@ -4125,10 +4125,10 @@ Selection Algorithm: backward
 <li><p>그다음 carb가 빠짐.</p></li>
 </ul>
 <div id="f0d39a1d-2bde-4213-a163-380b6c216440" class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">45</span>,<span class="at">nvmax=</span><span class="dv">9</span>,</span>
-<span id="cb76-2"><a href="#cb76-2"></a><span class="at">method=</span><span class="st">'exhaustive'</span>,</span>
-<span id="cb76-3"><a href="#cb76-3"></a>)</span>
-<span id="cb76-4"><a href="#cb76-4"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">45</span>,<span class="at">nvmax=</span><span class="dv">9</span>,</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="at">method=</span><span class="st">'exhaustive'</span>,</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>ERROR: Error in leaps.exhaustive(a, really.big): Exhaustive search will be S L O W, must specify really.big=T</code></pre>
 </div>
@@ -4137,10 +4137,10 @@ Selection Algorithm: backward
 <li>nbest값을 너무 크게 주면 값이 너무 많아져서 에러메시지가뜬다.</li>
 </ul>
 <div id="49818a1d-2973-4932-ace7-35c5e83d997a" class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">45</span>,<span class="at">nvmax=</span><span class="dv">9</span>,</span>
-<span id="cb78-2"><a href="#cb78-2"></a><span class="at">method=</span><span class="st">'exhaustive'</span>, <span class="at">really.big=</span>T</span>
-<span id="cb78-3"><a href="#cb78-3"></a>)</span>
-<span id="cb78-4"><a href="#cb78-4"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">45</span>,<span class="at">nvmax=</span><span class="dv">9</span>,</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="at">method=</span><span class="st">'exhaustive'</span>, <span class="at">really.big=</span>T</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(mpg ~ ., data = mtcars, nbest = 45, nvmax = 9, 
@@ -4498,12 +4498,12 @@ Selection Algorithm: exhaustive
 </div>
 </div>
 <div id="f4bf1b28-0ab8-4170-83ff-a232f143d462" class="cell page-columns page-full" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">1</span>,</span>
-<span id="cb80-2"><a href="#cb80-2"></a><span class="at">method=</span><span class="st">'backward'</span>,</span>
-<span id="cb80-3"><a href="#cb80-3"></a>)</span>
-<span id="cb80-4"><a href="#cb80-4"></a><span class="fu">summary</span>(fit)</span>
-<span id="cb80-5"><a href="#cb80-5"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit),</span>
-<span id="cb80-6"><a href="#cb80-6"></a>     <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">1</span>,</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="at">method=</span><span class="st">'backward'</span>,</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit),</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(mpg ~ ., data = mtcars, nbest = 1, method = "backward", 
@@ -4714,12 +4714,12 @@ Selection Algorithm: backward
 <div class="quarto-table-caption margin-caption">A matrix: 8 × 16 of type dbl</div></div>
 </div>
 <div id="3d056af1-36be-491a-ba7c-49c12cd2bc4b" class="cell page-columns page-full" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">1</span>,</span>
-<span id="cb82-2"><a href="#cb82-2"></a><span class="at">method=</span><span class="st">'forward'</span>,</span>
-<span id="cb82-3"><a href="#cb82-3"></a>)</span>
-<span id="cb82-4"><a href="#cb82-4"></a><span class="fu">summary</span>(fit)</span>
-<span id="cb82-5"><a href="#cb82-5"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit),</span>
-<span id="cb82-6"><a href="#cb82-6"></a>     <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">regsubsets</span>(mpg<span class="sc">~</span>., <span class="at">data=</span>mtcars, <span class="at">nbest=</span><span class="dv">1</span>,</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="at">method=</span><span class="st">'forward'</span>,</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">summary</span>(fit),</span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">round</span>(<span class="fu">cbind</span>(which,rss,rsq,adjr2,cp,bic),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Subset selection object
 Call: regsubsets.formula(mpg ~ ., data = mtcars, nbest = 1, method = "forward", 

@@ -1643,7 +1643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#회귀진단-그림" id="toc-회귀진단-그림" class="nav-link" data-scroll-target="#회귀진단-그림">회귀진단 그림</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="06. 회귀진단 실습.out.ipynb" download="06. 회귀진단 실습.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1689,7 +1689,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="leverage-vs.-outlier-vs.-influence" class="level2">
 <h2 class="anchored" data-anchor-id="leverage-vs.-outlier-vs.-influence">Leverage vs.&nbsp;Outlier vs.&nbsp;Influence</h2>
 <div id="292e35de-a8bf-46b9-ad83-20e2c37cbc18" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: zoo
 
@@ -1705,15 +1705,15 @@ The following objects are masked from ‘package:base’:
 </div>
 </div>
 <div id="f43fcc48-8a25-42d4-84a0-bc0b98c0e28d" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">26</span>,<span class="dv">10</span>,<span class="dv">9</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">18</span>,<span class="dv">11</span>,</span>
-<span id="cb3-2"><a href="#cb3-2"></a> <span class="dv">8</span>,<span class="dv">20</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">11</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">42</span>,<span class="dv">17</span>,<span class="dv">11</span>,<span class="dv">10</span>),</span>
-<span id="cb3-3"><a href="#cb3-3"></a> <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">71</span>,<span class="dv">83</span>,<span class="dv">91</span>,<span class="dv">102</span>,<span class="dv">87</span>,<span class="dv">93</span>,<span class="dv">100</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a> <span class="dv">104</span>,<span class="dv">94</span>,<span class="dv">113</span>,<span class="dv">96</span>,<span class="dv">83</span>,<span class="dv">84</span>,<span class="dv">102</span>,<span class="dv">100</span>,</span>
-<span id="cb3-5"><a href="#cb3-5"></a> <span class="dv">105</span>,<span class="dv">57</span>,<span class="dv">121</span>,<span class="dv">86</span>,<span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">26</span>,<span class="dv">10</span>,<span class="dv">9</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">18</span>,<span class="dv">11</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>,<span class="dv">20</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">11</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">42</span>,<span class="dv">17</span>,<span class="dv">11</span>,<span class="dv">10</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">71</span>,<span class="dv">83</span>,<span class="dv">91</span>,<span class="dv">102</span>,<span class="dv">87</span>,<span class="dv">93</span>,<span class="dv">100</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> <span class="dv">104</span>,<span class="dv">94</span>,<span class="dv">113</span>,<span class="dv">96</span>,<span class="dv">83</span>,<span class="dv">84</span>,<span class="dv">102</span>,<span class="dv">100</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">105</span>,<span class="dv">57</span>,<span class="dv">121</span>,<span class="dv">86</span>,<span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="06165d20-9d58-4e82-aeea-b44d45f698fa" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="do">######## 산점도</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">######## 산점도</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
@@ -1725,9 +1725,9 @@ The following objects are masked from ‘package:base’:
 <section id="회귀모형-적합-ybeta_0-beta_1x-epsilon" class="level2">
 <h2 class="anchored" data-anchor-id="회귀모형-적합-ybeta_0-beta_1x-epsilon">회귀모형 적합: <span class="math inline">\(y=\beta_0+ \beta_1x + \epsilon\)</span></h2>
 <div id="563e22b2-1382-4ea3-a4f1-47aad0cbbbc7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="do">######## 회귀적합</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>model_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, dt)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">summary</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">######## 회귀적합</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, dt)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1750,8 +1750,8 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 </div>
 </div>
 <div id="c6b77213-848a-465f-a1e6-eb057136fc39" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
@@ -1760,9 +1760,9 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <section id="hat-matrix" class="level2">
 <h2 class="anchored" data-anchor-id="hat-matrix">Hat Matrix</h2>
 <div id="7660fe4f-a8df-463b-9393-759c994de5cc" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>X <span class="ot">=</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(dt)), dt<span class="sc">$</span>x)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>H <span class="ot">=</span> X <span class="sc">%*%</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X)</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">diag</span>(H)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(dt)), dt<span class="sc">$</span>x)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>H <span class="ot">=</span> X <span class="sc">%*%</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(H)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
@@ -1777,7 +1777,7 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <li><p><code>0.0628157755825353</code> 18번쨰가 큰값을 가지고 있음. leverage일 확률이 크다.</p></li>
 </ul>
 <div id="0935de64-7848-4bbf-b7a3-2a9300eac60c" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(H))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(H))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 2
 </div>
@@ -1786,7 +1786,7 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <li><span class="math inline">\(\sum h_{ii} = p+1 = 2\)</span></li>
 </ul>
 <div id="e4c164ec-351c-492e-9707-1a0222b6af63" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">hatvalues</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hatvalues</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -1800,8 +1800,8 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <p>hatvalues는 <span class="math inline">\(h_{ii}\)</span>값 바로 나오게 하는 함수</p>
 </blockquote>
 <div id="f23f146e-74df-4c21-a415-5195a63e4bd5" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">which.max</span>(<span class="fu">hatvalues</span>(model_reg))  <span class="co"># 가장 큰 값의 번호</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">hatvalues</span>(model_reg)[<span class="fu">which.max</span>(<span class="fu">hatvalues</span>(model_reg))] <span class="do">##h_{18,18}값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">hatvalues</span>(model_reg))  <span class="co"># 가장 큰 값의 번호</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hatvalues</span>(model_reg)[<span class="fu">which.max</span>(<span class="fu">hatvalues</span>(model_reg))] <span class="do">##h_{18,18}값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <strong>18:</strong> 18
 </div>
@@ -1810,7 +1810,7 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 </div>
 </div>
 <div id="76ff24bd-062a-4434-a307-d388b43e79f6" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="fu">nrow</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="fu">nrow</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.19047619047619
 </div>
@@ -1819,7 +1819,7 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <p><span class="math inline">\(h_{18,18} &gt; 2 \bar h=2 \dfrac{p+1}{n}=2\dfrac{2}{21}=0.19047619047619\)</span>이므로 18번째 관측값이 leverage point 로 고려 가능</p>
 </blockquote>
 <div id="ad99cd75-0115-4b3c-add9-3327b1c293bc" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">hatvalues</span>(model_reg)<span class="sc">&gt;</span><span class="fl">0.19047619047619</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hatvalues</span>(model_reg)<span class="sc">&gt;</span><span class="fl">0.19047619047619</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -1833,9 +1833,9 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <p>0.19047619047619보다 큰값이 있다면 leverage point</p>
 </blockquote>
 <div id="3ec47959-36af-4eab-886c-ebe33aaf5e67" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">text</span>(dt[<span class="dv">18</span>,],<span class="st">"18"</span>, <span class="at">pos=</span><span class="dv">2</span>)</span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(dt[<span class="dv">18</span>,],<span class="st">"18"</span>, <span class="at">pos=</span><span class="dv">2</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
@@ -1846,8 +1846,8 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <section id="잔차-e_i-y_i---hat-y_i" class="level3">
 <h3 class="anchored" data-anchor-id="잔차-e_i-y_i---hat-y_i">잔차: <span class="math inline">\(e_i = y_i - \hat y_i\)</span></h3>
 <div id="f083be56-d75e-48de-b6c7-499efb3b9138" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>residual <span class="ot">&lt;-</span> model_reg<span class="sc">$</span>residuals</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">head</span>(residual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>residual <span class="ot">&lt;-</span> model_reg<span class="sc">$</span>residuals</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(residual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -1858,7 +1858,7 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 </div>
 </div>
 <div id="631eb92d-7734-4de4-8eef-d9f4777fffde" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">hist</span>(residual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(residual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
@@ -1880,8 +1880,8 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <li><span class="math inline">\(|r_i| \geq 2\)</span> OR <span class="math inline">\(|r_i| \geq 3\)</span>이면 이상치</li>
 </ul>
 <div id="0d5e30ae-181d-4cde-995b-9cccdd5155b0" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>s_residual <span class="ot">&lt;-</span> <span class="fu">rstandard</span>(model_reg)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">head</span>(s_residual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>s_residual <span class="ot">&lt;-</span> <span class="fu">rstandard</span>(model_reg)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(s_residual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -1892,19 +1892,19 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 </div>
 </div>
 <div id="5a1cbc29-20b4-4146-854e-5b714fcc5d09" class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># 또는</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>s_xx <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>x<span class="sc">-</span><span class="fu">mean</span>(dt<span class="sc">$</span>x))<span class="sc">^</span><span class="dv">2</span>) <span class="co">#S_xx</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>h_ii <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">21</span> <span class="sc">+</span> (dt<span class="sc">$</span>x<span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>x))<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>s_xx <span class="co">#hatvalues로 구해도 됨. 혹은 X(X^TX)-1X^T로 해도 됨</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="do">### h_ii &lt;- hatvalues(model_reg)</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="do">### h_ii &lt;- influence(model_reg)$hat</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>hat_sigma <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_reg)<span class="sc">$</span>sigma <span class="co">#hat sigma</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a>s_residual <span class="ot">&lt;-</span> <span class="fu">resid</span>(model_reg)<span class="sc">/</span>(hat_sigma<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">-</span>h_ii)) <span class="do">## 내적</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 또는</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>s_xx <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>x<span class="sc">-</span><span class="fu">mean</span>(dt<span class="sc">$</span>x))<span class="sc">^</span><span class="dv">2</span>) <span class="co">#S_xx</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>h_ii <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">21</span> <span class="sc">+</span> (dt<span class="sc">$</span>x<span class="sc">-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>x))<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>s_xx <span class="co">#hatvalues로 구해도 됨. 혹은 X(X^TX)-1X^T로 해도 됨</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="do">### h_ii &lt;- hatvalues(model_reg)</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">### h_ii &lt;- influence(model_reg)$hat</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>hat_sigma <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_reg)<span class="sc">$</span>sigma <span class="co">#hat sigma</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>s_residual <span class="ot">&lt;-</span> <span class="fu">resid</span>(model_reg)<span class="sc">/</span>(hat_sigma<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">-</span>h_ii)) <span class="do">## 내적</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><span class="math inline">\(h_{ii}=\dfrac{1}{n}+\dfrac{(x_i-\bar x)^2}{S_{xx}}\)</span></li>
 </ul>
 <div id="c2268478-a673-4aef-9a62-1f4b852fc897" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">hist</span>(s_residual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(s_residual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
@@ -1925,8 +1925,8 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <p><span class="math inline">\(\hat \sigma_i^2 = \left[ (n-p-1) \hat \sigma^2 - \dfrac{e_i^2}{1-h_{ii}} \right] / (n-p-2)\)</span></p>
 <p><span class="math inline">\(|r_i^*| \geq t_{\alpha/2}(n-p-2)\)</span>이면 이상치</p>
 <div id="da87f2d7-c023-452b-8ec9-3e4ba40b43c2" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>s_residual_i <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(model_reg)</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">head</span>(s_residual_i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>s_residual_i <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(model_reg)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(s_residual_i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -1937,13 +1937,13 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 </div>
 </div>
 <div id="bf0f23ee-ea09-4c13-a05b-2d0c62e96180" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># 또는</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>hat_sigma_i <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(((<span class="dv">21-1-1</span>)<span class="sc">*</span>hat_sigma<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> residual<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>h_ii) )<span class="sc">/</span>(<span class="dv">21-1-2</span>))</span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="do">## hat_sigma_i &lt;- influence(model_reg)$sigma</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>s_residual_i <span class="ot">&lt;-</span> residual<span class="sc">/</span>(hat_sigma_i<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">-</span>h_ii)) <span class="do">## 외적</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 또는</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>hat_sigma_i <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(((<span class="dv">21-1-1</span>)<span class="sc">*</span>hat_sigma<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> residual<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>h_ii) )<span class="sc">/</span>(<span class="dv">21-1-2</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">## hat_sigma_i &lt;- influence(model_reg)$sigma</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>s_residual_i <span class="ot">&lt;-</span> residual<span class="sc">/</span>(hat_sigma_i<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">-</span>h_ii)) <span class="do">## 외적</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="a1a0a204-8ac8-4140-b27c-bf1fd6d8563c" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">hist</span>(s_residual_i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(s_residual_i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
 </div>
@@ -1952,8 +1952,8 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <li>둥 떨어져있는 맨 오른쪽 관측값</li>
 </ul>
 <div id="d807820a-d9a6-4de2-9f1d-d7e61a6f97c8" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">which.max</span>(s_residual_i)</span>
-<span id="cb23-2"><a href="#cb23-2"></a>s_residual_i[<span class="fu">which.max</span>(s_residual_i)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(s_residual_i)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>s_residual_i[<span class="fu">which.max</span>(s_residual_i)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <strong>19:</strong> 19
 </div>
@@ -1962,7 +1962,7 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 </div>
 </div>
 <div id="24966530-8a4c-4fd7-8d3c-30c1532ae254" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">21-1-2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">21-1-2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 2.10092204024104
 </div>
@@ -1971,51 +1971,51 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <p><span class="math inline">\(|r_i^*| \geq t_{\alpha/2}(n-p-2)\)</span>이면, 유의수준 <span class="math inline">\(\alpha\)</span>에서, <span class="math inline">\(i\)</span>번째 관측값이 이상점이라고 할 수 있다.</p>
 <p>따라서 19번째 관측값은 유의수준 0.05에서 이상점이라고 할 수 있다.</p>
 <div id="59534543-6b54-4fcc-864c-c6eda2faaaa3" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">text</span>(dt[<span class="dv">19</span>,],<span class="st">"19"</span>, <span class="at">pos=</span><span class="dv">2</span>)</span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(dt[<span class="dv">19</span>,],<span class="st">"19"</span>, <span class="at">pos=</span><span class="dv">2</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="cf57eb83-6f39-4fc7-a07c-fc3d9c0704f1" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>s_residual_i[<span class="fu">which</span>(<span class="fu">abs</span>(s_residual_i)<span class="sc">&gt;</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>s_residual_i[<span class="fu">which</span>(<span class="fu">abs</span>(s_residual_i)<span class="sc">&gt;</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <strong>19:</strong> 3.60697972130439
 </div>
 </div>
 <div id="0ccbc01a-b2e5-4dbc-b5fa-7fa2294771e7" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="do">## 잔차그림</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model_reg), residual,</span>
-<span id="cb27-4"><a href="#cb27-4"></a> <span class="at">pch=</span><span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb27-5"><a href="#cb27-5"></a> <span class="at">xlab =</span> <span class="st">"Fitted"</span>, <span class="at">ylab =</span> <span class="st">"Residuals"</span>,</span>
-<span id="cb27-6"><a href="#cb27-6"></a> <span class="at">main =</span> <span class="st">"residual plot"</span>)</span>
-<span id="cb27-7"><a href="#cb27-7"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb27-8"><a href="#cb27-8"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model_reg), s_residual,</span>
-<span id="cb27-9"><a href="#cb27-9"></a> <span class="at">pch=</span><span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb27-10"><a href="#cb27-10"></a> <span class="at">xlab =</span> <span class="st">"Fitted"</span>, <span class="at">ylab =</span> <span class="st">"S_Residuals"</span>,</span>
-<span id="cb27-11"><a href="#cb27-11"></a> <span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fu">min</span>(s_residual)),</span>
-<span id="cb27-12"><a href="#cb27-12"></a> <span class="fu">max</span>(<span class="dv">3</span>,<span class="fu">max</span>(s_residual))),</span>
-<span id="cb27-13"><a href="#cb27-13"></a> <span class="at">main =</span> <span class="st">"standardized residual plot"</span>)</span>
-<span id="cb27-14"><a href="#cb27-14"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb27-15"><a href="#cb27-15"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model_reg), s_residual_i,</span>
-<span id="cb27-16"><a href="#cb27-16"></a> <span class="at">pch=</span><span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb27-17"><a href="#cb27-17"></a> <span class="at">xlab =</span> <span class="st">"Fitted"</span>, <span class="at">ylab =</span> <span class="st">"S_Residuals_(i)"</span>,</span>
-<span id="cb27-18"><a href="#cb27-18"></a> <span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fu">min</span>(s_residual_i)),</span>
-<span id="cb27-19"><a href="#cb27-19"></a> <span class="fu">max</span>(<span class="dv">3</span>,<span class="fu">max</span>(s_residual_i))),</span>
-<span id="cb27-20"><a href="#cb27-20"></a> <span class="at">main =</span> <span class="st">"studentized residual plot"</span>)</span>
-<span id="cb27-21"><a href="#cb27-21"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb27-22"><a href="#cb27-22"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model_reg), s_residual_i,</span>
-<span id="cb27-23"><a href="#cb27-23"></a> <span class="at">pch=</span><span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb27-24"><a href="#cb27-24"></a> <span class="at">xlab =</span> <span class="st">"Fitted"</span>, <span class="at">ylab =</span> <span class="st">"S_Residuals_(i)"</span>,</span>
-<span id="cb27-25"><a href="#cb27-25"></a> <span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fu">min</span>(s_residual_i)),</span>
-<span id="cb27-26"><a href="#cb27-26"></a> <span class="fu">max</span>(<span class="dv">3</span>,<span class="fu">max</span>(s_residual_i))),</span>
-<span id="cb27-27"><a href="#cb27-27"></a> <span class="at">main =</span> <span class="st">"studentized residual plot"</span>)</span>
-<span id="cb27-28"><a href="#cb27-28"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>),<span class="dv">0</span>,<span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>)), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb27-29"><a href="#cb27-29"></a><span class="fu">text</span> (<span class="fu">fitted</span>(model_reg)[<span class="fu">which</span>(<span class="fu">abs</span>(s_residual_i)<span class="sc">&gt;</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>))],</span>
-<span id="cb27-30"><a href="#cb27-30"></a> s_residual_i[<span class="fu">which</span>(<span class="fu">abs</span>(s_residual_i)<span class="sc">&gt;</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>))],</span>
-<span id="cb27-31"><a href="#cb27-31"></a> <span class="fu">which</span>(<span class="fu">abs</span>(s_residual_i)<span class="sc">&gt;</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>)),<span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 잔차그림</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model_reg), residual,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a> <span class="at">pch=</span><span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab =</span> <span class="st">"Fitted"</span>, <span class="at">ylab =</span> <span class="st">"Residuals"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"residual plot"</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model_reg), s_residual,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a> <span class="at">pch=</span><span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab =</span> <span class="st">"Fitted"</span>, <span class="at">ylab =</span> <span class="st">"S_Residuals"</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a> <span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fu">min</span>(s_residual)),</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">max</span>(<span class="dv">3</span>,<span class="fu">max</span>(s_residual))),</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"standardized residual plot"</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model_reg), s_residual_i,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a> <span class="at">pch=</span><span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab =</span> <span class="st">"Fitted"</span>, <span class="at">ylab =</span> <span class="st">"S_Residuals_(i)"</span>,</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a> <span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fu">min</span>(s_residual_i)),</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a> <span class="fu">max</span>(<span class="dv">3</span>,<span class="fu">max</span>(s_residual_i))),</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"studentized residual plot"</span>)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model_reg), s_residual_i,</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a> <span class="at">pch=</span><span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab =</span> <span class="st">"Fitted"</span>, <span class="at">ylab =</span> <span class="st">"S_Residuals_(i)"</span>,</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a> <span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fu">min</span>(s_residual_i)),</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a> <span class="fu">max</span>(<span class="dv">3</span>,<span class="fu">max</span>(s_residual_i))),</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"studentized residual plot"</span>)</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>),<span class="dv">0</span>,<span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>)), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span> (<span class="fu">fitted</span>(model_reg)[<span class="fu">which</span>(<span class="fu">abs</span>(s_residual_i)<span class="sc">&gt;</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>))],</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a> s_residual_i[<span class="fu">which</span>(<span class="fu">abs</span>(s_residual_i)<span class="sc">&gt;</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>))],</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a> <span class="fu">which</span>(<span class="fu">abs</span>(s_residual_i)<span class="sc">&gt;</span><span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">21-2</span>)),<span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
 </div>
@@ -2028,19 +2028,19 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <section id="정규성-검정" class="level2">
 <h2 class="anchored" data-anchor-id="정규성-검정">정규성 검정</h2>
 <div id="9a80469b-186c-44f0-a3b2-5e007c92c17b" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="do">## 정규성 검정</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="fu">hist</span>(<span class="fu">resid</span>(model_reg),</span>
-<span id="cb28-4"><a href="#cb28-4"></a> <span class="at">xlab =</span> <span class="st">"Residuals"</span>,</span>
-<span id="cb28-5"><a href="#cb28-5"></a> <span class="at">main =</span> <span class="st">"Histogram of Residuals"</span>,</span>
-<span id="cb28-6"><a href="#cb28-6"></a> <span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb28-7"><a href="#cb28-7"></a> <span class="at">border =</span> <span class="st">"dodgerblue"</span>,</span>
-<span id="cb28-8"><a href="#cb28-8"></a> <span class="at">breaks =</span> <span class="dv">20</span>)</span>
-<span id="cb28-9"><a href="#cb28-9"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(model_reg),</span>
-<span id="cb28-10"><a href="#cb28-10"></a> <span class="at">main =</span> <span class="st">"Normal Q-Q Plot"</span>,</span>
-<span id="cb28-11"><a href="#cb28-11"></a> <span class="at">col =</span> <span class="st">"darkgrey"</span>,</span>
-<span id="cb28-12"><a href="#cb28-12"></a> <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb28-13"><a href="#cb28-13"></a><span class="fu">qqline</span>(<span class="fu">resid</span>(model_reg), <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 정규성 검정</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(model_reg),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab =</span> <span class="st">"Residuals"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"Histogram of Residuals"</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a> <span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a> <span class="at">border =</span> <span class="st">"dodgerblue"</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a> <span class="at">breaks =</span> <span class="dv">20</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(model_reg),</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"Normal Q-Q Plot"</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a> <span class="at">col =</span> <span class="st">"darkgrey"</span>,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a> <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">resid</span>(model_reg), <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
@@ -2049,9 +2049,9 @@ F-statistic:  13.2 on 1 and 19 DF,  p-value: 0.001769</code></pre>
 <li>Q-Q plot에서 꼬리가 하나가 길게 나옴-&gt;이상치</li>
 </ul>
 <div id="e335de89-9e94-4253-ba71-237069100be8" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="do">## Shapiro-Wilk Test</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="do">## H0 : normal distribution vs. H1 : not H0</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(model_reg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Shapiro-Wilk Test</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">## H0 : normal distribution vs. H1 : not H0</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(model_reg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
     Shapiro-Wilk normality test
@@ -2064,8 +2064,8 @@ W = 0.92578, p-value = 0.1133</code></pre>
 <li>기각할 수 없다. 정규분포이다.</li>
 </ul>
 <div id="eea25c21-8a0d-4d00-9db7-feb51c1270ee" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="do">## 독립성 검정</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>lmtest<span class="sc">::</span><span class="fu">dwtest</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 독립성 검정</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">dwtest</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
     Durbin-Watson test
@@ -2076,9 +2076,9 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 </div>
 </div>
 <div id="e0744b6c-09b5-458b-bff5-2b3b53cd1e88" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="do">### 등분산성</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="do">## H0 : 등분산 vs. H1 : 이분산 (Heteroscedasticity)</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="fu">bptest</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 등분산성</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="do">## H0 : 등분산 vs. H1 : 이분산 (Heteroscedasticity)</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
     studentized Breusch-Pagan test
@@ -2091,14 +2091,14 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <section id="영향점" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="영향점">영향점</h2>
 <div id="4825a1cd-3b5c-4058-964f-633e502a1bb8" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,<span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="c9d4757e-f56e-456f-8f3a-038e49e2830d" class="cell page-columns page-full" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">influence</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <dl class="page-columns page-full">
     <dt>$hat</dt>
@@ -2269,7 +2269,7 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 </ul>
 </blockquote>
 <div id="f32131b3-a920-4f8c-9005-c1954d9a8bc5" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">influence.measures</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">influence.measures</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Influence measures of
      lm(formula = y ~ x, data = dt) :
@@ -2309,7 +2309,7 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <li><p><span class="math inline">\(|DFFITS(i)| \geq 2 \sqrt{\dfrac{p+1}{n-p-1}}\)</span>이면 영향점</p></li>
 </ul>
 <div id="f2184f1d-16c9-438d-ae73-9b18949b723d" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">dffits</span>(model_reg) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dffits</span>(model_reg) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2320,7 +2320,7 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 </div>
 </div>
 <div id="058d9a4c-0add-42c1-b180-e8691f5f36b2" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">which</span>(<span class="fu">abs</span>(<span class="fu">dffits</span>(model_reg)) <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">/</span>(<span class="dv">21-2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">abs</span>(<span class="fu">dffits</span>(model_reg)) <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">/</span>(<span class="dv">21-2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2339,7 +2339,7 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <li><p><span class="math inline">\(\hat \beta(i): i\)</span>번째 관측치를 제외하고 <span class="math inline">\(n-1\)</span>개의 관측값에서 구한 <span class="math inline">\(\hat \beta\)</span>의 최소제곱추저량</p></li>
 </ul>
 <div id="3bb02778-acfb-4142-91d7-52e07eeaa9bd" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">cooks.distance</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cooks.distance</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2353,13 +2353,13 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <li><span class="math inline">\(D(i) \geq F_{0.5}(p+1, n-p-1)\)</span>이면 영향점으로 의심</li>
 </ul>
 <div id="237f6f08-b0db-46b2-a1af-c3e3a8c1246e" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">qf</span>(<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">21-2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">21-2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.719060569091733
 </div>
 </div>
 <div id="5ec45bb9-d787-4133-8486-ff990e147694" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">which</span>(<span class="fu">cooks.distance</span>(model_reg) <span class="sc">&gt;</span><span class="fu">qf</span>(<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">21-2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">cooks.distance</span>(model_reg) <span class="sc">&gt;</span><span class="fu">qf</span>(<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">21-2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
@@ -2374,7 +2374,7 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <p><span class="math inline">\(COVRATIO(i) = \dfrac{1}{\left[1+\dfrac{(r_i^*)^2-1}{n-p-1}\right]^{p+1}(1-h_{ii})}\)</span></p>
 <p><span class="math inline">\(|COVRATIO(i)-1| \geq 3(p+1)/n\)</span>이면 <span class="math inline">\(i\)</span>번째 관측치를 영향을 크게 주는 측정값으로 볼 수 있음</p>
 <div id="feca9ee2-67e8-4050-931b-68970546299d" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">covratio</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">covratio</span>(model_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2385,7 +2385,7 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 </div>
 </div>
 <div id="d93e5c26-1ed2-44ff-9ce4-94a45152f9dd" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">which</span>(<span class="fu">abs</span>(<span class="fu">covratio</span>(model_reg)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">abs</span>(<span class="fu">covratio</span>(model_reg)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <style>
 .dl-inline {width: auto; margin:0; padding: 0}
@@ -2399,7 +2399,7 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <li>영향점</li>
 </ul>
 <div id="48c636bd-76da-42b5-b7a1-b4167f104e09" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">summary</span>(<span class="fu">influence.measures</span>(model_reg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">influence.measures</span>(model_reg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Potentially influential observations of
      lm(formula = y ~ x, data = dt) :
@@ -2413,31 +2413,31 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <li>*였떤 점만 뽑아서 보여줘ㅡ</li>
 </ul>
 <div id="a61b78d0-2263-4156-8ac2-e0eda63f5d3e" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="do">## 18제거 전후</span></span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,</span>
-<span id="cb48-3"><a href="#cb48-3"></a> <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb48-4"><a href="#cb48-4"></a> <span class="at">main =</span> <span class="st">"18번 제거"</span>)</span>
-<span id="cb48-5"><a href="#cb48-5"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb48-6"><a href="#cb48-6"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x, dt[<span class="sc">-</span><span class="dv">18</span>,]), <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb48-7"><a href="#cb48-7"></a><span class="fu">text</span>(dt[<span class="dv">18</span>,], <span class="at">pos=</span><span class="dv">2</span>, <span class="st">"18"</span>)</span>
-<span id="cb48-8"><a href="#cb48-8"></a><span class="fu">legend</span>(<span class="st">'topright'</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"full"</span>, <span class="st">"del(18)"</span>),</span>
-<span id="cb48-9"><a href="#cb48-9"></a> <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'red'</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb48-10"><a href="#cb48-10"></a><span class="co"># high leverage and high influence, not outlier</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 18제거 전후</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a> <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"18번 제거"</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x, dt[<span class="sc">-</span><span class="dv">18</span>,]), <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(dt[<span class="dv">18</span>,], <span class="at">pos=</span><span class="dv">2</span>, <span class="st">"18"</span>)</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topright'</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"full"</span>, <span class="st">"del(18)"</span>),</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a> <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'red'</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co"># high leverage and high influence, not outlier</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="bde9ba83-d2f0-443d-9179-c048cb6e51a4" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="do">## 19제거 전후</span></span>
-<span id="cb49-2"><a href="#cb49-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,</span>
-<span id="cb49-3"><a href="#cb49-3"></a> <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb49-4"><a href="#cb49-4"></a> <span class="at">main =</span> <span class="st">"19번 제거"</span>)</span>
-<span id="cb49-5"><a href="#cb49-5"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb49-6"><a href="#cb49-6"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x, dt[<span class="sc">-</span><span class="dv">19</span>,]), <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb49-7"><a href="#cb49-7"></a><span class="fu">text</span>(dt[<span class="dv">19</span>,], <span class="at">pos=</span><span class="dv">2</span>, <span class="st">"19"</span>)</span>
-<span id="cb49-8"><a href="#cb49-8"></a><span class="fu">legend</span>(<span class="st">'topright'</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"full"</span>, <span class="st">"del(19)"</span>),</span>
-<span id="cb49-9"><a href="#cb49-9"></a> <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'red'</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb49-10"><a href="#cb49-10"></a><span class="co"># not leverage and high influence, outlier</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 19제거 전후</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a> <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"19번 제거"</span>)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x, dt[<span class="sc">-</span><span class="dv">19</span>,]), <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(dt[<span class="dv">19</span>,], <span class="at">pos=</span><span class="dv">2</span>, <span class="st">"19"</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topright'</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"full"</span>, <span class="st">"del(19)"</span>),</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a> <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'red'</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co"># not leverage and high influence, outlier</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-45-output-1.png" class="img-fluid"></p>
 </div>
@@ -2446,15 +2446,15 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <li>19번째는 살짝 애매하다.</li>
 </ul>
 <div id="d827f47c-48c0-4f9a-bc1c-5f68e8155cb2" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="do">## 18, 19제거 전후</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,</span>
-<span id="cb50-3"><a href="#cb50-3"></a> <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb50-4"><a href="#cb50-4"></a> <span class="at">main =</span> <span class="st">"18,19번 제거"</span>)</span>
-<span id="cb50-5"><a href="#cb50-5"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb50-6"><a href="#cb50-6"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x, dt[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>),]), <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb50-7"><a href="#cb50-7"></a><span class="fu">text</span>(dt[<span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>),], <span class="at">pos=</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">"18"</span>,<span class="st">"19"</span>))</span>
-<span id="cb50-8"><a href="#cb50-8"></a><span class="fu">legend</span>(<span class="st">'topright'</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"full"</span>, <span class="st">"del(18,19)"</span>),</span>
-<span id="cb50-9"><a href="#cb50-9"></a> <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'red'</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 18, 19제거 전후</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a> <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a> <span class="at">main =</span> <span class="st">"18,19번 제거"</span>)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model_reg, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x, dt[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>),]), <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(dt[<span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>),], <span class="at">pos=</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">"18"</span>,<span class="st">"19"</span>))</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topright'</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"full"</span>, <span class="st">"del(18,19)"</span>),</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a> <span class="at">col=</span><span class="fu">c</span>(<span class="st">'steelblue'</span>, <span class="st">'red'</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
 </div>
@@ -2465,9 +2465,9 @@ BP = 0.0014282, df = 1, p-value = 0.9699</code></pre>
 <section id="회귀진단-그림" class="level1">
 <h1>회귀진단 그림</h1>
 <div id="2cf505ea-bfb2-4b37-acc7-3527dafd0aab" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="do">## 회귀진단 그림</span></span>
-<span id="cb51-2"><a href="#cb51-2"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb51-3"><a href="#cb51-3"></a><span class="fu">plot</span>(model_reg, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 회귀진단 그림</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_reg, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06. 회귀진단 실습_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
 </div>

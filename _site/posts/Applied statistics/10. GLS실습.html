@@ -1629,7 +1629,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#gls" id="toc-gls" class="nav-link" data-scroll-target="#gls">GLS</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="10. GLS실습.out.ipynb" download="10. GLS실습.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1676,16 +1676,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>등분산성을 만족하지 않을 때! 하자</li>
 </ul>
 <div id="a1f0ef7d-6c63-4bf8-9a5d-2db0ac150eec" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>x <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">15</span>),<span class="dv">2</span>) </span>
-<span id="cb1-3"><a href="#cb1-3"></a>y <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">+</span><span class="dv">5</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="sc">*</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">15</span>),<span class="dv">2</span>) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">+</span><span class="dv">5</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="sc">*</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><span class="math inline">\(N(0,2)x \rightarrow N(0,2x^2)\)</span></p></li>
 <li><p><span class="math inline">\(Var(\epsilon)= \sigma^2\)</span>이 <span class="math inline">\(x^2\)</span>에 비례</p></li>
 </ul>
 <div id="f787fae0-93ef-4b5e-ba6f-ac3032e98fc5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
@@ -1694,8 +1694,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>X가 커지면서 분산도 커진다..</li>
 </ul>
 <div id="db605489-ed77-4eba-95ba-e27423b39510" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">weights =</span> <span class="dv">1</span><span class="sc">/</span>x<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">weights =</span> <span class="dv">1</span><span class="sc">/</span>x<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><span class="math inline">\(Var(\epsilon) = \dfrac{\sigma^2}{w_i}=x^2 \sigma^2\)</span></p></li>
@@ -1707,7 +1707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><code>-</code> LSE</p>
 <div id="7394c99d-5375-44d0-ad3a-2fec543c28c5" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1731,7 +1731,7 @@ F-statistic: 28.04 on 1 and 18 DF,  p-value: 4.924e-05</code></pre>
 </div>
 <p><code>-</code> WLSE</p>
 <div id="8084f573-ef7e-45e3-823d-d88bae302557" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1754,22 +1754,22 @@ F-statistic: 62.94 on 1 and 18 DF,  p-value: 2.761e-07</code></pre>
 </div>
 </div>
 <div id="465b7a6b-91f5-4f4c-8d0c-7a6ee6b8ba8d" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">plot</span>(x,y,<span class="at">pch=</span><span class="dv">16</span>)  </span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">abline</span>(m, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="fu">abline</span>(m1, <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">c</span>(<span class="st">'OLS'</span>, <span class="st">"WLS"</span>), <span class="at">lty=</span><span class="dv">1</span>,</span>
-<span id="cb8-6"><a href="#cb8-6"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">'red'</span>, <span class="st">'blue'</span>), <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">pch=</span><span class="dv">16</span>)  </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m1, <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">c</span>(<span class="st">'OLS'</span>, <span class="st">"WLS"</span>), <span class="at">lty=</span><span class="dv">1</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">'red'</span>, <span class="st">'blue'</span>), <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="61e235e4-e60a-4e32-8865-f31d8ca16181" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(m), <span class="fu">resid</span>(m),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">hat</span>(y)), <span class="at">ylab=</span><span class="fu">expression</span>(e[i]),<span class="at">main=</span><span class="st">"OLS"</span>) </span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(m)<span class="sc">/</span>x, <span class="fu">resid</span>(m)<span class="sc">/</span>x,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">sqrt</span>(w[i])<span class="sc">*</span><span class="fu">hat</span>(y)), <span class="at">ylab=</span><span class="fu">expression</span>(<span class="fu">sqrt</span>(w [i])<span class="sc">*</span>e[i]), <span class="at">main=</span><span class="st">"WLS"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(m), <span class="fu">resid</span>(m),<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">hat</span>(y)), <span class="at">ylab=</span><span class="fu">expression</span>(e[i]),<span class="at">main=</span><span class="st">"OLS"</span>) </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(m)<span class="sc">/</span>x, <span class="fu">resid</span>(m)<span class="sc">/</span>x,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">sqrt</span>(w[i])<span class="sc">*</span><span class="fu">hat</span>(y)), <span class="at">ylab=</span><span class="fu">expression</span>(<span class="fu">sqrt</span>(w [i])<span class="sc">*</span>e[i]), <span class="at">main=</span><span class="st">"WLS"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
@@ -1794,11 +1794,11 @@ F-statistic: 62.94 on 1 and 18 DF,  p-value: 2.761e-07</code></pre>
 <li><p><span class="math inline">\(\hat \beta^{G} = (X^TV^{-1}X)^{-1}X^TV^{-1}y\)</span></p></li>
 </ul>
 <div id="2e72d2f5-7029-4ba9-a0cd-645e34fc539f" class="cell page-columns page-full" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>V<span class="ot">&lt;-</span><span class="fu">diag</span>(x<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>X<span class="ot">&lt;-</span><span class="fu">model.matrix</span>(m)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>V.inv<span class="ot">&lt;-</span><span class="fu">solve</span>(V)</span>
-<span id="cb10-4"><a href="#cb10-4"></a>beta<span class="ot">&lt;-</span><span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>V.inv<span class="sc">%*%</span>X)<span class="sc">%*%</span><span class="fu">t</span>(X)<span class="sc">%*%</span>V.inv<span class="sc">%*%</span>y </span>
-<span id="cb10-5"><a href="#cb10-5"></a>beta  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>V<span class="ot">&lt;-</span><span class="fu">diag</span>(x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">model.matrix</span>(m)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>V.inv<span class="ot">&lt;-</span><span class="fu">solve</span>(V)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>beta<span class="ot">&lt;-</span><span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>V.inv<span class="sc">%*%</span>X)<span class="sc">%*%</span><span class="fu">t</span>(X)<span class="sc">%*%</span>V.inv<span class="sc">%*%</span>y </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>beta  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1816,7 +1816,7 @@ F-statistic: 62.94 on 1 and 18 DF,  p-value: 2.761e-07</code></pre>
 <div class="quarto-table-caption margin-caption">A matrix: 2 × 1 of type dbl</div></div>
 </div>
 <div id="70d47e51-af2f-4d7c-be9d-076c1fa58a93" class="cell page-columns page-full" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">summary</span>(m1)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1851,8 +1851,8 @@ F-statistic: 62.94 on 1 and 18 DF,  p-value: 2.761e-07</code></pre>
 <p><span class="math inline">\(lm(y\)</span> ~ <span class="math inline">\(x, wieght=\frac{1}{x^2})\)</span></p>
 <p>GLS구한거랑 WLS로 구한거랑 <code>6.074163</code> 값 동일</p>
 <div id="b161ff51-fe93-4f5f-8551-578e83e85744" class="cell page-columns page-full" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>e2 <span class="ot">&lt;-</span> y<span class="sc">-</span>(beta[<span class="dv">1</span>]<span class="sc">+</span>beta[<span class="dv">2</span>]<span class="sc">*</span>x) </span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">t</span>(e2) <span class="sc">%*%</span> V.inv <span class="sc">%*%</span>e2 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>e2 <span class="ot">&lt;-</span> y<span class="sc">-</span>(beta[<span class="dv">1</span>]<span class="sc">+</span>beta[<span class="dv">2</span>]<span class="sc">*</span>x) </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(e2) <span class="sc">%*%</span> V.inv <span class="sc">%*%</span>e2 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1865,7 +1865,7 @@ F-statistic: 62.94 on 1 and 18 DF,  p-value: 2.761e-07</code></pre>
 <div class="quarto-table-caption margin-caption">A matrix: 1 × 1 of type dbl</div></div>
 </div>
 <div id="e64ee018-60be-4753-bd42-48a250637af3" class="cell page-columns page-full" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">anova</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1915,8 +1915,8 @@ F-statistic: 62.94 on 1 and 18 DF,  p-value: 2.761e-07</code></pre>
 <li>독립성을 만족하지 않을 때! 하자</li>
 </ul>
 <div id="a8188da7-c6c3-4cb2-b4e2-2eb7777c0ebc" class="cell page-columns page-full" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corr.csv"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corr.csv"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1968,7 +1968,7 @@ F-statistic: 62.94 on 1 and 18 DF,  p-value: 2.761e-07</code></pre>
 <div class="quarto-table-caption margin-caption">A data.frame: 6 × 2</div></div>
 </div>
 <div id="4a7284b7-e1fe-4221-a621-b388c45cb636" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
@@ -1977,13 +1977,13 @@ F-statistic: 62.94 on 1 and 18 DF,  p-value: 2.761e-07</code></pre>
 <li>오른쪽 4개 데이터가 애매하다.</li>
 </ul>
 <div id="8a76aeda-2de3-4815-a5da-a0a44d17e735" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><span class="math inline">\(y=\beta_0+\beta_x + \epsilon\)</span></li>
 </ul>
 <div id="71847538-e172-4c54-98c5-8fcb8774402f" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2006,15 +2006,15 @@ F-statistic: 148.7 on 1 and 18 DF,  p-value: 3.888e-10</code></pre>
 </div>
 </div>
 <div id="54b6e434-a7a6-437d-82cc-2dccb78d9e44" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">plot</span>(dt<span class="sc">$</span>x, <span class="fu">resid</span>(m), <span class="at">pch=</span><span class="dv">16</span>) </span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dt<span class="sc">$</span>x, <span class="fu">resid</span>(m), <span class="at">pch=</span><span class="dv">16</span>) </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="a3a08a4d-302c-4f7c-9ff6-0154ba039ae9" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: zoo
 
@@ -2030,7 +2030,7 @@ The following objects are masked from ‘package:base’:
 </div>
 </div>
 <div id="ef2df369-994c-4b18-b6a8-82509c277dff" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">dwtest</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
     Durbin-Watson test
@@ -2046,17 +2046,17 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <li><p>4에 가까우면 음의 상관관계에 가까움</p></li>
 </ul>
 <div id="f26dcb17-9982-47bd-acdd-55fdf051d01e" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt, <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">abline</span>(m, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="st">"OLS"</span>,<span class="at">col=</span><span class="st">"darkorange"</span>, <span class="at">lty=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="st">"OLS"</span>,<span class="at">col=</span><span class="st">"darkorange"</span>, <span class="at">lty=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="147db86d-846f-4048-b59c-86ed93f7735b" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(m), <span class="fu">resid</span>(m), <span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">hat</span>(y)), <span class="at">ylab=</span><span class="st">'residual'</span>, </span>
-<span id="cb25-2"><a href="#cb25-2"></a>     <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">"residua l plot for OLS : DW statistics = "</span>, <span class="fu">round</span>(<span class="fu">dwtest</span>(m)<span class="sc">$</span>stat,<span class="dv">4</span>)))</span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(m), <span class="fu">resid</span>(m), <span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">hat</span>(y)), <span class="at">ylab=</span><span class="st">'residual'</span>, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">"residua l plot for OLS : DW statistics = "</span>, <span class="fu">round</span>(<span class="fu">dwtest</span>(m)<span class="sc">$</span>stat,<span class="dv">4</span>)))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
 </div>
@@ -2064,14 +2064,14 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <section id="변수변환" class="level2">
 <h2 class="anchored" data-anchor-id="변수변환">변수변환</h2>
 <div id="79c50b6b-e99a-4c19-bc51-2e58b206dbe6" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>bar_e1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb26-2"><a href="#cb26-2"></a>bar_e2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">20</span>])</span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="co"># hat_rho &lt;- sum((resid(m)[-1]-bar_e1)*(resid(m)[-20] - bar_e2))/sum((resid(m)[-1]-bar_e1)^2) #일밎게 구하는거</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a>hat_rho <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">*</span><span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">20</span>])<span class="sc">/</span><span class="fu">sum</span>((<span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">20</span>])<span class="sc">^</span><span class="dv">2</span>)  <span class="co">#대략적으로 구하는거 </span></span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="co"># hat_rho &lt;- cor(resid(m)[-1], resid(m)[-20])</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>bar_e1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>bar_e2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">20</span>])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># hat_rho &lt;- sum((resid(m)[-1]-bar_e1)*(resid(m)[-20] - bar_e2))/sum((resid(m)[-1]-bar_e1)^2) #일밎게 구하는거</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>hat_rho <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">*</span><span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">20</span>])<span class="sc">/</span><span class="fu">sum</span>((<span class="fu">resid</span>(m)[<span class="sc">-</span><span class="dv">20</span>])<span class="sc">^</span><span class="dv">2</span>)  <span class="co">#대략적으로 구하는거 </span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># hat_rho &lt;- cor(resid(m)[-1], resid(m)[-20])</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="3a42ca66-6de0-4d90-b431-a0109ff0509a" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>hat_rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>hat_rho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 0.891002040194419
 </div>
@@ -2093,10 +2093,10 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <li><p><span class="math inline">\(\hat \rho = \dfrac{\sum_{i=2}^n e_i e_{i-1}}{\sum_{i=2}^n e_i^2}=0.891002040194419\)</span></p></li>
 </ul>
 <div id="2adb7f48-2009-499c-a1f4-d15c654344f8" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>y1 <span class="ot">&lt;-</span> dt<span class="sc">$</span>y[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">-</span>hat_rho<span class="sc">*</span>dt<span class="sc">$</span>y[<span class="sc">-</span><span class="dv">20</span>] </span>
-<span id="cb28-2"><a href="#cb28-2"></a>x1 <span class="ot">&lt;-</span> dt<span class="sc">$</span>x[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">-</span>hat_rho<span class="sc">*</span>dt<span class="sc">$</span>x[<span class="sc">-</span><span class="dv">20</span>]</span>
-<span id="cb28-3"><a href="#cb28-3"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1<span class="sc">~</span>x1)</span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> dt<span class="sc">$</span>y[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">-</span>hat_rho<span class="sc">*</span>dt<span class="sc">$</span>y[<span class="sc">-</span><span class="dv">20</span>] </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> dt<span class="sc">$</span>x[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">-</span>hat_rho<span class="sc">*</span>dt<span class="sc">$</span>x[<span class="sc">-</span><span class="dv">20</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1<span class="sc">~</span>x1)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2119,7 +2119,7 @@ F-statistic: 0.5624 on 1 and 17 DF,  p-value: 0.4635</code></pre>
 </div>
 </div>
 <div id="6258f4d6-eaab-4c1a-bb51-27baa04266fd" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">dwtest</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
     Durbin-Watson test
@@ -2133,18 +2133,18 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <li>데이터가 많지 않아서 크게 dw가 차이나지 ㄴ않음..</li>
 </ul>
 <div id="cf42d10f-e3fe-4a0b-b39a-c9f6563a6723" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">plot</span>(y1<span class="sc">~</span>x1,<span class="at">pch=</span><span class="dv">16</span>,  <span class="at">xlab=</span><span class="fu">expression</span>(x<span class="sc">^</span><span class="st">"'"</span>),  <span class="at">ylab=</span><span class="fu">expression</span>(y<span class="sc">^</span><span class="st">"'"</span>), </span>
-<span id="cb32-3"><a href="#cb32-3"></a>     <span class="at">main=</span><span class="st">"scatter plot after v ariable transformation"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="fu">abline</span>(m1, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y1<span class="sc">~</span>x1,<span class="at">pch=</span><span class="dv">16</span>,  <span class="at">xlab=</span><span class="fu">expression</span>(x<span class="sc">^</span><span class="st">"'"</span>),  <span class="at">ylab=</span><span class="fu">expression</span>(y<span class="sc">^</span><span class="st">"'"</span>), </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"scatter plot after v ariable transformation"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m1, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="dea57df9-d0a1-4274-8c91-46212049ed7b" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(m1), <span class="fu">resid</span>(m1), <span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">hat</span>(y)), <span class="at">ylab=</span><span class="st">'residual'</span>, </span>
-<span id="cb33-2"><a href="#cb33-2"></a>     <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">"residual plot for OLS : DW statistics = "</span>, <span class="fu">round</span>(<span class="fu">dwtest</span>(m1)<span class="sc">$</span>stat,<span class="dv">4</span>))) </span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(m1), <span class="fu">resid</span>(m1), <span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">hat</span>(y)), <span class="at">ylab=</span><span class="st">'residual'</span>, </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">"residual plot for OLS : DW statistics = "</span>, <span class="fu">round</span>(<span class="fu">dwtest</span>(m1)<span class="sc">$</span>stat,<span class="dv">4</span>))) </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
 </div>
@@ -2153,12 +2153,12 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <section id="gls" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="gls">GLS</h2>
 <div id="3da0b88d-ce6e-46f9-b237-86fd031e1390" class="cell page-columns page-full" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>V<span class="ot">&lt;-</span><span class="fu">diag</span>(<span class="dv">20</span>)</span>
-<span id="cb34-2"><a href="#cb34-2"></a>V<span class="ot">&lt;-</span>hat_rho<span class="sc">^</span><span class="fu">abs</span>(<span class="fu">row</span>(V)<span class="sc">-</span><span class="fu">col</span>(V))</span>
-<span id="cb34-3"><a href="#cb34-3"></a>X<span class="ot">&lt;-</span><span class="fu">model.matrix</span>(m)</span>
-<span id="cb34-4"><a href="#cb34-4"></a>V.inv<span class="ot">&lt;-</span><span class="fu">solve</span>(V)</span>
-<span id="cb34-5"><a href="#cb34-5"></a>beta<span class="ot">&lt;-</span><span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>V.inv<span class="sc">%*%</span>X)<span class="sc">%*%</span><span class="fu">t</span>(X)<span class="sc">%*%</span>V.inv<span class="sc">%*%</span>dt<span class="sc">$</span>y </span>
-<span id="cb34-6"><a href="#cb34-6"></a>beta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>V<span class="ot">&lt;-</span><span class="fu">diag</span>(<span class="dv">20</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>V<span class="ot">&lt;-</span>hat_rho<span class="sc">^</span><span class="fu">abs</span>(<span class="fu">row</span>(V)<span class="sc">-</span><span class="fu">col</span>(V))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">model.matrix</span>(m)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>V.inv<span class="ot">&lt;-</span><span class="fu">solve</span>(V)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>beta<span class="ot">&lt;-</span><span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>V.inv<span class="sc">%*%</span>X)<span class="sc">%*%</span><span class="fu">t</span>(X)<span class="sc">%*%</span>V.inv<span class="sc">%*%</span>dt<span class="sc">$</span>y </span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>beta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2176,20 +2176,20 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <div class="quarto-table-caption margin-caption">A matrix: 2 × 1 of type dbl</div></div>
 </div>
 <div id="222d1a87-63d8-4c0e-bdf5-2e5c92e5e32f" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt, <span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">abline</span>(m, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb35-3"><a href="#cb35-3"></a><span class="fu">abline</span>(beta[<span class="dv">1</span>], beta[<span class="dv">2</span>], <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"OLS"</span>, <span class="st">"GLS"</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">'steelblue'</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y<span class="sc">~</span>x, dt, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(beta[<span class="dv">1</span>], beta[<span class="dv">2</span>], <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="fu">c</span>(<span class="st">"OLS"</span>, <span class="st">"GLS"</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">'steelblue'</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="10. GLS실습_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 시간 변수를 더 추가해보자.</p>
 <div id="49d54652-004a-4f20-a8d8-8a8a6612f4c1" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>dt<span class="sc">$</span>t <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dt)</span>
-<span id="cb36-2"><a href="#cb36-2"></a></span>
-<span id="cb36-3"><a href="#cb36-3"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>t, dt) </span>
-<span id="cb36-4"><a href="#cb36-4"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>dt<span class="sc">$</span>t <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dt)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>t, dt) </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2212,7 +2212,7 @@ F-statistic: 184.8 on 1 and 18 DF,  p-value: 6.605e-11</code></pre>
 </div>
 </div>
 <div id="e8b65311-3f0e-40e8-9822-84e1668f0913" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:

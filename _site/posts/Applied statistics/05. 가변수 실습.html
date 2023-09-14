@@ -1635,7 +1635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#구간별-회귀분석" id="toc-구간별-회귀분석" class="nav-link" data-scroll-target="#구간별-회귀분석">구간별 회귀분석</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="05. 가변수 실습.out.ipynb" download="05. 가변수 실습.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -1679,21 +1679,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="가변수" class="level1 page-columns page-full">
 <h1>가변수</h1>
 <div id="643331f0-fa04-477d-a2d5-2b0e84a09b4d" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="example" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
 <div id="91429bd5-f226-42d3-873c-26ca5aaf59b7" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">26</span>,<span class="dv">21</span>,<span class="dv">30</span>,<span class="dv">22</span>,<span class="dv">1</span>,<span class="dv">12</span>,<span class="dv">19</span>,<span class="dv">4</span>,<span class="dv">16</span>,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>        <span class="dv">28</span>,<span class="dv">15</span>,<span class="dv">11</span>,<span class="dv">38</span>,<span class="dv">31</span>,<span class="dv">21</span>,<span class="dv">20</span>,<span class="dv">13</span>,<span class="dv">30</span>,<span class="dv">14</span>),</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">151</span>,<span class="dv">92</span>,<span class="dv">175</span>,<span class="dv">31</span>,<span class="dv">104</span>,<span class="dv">277</span>,<span class="dv">210</span>,<span class="dv">120</span>,<span class="dv">290</span>,<span class="dv">238</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>         <span class="dv">164</span>,<span class="dv">272</span>,<span class="dv">295</span>,<span class="dv">68</span>,<span class="dv">85</span>,<span class="dv">224</span>,<span class="dv">166</span>,<span class="dv">305</span>,<span class="dv">124</span>,<span class="dv">246</span>),</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">x2 =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">'M'</span>,<span class="st">'F'</span>), <span class="at">each=</span><span class="dv">10</span>)</span>
-<span id="cb2-7"><a href="#cb2-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">17</span>,<span class="dv">26</span>,<span class="dv">21</span>,<span class="dv">30</span>,<span class="dv">22</span>,<span class="dv">1</span>,<span class="dv">12</span>,<span class="dv">19</span>,<span class="dv">4</span>,<span class="dv">16</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="dv">28</span>,<span class="dv">15</span>,<span class="dv">11</span>,<span class="dv">38</span>,<span class="dv">31</span>,<span class="dv">21</span>,<span class="dv">20</span>,<span class="dv">13</span>,<span class="dv">30</span>,<span class="dv">14</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">151</span>,<span class="dv">92</span>,<span class="dv">175</span>,<span class="dv">31</span>,<span class="dv">104</span>,<span class="dv">277</span>,<span class="dv">210</span>,<span class="dv">120</span>,<span class="dv">290</span>,<span class="dv">238</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="dv">164</span>,<span class="dv">272</span>,<span class="dv">295</span>,<span class="dv">68</span>,<span class="dv">85</span>,<span class="dv">224</span>,<span class="dv">166</span>,<span class="dv">305</span>,<span class="dv">124</span>,<span class="dv">246</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">'M'</span>,<span class="st">'F'</span>), <span class="at">each=</span><span class="dv">10</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="60ef82f4-f7a0-4829-b7da-7a4e8097d5aa" class="cell page-columns page-full" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1755,8 +1755,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="모든-데이터-퉁으로" class="level3">
 <h3 class="anchored" data-anchor-id="모든-데이터-퉁으로">모든 데이터 퉁으로</h3>
 <div id="351fab50-f575-4ba6-90a4-fafc5b7c016d" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x1, dt)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">summary</span>(model_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x1, dt)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1783,11 +1783,11 @@ F-statistic: 44.58 on 1 and 18 DF,  p-value: 2.906e-06</code></pre>
 <li><p>MSE=5.124</p></li>
 </ul>
 <div id="3f5e053a-5d0a-4819-a8c7-a983dff37029" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(dt, <span class="fu">aes</span>(x1, y)) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_1)[<span class="dv">2</span>], </span>
-<span id="cb6-4"><a href="#cb6-4"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_1)[<span class="dv">1</span>], <span class="at">col=</span> <span class="st">'darkorange'</span>)<span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dt, <span class="fu">aes</span>(x1, y)) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_1)[<span class="dv">2</span>], </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_1)[<span class="dv">1</span>], <span class="at">col=</span> <span class="st">'darkorange'</span>)<span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="05. 가변수 실습_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
@@ -1809,7 +1809,7 @@ F-statistic: 44.58 on 1 and 18 DF,  p-value: 2.906e-06</code></pre>
 <li><p>즉, <span class="math inline">\(\beta_2\)</span>는 시험성적이 동일할 때 여자와 남자의 소요시간의 평균의 차이</p></li>
 </ul>
 <div id="fb021307-2938-4f03-af78-75e4d12dc067" class="cell page-columns page-full" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">contrasts</span>(<span class="fu">factor</span>(dt<span class="sc">$</span>x2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(<span class="fu">factor</span>(dt<span class="sc">$</span>x2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1837,24 +1837,24 @@ F-statistic: 44.58 on 1 and 18 DF,  p-value: 2.906e-06</code></pre>
 <li><p><span class="math inline">\(H_0: \beta_1=\beta_2=0\)</span></p></li>
 </ul>
 <div id="9b8a7d9b-e201-4943-be03-60e87e6d8b6c" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="do">################################</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># x2 = factor(rep(c('M','F'), each=10)) 로 입력한 경우 </span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#y = b0 + b1x1 + b2x2 </span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># x2 = 0,  F</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co"># x2 = 1,  M</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#E(y|M) : b0 + b1x1 + b2 = (b0 + b2) + b1x1</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#E(y|F) : b0 + b1x1</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co"># x2 = factor(rep(c(0,1), each=10))로 입력한 경우 </span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co"># y = b0 + b1x1 + b2x2 </span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co"># x2 = 0,  M</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co"># x2 = 1,  F</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#E(y|M) : b0 + b1x1</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#E(y|F) : b0 + b1x1+ b2 = = (b0 + b2) + b1x1</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a></span>
-<span id="cb8-16"><a href="#cb8-16"></a></span>
-<span id="cb8-17"><a href="#cb8-17"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x1<span class="sc">+</span>x2, dt)</span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="fu">summary</span>(model_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">################################</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># x2 = factor(rep(c('M','F'), each=10)) 로 입력한 경우 </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#y = b0 + b1x1 + b2x2 </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># x2 = 0,  F</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># x2 = 1,  M</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#E(y|M) : b0 + b1x1 + b2 = (b0 + b2) + b1x1</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#E(y|F) : b0 + b1x1</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># x2 = factor(rep(c(0,1), each=10))로 입력한 경우 </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># y = b0 + b1x1 + b2x2 </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># x2 = 0,  M</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># x2 = 1,  F</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#E(y|M) : b0 + b1x1</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#E(y|F) : b0 + b1x1+ b2 = = (b0 + b2) + b1x1</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x1<span class="sc">+</span>x2, dt)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -1885,15 +1885,15 @@ F-statistic: 75.72 on 2 and 17 DF,  p-value: 3.42e-09</code></pre>
 <li><p><span class="math inline">\(\beta_2=-7.933953\)</span> 값이 나오는데 강의록에는 F=1,M=0이여서 강의록과는 부호가 바뀐것.</p></li>
 </ul>
 <div id="f4d43de2-1791-4810-b81e-5e0d26eaa22f" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(dt, <span class="fu">aes</span>(x1, y, <span class="at">col=</span>x2)) <span class="sc">+</span> </span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_2)[<span class="dv">2</span>], </span>
-<span id="cb10-5"><a href="#cb10-5"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_2)[<span class="dv">1</span>], <span class="at">col=</span> <span class="st">'darkorange'</span>)<span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_2)[<span class="dv">2</span>], </span>
-<span id="cb10-7"><a href="#cb10-7"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_2)[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">coef</span>(model_2)[<span class="dv">3</span>], <span class="at">col=</span> <span class="st">'steelblue'</span>)<span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"성별"</span>)) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">scale_color_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"여자"</span>, <span class="st">"남자"</span>), <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"steelblue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dt, <span class="fu">aes</span>(x1, y, <span class="at">col=</span>x2)) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_2)[<span class="dv">2</span>], </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_2)[<span class="dv">1</span>], <span class="at">col=</span> <span class="st">'darkorange'</span>)<span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_2)[<span class="dv">2</span>], </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_2)[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">coef</span>(model_2)[<span class="dv">3</span>], <span class="at">col=</span> <span class="st">'steelblue'</span>)<span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"성별"</span>)) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"여자"</span>, <span class="st">"남자"</span>), <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"steelblue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="05. 가변수 실습_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
@@ -1902,7 +1902,7 @@ F-statistic: 75.72 on 2 and 17 DF,  p-value: 3.42e-09</code></pre>
 <li><span class="math inline">\(H_0:\beta_2=0 \ vs. \ H_1:\beta_2 \neq 0\)</span></li>
 </ul>
 <div id="96693bad-c7a9-4f1f-83d9-5d5bc82f4e4f" class="cell page-columns page-full" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">summary</span>(model_2)<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_2)<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -1951,7 +1951,7 @@ F-statistic: 75.72 on 2 and 17 DF,  p-value: 3.42e-09</code></pre>
 <li><p>t-value의 <code>-5.608213</code> 값을 제곱하면 아래 표의 F값 <code>31.45206</code> 이 나온다. <code>Pr(&gt;F)</code>값은 똑같음</p></li>
 </ul>
 <div id="ebc11d56-e523-416e-bfe5-1770ea4c02ec" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="sc">-</span><span class="fl">5.608213</span><span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">5.608213</span><span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 -31.452053053369
 </div>
@@ -1960,7 +1960,7 @@ F-statistic: 75.72 on 2 and 17 DF,  p-value: 3.42e-09</code></pre>
 <li>자유도가 1개일때 t-value와 F검정의 값은 동일하다</li>
 </ul>
 <div id="d4166ba2-aace-4da3-9f2c-0d9ec8333452" class="cell page-columns page-full" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">anova</span>(model_1, model_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_1, model_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2021,9 +2021,9 @@ F-statistic: 75.72 on 2 and 17 DF,  p-value: 3.42e-09</code></pre>
 <p><span class="math inline">\(E(y|F): \beta_0 + \beta_1 x_1\)</span></p>
 <p><span class="math inline">\(E(y|M): \beta_0 + \beta_1x_1 + \beta_2 + \beta_3 x_1 = (\beta_0+\beta_2) + (\beta_1+\beta_3)x_1\)</span></p>
 <div id="e7a9df1d-a5e4-48f9-a5d3-d9e85f541e6d" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>model_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x1<span class="sc">*</span>x2, dt) <span class="co">#교호작용 보고 싶을 떈 x1*x2 곱하기</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co"># 혹은 lm(y~x1+x2+x1:x2,dt)</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">summary</span>(model_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x1<span class="sc">*</span>x2, dt) <span class="co">#교호작용 보고 싶을 떈 x1*x2 곱하기</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 혹은 lm(y~x1+x2+x1:x2,dt)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2053,20 +2053,20 @@ F-statistic: 47.56 on 3 and 16 DF,  p-value: 3.405e-08</code></pre>
 <li><p><span class="math inline">\(H_0: \beta_3=0 \ vs. \ H_1:\beta_3 \neq 0\)</span>에서 <span class="math inline">\(H_0\)</span>기각 못함</p></li>
 </ul>
 <div id="a1d2033f-6838-4a60-a7ac-11df8f12557e" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="do">## y = b0 + b1x1 + b2x2 + b3x1x2</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="do">## M : x2=0 =&gt; E(y|M) = b0+b1x1</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="do">## F : x2=1 =&gt; E(y|F) = b0 + b1x1 + b2 + b3x1 </span></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="do">##                    = (b0+b2) + (b1+b3)x1</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="fu">ggplot</span>(dt, <span class="fu">aes</span>(x1, y, <span class="at">col=</span>x2)) <span class="sc">+</span> </span>
-<span id="cb16-7"><a href="#cb16-7"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb16-8"><a href="#cb16-8"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_3)[<span class="dv">2</span>], </span>
-<span id="cb16-10"><a href="#cb16-10"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_3)[<span class="dv">1</span>], <span class="at">col=</span> <span class="st">'darkorange'</span>)<span class="sc">+</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_3)[<span class="dv">2</span>]<span class="sc">+</span><span class="fu">coef</span>(model_3)[<span class="dv">4</span>], </span>
-<span id="cb16-12"><a href="#cb16-12"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_3)[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">coef</span>(model_3)[<span class="dv">3</span>], <span class="at">col=</span> <span class="st">'steelblue'</span>)<span class="sc">+</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a>  <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"성별"</span>)) <span class="sc">+</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a>  <span class="fu">scale_color_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"여자"</span>, <span class="st">"남자"</span>), <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"steelblue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## y = b0 + b1x1 + b2x2 + b3x1x2</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">## M : x2=0 =&gt; E(y|M) = b0+b1x1</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">## F : x2=1 =&gt; E(y|F) = b0 + b1x1 + b2 + b3x1 </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">##                    = (b0+b2) + (b1+b3)x1</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dt, <span class="fu">aes</span>(x1, y, <span class="at">col=</span>x2)) <span class="sc">+</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_3)[<span class="dv">2</span>], </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_3)[<span class="dv">1</span>], <span class="at">col=</span> <span class="st">'darkorange'</span>)<span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(model_3)[<span class="dv">2</span>]<span class="sc">+</span><span class="fu">coef</span>(model_3)[<span class="dv">4</span>], </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(model_3)[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">coef</span>(model_3)[<span class="dv">3</span>], <span class="at">col=</span> <span class="st">'steelblue'</span>)<span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"성별"</span>)) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"여자"</span>, <span class="st">"남자"</span>), <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"steelblue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="05. 가변수 실습_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
@@ -2075,7 +2075,7 @@ F-statistic: 47.56 on 3 and 16 DF,  p-value: 3.405e-08</code></pre>
 <li><span class="math inline">\(H_0: \beta_3=0 \ vs. \ H_1:\beta_3 \neq 0\)</span></li>
 </ul>
 <div id="42458737-a979-4b10-9dad-55ac4700ce09" class="cell page-columns page-full" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">summary</span>(model_3)<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_3)<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2122,7 +2122,7 @@ F-statistic: 47.56 on 3 and 16 DF,  p-value: 3.405e-08</code></pre>
 <div class="quarto-table-caption margin-caption">A matrix: 4 × 4 of type dbl</div></div>
 </div>
 <div id="cf7e91d4-83cf-46c2-bb85-f5ed956778ea" class="cell page-columns page-full" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">anova</span>(model_2, model_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_2, model_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2172,7 +2172,7 @@ F-statistic: 47.56 on 3 and 16 DF,  p-value: 3.405e-08</code></pre>
 <p><span class="math inline">\(H_0: \beta_2=\beta_3=0 \ vs. \ H_1: not H_0\)</span> 에서</p>
 <p>RM: model_1 (x1), FM: model_3 (x1*x2) 아래표 보자</p>
 <div id="020eb74f-3f5a-4004-b760-22f260b4429b" class="cell page-columns page-full" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">anova</span>(model_1, model_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_1, model_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2226,12 +2226,12 @@ F-statistic: 47.56 on 3 and 16 DF,  p-value: 3.405e-08</code></pre>
 <section id="가변수가-아닌-one-hot-encodeing" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="가변수가-아닌-one-hot-encodeing">가변수가 아닌 one-hot encodeing</h3>
 <div id="6d5818d1-a856-4277-b7c3-5450d1e5bba1" class="cell page-columns page-full" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y=</span>dt<span class="sc">$</span>y,</span>
-<span id="cb20-2"><a href="#cb20-2"></a>                  <span class="at">x1=</span>dt<span class="sc">$</span>x1,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>                  <span class="at">x2=</span><span class="fu">as.numeric</span>(dt<span class="sc">$</span>x2<span class="sc">==</span><span class="st">'M'</span>),</span>
-<span id="cb20-4"><a href="#cb20-4"></a>                  <span class="at">x3=</span><span class="fu">as.numeric</span>(dt<span class="sc">$</span>x2<span class="sc">==</span><span class="st">'F'</span>))</span>
-<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">head</span>(dt2)</span>
-<span id="cb20-6"><a href="#cb20-6"></a>                                    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y=</span>dt<span class="sc">$</span>y,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">x1=</span>dt<span class="sc">$</span>x1,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">x2=</span><span class="fu">as.numeric</span>(dt<span class="sc">$</span>x2<span class="sc">==</span><span class="st">'M'</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">x3=</span><span class="fu">as.numeric</span>(dt<span class="sc">$</span>x2<span class="sc">==</span><span class="st">'F'</span>))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dt2)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                                    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2299,8 +2299,8 @@ F-statistic: 47.56 on 3 and 16 DF,  p-value: 3.405e-08</code></pre>
 <div class="quarto-table-caption margin-caption">A data.frame: 6 × 4</div></div>
 </div>
 <div id="b13219e9-f3f8-4449-beba-72f7f2b7de0e" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>model_4 <span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>., dt2)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">summary</span>(model_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model_4 <span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>., dt2)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2331,8 +2331,8 @@ F-statistic: 75.72 on 2 and 17 DF,  p-value: 3.42e-09</code></pre>
 <li><p>아래 model_5는 절편이 없는 모델을 만들어서 돌려보자</p></li>
 </ul>
 <div id="55c3b725-a2cb-4eac-a04a-cd243791832c" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>model_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>x1<span class="sc">+</span>x2<span class="sc">+</span>x3,dt2)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">summary</span>(model_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>model_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>x1<span class="sc">+</span>x2<span class="sc">+</span>x3,dt2)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2369,7 +2369,7 @@ F-statistic:   309 on 3 and 17 DF,  p-value: 5.047e-15</code></pre>
 <section id="carseats-예시" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="carseats-예시">Carseats 예시</h2>
 <div id="4f7a9236-49ad-458d-ae06-847590360eeb" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">install.packages</span>(<span class="st">"ISLR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ISLR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Installing package into ‘/home/coco/R/x86_64-pc-linux-gnu-library/4.2’
 (as ‘lib’ is unspecified)
@@ -2377,11 +2377,11 @@ F-statistic:   309 on 3 and 17 DF,  p-value: 5.047e-15</code></pre>
 </div>
 </div>
 <div id="50dec395-7f95-439b-94e2-5cf5efae6b1b" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(ISLR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ff394da0-5f29-416a-af21-f94a87793173" class="cell page-columns page-full" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">head</span>(Carseats)</span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">dim</span>(Carseats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Carseats)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Carseats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2528,9 +2528,9 @@ F-statistic:   309 on 3 and 17 DF,  p-value: 5.047e-15</code></pre>
 <li><p><span class="math inline">\(E(y|Good) = \beta_0 + \beta_1x_1 + \beta_2 = (\beta_0+\beta_2) + \beta_1x_1\)</span></p></li>
 </ul>
 <div id="23fa5639-9103-41ed-938b-6e2bb5e60724" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(fit<span class="ot">&lt;-</span><span class="fu">lm</span>(Sales<span class="sc">~</span>Price<span class="sc">+</span>ShelveLoc, </span>
-<span id="cb29-2"><a href="#cb29-2"></a>                  <span class="at">data=</span>Carseats))</span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">summary</span>(fit)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(fit<span class="ot">&lt;-</span><span class="fu">lm</span>(Sales<span class="sc">~</span>Price<span class="sc">+</span>ShelveLoc, </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span>Carseats))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2558,7 +2558,7 @@ F-statistic: 156.6 on 3 and 396 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>교호작용은 보지 않겠따.</li>
 </ul>
 <div id="fcab10be-f51c-4615-87df-df4e16b5b54b" class="cell page-columns page-full" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">contrasts</span>(Carseats<span class="sc">$</span>ShelveLoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(Carseats<span class="sc">$</span>ShelveLoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2590,18 +2590,18 @@ F-statistic: 156.6 on 3 and 396 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="quarto-table-caption margin-caption">A matrix: 3 × 2 of type dbl</div></div>
 </div>
 <div id="a5c62b86-7343-4283-ad5e-e7db789e8ea9" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(Price, Sales, <span class="at">col=</span>ShelveLoc)) <span class="sc">+</span> </span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb32-4"><a href="#cb32-4"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(fit)[<span class="dv">2</span>], </span>
-<span id="cb32-5"><a href="#cb32-5"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(fit)[<span class="dv">1</span>], <span class="at">col=</span> <span class="st">'darkorange'</span>)<span class="sc">+</span></span>
-<span id="cb32-6"><a href="#cb32-6"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(fit)[<span class="dv">2</span>], </span>
-<span id="cb32-7"><a href="#cb32-7"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(fit)[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">coef</span>(fit)[<span class="dv">3</span>], <span class="at">col=</span> <span class="st">'steelblue'</span>)<span class="sc">+</span></span>
-<span id="cb32-8"><a href="#cb32-8"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(fit)[<span class="dv">2</span>], </span>
-<span id="cb32-9"><a href="#cb32-9"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(fit)[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">coef</span>(fit)[<span class="dv">4</span>], <span class="at">col=</span> <span class="st">'darkgreen'</span>)<span class="sc">+</span></span>
-<span id="cb32-10"><a href="#cb32-10"></a>  <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"ShelveLoc"</span>)) <span class="sc">+</span></span>
-<span id="cb32-11"><a href="#cb32-11"></a>  <span class="fu">scale_color_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bad"</span>, <span class="st">"Good"</span>, <span class="st">"Medium"</span>), </span>
-<span id="cb32-12"><a href="#cb32-12"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"steelblue"</span>,<span class="st">"darkgreen"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(Price, Sales, <span class="at">col=</span>ShelveLoc)) <span class="sc">+</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(fit)[<span class="dv">2</span>], </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(fit)[<span class="dv">1</span>], <span class="at">col=</span> <span class="st">'darkorange'</span>)<span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(fit)[<span class="dv">2</span>], </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(fit)[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">coef</span>(fit)[<span class="dv">3</span>], <span class="at">col=</span> <span class="st">'steelblue'</span>)<span class="sc">+</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fu">coef</span>(fit)[<span class="dv">2</span>], </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> <span class="fu">coef</span>(fit)[<span class="dv">1</span>]<span class="sc">+</span><span class="fu">coef</span>(fit)[<span class="dv">4</span>], <span class="at">col=</span> <span class="st">'darkgreen'</span>)<span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"ShelveLoc"</span>)) <span class="sc">+</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bad"</span>, <span class="st">"Good"</span>, <span class="st">"Medium"</span>), </span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"steelblue"</span>,<span class="st">"darkgreen"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="05. 가변수 실습_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
 </div>
@@ -2613,7 +2613,7 @@ F-statistic: 156.6 on 3 and 396 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><p><span class="math inline">\(x_4 = 1\)</span>, if US=yes, <span class="math inline">\(x_4=0\)</span>, if US=no</p></li>
 </ul>
 <div id="a6e39cce-5406-4592-8d78-16cfdfb4a8c0" class="cell page-columns page-full" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">contrasts</span>(Carseats<span class="sc">$</span>US)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(Carseats<span class="sc">$</span>US)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display page-columns page-full">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
 
@@ -2637,9 +2637,9 @@ F-statistic: 156.6 on 3 and 396 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="quarto-table-caption margin-caption">A matrix: 2 × 1 of type dbl</div></div>
 </div>
 <div id="c4fec80d-c44b-4d29-8f73-4530acb4568d" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fit<span class="ot">&lt;-</span><span class="fu">lm</span>(Sales<span class="sc">~</span>Price<span class="sc">+</span>ShelveLoc<span class="sc">+</span>US, </span>
-<span id="cb34-2"><a href="#cb34-2"></a>                  <span class="at">data=</span>Carseats))</span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">summary</span>(fit1)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fit<span class="ot">&lt;-</span><span class="fu">lm</span>(Sales<span class="sc">~</span>Price<span class="sc">+</span>ShelveLoc<span class="sc">+</span>US, </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data=</span>Carseats))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2668,30 +2668,30 @@ F-statistic: 131.9 on 4 and 395 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="구간별-회귀분석" class="level2">
 <h2 class="anchored" data-anchor-id="구간별-회귀분석">구간별 회귀분석</h2>
 <div id="936425ec-3e24-4bb6-8d44-71bf08062b16" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb36-2"><a href="#cb36-2"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">377</span>,<span class="dv">249</span>,<span class="dv">355</span>,<span class="dv">475</span>,<span class="dv">139</span>,<span class="dv">452</span>,<span class="dv">440</span>,<span class="dv">257</span>),</span>
-<span id="cb36-3"><a href="#cb36-3"></a>  <span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">480</span>,<span class="dv">720</span>,<span class="dv">570</span>,<span class="dv">300</span>,<span class="dv">800</span>,<span class="dv">400</span>,<span class="dv">340</span>,<span class="dv">650</span>)</span>
-<span id="cb36-4"><a href="#cb36-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">377</span>,<span class="dv">249</span>,<span class="dv">355</span>,<span class="dv">475</span>,<span class="dv">139</span>,<span class="dv">452</span>,<span class="dv">440</span>,<span class="dv">257</span>),</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">480</span>,<span class="dv">720</span>,<span class="dv">570</span>,<span class="dv">300</span>,<span class="dv">800</span>,<span class="dv">400</span>,<span class="dv">340</span>,<span class="dv">650</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="503ee25f-e84a-440e-a011-66f5dad160eb" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dt, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">'steelblue'</span>) <span class="sc">+</span> </span>
-<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dt, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">'steelblue'</span>) <span class="sc">+</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="05. 가변수 실습_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="a3203e6b-6965-4598-943d-6bb1f3bb3b69" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2"></a></span>
-<span id="cb38-3"><a href="#cb38-3"></a><span class="do">### threshould = 500</span></span>
-<span id="cb38-4"><a href="#cb38-4"></a><span class="do">## x2(x1-xw)=x2(x1-500) = (x1 - 500)+ := x2</span></span>
-<span id="cb38-5"><a href="#cb38-5"></a></span>
-<span id="cb38-6"><a href="#cb38-6"></a>dt<span class="sc">$</span>x2 <span class="ot">=</span> <span class="fu">sapply</span>(dt<span class="sc">$</span>x1, <span class="cf">function</span>(x) <span class="fu">max</span>(<span class="dv">0</span>, x<span class="dv">-500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="do">### threshould = 500</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="do">## x2(x1-xw)=x2(x1-500) = (x1 - 500)+ := x2</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>dt<span class="sc">$</span>x2 <span class="ot">=</span> <span class="fu">sapply</span>(dt<span class="sc">$</span>x1, <span class="cf">function</span>(x) <span class="fu">max</span>(<span class="dv">0</span>, x<span class="dv">-500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="f5e0e1f0-71da-4488-aa81-e3dccc1ef0a9" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1<span class="sc">+</span>x2, dt)</span>
-<span id="cb39-2"><a href="#cb39-2"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1<span class="sc">+</span>x2, dt)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>
 Call:
@@ -2715,18 +2715,18 @@ F-statistic: 79.06 on 2 and 5 DF,  p-value: 0.0001645</code></pre>
 </div>
 </div>
 <div id="5180f104-36a0-4f86-b11d-d90c4a3ff412" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a></span>
-<span id="cb41-2"><a href="#cb41-2"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dt[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="fu">c</span>(<span class="dv">500</span>,<span class="dv">0</span>))</span>
-<span id="cb41-3"><a href="#cb41-3"></a>dt2<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> dt2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dt[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="fu">c</span>(<span class="dv">500</span>,<span class="dv">0</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>dt2<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> dt2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="6f0a6cd8-6934-4ca2-8e84-08f25357cd02" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># this is the predicted line of multiple linear regression</span></span>
-<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dt, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb42-3"><a href="#cb42-3"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">'steelblue'</span>) <span class="sc">+</span></span>
-<span id="cb42-4"><a href="#cb42-4"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">'darkorange'</span>,</span>
-<span id="cb42-5"><a href="#cb42-5"></a>            <span class="at">data =</span> dt2, <span class="fu">aes</span>(<span class="at">x=</span>x1, <span class="at">y=</span>y))<span class="sc">+</span></span>
-<span id="cb42-6"><a href="#cb42-6"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">500</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">'red'</span>)<span class="sc">+</span></span>
-<span id="cb42-7"><a href="#cb42-7"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the predicted line of multiple linear regression</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dt, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">'steelblue'</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">'darkorange'</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> dt2, <span class="fu">aes</span>(<span class="at">x=</span>x1, <span class="at">y=</span>y))<span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">500</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">'red'</span>)<span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="05. 가변수 실습_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
 </div>

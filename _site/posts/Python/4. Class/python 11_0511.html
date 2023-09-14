@@ -1626,7 +1626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#숙제" id="toc-숙제" class="nav-link" data-scroll-target="#숙제">숙제</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="python 11_0511.out.ipynb" download="python 11_0511.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1665,7 +1665,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <div id="2c0213be-48b5-4960-8086-a9d1dfa7d7c3" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">!</span>pip install pillow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pillow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Collecting pillow
   Downloading Pillow-9.4.0-cp37-cp37m-manylinux_2_28_x86_64.whl (3.4 MB)
@@ -1675,35 +1675,35 @@ Successfully installed pillow-9.4.0</code></pre>
 </div>
 </div>
 <div id="4cd87e57-588b-443f-a491-2f3a28a22ffc" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> requests</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> PIL <span class="im">import</span> Image </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 예제1</p>
 <div id="f7741329-b67c-43e4-af24-6416cc68d60f" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>url<span class="op">=</span> <span class="st">'https://stat.jbnu.ac.kr/sites/stat/images/intro_about_02.jpg'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span> <span class="st">'https://stat.jbnu.ac.kr/sites/stat/images/intro_about_02.jpg'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="1d15ee9b-121e-4b44-bc4d-caafb7df6fea" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(url).content))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(url).content))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <p><img src="python 11_0511_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="bef10088-a4d0-4e79-a8e8-c8abe2fd6ea1" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 이미지 데이터를 분류 작업할때..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 이미지 데이터를 분류 작업할때..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>-</code> 예제2</p>
 <div id="6fa85235-490c-44cb-902b-39bc917e5847" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>url1 <span class="op">=</span> <span class="st">'https://github.com/guebin/IP2022/blob/master/_notebooks/2022-05-07-stop1.jpeg?raw=true'</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>url2 <span class="op">=</span> <span class="st">'https://github.com/guebin/IP2022/blob/master/_notebooks/2022-05-07-stop2.png?raw=true'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>url1 <span class="op">=</span> <span class="st">'https://github.com/guebin/IP2022/blob/master/_notebooks/2022-05-07-stop1.jpeg?raw=true'</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>url2 <span class="op">=</span> <span class="st">'https://github.com/guebin/IP2022/blob/master/_notebooks/2022-05-07-stop2.png?raw=true'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="1d0794fb-9ebc-486c-9994-fb5aa05f668a" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(url1).content))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(url1).content))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <p><img src="python 11_0511_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div id="649e443e-e5b4-4ece-bc6a-c1a6aef8b7a9" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(url2).content))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(url2).content))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <p><img src="python 11_0511_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
@@ -1712,14 +1712,14 @@ Successfully installed pillow-9.4.0</code></pre>
 <h2 class="anchored" data-anchor-id="클래스-사용법">클래스 사용법</h2>
 <p><code>-</code> 클래스를 선언</p>
 <div id="6cd775bb-d45c-459a-8c01-5ff9327ceb0f" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">class</span> STOOOP:</span>
-<span id="cb10-2"><a href="#cb10-2"></a>    title<span class="op">=</span><span class="st">"학교폭력"</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>    url<span class="op">=</span> url1</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    end<span class="op">=</span><span class="st">"멈춰~~~~"</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>    <span class="kw">def</span> stop(<span class="va">self</span>):</span>
-<span id="cb10-6"><a href="#cb10-6"></a>        <span class="bu">print</span>(<span class="va">self</span>.title)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>        display(Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(<span class="va">self</span>.url).content)))</span>
-<span id="cb10-8"><a href="#cb10-8"></a>        <span class="bu">print</span>(<span class="va">self</span>.end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> STOOOP:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"학교폭력"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    url<span class="op">=</span> url1</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span><span class="st">"멈춰~~~~"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> stop(<span class="va">self</span>):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.title)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        display(Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(<span class="va">self</span>.url).content)))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>규칙1: 메소드(=class안에 정의된 함수)의 첫번째 인자는 무조건 self</li>
@@ -1732,10 +1732,10 @@ Successfully installed pillow-9.4.0</code></pre>
 <p><code>-</code> 클래스 사용에서</p>
 <p><code>-</code> (예시1) STOOOP 클래스 -&gt; school instance를 만드는 과정</p>
 <div id="6520de1c-f06c-4067-9292-322f41aefb8b" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>school<span class="op">=</span>STOOOP()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>school<span class="op">=</span>STOOOP()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="dc6b006c-41a8-4af0-82d7-55b41969b458" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>school.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>school.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>학교폭력
 멈춰~~~~</code></pre>
@@ -1746,13 +1746,13 @@ Successfully installed pillow-9.4.0</code></pre>
 </div>
 <p><code>-</code> (예시2) STOOOP 클래스 -&gt; kospi 인스턴스를 만듬</p>
 <div id="cc4bb44f-997c-4231-a4d4-383b7f717d31" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>kospi<span class="op">=</span>STOOOP()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>kospi<span class="op">=</span>STOOOP()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="670c1512-ead6-4c5d-b3c2-9198891c3500" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>kospi.title<span class="op">=</span><span class="st">"KOSPI 하락"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>kospi.title<span class="op">=</span><span class="st">"KOSPI 하락"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="523ee3e5-014e-48f1-8bae-502b7a2a982a" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>kospi.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>kospi.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>KOSPI 하락
 멈춰~~~~</code></pre>
@@ -1765,8 +1765,8 @@ Successfully installed pillow-9.4.0</code></pre>
 <h3 class="anchored" data-anchor-id="클래스의-성능">클래스의 성능</h3>
 <p><code>-</code> 성능1: 클래스에서 인스터스를 생성</p>
 <div id="dda394df-6ea5-49a5-9910-f7777b4d40fb" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>school <span class="op">=</span> STOOOP()</span>
-<span id="cb18-2"><a href="#cb18-2"></a>kospi <span class="op">=</span> STOOOP()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>school <span class="op">=</span> STOOOP()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>kospi <span class="op">=</span> STOOOP()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>함수의 사용법과 비슷하다.</li>
@@ -1775,29 +1775,29 @@ Successfully installed pillow-9.4.0</code></pre>
 </ul>
 <p><code>-</code> 성능2: 클래스에서 만들어진 인스턴스는 그 내부에 변수를 따로 가지고 있는데, 그것을 독립적으로 출력 혹은 변경할 수 있다.</p>
 <div id="239c33e6-f374-45e6-b5fd-99199b51ce81" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>school.title <span class="co">#출ㄺ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>school.title <span class="co">#출ㄺ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>'학교폭력'</code></pre>
 </div>
 </div>
 <div id="94129e93-e0ec-48f1-9e19-c3ed36bd1aac" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>kospi.title <span class="co">#출력</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>kospi.title <span class="co">#출력</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>'학교폭력'</code></pre>
 </div>
 </div>
 <div id="435ddb1b-5b52-4871-9243-23dd316df788" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>kospi.title <span class="op">=</span> <span class="st">'코스피하락'</span> <span class="co">#변경</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>kospi.title <span class="op">=</span> <span class="st">'코스피하락'</span> <span class="co">#변경</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="66017aea-fb82-433a-af90-61d588c7114c" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>kospi.title</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>kospi.title</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>'코스피하락'</code></pre>
 </div>
 </div>
 <p><code>-</code> 성능3: 클래스에서 만들어진 인스턴스는 그 내부에 자체적인 함수를 가지는데, 이것을 사용할 수 있다.</p>
 <div id="05a010ae-d443-4761-9a86-550a884555ea" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>school.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>school.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>학교폭력
 멈춰~~~~</code></pre>
@@ -1807,7 +1807,7 @@ Successfully installed pillow-9.4.0</code></pre>
 </div>
 </div>
 <div id="4126280a-0611-4527-8669-a0c964011f21" class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>kospi.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>kospi.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>코스피하락
 멈춰~~~~</code></pre>
@@ -1824,22 +1824,22 @@ Successfully installed pillow-9.4.0</code></pre>
 <p><code>-</code> 클래스에는 show()라는 메소드가 있는데, a의 값을 출력하는 기능을 한다.</p>
 <p>(풀이)</p>
 <div id="826fc16f-b7e9-4656-ad65-ae1f64ac4964" class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">class</span> Klass1:</span>
-<span id="cb30-2"><a href="#cb30-2"></a>    a <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
-<span id="cb30-4"><a href="#cb30-4"></a>        <span class="bu">print</span>(<span class="va">self</span>.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Klass1:</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="8b1c2489-0e41-4918-aa49-4f9af44002b4" class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>ex1<span class="op">=</span>Klass1()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ex1<span class="op">=</span>Klass1()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="31cf4ff9-909e-44d8-95e4-6eaa44671834" class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>ex1.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ex1.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>True</code></pre>
 </div>
 </div>
 <div id="bef67290-d03b-45d5-a507-97905ab3f73b" class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>ex1.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ex1.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
@@ -1849,35 +1849,35 @@ Successfully installed pillow-9.4.0</code></pre>
 <p><code>-</code> 클래스에는 up()라는 메소드가 있는데, a의 값을 1증가시키는 기능을 한다.</p>
 <p>(풀이)</p>
 <div id="ffe90ead-f32f-46ea-a336-0fdfa74ab4ee" class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">class</span> Klass2:</span>
-<span id="cb36-2"><a href="#cb36-2"></a>    a<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a>    <span class="kw">def</span> up(<span class="va">self</span>):</span>
-<span id="cb36-4"><a href="#cb36-4"></a>        <span class="va">self</span>.a <span class="op">=</span> <span class="va">self</span>.a <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Klass2:</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    a<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> up(<span class="va">self</span>):</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a <span class="op">=</span> <span class="va">self</span>.a <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="811fa722-e5f5-4a0f-a71c-c393f8fab05e" class="cell" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>ex2<span class="op">=</span>Klass2()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ex2<span class="op">=</span>Klass2()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="2fbcf0fa-9478-4e4e-8baf-b48522d88176" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>ex2.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ex2.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>1</code></pre>
 </div>
 </div>
 <div id="ac12bb03-10d4-49ab-8489-d8e73efad37a" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>ex2.up()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ex2.up()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="223a293c-1e43-4bea-be3d-415698b8058a" class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>ex2.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ex2.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>2</code></pre>
 </div>
 </div>
 <div id="45fc28f0-5fba-47f9-a997-7d383ab1f7e6" class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>ex2.up()</span>
-<span id="cb43-2"><a href="#cb43-2"></a>ex2.up()</span>
-<span id="cb43-3"><a href="#cb43-3"></a>ex2.up()</span>
-<span id="cb43-4"><a href="#cb43-4"></a>ex2.up()</span>
-<span id="cb43-5"><a href="#cb43-5"></a>ex2.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ex2.up()</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>ex2.up()</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>ex2.up()</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>ex2.up()</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>ex2.a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="67">
 <pre><code>6</code></pre>
 </div>
@@ -1887,36 +1887,36 @@ Successfully installed pillow-9.4.0</code></pre>
 <p><code>-</code> 클래스에는 up(),down(), show()라는 메소드가 있는데, 각각은 a의 값을 1증가시키고, 1감소시키고, a의 값을 출력하는 기능을 한다.</p>
 <p>(풀이)</p>
 <div id="6a6bb538-70fc-4d24-b9c3-189246bae165" class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">class</span> Klass3:</span>
-<span id="cb45-2"><a href="#cb45-2"></a>    a<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb45-3"><a href="#cb45-3"></a>    <span class="kw">def</span> up(<span class="va">self</span>):</span>
-<span id="cb45-4"><a href="#cb45-4"></a>        <span class="va">self</span>.a<span class="op">=</span><span class="va">self</span>.a<span class="op">+</span><span class="dv">1</span></span>
-<span id="cb45-5"><a href="#cb45-5"></a>        </span>
-<span id="cb45-6"><a href="#cb45-6"></a>    <span class="kw">def</span> down(<span class="va">self</span>):</span>
-<span id="cb45-7"><a href="#cb45-7"></a>        <span class="va">self</span>.a<span class="op">=</span><span class="va">self</span>.a<span class="op">-</span><span class="dv">1</span></span>
-<span id="cb45-8"><a href="#cb45-8"></a>        </span>
-<span id="cb45-9"><a href="#cb45-9"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
-<span id="cb45-10"><a href="#cb45-10"></a>        <span class="bu">print</span>(<span class="va">self</span>.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Klass3:</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    a<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> up(<span class="va">self</span>):</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a<span class="op">=</span><span class="va">self</span>.a<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> down(<span class="va">self</span>):</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a<span class="op">=</span><span class="va">self</span>.a<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="3f7ec09a-b285-4658-994d-ffbcd326c0e8" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>ex3<span class="op">=</span>Klass3()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>ex3<span class="op">=</span>Klass3()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d9d11273-2fd5-4b70-9694-c2ce2906bfa8" class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>ex3.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ex3.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0</code></pre>
 </div>
 </div>
 <div id="7030af6f-fd22-493a-912f-64c07d4f136b" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>ex3.up()</span>
-<span id="cb49-2"><a href="#cb49-2"></a>ex3.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ex3.up()</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>ex3.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1</code></pre>
 </div>
 </div>
 <div id="32206c70-4e0c-4076-98c8-a8db4a505926" class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>ex3.down()</span>
-<span id="cb51-2"><a href="#cb51-2"></a>ex3.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>ex3.down()</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>ex3.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0</code></pre>
 </div>
@@ -1926,26 +1926,26 @@ Successfully installed pillow-9.4.0</code></pre>
 <p>url1:’https://github.com/guebin/IP2022/blob/master/_notebooks/2022-05-07-stop1.jpeg?raw=true’</p>
 <p><code>-</code> 클래스에는 show()라는 메소드를 가지는데, 아래와 같은 기능을 한다. - 기능1: url의 그림을 출력 - 기능2: ‘당신은 이 그림을 <span class="math inline">\(n\)</span>번 보았습니다.’ 출력.<span class="math inline">\(n\)</span>은 그림을 본 횟수</p>
 <div id="e0d9a198-3dc9-42ec-925d-d54eeb5c4a0c" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>url1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>url1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
 <pre><code>'https://github.com/guebin/IP2022/blob/master/_notebooks/2022-05-07-stop1.jpeg?raw=true'</code></pre>
 </div>
 </div>
 <p>(풀이)</p>
 <div id="d13c0142-da87-4157-8db6-951c6ee8ce83" class="cell" data-execution_count="102">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a><span class="kw">class</span> Klass4:</span>
-<span id="cb55-2"><a href="#cb55-2"></a>    n <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb55-3"><a href="#cb55-3"></a>    url <span class="op">=</span> <span class="st">'https://github.com/guebin/IP2022/blob/master/_notebooks/2022-05-07-stop1.jpeg?raw=true'</span></span>
-<span id="cb55-4"><a href="#cb55-4"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
-<span id="cb55-5"><a href="#cb55-5"></a>        display(Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(<span class="va">self</span>.url).content)))</span>
-<span id="cb55-6"><a href="#cb55-6"></a>        <span class="bu">print</span>(<span class="st">"당신은 이 이미지를 </span><span class="sc">{}</span><span class="st">번 보았습니다"</span>.<span class="bu">format</span>(<span class="va">self</span>.n))</span>
-<span id="cb55-7"><a href="#cb55-7"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="va">self</span>.n<span class="op">+</span><span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Klass4:</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="st">'https://github.com/guebin/IP2022/blob/master/_notebooks/2022-05-07-stop1.jpeg?raw=true'</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>        display(Image.<span class="bu">open</span>(Image.io.BytesIO(requests.get(<span class="va">self</span>.url).content)))</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"당신은 이 이미지를 </span><span class="sc">{}</span><span class="st">번 보았습니다"</span>.<span class="bu">format</span>(<span class="va">self</span>.n))</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="va">self</span>.n<span class="op">+</span><span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="11a534f0-d474-4c65-8ffb-dca449c3793c" class="cell" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>a<span class="op">=</span>Klass4()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>Klass4()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="38fa73f8-4bd5-43e8-819c-2e122581337f" class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>a.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>a.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="python 11_0511_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
@@ -1954,11 +1954,11 @@ Successfully installed pillow-9.4.0</code></pre>
 </div>
 </div>
 <div id="bca3246c-f193-4607-ae06-0afb5cdbfe6a" class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>b<span class="op">=</span>Klass4()</span>
-<span id="cb59-2"><a href="#cb59-2"></a>b.url<span class="op">=</span>url2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span>Klass4()</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>b.url<span class="op">=</span>url2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="9b099d9e-2b1d-42bc-937c-7db3fd059134" class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>b.show() <span class="co"># a와 독립적으로..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>b.show() <span class="co"># a와 독립적으로..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="python 11_0511_files/figure-html/cell-43-output-1.png" class="img-fluid"></p>
 </div>
@@ -1970,25 +1970,25 @@ Successfully installed pillow-9.4.0</code></pre>
 <section id="숙제" class="level3">
 <h3 class="anchored" data-anchor-id="숙제">숙제</h3>
 <div id="ef4e1425-44a8-438e-a6e7-e83db32723ac" class="cell" data-execution_count="112">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="141bec1e-dcb6-4fb7-a95d-d9b5fcdd5b73" class="cell" data-execution_count="113">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a>np.random.choice([<span class="st">"가위"</span>,<span class="st">"바위"</span>,<span class="st">"보"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>np.random.choice([<span class="st">"가위"</span>,<span class="st">"바위"</span>,<span class="st">"보"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 <pre><code>'보'</code></pre>
 </div>
 </div>
 <div id="917fca62-082f-4da5-90db-fe1cb6df650d" class="cell" data-execution_count="118">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="kw">class</span> homework:</span>
-<span id="cb65-2"><a href="#cb65-2"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
-<span id="cb65-3"><a href="#cb65-3"></a>        <span class="va">self</span>.work<span class="op">=</span>np.random.choice([<span class="st">"가위"</span>,<span class="st">"바위"</span>,<span class="st">"보"</span>])</span>
-<span id="cb65-4"><a href="#cb65-4"></a>        <span class="bu">print</span>(<span class="va">self</span>.work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> homework:</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.work<span class="op">=</span>np.random.choice([<span class="st">"가위"</span>,<span class="st">"바위"</span>,<span class="st">"보"</span>])</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="0f41135e-e689-4985-b5fd-7bd4d7e4fbfe" class="cell" data-execution_count="119">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a>work <span class="op">=</span> homework()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>work <span class="op">=</span> homework()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fdc3cbde-cbca-4ed1-86ee-1433928ff976" class="cell" data-execution_count="124">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>work.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>work.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>가위</code></pre>
 </div>
