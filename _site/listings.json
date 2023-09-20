@@ -2,8 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/Special Topics in Big Data Analysis2023/Untitled.html",
       "/posts/Time Series/[ts] 01.html",
+      "/posts/Special Topics in Big Data Analysis2023/02wk-008-타이타닉, Autogluon (best_quality).out.html",
+      "/posts/Special Topics in Big Data Analysis2023/02wk-007-타이타닉, Autogluon (Fsize,Drop).out.html",
+      "/posts/Special Topics in Big Data Analysis2023/02wk-006-타이타닉, Autogluon (Fsize).out.html",
+      "/posts/Special Topics in Big Data Analysis2023/02wk-005-타이타닉, Autogluon.out.html",
+      "/posts/Special Topics in Big Data Analysis2023/02wk-004-타이타닉, Alexis Cook의 코드.out.html",
+      "/posts/Special Topics in Big Data Analysis2023/02wk-003-타이타닉, 첫 제출.out.html",
       "/posts/GNN/FRAUD/230827 데이터(9, df50 과 다른 것 시도).out.html",
       "/posts/GNN/FRAUD/230905 데이터(10, df02교수님).html",
       "/posts/GNN/FRAUD/230913 데이터(11, df50 edge 다르게).html",
