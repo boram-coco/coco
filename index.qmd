@@ -16,7 +16,7 @@ title-block-banner: true
 
 coco
 
-* [Data Visualization 블로그](https://boram-coco.github.io/DV/) 따로 개설
+* [Data Visualization](https://boram-coco.github.io/DV/)
 
 * [낙서장](https://boram-coco.github.io/Scribbling/)
 

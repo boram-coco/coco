@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/GNN/FRAUD/230920 데이터(12, df50 auto).html",
+      "/posts/GNN/FRAUD/230913 데이터(11, df50 정리).html",
       "/posts/Time Series/[ts] 01.html",
       "/posts/Special Topics in Big Data Analysis2023/02wk-008-타이타닉, Autogluon (best_quality).out.html",
       "/posts/Special Topics in Big Data Analysis2023/02wk-007-타이타닉, Autogluon (Fsize,Drop).out.html",
@@ -11,12 +13,10 @@
       "/posts/Special Topics in Big Data Analysis2023/02wk-003-타이타닉, 첫 제출.out.html",
       "/posts/GNN/FRAUD/230827 데이터(9, df50 과 다른 것 시도).out.html",
       "/posts/GNN/FRAUD/230905 데이터(10, df02교수님).html",
-      "/posts/GNN/FRAUD/230913 데이터(11, df50 edge 다르게).html",
       "/posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html",
       "/posts/GNN/FRAUD/230823 데이터(7, df50_com으로 93퍼 accuracy)_guebin.html",
       "/posts/GNN/FRAUD/230822 데이터(5, matrix로 ls6시도해보기..실패).html",
       "/posts/GNN/FRAUD/230822 데이터(6, df02).html",
-      "/posts/GNN/FRAUD/230822 데이터(6, df02)-Copy1.html",
       "/posts/GNN/FRAUD/230816 fraud(3, df50_com, tr,test합치기).html",
       "/posts/GNN/FRAUD/230818 데이터(4, df50_com으로 93퍼 accuracy).html",
       "/posts/GNN/FRAUD/230814 fraud(2, tr,test_mask).html",
