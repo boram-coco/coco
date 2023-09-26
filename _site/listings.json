@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Special Topics in Big Data Analysis2023/03wk-010.out.html",
+      "/posts/Special Topics in Big Data Analysis2023/03wk-009.out.html",
       "/posts/GNN/FRAUD/230920 데이터(12, df50 auto).html",
       "/posts/GNN/FRAUD/230913 데이터(11, df50 정리).html",
       "/posts/Time Series/[ts] 01.html",
@@ -189,7 +191,8 @@
       "/posts/Python/1. Basic/python 3_0321.html",
       "/posts/Python/1. Basic/python 3_0316.html",
       "/posts/Python/1. Basic/python 2_0314.html",
-      "/posts/Python/1. Basic/python 1_0307.html"
+      "/posts/Python/1. Basic/python 1_0307.html",
+      "/posts/Python/4. Class/2023-06-12-15wk-1.out.html"
     ]
   }
 ]

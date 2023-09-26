@@ -1037,6 +1037,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/2023-06-12-15wk-1.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 프로그래밍 15주차: 클래스-상속</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../posts/Python/4. Class/python 10_0509.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">파이썬 (0509) 10주차</span></a>
   </div>
@@ -1294,6 +1300,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../../posts/Special Topics in Big Data Analysis2023/02wk-008-타이타닉, Autogluon (best_quality).out.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">[STBDA2023] 02wk-008: 타이타닉, Autogluon(best_quality)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/03wk-009.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 03wk-009: 아이스크림, 회귀분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/03wk-010.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 03wk-010: 아이스크림(초코/바닐라), 회귀분석</span></a>
   </div>
 </li>
       </ul>
@@ -2567,8 +2585,14 @@ TabularPredictor saved. To load, use: predictor = TabularPredictor.load("Autoglu
 <pre><code>0.9102009102009102</code></pre>
 </div>
 </div>
+<div id="5d38f327-71c7-49ed-89d9-64eaf345c70c" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>(tst.is_fraud <span class="op">==</span> predictr.predict(tst)).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<pre><code>0.8904428904428905</code></pre>
+</div>
+</div>
 <div id="787fb090-acfb-4971-b7fb-76f58ca7c932" class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>yyhat <span class="op">=</span> predictr.predict(tr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>yyhat <span class="op">=</span> predictr.predict(tr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p>autogluon이렇게 하는게 맞는감…;;;</p>
