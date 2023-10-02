@@ -2,6 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Time Series/[TS] HW01.html",
+      "/posts/Time Series/[ts] 02_2.html",
+      "/posts/Time Series/[TS] 02_1.html",
+      "/posts/GNN/FRAUD/230930 데이터(13, df50 auto_best).html",
       "/posts/Special Topics in Big Data Analysis2023/04wk-018.out.html",
       "/posts/Special Topics in Big Data Analysis2023/04wk-017.out.html",
       "/posts/Special Topics in Big Data Analysis2023/04wk-016.out.html",
@@ -14,7 +18,7 @@
       "/posts/Special Topics in Big Data Analysis2023/03wk-009.out.html",
       "/posts/GNN/FRAUD/230920 데이터(12, df50 auto).html",
       "/posts/GNN/FRAUD/230913 데이터(11, df50 정리).html",
-      "/posts/Time Series/[ts] 01.html",
+      "/posts/Time Series/[TS] 01.html",
       "/posts/Special Topics in Big Data Analysis2023/02wk-008-타이타닉, Autogluon (best_quality).out.html",
       "/posts/Special Topics in Big Data Analysis2023/02wk-007-타이타닉, Autogluon (Fsize,Drop).out.html",
       "/posts/Special Topics in Big Data Analysis2023/02wk-006-타이타닉, Autogluon (Fsize).out.html",
@@ -43,7 +47,6 @@
       "/posts/GNN/GNN논문.html",
       "/posts/GNN/Graph basic.html",
       "/posts/Special Topics in Big Data Analysis2022/2022-05-23-(12주차) 5월23일.html",
-      "/posts/study/Deep learning with pytorch/Untitled.html",
       "/posts/study/Deep learning with pytorch/tensor basic.html",
       "/posts/Special Topics in Big Data Analysis2022/2022_05_16_(11주차)_5월16일.html",
       "/posts/Special Topics in Big Data Analysis2022/2022_05_09_(10주차)_5월9일.html",
