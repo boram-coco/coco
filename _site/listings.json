@@ -2,12 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/Python/Summer Program-Python Programming Day2 Quiz.out.out.html",
-      "/posts/GNN/PyOD vs PyGOD/2. pyod vs gnn.html",
-      "/posts/GNN/PyOD vs PyGOD/4. pyod vs gnn_df02.html",
-      "/posts/GNN/PyOD vs PyGOD/3. pyod vs gnn.html",
-      "/posts/GNN/PyOD vs PyGOD/1. pyod.html",
-      "/posts/GNN/PyOD vs PyGOD/0. pygod.html",
+      "/posts/GNN/pyod/2. pyod vs gnn.html",
+      "/posts/GNN/pyod/3. pyod vs gnn.html",
+      "/posts/GNN/pyod/1. pyod.html",
       "/posts/GNN/FRAUD/231002 데이터(14, df50 정리).html",
       "/posts/Time Series/[TS] HW01.html",
       "/posts/Time Series/[ts] 02_2.html",

@@ -65,16 +65,12 @@
     <lastmod>2023-09-14T10:02:00.809Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/PyOD vs PyGOD/2. pyod vs gnn.html</loc>
-    <lastmod>2023-10-04T14:56:45.368Z</lastmod>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/pyod/1. pyod.html</loc>
+    <lastmod>2023-10-04T14:12:24.761Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/PyOD vs PyGOD/0. pygod.html</loc>
-    <lastmod>2023-10-04T15:42:34.529Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/PyOD vs PyGOD/4. pyod vs gnn_df02.html</loc>
-    <lastmod>2023-10-05T05:39:11.367Z</lastmod>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/230810 데이터정리.html</loc>
+    <lastmod>2023-09-14T10:02:00.809Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/GNN/FRAUD/230930 데이터(13, df50 auto_best).html</loc>
@@ -393,51 +389,19 @@
     <lastmod>2023-09-14T10:02:01.469Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/Summer Program-Python Programming Day2 Quiz.out.out.html</loc>
-    <lastmod>2023-10-04T16:15:43.090Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 4_0328.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 2_0314.html</loc>
     <lastmod>2023-09-14T10:02:01.465Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 4_0323.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 3_0316.html</loc>
     <lastmod>2023-09-14T10:02:01.465Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 3_0321.html</loc>
-    <lastmod>2023-09-14T10:02:01.465Z</lastmod>
+    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 1_0307.html</loc>
+    <lastmod>2023-09-14T10:02:01.461Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/2023-06-12-15wk-1.out.html</loc>
-    <lastmod>2023-09-21T08:25:09.656Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 12_0518.html</loc>
-    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 12_0523.html</loc>
-    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 13_0530.html</loc>
-    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/Summer Program-Python Programming Day1 Quiz.html</loc>
-    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 11_0511.html</loc>
-    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 10_0509.html</loc>
-    <lastmod>2023-09-21T05:59:17.741Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 13_0525.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 14_0606.html</loc>
     <lastmod>2023-09-14T10:02:01.497Z</lastmod>
   </url>
   <url>
@@ -445,19 +409,47 @@
     <lastmod>2023-09-14T10:02:01.497Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 14_0606.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 13_0525.html</loc>
     <lastmod>2023-09-14T10:02:01.497Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 1_0307.html</loc>
-    <lastmod>2023-09-14T10:02:01.461Z</lastmod>
+    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 10_0509.html</loc>
+    <lastmod>2023-09-21T05:59:17.741Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 3_0316.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 11_0511.html</loc>
+    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Python/Summer Program-Python Programming Day1 Quiz.html</loc>
+    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 13_0530.html</loc>
+    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 12_0523.html</loc>
+    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/python 12_0518.html</loc>
+    <lastmod>2023-09-14T10:02:01.497Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Python/4. Class/2023-06-12-15wk-1.out.html</loc>
+    <lastmod>2023-09-21T08:25:09.656Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 3_0321.html</loc>
     <lastmod>2023-09-14T10:02:01.465Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 2_0314.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 4_0323.html</loc>
+    <lastmod>2023-09-14T10:02:01.465Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Python/1. Basic/python 4_0328.html</loc>
     <lastmod>2023-09-14T10:02:01.465Z</lastmod>
   </url>
   <url>
@@ -781,16 +773,12 @@
     <lastmod>2023-09-14T10:02:00.813Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/PyOD vs PyGOD/3. pyod vs gnn.html</loc>
-    <lastmod>2023-10-04T15:23:35.015Z</lastmod>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/pyod/3. pyod vs gnn.html</loc>
+    <lastmod>2023-10-04T14:58:02.752Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/PyOD vs PyGOD/1. pyod.html</loc>
-    <lastmod>2023-10-04T14:12:24.761Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/230810 데이터정리.html</loc>
-    <lastmod>2023-09-14T10:02:00.809Z</lastmod>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/pyod/2. pyod vs gnn.html</loc>
+    <lastmod>2023-10-04T14:56:45.368Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/GNN/Graph basic.html</loc>
