@@ -1,0 +1,2955 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.283">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="김보람">
+<meta name="dcterms.date" content="2023-04-24">
+
+<title>coco - 경사하강법</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">coco</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../about.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Boram-coco</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../../posts/study/baseball-salary-prediction.html">Study</a></li><li class="breadcrumb-item"><a href="../../../posts/study/Python Data Analysis/경사하강법.html">Python Data Analysis</a></li><li class="breadcrumb-item"><a href="../../../posts/study/Python Data Analysis/경사하강법.html">경사하강법</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Boram-coco</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Advanved Probability Theory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/fin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15wk: 기말고사</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">1. 측도론</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/1. 측도론/2023_03_07_1wk_checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1wk: 측도론 intro</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/1. 측도론/2023_03_14_2wk_checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02wk: 측도론 intro (2)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/1. 측도론/2023_03_21_3wk_checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03wk: 측도론 intro (3)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/1. 측도론/2023_03_28_4wk_checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04wk: 측도론 intro (4)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/1. 측도론/2023_04_05_5wk_checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05wk: 측도론 (1)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/1. 측도론/2023-04-11-6wk-checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06wk: 측도론 (2)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/1. 측도론/2023-04-18-7wk-checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07wk: 측도론 (3)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/1. 측도론/2023-04-25-8wk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08wk: 측도론 (4)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">2. 확률론 기초</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/2. 확률론 기초/2023-05-02-9wk-checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09wk: 확률변수, 분포 (1)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/2. 확률론 기초/2023-05-09-10wk-checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10wk: 확률변수, 분포 (2)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/2. 확률론 기초/2023-05-16-11wk-checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11wk: 적분 (1)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/2. 확률론 기초/2023-05-23-12wk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12wk: 적분 (2)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/2. 확률론 기초/2023-05-30-13wk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13wk: 밀도함수</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Advanved Probability Theory/2. 확률론 기초/2023-06-06-14wk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14wk: 이산형과 연속형의 통합</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Applied statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/01. Simple Linear Regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. SLR(Simple Linear Regression)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/02. CH0304.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. SLR실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/03. CH0304_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. SLR실습_simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/04. 선형회귀분석 CH0607.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. MLR실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/05. 가변수 실습.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. 가변수 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/06. 회귀진단 실습.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. 회귀진단 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/07. 변수선택 실습.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. 변수선택 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/08. 다항회귀실습.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. 다항회귀 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/09. 변수변환.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. 변수변환 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/10. GLS실습.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. GLS 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/11. 편의추정 실습.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. 편의추정 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/12. 로지스틱 회귀분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. 로지스틱 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/alpha.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">alpha</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/AS1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AS HW1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/AS1_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AS HW1_</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/AS2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AS HW2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/AS3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AS HW3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/AS3_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AS HW3_3(야구 투수)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/AS4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AS HW4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/AS4_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AS HW4_5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Applied statistics/AS4_5-Copy1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AS HW4_5(2)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">GNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/0810.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 그래프자료로 데이터정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/230810 데이터정리.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] An Introduction to Graph Neural Network(GNN) For Analysing Structured Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/GNN논문.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] 논문 정리 (~ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/Graph basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Graph Basic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/Laplacian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Laplacian matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/Neural Network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Neural Network</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">FRAUD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230810 fraud(1, tr로만 96퍼 accruacy).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[FRAUD] 데이터정리 시도(1, tr로만 96퍼 accuracy)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230814 fraud(2, tr,test_mask).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[FRAUD] 데이터정리 시도(8.14-망함 tr/test_mask 만들어봄)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230816 fraud(3, df50_com, tr,test합치기).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[FRAUD] 데이터 정리 시도(8.18-망함 df50을 tr/test로 분리했다가 다시 합쳐봄..)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230818 데이터(4, df50_com으로 93퍼 accuracy).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(8.18-df50com으로 93퍼 accuracy)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230822 데이터(5, matrix로 ls6시도해보기..실패).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[FRAUD] 데이터정리 시도(matrix로 lesson6따라하기 - 실패ㅎ)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230822 데이터(6, df02).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[FRAUD] 데이터정리 시도(8.22 df02시도)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230823 데이터(7, df50_com으로 93퍼 accuracy)_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[FRAUD] 데이터정리 시도(8.23_df50 다시)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230825 데이터(8, df02)커널죽음.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[FRAUD] 데이터정리 시도(8.25_df02 커널 죽음)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230827 데이터(9, df50 과 다른 것 시도).out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[FRAUD] 데이터 (9.13_df50 edge다르게)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230905 데이터(10, df02교수님).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> df02 accuracy 0.9707 f1은 망함</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230913 데이터(11, df50 정리).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(9.18_df50 정리중(~ing))</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230913 데이터(11, df50 정리)-Copy1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(df50다른것들 시드고정)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230920 데이터(12, df50 auto).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(9.20_df50 autogluon)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230920 데이터(12, df50 auto)-Copy1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(9.20_df50 autogluon, seed)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/230930 데이터(13, df50 auto_best).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(9.30_df50 autogluon_best)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/231002 데이터(14, df50 정리).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(GCN)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/231002 데이터(15, df50 정리2).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(GCN_X범주)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/231011 데이터(16, 15버넊에서df50 auto)-Copy2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(df50 X범주_auto)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/231011 데이터(17, 15버넊에서df50 auto_best).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(df50 X범주_auto)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/FRAUD/231011 데이터(18, df50 정리3).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리 시도(GCNConv3추가,dropout조정)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">PyG</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyG/2023-07-02-lesson1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[PyG]</strong> lesson1: 자료형, 데이터셋</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyG/ls2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[PyG]</strong> lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyG/ls3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[PyG]</strong> lesson3: 미니배치</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyG/ls4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[PyG]</strong> lesson4: Data Transform ??</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyG/ls5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[PyG]</strong> lesson5: Learning Methods on Graphs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyG/ls6.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[PyG]</strong> lesson6: GCN</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+ <span class="menu-text">PyOD vs PyGOD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyOD vs PyGOD/0. pygod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[pyGod] tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyOD vs PyGOD/1. pyod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[pyod] tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyOD vs PyGOD/2. pyod vs gnn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[pyod] vs gnn code simple example</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyOD vs PyGOD/3. pyod vs gnn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[pyod] vs gnn code fraud example</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/GNN/PyOD vs PyGOD/4. pyod vs gnn_df02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[pyod] vs gnn code fraud example _ df02</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text">Graph Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/9999.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래에 대한 그래프 분석(교수님)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH1. graph basic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH2. 그래프 머신러닝</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph3-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH3. 비지도 그래프 학습(얕은 임베딩 방법)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph3-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH3. 비지도 그래프 학습(오토인코더)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph3-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH3. 비지도 그래프 학습(그래프신경망)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph4-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH4. 지도 그래프 학습(특징기반방법)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph4-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH4. 지도 그래프 학습(얕은 임베딩 방법)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph5-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH5. 그래프에서의 머신러닝 문제(링크예측)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph5-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH5. 그래프에서의 머신러닝 문제(커뮤니티와 같은 의미 있는 구조 감지)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래에 대한 그래프 분석(basic)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8.df원본에서진행.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래 분석(df원본데이터)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8.사기거래=0필터.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래 분석(사기거래=0제외:_df2)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8(frac=0.3).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래에 대한 그래프 분석(frac=0.3)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8(frac=0.4).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래에 대한 그래프 분석(frac=0.4)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8(logistic-amt+time+citypop).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래 분석(로지스틱amt+time+city_pop-f1:0.986655)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8(logistic-amt+time+citypop+lat+merchlat).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래 분석(로지스틱amt+time+city_pop+lat+merch_lat-f1:0.985323)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8(logistic-amt+time+lat+merchlat).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래 분석(로지스틱amt+time+lat+merch_lat-f1:0.98538)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8(logistic, amt+time).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래 분석(로지스틱amt+time-f1:0.009370)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Graph Machine Learning/graph8(logistic+graph).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CH8. 신용카드 거래 분석(로지스틱+그래프)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/(202250926)기계학습특강_final (2).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 final</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/2022_09_07_(1주차)_9월7일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (0907) 1주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/2022_09_14_(2주차)_9월14일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (0914) 2주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/2022_11_29_13wk_2_final_checkpoint_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 final(교수님)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/2022_12_21_Extra_1_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1221)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/MachineLearning_midterm(202250926).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 midterm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false">
+ <span class="menu-text">1. DNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/1. DNN/2022_09_21_(3주차)_9월21일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (0921) 3주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/1. DNN/2022_09_28_(4주차)_9월 28일__ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (0928) 4주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/1. DNN/2022_09_28_(5주차)_10월05일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1005) 5주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/1. DNN/2022_10_12_6wk_checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1012) 6주차</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="false">
+ <span class="menu-text">2. CNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/2. CNN/2022_10_26_(8주차)_10월26일(2)_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1026) 8주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/2. CNN/기계학습특강2022_10_19_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1019) 7주차</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="false">
+ <span class="menu-text">3. RNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/3. RNN/2022_10_31_(9주차)_10월31일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1031) 9주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/3. RNN/2022_11_09_(10주차)_11월9일_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1109) 10주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/3. RNN/2022_11_16_11wk_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1116) 11주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/3. RNN/2022_11_30_12wk_checkpoint_ipynb의_사본.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1130) 12주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Machine Learning/3. RNN/2022_12_08_13wk_checkpoint.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계학습 (1201)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/Summer Program-Python Programming Day1 Quiz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summer Program: Python Programming _ Day1 Quiz</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/Summer Program-Python Programming Day2 Quiz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summer Program: Python Programming _ Day2 Quiz</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" aria-expanded="false">
+ <span class="menu-text">1. Basic</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/1. Basic/python 1_0307.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0307) 1주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/1. Basic/python 2_0314.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0314) 2주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/1. Basic/python 3_0316.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0316) 3주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/1. Basic/python 3_0321.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0321) 3주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/1. Basic/python 4_0323.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0323) 4주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/1. Basic/python 4_0328.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0328) 4주차</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" aria-expanded="false">
+ <span class="menu-text">2. Numpy</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/2. Numpy/python 5_0404.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0404) 5주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/2. Numpy/python 5_0406.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0406) 5주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/2. Numpy/python 6_0411.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0411) 6주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/2. Numpy/python 7_0413.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0413) 7주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/2. Numpy/python 7_0418.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0418) 7주차</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" aria-expanded="false">
+ <span class="menu-text">3. Pandas</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/3. Pandas/python 10_0506 .html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0506) 10주차</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" aria-expanded="false">
+ <span class="menu-text">4. Class</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/2023-06-12-15wk-1.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 프로그래밍 15주차: 클래스-상속</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/python 10_0509.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0509) 10주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/python 11_0511.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0511) 11주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/python 11_0516.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0516) 11주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/python 12_0518.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0518) 12주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/python 12_0523.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0523) 12주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/python 13_0525.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0525) 13주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/python 13_0530.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0530) 13주차</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Python/4. Class/python 14_0606.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 (0606) 14주차</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" aria-expanded="false">
+ <span class="menu-text">Ref</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ref/Ref.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ref</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" aria-expanded="false">
+ <span class="menu-text">Review</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" aria-expanded="false">
+ <span class="menu-text">Synthetic data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Review/Synthetic data/[R] synthpop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[R] synthpop</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Review/Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Synthetic Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Review/Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Review/Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Review/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practical Synthetic Data Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Review/Synthetic data/synthetic data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synthetic Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" aria-expanded="false">
+ <span class="menu-text">Special Topics in Big Data Analysis2022</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-23" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_03_07_(1주차)_3월7일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 01wk: 단순선형회귀</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_03_14_(2주차)_3월14일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 02wk: tensorflow_matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_03_21_(3주차)_3월21일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 03wk: tensorflow_Variable, 미분</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_03_28_(4주차)_3월28일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 04wk: tensorflow_경사하강법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_04_04_(5주차)_4월4일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 05wk: tensorflow,keras</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_04_11_(6주차)_4월11일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 06wk: keras</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_04_18_(7주차)_4월18일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 07wk: Logistic regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_05_02_(9주차)_5월2일(2).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 09wk(2): 확률적 경사하강법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_05_09_(10주차)_5월9일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 10wk: softmax function, 평가지표, flatten layer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_05_16_(11주차)_5월16일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 11wk: MaxPool2D, Conv2D</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022_05_30_(13주차)_5월30일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 13wk: 오버피팅, 학습과정분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022-05-23-(12주차) 5월23일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 12wk: CONV,MAXPOOL,CNN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2022/2022-06-09-(14주차) 6월9일.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA] 14wk: GAN</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" aria-expanded="false">
+ <span class="menu-text">Special Topics in Big Data Analysis2023</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-24" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/02wk-003-타이타닉, 첫 제출.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 02wk-003: 타이타닉, 첫 제출</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/02wk-004-타이타닉, Alexis Cook의 코드.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 02wk-004: 타이타닉, Alexis Cook의 코드</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/02wk-005-타이타닉, Autogluon.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 02wk-005: 타이타닉, Autogluon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/02wk-006-타이타닉, Autogluon (Fsize).out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 02wk-006: 타이타닉, Autogluon(Fsize)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/02wk-007-타이타닉, Autogluon (Fsize,Drop).out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 02wk-007: 타이타닉, Autogluon(Fsize,Dropout)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/02wk-008-타이타닉, Autogluon (best_quality).out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 02wk-008: 타이타닉, Autogluon(best_quality)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/03wk-009.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 03wk-009: 아이스크림, 회귀분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/03wk-010.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 03wk-010: 아이스크림(초코/바닐라), 회귀분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/03wk-011.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 03wk-011: Medical Cost, 회귀분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/03wk-012.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 03wk-012: 취업, 로지스틱</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/03wk-013.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 03wk-013: 타이타닉, 로지스틱</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/04wk-014.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 04wk-014: 결측치 시각화, <code>msno</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/04wk-015.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 04wk-015: 결측치 처리, <code>sklearn.impute</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/04wk-016.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023]04wk-016: 타이타닉, 결측치처리+로지스틱</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/04wk-017.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023]04wk-017: 취업, 로지스틱을 더 깊게</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/04wk-018.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023]04wk-018: Predictor 깊은 이해 + 기호정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/05wk-019.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 05wk-019: MinMaxScaler를 이용한 전처리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/05wk-020.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 05wk-020: StandardScaler를 이용한 전처리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Special Topics in Big Data Analysis2023/05wk-021.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[STBDA2023] 05wk-021: 취업+밸런스게임, 오버피팅</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-25" aria-expanded="true">
+ <span class="menu-text">Study</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-25" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-25" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/baseball-salary-prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/KSS-DataFrame.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[한국통계학회] 통계계산연구회 튜토리얼</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/sklearn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬:사이킷런</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/tutorial_hand_on.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TDA tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/데이터 개념 공부.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 개념공부</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/주성분 분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">주성분 분석(PCA)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/콰트로 블로그 만드는 법.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">콰트로 블로그</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-26" aria-expanded="false">
+ <span class="menu-text">Boostcourse</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-26" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-26" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/boostcourse/0. jupyter basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1: 주피터 노트북 사용법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/boostcourse/1. file-path-setting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2: file-path-setting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/boostcourse/2. 데이터 분석 준비하기.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3: 데이터 분석 준비하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4: 서울 종합병원 분포 확인하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/boostcourse/4. 건강검진 데이터로 가설검정.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5: 건강검진 데이터로 가설검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/boostcourse/5. K-beauty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6: K-beauty</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-27" aria-expanded="false">
+ <span class="menu-text">Deep learning with pytorch</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-27" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-27" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/Deep learning with pytorch/tensor basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tensor Basic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-28" aria-expanded="false">
+ <span class="menu-text">imbalaced data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-28" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-28" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/imbalaced data/imbalaced data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">imbalanced data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/imbalaced data/plot_comparison_over_sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">plot_comparison_over_sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/imbalaced data/plot_comparison_under_sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">plot_comparison_under_sampling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" aria-expanded="true">
+ <span class="menu-text">Python Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-29" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/Python Data Analysis/경사하강법.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">경사하강법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">다층 퍼셉트론과 딥러닝</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/Python Data Analysis/딥러닝 회귀분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">딥러닝: 회귀분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/Python Data Analysis/인공신경망과 퍼셉트론.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인공신경망과 퍼셉트론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-30" aria-expanded="false">
+ <span class="menu-text">선형대수와 통계학으로 배우는 머신러닝 with 파이썬</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-30" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-30" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">모형 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">앙상블 학습</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-31" aria-expanded="false">
+ <span class="menu-text">Synthetic data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-31" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-31" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Synthetic data/[R] synthpop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[R] synthpop</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Synthetic data/2023-07-01-CTGAN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CTGAN]</strong> CTGAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Synthetic data/2023-07-02-CTGAN-TOY.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CTGAN]</strong> CTGAN ToyEX</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Synthetic Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practical Synthetic Data Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Synthetic data/synthetic data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synthetic Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-32" aria-expanded="false">
+ <span class="menu-text">Theoretical statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-32" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-32" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS final.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS final</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Theoretical statistics/TS9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TS HW9</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-33" aria-expanded="false">
+ <span class="menu-text">Time Series</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-33" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-33" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Time Series/[TS] 01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[TS] CH01. 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Time Series/[TS] 02_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[TS] CH02. 실습1(추세모형)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Time Series/[ts] 02_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[TS] CH02. 실습2(추세모형)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Time Series/[TS] 03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[TS] CH03. 평활법 실습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/Time Series/[TS] HW01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[TS] HW01</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ref" id="toc-ref" class="nav-link active" data-scroll-target="#ref">ref</a></li>
+  <li><a href="#경사하강법" id="toc-경사하강법" class="nav-link" data-scroll-target="#경사하강법">경사하강법</a>
+  <ul class="collapse">
+  <li><a href="#패키지-설정" id="toc-패키지-설정" class="nav-link" data-scroll-target="#패키지-설정">1. 패키지 설정</a></li>
+  <li><a href="#데이터-준비" id="toc-데이터-준비" class="nav-link" data-scroll-target="#데이터-준비">2. 데이터 준비</a></li>
+  <li><a href="#탐색적-데이터-분석" id="toc-탐색적-데이터-분석" class="nav-link" data-scroll-target="#탐색적-데이터-분석">3. 탐색적 데이터 분석</a></li>
+  <li><a href="#피처-스케일링" id="toc-피처-스케일링" class="nav-link" data-scroll-target="#피처-스케일링">4. 피처 스케일링</a></li>
+  <li><a href="#모형화-및-학습" id="toc-모형화-및-학습" class="nav-link" data-scroll-target="#모형화-및-학습">5. 모형화 및 학습</a></li>
+  <li><a href="#예측" id="toc-예측" class="nav-link" data-scroll-target="#예측">6.예측</a></li>
+  </ul></li>
+  <li><a href="#당뇨병-진단" id="toc-당뇨병-진단" class="nav-link" data-scroll-target="#당뇨병-진단">당뇨병 진단</a>
+  <ul class="collapse">
+  <li><a href="#패키지-설정-1" id="toc-패키지-설정-1" class="nav-link" data-scroll-target="#패키지-설정-1">1. 패키지 설정</a></li>
+  <li><a href="#데이터-준비-1" id="toc-데이터-준비-1" class="nav-link" data-scroll-target="#데이터-준비-1">2.데이터 준비</a></li>
+  <li><a href="#탐색적-데이터-분석-1" id="toc-탐색적-데이터-분석-1" class="nav-link" data-scroll-target="#탐색적-데이터-분석-1">3.탐색적 데이터 분석</a></li>
+  <li><a href="#데이터-분리" id="toc-데이터-분리" class="nav-link" data-scroll-target="#데이터-분리">4.데이터 분리</a></li>
+  <li><a href="#피처-스케일링-1" id="toc-피처-스케일링-1" class="nav-link" data-scroll-target="#피처-스케일링-1">5.피처 스케일링</a></li>
+  <li><a href="#모형화-및-학습-1" id="toc-모형화-및-학습-1" class="nav-link" data-scroll-target="#모형화-및-학습-1">6.모형화 및 학습</a></li>
+  <li><a href="#예측-1" id="toc-예측-1" class="nav-link" data-scroll-target="#예측-1">7.예측</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="경사하강법.out.ipynb" download="경사하강법.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../../posts/study/baseball-salary-prediction.html">Study</a></li><li class="breadcrumb-item"><a href="../../../posts/study/Python Data Analysis/경사하강법.html">Python Data Analysis</a></li><li class="breadcrumb-item"><a href="../../../posts/study/Python Data Analysis/경사하강법.html">경사하강법</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">경사하강법</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">경사하강법</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>김보람 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 24, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<section id="ref" class="level1">
+<h1>ref</h1>
+<ul>
+<li><a href="http://www.yes24.com/Product/Goods/108023856">파이썬 데이터 분석</a></li>
+</ul>
+</section>
+<section id="경사하강법" class="level1">
+<h1>경사하강법</h1>
+<p><span class="math inline">\(\widehat y = ax + b\)</span></p>
+<section id="패키지-설정" class="level2">
+<h2 class="anchored" data-anchor-id="패키지-설정">1. 패키지 설정</h2>
+<div id="6ec23872-39d7-475f-92bd-2de405f34c86" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDRegressor</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="데이터-준비" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-준비">2. 데이터 준비</h2>
+<div id="3bb61ead-0ec0-474b-b717-c60068e9fc53" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> np.array([<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">30</span>,<span class="dv">38</span>,<span class="dv">50</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> np.array([<span class="dv">41</span>,<span class="dv">45</span>,<span class="dv">62</span>,<span class="dv">75</span>,<span class="dv">85</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="탐색적-데이터-분석" class="level2">
+<h2 class="anchored" data-anchor-id="탐색적-데이터-분석">3. 탐색적 데이터 분석</h2>
+<div id="0e887218-0dba-4fb9-a988-1d7e808fd5f9" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_train, y_train, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="경사하강법_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="7d75b7c0-adb1-4b24-b87d-1a1b8f0f28d7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.corrcoef(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>array([[1.        , 0.97319891],
+       [0.97319891, 1.        ]])</code></pre>
+</div>
+</div>
+</section>
+<section id="피처-스케일링" class="level2">
+<h2 class="anchored" data-anchor-id="피처-스케일링">4. 피처 스케일링</h2>
+<div id="8e3c2b08-0a5a-4222-9fc1-b4578475c092" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)   <span class="co"># NX1 매트릭스</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y_train<span class="op">=</span> y_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[10]
+ [22]
+ [30]
+ [38]
+ [50]]
+[[41]
+ [45]
+ [62]
+ [75]
+ [85]]</code></pre>
+</div>
+</div>
+<p><code>-</code> 정규화</p>
+<div id="491d28fd-5a90-459e-8769-c5a119eb3c20" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>scalerX<span class="op">=</span>StandardScaler()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>scalerX.fit(X_train)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X_train<span class="op">=</span>scalerX.transform(X_train)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[-1.46805055e+00]
+ [-5.87220220e-01]
+ [-8.88178420e-17]
+ [ 5.87220220e-01]
+ [ 1.46805055e+00]]</code></pre>
+</div>
+</div>
+<div id="17d24cd1-3e54-483f-8d43-7119a8896661" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>scalerY<span class="op">=</span>StandardScaler()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>scalerY.fit(y_train)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y_train<span class="op">=</span>scalerY.transform(y_train)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[-1.21929784]
+ [-0.98254098]
+ [ 0.02367569]
+ [ 0.79313549]
+ [ 1.38502764]]</code></pre>
+</div>
+</div>
+</section>
+<section id="모형화-및-학습" class="level2">
+<h2 class="anchored" data-anchor-id="모형화-및-학습">5. 모형화 및 학습</h2>
+<div id="58e6a13a-c52c-48c6-b12a-9d0ca871f85c" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model<span class="op">=</span>SGDRegressor(verbose<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5edc7919-e229-4f6c-802d-de9acba2677e" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-- Epoch 1
+Norm: 0.04, NNZs: 1, Bias: -0.001467, T: 5, Avg. loss: 0.489615
+Total training time: 0.00 seconds.
+-- Epoch 2
+Norm: 0.07, NNZs: 1, Bias: -0.002592, T: 10, Avg. loss: 0.454060
+Total training time: 0.00 seconds.
+-- Epoch 3
+Norm: 0.09, NNZs: 1, Bias: -0.002601, T: 15, Avg. loss: 0.429691
+Total training time: 0.00 seconds.
+-- Epoch 4
+Norm: 0.11, NNZs: 1, Bias: -0.002910, T: 20, Avg. loss: 0.408928
+Total training time: 0.00 seconds.
+-- Epoch 5
+Norm: 0.13, NNZs: 1, Bias: -0.002887, T: 25, Avg. loss: 0.390899
+Total training time: 0.00 seconds.
+-- Epoch 6
+Norm: 0.15, NNZs: 1, Bias: -0.003017, T: 30, Avg. loss: 0.374571
+Total training time: 0.00 seconds.
+-- Epoch 7
+Norm: 0.17, NNZs: 1, Bias: -0.002987, T: 35, Avg. loss: 0.359796
+Total training time: 0.00 seconds.
+-- Epoch 8
+Norm: 0.19, NNZs: 1, Bias: -0.003047, T: 40, Avg. loss: 0.346121
+Total training time: 0.00 seconds.
+-- Epoch 9
+Norm: 0.20, NNZs: 1, Bias: -0.003015, T: 45, Avg. loss: 0.333511
+Total training time: 0.00 seconds.
+-- Epoch 10
+Norm: 0.22, NNZs: 1, Bias: -0.003040, T: 50, Avg. loss: 0.321704
+Total training time: 0.00 seconds.
+-- Epoch 11
+Norm: 0.23, NNZs: 1, Bias: -0.003007, T: 55, Avg. loss: 0.310696
+Total training time: 0.00 seconds.
+-- Epoch 12
+Norm: 0.24, NNZs: 1, Bias: -0.003012, T: 60, Avg. loss: 0.300312
+Total training time: 0.00 seconds.
+-- Epoch 13
+Norm: 0.26, NNZs: 1, Bias: -0.002979, T: 65, Avg. loss: 0.290560
+Total training time: 0.00 seconds.
+-- Epoch 14
+Norm: 0.27, NNZs: 1, Bias: -0.002972, T: 70, Avg. loss: 0.281311
+Total training time: 0.00 seconds.
+-- Epoch 15
+Norm: 0.28, NNZs: 1, Bias: -0.002940, T: 75, Avg. loss: 0.272580
+Total training time: 0.00 seconds.
+-- Epoch 16
+Norm: 0.29, NNZs: 1, Bias: -0.002925, T: 80, Avg. loss: 0.264268
+Total training time: 0.00 seconds.
+-- Epoch 17
+Norm: 0.30, NNZs: 1, Bias: -0.002893, T: 85, Avg. loss: 0.256388
+Total training time: 0.00 seconds.
+-- Epoch 18
+Norm: 0.31, NNZs: 1, Bias: -0.002873, T: 90, Avg. loss: 0.248864
+Total training time: 0.00 seconds.
+-- Epoch 19
+Norm: 0.33, NNZs: 1, Bias: -0.002843, T: 95, Avg. loss: 0.241709
+Total training time: 0.00 seconds.
+-- Epoch 20
+Norm: 0.34, NNZs: 1, Bias: -0.002819, T: 100, Avg. loss: 0.234860
+Total training time: 0.00 seconds.
+-- Epoch 21
+Norm: 0.35, NNZs: 1, Bias: -0.002790, T: 105, Avg. loss: 0.228330
+Total training time: 0.00 seconds.
+-- Epoch 22
+Norm: 0.36, NNZs: 1, Bias: -0.002764, T: 110, Avg. loss: 0.222066
+Total training time: 0.00 seconds.
+-- Epoch 23
+Norm: 0.36, NNZs: 1, Bias: -0.002736, T: 115, Avg. loss: 0.216080
+Total training time: 0.00 seconds.
+-- Epoch 24
+Norm: 0.37, NNZs: 1, Bias: -0.002709, T: 120, Avg. loss: 0.210329
+Total training time: 0.00 seconds.
+-- Epoch 25
+Norm: 0.38, NNZs: 1, Bias: -0.002681, T: 125, Avg. loss: 0.204824
+Total training time: 0.00 seconds.
+-- Epoch 26
+Norm: 0.39, NNZs: 1, Bias: -0.002653, T: 130, Avg. loss: 0.199526
+Total training time: 0.00 seconds.
+-- Epoch 27
+Norm: 0.40, NNZs: 1, Bias: -0.002626, T: 135, Avg. loss: 0.194447
+Total training time: 0.00 seconds.
+-- Epoch 28
+Norm: 0.41, NNZs: 1, Bias: -0.002598, T: 140, Avg. loss: 0.189553
+Total training time: 0.00 seconds.
+-- Epoch 29
+Norm: 0.42, NNZs: 1, Bias: -0.002572, T: 145, Avg. loss: 0.184854
+Total training time: 0.00 seconds.
+-- Epoch 30
+Norm: 0.42, NNZs: 1, Bias: -0.002543, T: 150, Avg. loss: 0.180321
+Total training time: 0.00 seconds.
+-- Epoch 31
+Norm: 0.43, NNZs: 1, Bias: -0.002518, T: 155, Avg. loss: 0.175964
+Total training time: 0.00 seconds.
+-- Epoch 32
+Norm: 0.44, NNZs: 1, Bias: -0.002489, T: 160, Avg. loss: 0.171756
+Total training time: 0.00 seconds.
+-- Epoch 33
+Norm: 0.45, NNZs: 1, Bias: -0.002465, T: 165, Avg. loss: 0.167707
+Total training time: 0.00 seconds.
+-- Epoch 34
+Norm: 0.45, NNZs: 1, Bias: -0.002436, T: 170, Avg. loss: 0.163793
+Total training time: 0.00 seconds.
+-- Epoch 35
+Norm: 0.46, NNZs: 1, Bias: -0.002413, T: 175, Avg. loss: 0.160023
+Total training time: 0.00 seconds.
+-- Epoch 36
+Norm: 0.47, NNZs: 1, Bias: -0.002385, T: 180, Avg. loss: 0.156377
+Total training time: 0.00 seconds.
+-- Epoch 37
+Norm: 0.48, NNZs: 1, Bias: -0.002361, T: 185, Avg. loss: 0.152861
+Total training time: 0.00 seconds.
+-- Epoch 38
+Norm: 0.48, NNZs: 1, Bias: -0.002334, T: 190, Avg. loss: 0.149458
+Total training time: 0.00 seconds.
+-- Epoch 39
+Norm: 0.49, NNZs: 1, Bias: -0.002311, T: 195, Avg. loss: 0.146173
+Total training time: 0.00 seconds.
+-- Epoch 40
+Norm: 0.50, NNZs: 1, Bias: -0.002284, T: 200, Avg. loss: 0.142992
+Total training time: 0.00 seconds.
+-- Epoch 41
+Norm: 0.50, NNZs: 1, Bias: -0.002262, T: 205, Avg. loss: 0.139920
+Total training time: 0.00 seconds.
+-- Epoch 42
+Norm: 0.51, NNZs: 1, Bias: -0.002236, T: 210, Avg. loss: 0.136943
+Total training time: 0.00 seconds.
+-- Epoch 43
+Norm: 0.51, NNZs: 1, Bias: -0.002214, T: 215, Avg. loss: 0.134066
+Total training time: 0.00 seconds.
+-- Epoch 44
+Norm: 0.52, NNZs: 1, Bias: -0.002188, T: 220, Avg. loss: 0.131275
+Total training time: 0.00 seconds.
+-- Epoch 45
+Norm: 0.53, NNZs: 1, Bias: -0.002168, T: 225, Avg. loss: 0.128577
+Total training time: 0.00 seconds.
+-- Epoch 46
+Norm: 0.53, NNZs: 1, Bias: -0.002142, T: 230, Avg. loss: 0.125959
+Total training time: 0.00 seconds.
+-- Epoch 47
+Norm: 0.54, NNZs: 1, Bias: -0.002122, T: 235, Avg. loss: 0.123425
+Total training time: 0.00 seconds.
+-- Epoch 48
+Norm: 0.54, NNZs: 1, Bias: -0.002097, T: 240, Avg. loss: 0.120966
+Total training time: 0.00 seconds.
+-- Epoch 49
+Norm: 0.55, NNZs: 1, Bias: -0.002077, T: 245, Avg. loss: 0.118586
+Total training time: 0.00 seconds.
+-- Epoch 50
+Norm: 0.55, NNZs: 1, Bias: -0.002053, T: 250, Avg. loss: 0.116273
+Total training time: 0.00 seconds.
+-- Epoch 51
+Norm: 0.56, NNZs: 1, Bias: -0.002034, T: 255, Avg. loss: 0.114034
+Total training time: 0.00 seconds.
+-- Epoch 52
+Norm: 0.56, NNZs: 1, Bias: -0.002010, T: 260, Avg. loss: 0.111858
+Total training time: 0.00 seconds.
+-- Epoch 53
+Norm: 0.57, NNZs: 1, Bias: -0.001992, T: 265, Avg. loss: 0.109749
+Total training time: 0.00 seconds.
+-- Epoch 54
+Norm: 0.57, NNZs: 1, Bias: -0.001968, T: 270, Avg. loss: 0.107699
+Total training time: 0.00 seconds.
+-- Epoch 55
+Norm: 0.58, NNZs: 1, Bias: -0.001950, T: 275, Avg. loss: 0.105712
+Total training time: 0.00 seconds.
+-- Epoch 56
+Norm: 0.58, NNZs: 1, Bias: -0.001927, T: 280, Avg. loss: 0.103779
+Total training time: 0.00 seconds.
+-- Epoch 57
+Norm: 0.59, NNZs: 1, Bias: -0.001910, T: 285, Avg. loss: 0.101905
+Total training time: 0.00 seconds.
+-- Epoch 58
+Norm: 0.59, NNZs: 1, Bias: -0.001887, T: 290, Avg. loss: 0.100081
+Total training time: 0.00 seconds.
+-- Epoch 59
+Norm: 0.60, NNZs: 1, Bias: -0.001870, T: 295, Avg. loss: 0.098312
+Total training time: 0.00 seconds.
+-- Epoch 60
+Norm: 0.60, NNZs: 1, Bias: -0.001849, T: 300, Avg. loss: 0.096591
+Total training time: 0.00 seconds.
+-- Epoch 61
+Norm: 0.61, NNZs: 1, Bias: -0.001832, T: 305, Avg. loss: 0.094920
+Total training time: 0.00 seconds.
+-- Epoch 62
+Norm: 0.61, NNZs: 1, Bias: -0.001811, T: 310, Avg. loss: 0.093293
+Total training time: 0.00 seconds.
+-- Epoch 63
+Norm: 0.62, NNZs: 1, Bias: -0.001795, T: 315, Avg. loss: 0.091713
+Total training time: 0.00 seconds.
+-- Epoch 64
+Norm: 0.62, NNZs: 1, Bias: -0.001774, T: 320, Avg. loss: 0.090175
+Total training time: 0.00 seconds.
+-- Epoch 65
+Norm: 0.62, NNZs: 1, Bias: -0.001758, T: 325, Avg. loss: 0.088681
+Total training time: 0.00 seconds.
+-- Epoch 66
+Norm: 0.63, NNZs: 1, Bias: -0.001738, T: 330, Avg. loss: 0.087226
+Total training time: 0.00 seconds.
+-- Epoch 67
+Norm: 0.63, NNZs: 1, Bias: -0.001723, T: 335, Avg. loss: 0.085812
+Total training time: 0.00 seconds.
+-- Epoch 68
+Norm: 0.64, NNZs: 1, Bias: -0.001703, T: 340, Avg. loss: 0.084435
+Total training time: 0.00 seconds.
+-- Epoch 69
+Norm: 0.64, NNZs: 1, Bias: -0.001688, T: 345, Avg. loss: 0.083096
+Total training time: 0.00 seconds.
+-- Epoch 70
+Norm: 0.64, NNZs: 1, Bias: -0.001669, T: 350, Avg. loss: 0.081791
+Total training time: 0.00 seconds.
+-- Epoch 71
+Norm: 0.65, NNZs: 1, Bias: -0.001654, T: 355, Avg. loss: 0.080522
+Total training time: 0.00 seconds.
+-- Epoch 72
+Norm: 0.65, NNZs: 1, Bias: -0.001635, T: 360, Avg. loss: 0.079286
+Total training time: 0.00 seconds.
+-- Epoch 73
+Norm: 0.65, NNZs: 1, Bias: -0.001621, T: 365, Avg. loss: 0.078083
+Total training time: 0.00 seconds.
+-- Epoch 74
+Norm: 0.66, NNZs: 1, Bias: -0.001603, T: 370, Avg. loss: 0.076910
+Total training time: 0.00 seconds.
+-- Epoch 75
+Norm: 0.66, NNZs: 1, Bias: -0.001589, T: 375, Avg. loss: 0.075769
+Total training time: 0.00 seconds.
+-- Epoch 76
+Norm: 0.67, NNZs: 1, Bias: -0.001571, T: 380, Avg. loss: 0.074657
+Total training time: 0.00 seconds.
+-- Epoch 77
+Norm: 0.67, NNZs: 1, Bias: -0.001558, T: 385, Avg. loss: 0.073574
+Total training time: 0.00 seconds.
+-- Epoch 78
+Norm: 0.67, NNZs: 1, Bias: -0.001540, T: 390, Avg. loss: 0.072518
+Total training time: 0.00 seconds.
+-- Epoch 79
+Norm: 0.68, NNZs: 1, Bias: -0.001527, T: 395, Avg. loss: 0.071490
+Total training time: 0.00 seconds.
+-- Epoch 80
+Norm: 0.68, NNZs: 1, Bias: -0.001510, T: 400, Avg. loss: 0.070487
+Total training time: 0.00 seconds.
+-- Epoch 81
+Norm: 0.68, NNZs: 1, Bias: -0.001497, T: 405, Avg. loss: 0.069511
+Total training time: 0.00 seconds.
+-- Epoch 82
+Norm: 0.69, NNZs: 1, Bias: -0.001480, T: 410, Avg. loss: 0.068558
+Total training time: 0.00 seconds.
+-- Epoch 83
+Norm: 0.69, NNZs: 1, Bias: -0.001468, T: 415, Avg. loss: 0.067630
+Total training time: 0.00 seconds.
+-- Epoch 84
+Norm: 0.69, NNZs: 1, Bias: -0.001452, T: 420, Avg. loss: 0.066725
+Total training time: 0.00 seconds.
+-- Epoch 85
+Norm: 0.69, NNZs: 1, Bias: -0.001440, T: 425, Avg. loss: 0.065843
+Total training time: 0.00 seconds.
+Convergence after 85 epochs took 0.00 seconds</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/sklearn/utils/validation.py:1143: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>SGDRegressor(verbose=1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">SGDRegressor</label><div class="sk-toggleable__content"><pre>SGDRegressor(verbose=1)</pre></div></div></div></div></div>
+</div>
+</div>
+</section>
+<section id="예측" class="level2">
+<h2 class="anchored" data-anchor-id="예측">6.예측</h2>
+<div id="ba7d63e8-7928-4a0d-9941-97a60aad99b7" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> np.array([<span class="dv">45</span>]).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X_test<span class="op">=</span>scalerX.transform(X_test)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>X_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>array([[45.]])</code></pre>
+</div>
+</div>
+<div id="a018a35e-8880-4a73-990e-edfd13a657bb" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y_pred<span class="op">=</span>model.predict(X_test)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[31.27270054]</code></pre>
+</div>
+</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>y_pred_inverse<span class="op">=</span>scalerY.inverse_transform(y_pred)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_pred_inverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="당뇨병-진단" class="level1">
+<h1>당뇨병 진단</h1>
+<section id="패키지-설정-1" class="level2">
+<h2 class="anchored" data-anchor-id="패키지-설정-1">1. 패키지 설정</h2>
+<div id="95b72b34-66cc-4506-81f2-298c6d3809f3" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDRegressor</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="데이터-준비-1" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-준비-1">2.데이터 준비</h2>
+<div id="de991eaf-6338-428d-9dc9-b0c33d80c719" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diabetes_X, diabetes_y <span class="op">=</span> datasets.load_diabetes(return_X_y<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4981a63f-f63e-46c4-bde2-9b5e41d6b78a" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(diabetes_X))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(diabetes_y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(442, 10)
+(442,)</code></pre>
+</div>
+</div>
+<div id="43837e5b-0e7c-4e9c-96a8-1f4520a00c0b" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(diabetes_X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 0.03807591  0.05068012  0.06169621 ... -0.00259226  0.01990749
+  -0.01764613]
+ [-0.00188202 -0.04464164 -0.05147406 ... -0.03949338 -0.06833155
+  -0.09220405]
+ [ 0.08529891  0.05068012  0.04445121 ... -0.00259226  0.00286131
+  -0.02593034]
+ ...
+ [ 0.04170844  0.05068012 -0.01590626 ... -0.01107952 -0.04688253
+   0.01549073]
+ [-0.04547248 -0.04464164  0.03906215 ...  0.02655962  0.04452873
+  -0.02593034]
+ [-0.04547248 -0.04464164 -0.0730303  ... -0.03949338 -0.00422151
+   0.00306441]]</code></pre>
+</div>
+</div>
+<div id="3f3ad07c-190a-4ed1-801b-f454fd1632b1" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(diabetes_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[151.  75. 141. 206. 135.  97. 138.  63. 110. 310. 101.  69. 179. 185.
+ 118. 171. 166. 144.  97. 168.  68.  49.  68. 245. 184. 202. 137.  85.
+ 131. 283. 129.  59. 341.  87.  65. 102. 265. 276. 252.  90. 100.  55.
+  61.  92. 259.  53. 190. 142.  75. 142. 155. 225.  59. 104. 182. 128.
+  52.  37. 170. 170.  61. 144.  52. 128.  71. 163. 150.  97. 160. 178.
+  48. 270. 202. 111.  85.  42. 170. 200. 252. 113. 143.  51.  52. 210.
+  65. 141.  55. 134.  42. 111.  98. 164.  48.  96.  90. 162. 150. 279.
+  92.  83. 128. 102. 302. 198.  95.  53. 134. 144. 232.  81. 104.  59.
+ 246. 297. 258. 229. 275. 281. 179. 200. 200. 173. 180.  84. 121. 161.
+  99. 109. 115. 268. 274. 158. 107.  83. 103. 272.  85. 280. 336. 281.
+ 118. 317. 235.  60. 174. 259. 178. 128.  96. 126. 288.  88. 292.  71.
+ 197. 186.  25.  84.  96. 195.  53. 217. 172. 131. 214.  59.  70. 220.
+ 268. 152.  47.  74. 295. 101. 151. 127. 237. 225.  81. 151. 107.  64.
+ 138. 185. 265. 101. 137. 143. 141.  79. 292. 178.  91. 116.  86. 122.
+  72. 129. 142.  90. 158.  39. 196. 222. 277.  99. 196. 202. 155.  77.
+ 191.  70.  73.  49.  65. 263. 248. 296. 214. 185.  78.  93. 252. 150.
+  77. 208.  77. 108. 160.  53. 220. 154. 259.  90. 246. 124.  67.  72.
+ 257. 262. 275. 177.  71.  47. 187. 125.  78.  51. 258. 215. 303. 243.
+  91. 150. 310. 153. 346.  63.  89.  50.  39. 103. 308. 116. 145.  74.
+  45. 115. 264.  87. 202. 127. 182. 241.  66.  94. 283.  64. 102. 200.
+ 265.  94. 230. 181. 156. 233.  60. 219.  80.  68. 332. 248.  84. 200.
+  55.  85.  89.  31. 129.  83. 275.  65. 198. 236. 253. 124.  44. 172.
+ 114. 142. 109. 180. 144. 163. 147.  97. 220. 190. 109. 191. 122. 230.
+ 242. 248. 249. 192. 131. 237.  78. 135. 244. 199. 270. 164.  72.  96.
+ 306.  91. 214.  95. 216. 263. 178. 113. 200. 139. 139.  88. 148.  88.
+ 243.  71.  77. 109. 272.  60.  54. 221.  90. 311. 281. 182. 321.  58.
+ 262. 206. 233. 242. 123. 167.  63. 197.  71. 168. 140. 217. 121. 235.
+ 245.  40.  52. 104. 132.  88.  69. 219.  72. 201. 110.  51. 277.  63.
+ 118.  69. 273. 258.  43. 198. 242. 232. 175.  93. 168. 275. 293. 281.
+  72. 140. 189. 181. 209. 136. 261. 113. 131. 174. 257.  55.  84.  42.
+ 146. 212. 233.  91. 111. 152. 120.  67. 310.  94. 183.  66. 173.  72.
+  49.  64.  48. 178. 104. 132. 220.  57.]</code></pre>
+</div>
+</div>
+<p><code>-</code> 10열(s6-혈당수치) 할당</p>
+<div id="c1b9612a-c49a-4d3b-8557-5b4d3a2c9b84" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>X_data<span class="op">=</span> diabetes_X[:,<span class="dv">9</span>]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-0.01764613 -0.09220405 -0.02593034 -0.00936191 -0.04664087 -0.09634616
+ -0.03835666  0.00306441  0.01134862 -0.01350402 -0.03421455 -0.05906719
+ -0.04249877 -0.01350402 -0.07563562 -0.04249877  0.02791705 -0.0010777
+ -0.01764613 -0.05492509  0.01549073 -0.01764613 -0.01350402  0.13561183
+ -0.05492509 -0.03421455 -0.0052198   0.04034337 -0.05492509  0.05276969
+ -0.00936191 -0.04249877  0.02791705  0.00306441 -0.06735141  0.01963284
+ -0.02593034 -0.0052198   0.02377494  0.00306441  0.09419076 -0.00936191
+ -0.03421455  0.07348023 -0.01764613 -0.05078298 -0.08806194 -0.08391984
+ -0.02178823 -0.01350402  0.00720652 -0.02178823 -0.01350402  0.04862759
+  0.00720652  0.00720652 -0.01764613 -0.06735141 -0.05078298  0.01963284
+ -0.03421455  0.01963284 -0.02593034 -0.07149352  0.01134862  0.01549073
+  0.01963284  0.00306441  0.00306441  0.01963284  0.04034337  0.06105391
+ -0.01764613 -0.00936191  0.07348023  0.02791705  0.01549073 -0.0010777
+ -0.08391984 -0.02593034 -0.0052198  -0.0010777  -0.07977773 -0.04249877
+ -0.12948301 -0.07149352 -0.03421455 -0.03835666  0.06933812  0.01963284
+  0.01134862  0.01963284  0.01134862 -0.05492509 -0.09220405 -0.0052198
+  0.03205916  0.07762233 -0.06735141 -0.05492509 -0.0010777   0.03620126
+ -0.0010777  -0.03007245 -0.0632093   0.01963284 -0.08391984 -0.0052198
+  0.04034337  0.10661708  0.01549073 -0.04664087  0.00306441  0.09004865
+  0.02377494  0.00306441  0.02791705  0.13561183  0.0569118   0.02791705
+ -0.02178823  0.01134862  0.04862759  0.07348023 -0.01350402  0.00720652
+ -0.05492509 -0.09634616 -0.07149352  0.1190434   0.07348023 -0.07977773
+  0.02377494 -0.03007245 -0.04664087  0.0569118  -0.02178823 -0.01350402
+  0.07348023 -0.0052198   0.01549073  0.13146972 -0.0010777  -0.04249877
+  0.00720652 -0.05078298  0.00720652  0.04034337 -0.0010777  -0.03835666
+ -0.00936191 -0.01350402  0.07348023  0.01134862  0.00306441  0.04862759
+ -0.03421455  0.02791705 -0.05078298 -0.01764613 -0.04664087  0.08590655
+ -0.0010777   0.06105391 -0.01350402 -0.01350402 -0.10463037  0.10661708
+  0.12732762  0.01963284 -0.01764613 -0.04664087  0.08590655 -0.05492509
+  0.00720652  0.00306441  0.01963284  0.03205916 -0.03007245 -0.00936191
+ -0.0010777  -0.0632093  -0.00936191  0.0569118   0.03205916 -0.01764613
+ -0.03835666 -0.10463037 -0.00936191 -0.02593034 -0.0052198  -0.00936191
+ -0.05906719  0.01963284  0.02377494  0.02377494  0.01134862  0.03620126
+ -0.05906719  0.00720652  0.04448548  0.02791705 -0.03007245  0.02791705
+  0.07762233 -0.02593034  0.00306441  0.03620126  0.1190434  -0.01350402
+ -0.05906719 -0.02178823  0.01963284  0.00720652 -0.05492509  0.10661708
+  0.04862759  0.04448548 -0.01350402 -0.03007245 -0.06735141 -0.03835666
+  0.01963284 -0.05078298 -0.00936191  0.00306441 -0.05492509  0.00720652
+ -0.05078298  0.01134862  0.06933812  0.01134862  0.03205916 -0.03835666
+  0.0569118   0.04862759  0.01134862 -0.0010777  -0.02178823  0.04862759
+  0.01963284  0.0569118  -0.07149352 -0.04249877 -0.0052198  -0.12948301
+ -0.05906719 -0.09220405  0.04034337  0.00720652  0.03620126  0.04034337
+ -0.03007245  0.06933812  0.09004865  0.00720652  0.01134862 -0.05078298
+  0.0569118   0.00720652 -0.01764613  0.01549073  0.00306441 -0.01764613
+ -0.02178823  0.04034337  0.00306441  0.02791705  0.07348023 -0.03835666
+  0.01549073  0.00720652 -0.09220405  0.03620126  0.01549073  0.06933812
+ -0.02178823  0.01549073  0.03205916 -0.02593034 -0.01764613  0.00306441
+  0.02791705 -0.03007245 -0.05492509 -0.02178823 -0.0052198  -0.0052198
+ -0.01764613 -0.03421455  0.04448548 -0.05906719 -0.03835666 -0.0010777
+ -0.03421455  0.00306441 -0.05906719 -0.05492509 -0.01350402 -0.0010777
+  0.04448548  0.03620126  0.02791705 -0.02178823 -0.01350402 -0.06735141
+ -0.01350402  0.08176444 -0.07977773  0.08176444  0.03205916  0.02377494
+ -0.03007245 -0.0010777  -0.03835666 -0.0010777   0.04034337  0.06933812
+  0.03205916  0.06105391  0.00306441  0.06105391  0.08176444  0.0569118
+  0.01963284  0.04862759  0.02791705 -0.0052198   0.01963284  0.04448548
+  0.01549073 -0.0052198   0.03620126  0.03205916 -0.05492509 -0.05906719
+  0.05276969  0.00306441 -0.05906719  0.01549073 -0.03007245 -0.01764613
+  0.02377494  0.00720652 -0.03007245 -0.0010777   0.01549073 -0.03007245
+ -0.0010777  -0.07149352  0.13561183 -0.04249877 -0.03835666  0.00306441
+  0.06105391  0.01134862 -0.07563562 -0.05906719 -0.04664087  0.06105391
+  0.04034337  0.02377494  0.04034337  0.01134862  0.09833287  0.09833287
+  0.04862759  0.03205916  0.08176444  0.02791705 -0.07563562 -0.01764613
+ -0.02178823 -0.0010777  -0.07977773  0.01963284 -0.0010777  -0.0632093
+ -0.03835666  0.02377494 -0.02593034 -0.05492509  0.03620126  0.00720652
+ -0.03835666 -0.01350402  0.00306441 -0.07563562 -0.03835666 -0.08806194
+  0.07348023 -0.05078298  0.06519601 -0.02178823  0.00720652 -0.05492509
+ -0.03421455  0.02377494 -0.06735141  0.01963284 -0.00936191  0.04034337
+  0.04448548  0.04034337 -0.00936191 -0.03007245 -0.13776723  0.01963284
+  0.04034337 -0.0052198  -0.04249877 -0.02593034  0.08590655  0.01963284
+  0.00720652  0.00306441  0.03620126  0.00306441  0.00720652 -0.0052198
+  0.06105391  0.01549073 -0.00936191 -0.04664087  0.02377494 -0.05078298
+  0.08590655  0.03205916  0.13146972 -0.03835666 -0.01764613 -0.0010777
+  0.10661708 -0.00936191  0.03205916 -0.03835666 -0.04664087  0.00720652
+  0.04448548  0.01549073 -0.02593034  0.00306441]</code></pre>
+</div>
+</div>
+</section>
+<section id="탐색적-데이터-분석-1" class="level2">
+<h2 class="anchored" data-anchor-id="탐색적-데이터-분석-1">3.탐색적 데이터 분석</h2>
+<div id="dbd3dfea-4284-4b9a-8f3e-7d540e032168" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#입력데이터의 박스플롯</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>g1<span class="op">=</span>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>g1.boxplot(X_data, labels<span class="op">=</span>[<span class="st">'s6'</span>])</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Features'</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>g2<span class="op">=</span>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>g2.boxplot(diabetes_y, labels<span class="op">=</span>[<span class="st">'disease progression'</span>])</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Target'</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="경사하강법_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="6ea7a219-6f74-4f09-9c32-c5791802f23a" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_data, diabetes_y, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Diabetes'</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'s6'</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Disease progression'</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="경사하강법_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="473a8d87-5b6b-4532-ab9d-bb54a1708b2f" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>np.corrcoef(X_data,diabetes_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>array([[1.        , 0.38248348],
+       [0.38248348, 1.        ]])</code></pre>
+</div>
+</div>
+</section>
+<section id="데이터-분리" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-분리">4.데이터 분리</h2>
+<div id="10003e91-e55f-4fdc-9db0-551df7df7e0f" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_data,diabetes_y,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                                                    test_size<span class="op">=</span><span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="피처-스케일링-1" class="level2">
+<h2 class="anchored" data-anchor-id="피처-스케일링-1">5.피처 스케일링</h2>
+<div id="f7fca084-d48b-4f94-a253-b83b777f06fb" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습 데이터 정규화</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2차원 행렬 변환</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> y_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 입력 데이터 정규화</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>scalerX<span class="op">=</span>MinMaxScaler()</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>scalerX.fit(X_train)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>X_train_scaled <span class="op">=</span> scalerX.transform(X_train)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 목표 데이터 정규화</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>scalerY<span class="op">=</span>MinMaxScaler()</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>scalerY.fit(y_train)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>y_train_scaled <span class="op">=</span> scalerY.transform(y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="aaeb78c3-ba0f-4b9f-aa6c-235f18350eb5" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 정규화</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> X_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> y_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 학습용 데이터의 정규화 스케일에 맞추어 입력과 목표 데이터를 정규화</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>X_test_scaled<span class="op">=</span>scalerX.transform(X_test)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>y_test_scaled<span class="op">=</span>scalerY.transform(y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="모형화-및-학습-1" class="level2">
+<h2 class="anchored" data-anchor-id="모형화-및-학습-1">6.모형화 및 학습</h2>
+<div id="f09d1799-04cc-4ff6-a56e-e9e4e06c4108" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SGDRegressor(verbose<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8ca7441d-fcb7-4755-b00a-b857299d3ed5" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>model.fit(X_train_scaled, y_train_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-- Epoch 1
+Norm: 0.11, NNZs: 1, Bias: 0.188126, T: 221, Avg. loss: 0.058981
+Total training time: 0.00 seconds.
+-- Epoch 2
+Norm: 0.14, NNZs: 1, Bias: 0.242482, T: 442, Avg. loss: 0.035508
+Total training time: 0.00 seconds.
+-- Epoch 3
+Norm: 0.16, NNZs: 1, Bias: 0.268429, T: 663, Avg. loss: 0.030988
+Total training time: 0.00 seconds.
+-- Epoch 4
+Norm: 0.17, NNZs: 1, Bias: 0.280449, T: 884, Avg. loss: 0.029699
+Total training time: 0.00 seconds.
+-- Epoch 5
+Norm: 0.18, NNZs: 1, Bias: 0.285992, T: 1105, Avg. loss: 0.029280
+Total training time: 0.00 seconds.
+-- Epoch 6
+Norm: 0.18, NNZs: 1, Bias: 0.290268, T: 1326, Avg. loss: 0.029095
+Total training time: 0.00 seconds.
+-- Epoch 7
+Norm: 0.19, NNZs: 1, Bias: 0.291204, T: 1547, Avg. loss: 0.028998
+Total training time: 0.00 seconds.
+-- Epoch 8
+Norm: 0.19, NNZs: 1, Bias: 0.291239, T: 1768, Avg. loss: 0.028947
+Total training time: 0.00 seconds.
+-- Epoch 9
+Norm: 0.19, NNZs: 1, Bias: 0.290878, T: 1989, Avg. loss: 0.028905
+Total training time: 0.00 seconds.
+Convergence after 9 epochs took 0.00 seconds</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/sklearn/utils/validation.py:1143: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>SGDRegressor(verbose=1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">SGDRegressor</label><div class="sk-toggleable__content"><pre>SGDRegressor(verbose=1)</pre></div></div></div></div></div>
+</div>
+</div>
+<div id="62f0d676-363f-4190-86b8-7445ebc35efa" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'y절편:'</span>, model.intercept_)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'기울기:'</span>, model.coef_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>y절편: [0.29087809]
+기울기: [0.19422995]</code></pre>
+</div>
+</div>
+<div id="94120d90-f9d1-492f-8215-5b58e2413aa2" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_train_scaled, y_train_scaled, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.array([<span class="bu">min</span>(X_train_scaled),<span class="bu">max</span>(X_train_scaled)])</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>model.coef_<span class="op">*</span>x<span class="op">+</span>model.intercept_</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,c<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'regression line'</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="경사하강법_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예측-1" class="level2">
+<h2 class="anchored" data-anchor-id="예측-1">7.예측</h2>
+<div id="6b12af4c-7c42-4e93-a72f-b4b419ecb7ce" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 예측</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>y_pred<span class="op">=</span>model.predict(X_test_scaled)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 실제 값</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_test_scaled, y_test_scaled, color<span class="op">=</span><span class="st">'g'</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 테스트 데이터 예측 값</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_test_scaled, y_pred, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="경사하강법_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="dda0430b-3abf-41db-80ab-ff3e6c2e086e" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 예측 값의 역변환(실제 스케일)</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> y_pred.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>y_pred_inverse <span class="op">=</span> scalerY.inverse_transform(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="boram-coco/coco" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
