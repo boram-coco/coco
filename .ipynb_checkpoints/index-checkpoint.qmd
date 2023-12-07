@@ -1,0 +1,22 @@
+---
+title: "coco"
+listing:
+  contents: posts
+  sort: 
+    - "date desc"
+    - "title desc"
+  type: table
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+---
+
+
+coco
+
+* [Data Visualization](https://boram-coco.github.io/DV/)
+
+* [낙서장](https://boram-coco.github.io/Scribbling/)
+
