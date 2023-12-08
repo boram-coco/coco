@@ -1,0 +1,3818 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.283">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="김보람">
+<meta name="dcterms.date" content="2023-05-18">
+
+<title>coco - 미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">coco</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Boram-coco</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/4. Study/autogluon fraud.html">4. Study</a></li><li class="breadcrumb-item"><a href="../../posts/4. Study/baseball-salary-prediction.html">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Boram-coco</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">0. Note</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/0. Note/Ref.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ref</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/0. Note/콰트로 블로그 만드는 법.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">콰트로 블로그</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">3. Synthetic data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/[R] synthpop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[R] synthpop</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/2023-07-01-CTGAN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CTGAN]</strong> CTGAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/2023-07-02-CTGAN-TOY.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CTGAN]</strong> CTGAN ToyEX</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Synthetic Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practical Synthetic Data Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/synthetic data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synthetic Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">4. Study</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/autogluon fraud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Autogluon fraud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/baseball-salary-prediction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/KSS-DataFrame.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[한국통계학회] 통계계산연구회 튜토리얼</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/sklearn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬:사이킷런</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/tutorial_hand_on.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TDA tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/데이터 개념 공부.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 개념공부</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/주성분 분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">주성분 분석(PCA)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Boostcourse</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/0. jupyter basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1: 주피터 노트북 사용법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/1. file-path-setting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2: file-path-setting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/2. 데이터 분석 준비하기.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3: 데이터 분석 준비하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4: 서울 종합병원 분포 확인하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/4. 건강검진 데이터로 가설검정.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5: 건강검진 데이터로 가설검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/5. K-beauty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6: K-beauty</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">Deep learning with pytorch</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Deep learning with pytorch/tensor basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tensor Basic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">imbalaced data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/imbalaced data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">imbalanced data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/plot_comparison_over_sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">plot_comparison_over_sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/plot_comparison_under_sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">plot_comparison_under_sampling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Python Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/경사하강법.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경사하강법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">다층 퍼셉트론과 딥러닝</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/딥러닝 회귀분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">딥러닝: 회귀분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/인공신경망과 퍼셉트론.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인공신경망과 퍼셉트론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+ <span class="menu-text">선형대수와 통계학으로 배우는 머신러닝 with 파이썬</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">모형 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">앙상블 학습</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text">GNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/0810.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 그래프자료로 데이터정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/230810 데이터정리.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] An Introduction to Graph Neural Network(GNN) For Analysing Structured Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/GNN논문.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] 논문 정리 (~ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Graph basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Graph Basic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Laplacian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Laplacian matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Neural Network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Neural Network</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ref" id="toc-ref" class="nav-link active" data-scroll-target="#ref">ref</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">dataset</a></li>
+  <li><a href="#피처-스케일링" id="toc-피처-스케일링" class="nav-link" data-scroll-target="#피처-스케일링">피처 스케일링</a></li>
+  <li><a href="#분석" id="toc-분석" class="nav-link" data-scroll-target="#분석">분석</a>
+  <ul class="collapse">
+  <li><a href="#데이터-분리" id="toc-데이터-분리" class="nav-link" data-scroll-target="#데이터-분리">데이터 분리</a></li>
+  <li><a href="#lrnr" id="toc-lrnr" class="nav-link" data-scroll-target="#lrnr">lrnr</a></li>
+  <li><a href="#fit" id="toc-fit" class="nav-link" data-scroll-target="#fit">fit</a></li>
+  <li><a href="#evaluate" id="toc-evaluate" class="nav-link" data-scroll-target="#evaluate">evaluate</a></li>
+  </ul></li>
+  <li><a href="#coef-시각화" id="toc-coef-시각화" class="nav-link" data-scroll-target="#coef-시각화">coef 시각화</a></li>
+  <li><a href="#결과-정리" id="toc-결과-정리" class="nav-link" data-scroll-target="#결과-정리">결과 정리</a>
+  <ul class="collapse">
+  <li><a href="#r2-score" id="toc-r2-score" class="nav-link" data-scroll-target="#r2-score"><span class="math inline">\(R^2\)</span> SCORE</a></li>
+  <li><a href="#rmse-score" id="toc-rmse-score" class="nav-link" data-scroll-target="#rmse-score">RMSE score</a></li>
+  </ul></li>
+  <li><a href="#상관관계" id="toc-상관관계" class="nav-link" data-scroll-target="#상관관계">상관관계</a></li>
+  <li><a href="#다중공산성" id="toc-다중공산성" class="nav-link" data-scroll-target="#다중공산성">다중공산성</a></li>
+  <li><a href="#절절한-피처로-다시-학습" id="toc-절절한-피처로-다시-학습" class="nav-link" data-scroll-target="#절절한-피처로-다시-학습">절절한 피처로 다시 학습</a></li>
+  <li><a href="#분석-결과-시각화" id="toc-분석-결과-시각화" class="nav-link" data-scroll-target="#분석-결과-시각화">분석 결과 시각화</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="baseball-salary-prediction.out.ipynb" download="baseball-salary-prediction.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/4. Study/autogluon fraud.html">4. Study</a></li><li class="breadcrumb-item"><a href="../../posts/4. Study/baseball-salary-prediction.html">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">회귀 분석</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>김보람 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 18, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<section id="ref" class="level1">
+<h1>ref</h1>
+<p><a href="https://github.com/yoonkt200/python-data-analysis/blob/master/data/picher_stats_2017.csv">python-data-analysis data</a></p>
+<p><a href="http://www.statiz.co.kr/">Data Source</a></p>
+<p><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ISBN=K032637599&amp;start=pnaver_02">이것이 데이터 분석이다 with 파이썬</a></p>
+<div id="835b471b-647c-49ed-9fda-3bfc34901f82" class="cell" data-execution_count="192">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="9bee1aeb-6b28-44cb-be1e-e54b8341b8ba" class="cell" data-execution_count="193">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dataset" class="level1">
+<h1>dataset</h1>
+<div id="0047f934-f826-4d7e-8aad-922980ef6d8b" class="cell" data-execution_count="127">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>picher <span class="op">=</span> <span class="st">'picher_stats_2017.csv'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="093276e3-0bca-4252-8a51-6a30fe8a07a5" class="cell" data-execution_count="128">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>batter <span class="op">=</span> <span class="st">'batter_stats_2017.csv'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="66cb8c54-5e81-4e86-842c-151b42b8ff84" class="cell" data-execution_count="129">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>picher<span class="op">=</span> pd.read_csv(picher)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>batter<span class="op">=</span> pd.read_csv(batter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5bf899a4-7277-43db-9ade-9feebfb4f543" class="cell" data-execution_count="130">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>picher.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="130">
+<pre><code>Index(['선수명', '팀명', '승', '패', '세', '홀드', '블론', '경기', '선발', '이닝', '삼진/9',
+       '볼넷/9', '홈런/9', 'BABIP', 'LOB%', 'ERA', 'RA9-WAR', 'FIP', 'kFIP', 'WAR',
+       '연봉(2018)', '연봉(2017)'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="8811e273-e0b0-4b04-8f6c-931955bc8eed" class="cell" data-execution_count="131">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>batter.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="131">
+<pre><code>Index(['선수명', '팀명', '경기', '타석', '타수', '안타', '홈런', '득점', '타점', '볼넷', '삼진', '도루',
+       'BABIP', '타율', '출루율', '장타율', 'OPS', 'wOBA', 'WAR', '연봉(2018)',
+       '연봉(2017)'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="26150397-a2ad-4990-bff3-9af817a04c3e" class="cell" data-execution_count="132">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(picher.shape)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batter.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(152, 22)
+(191, 21)</code></pre>
+</div>
+</div>
+<div id="5938389d-40ae-48bd-84cd-6d7ea8f0a4f0" class="cell" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>picher[<span class="st">'연봉(2018)'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="133">
+<pre><code>count       152.000000
+mean      18932.236842
+std       30940.732924
+min        2700.000000
+25%        4000.000000
+50%        7550.000000
+75%       18500.000000
+max      230000.000000
+Name: 연봉(2018), dtype: float64</code></pre>
+</div>
+</div>
+<div id="c23af95a-8dff-490d-8339-a19eb6df07af" class="cell" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>picher[<span class="st">'연봉(2017)'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="134">
+<pre><code>count       152.000000
+mean      16505.263158
+std       25046.478092
+min        2700.000000
+25%        3000.000000
+50%        6000.000000
+75%       15250.000000
+max      150000.000000
+Name: 연봉(2017), dtype: float64</code></pre>
+</div>
+</div>
+<div id="85c2279c-113f-4b6f-bf08-317f7c6cffbf" class="cell" data-execution_count="135">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>picher[<span class="st">'WAR'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="135">
+<pre><code>count    152.000000
+mean       0.665921
+std        1.322205
+min       -1.010000
+25%       -0.060000
+50%        0.130000
+75%        0.930000
+max        6.620000
+Name: WAR, dtype: float64</code></pre>
+</div>
+</div>
+<div id="cb4b3c09-d09c-4ded-b3a8-6135e80b9530" class="cell" data-execution_count="136">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>picher[<span class="st">'연봉(2018)'</span>].hist(bins<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="136">
+<pre><code>&lt;Axes: &gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="baseball-salary-prediction_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="82aa4e54-1173-4f03-83b4-f9003e848f2c" class="cell" data-execution_count="137">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>picher.boxplot(column<span class="op">=</span>[<span class="st">'연봉(2018)'</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 50672 (\N{HANGUL SYLLABLE YEON}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 48393 (\N{HANGUL SYLLABLE BONG}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/pylabtools.py:152: UserWarning: Glyph 50672 (\N{HANGUL SYLLABLE YEON}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/pylabtools.py:152: UserWarning: Glyph 48393 (\N{HANGUL SYLLABLE BONG}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="baseball-salary-prediction_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="8fac326c-e647-4182-b81d-0214114fb9ff" class="cell" data-execution_count="138">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>picher_features_df <span class="op">=</span> picher[[<span class="st">'승'</span>, <span class="st">'패'</span>, <span class="st">'세'</span>, <span class="st">'홀드'</span>, <span class="st">'블론'</span>, <span class="st">'경기'</span>, <span class="st">'선발'</span>, <span class="st">'이닝'</span>, <span class="st">'삼진/9'</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'볼넷/9'</span>, <span class="st">'홈런/9'</span>, <span class="st">'BABIP'</span>, <span class="st">'LOB%'</span>, <span class="st">'ERA'</span>, <span class="st">'RA9-WAR'</span>, <span class="st">'FIP'</span>, <span class="st">'kFIP'</span>, <span class="st">'WAR'</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'연봉(2018)'</span>, <span class="st">'연봉(2017)'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8f1317f1-de40-4539-8f39-53bb7871efd7" class="cell" data-execution_count="230">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ctrl(cmd) + / : 주석처리를 풀었다 했다 </span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># window의 한글 폰트 설정</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">'font'</span>,family<span class="op">=</span><span class="st">'Abyssinica SIL'</span>) <span class="co">#윈도우의 경우</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.rc('font', family='AppleGothic') #맥의 경우</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">'axes'</span>, unicode_minus<span class="op">=</span><span class="va">False</span>) <span class="co">#마이너스 폰트 깨지는 것 대비</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 그래프가 노트북 안에 보이게 하기 위해</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a3eb5b73-7901-4ede-ae90-70597710a8fb" class="cell" data-execution_count="231">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_hist_each_column(df):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    plt.rcParams[<span class="st">'figure.figsize'</span>]<span class="op">=</span>[<span class="dv">20</span>,<span class="dv">16</span>]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span>plt.figure(<span class="dv">1</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df.columns)):</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> fig.add_subplot(<span class="dv">5</span>,<span class="dv">5</span>,i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        plt.hist(df[df.columns[i]], bins<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        ax.set_title(df.columns[i])</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>plot_hist_each_column(picher_features_df)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="baseball-salary-prediction_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>피처의 정규화 실시</li>
+</ul>
+</section>
+<section id="피처-스케일링" class="level1">
+<h1>피처 스케일링</h1>
+<div id="9fe1440c-d1f7-4f6a-ac08-8e95e3c684e6" class="cell" data-execution_count="140">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pd.options.mode.chained_assignment<span class="op">=</span><span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>float모양으로 출력</li>
+</ul>
+<div id="62c51cb7-dd60-4fe7-ba88-26714c2973f0" class="cell" data-execution_count="141">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> standard_scaling(df, scale_columns):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> scale_columns:</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        series_mean <span class="op">=</span> df[col].mean()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        series_std <span class="op">=</span> df[col].std()</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        df[col] <span class="op">=</span> df[col].<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x<span class="op">-</span>series_mean)<span class="op">/</span>series_std)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="50e256da-3bd8-4e3c-989a-316fa031c3b5" class="cell" data-execution_count="179">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>scale_columns <span class="op">=</span> [ <span class="st">'승'</span>, <span class="st">'패'</span>, <span class="st">'세'</span>, <span class="st">'홀드'</span>, <span class="st">'블론'</span>, <span class="st">'경기'</span>, <span class="st">'선발'</span>, <span class="st">'이닝'</span>, <span class="st">'삼진/9'</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'볼넷/9'</span>, <span class="st">'홈런/9'</span>, <span class="st">'BABIP'</span>, <span class="st">'LOB%'</span>, <span class="st">'ERA'</span>, <span class="st">'RA9-WAR'</span>, <span class="st">'FIP'</span>, <span class="st">'kFIP'</span>, <span class="st">'WAR'</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'연봉(2018)'</span>, <span class="st">'연봉(2017)'</span>]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>picher_df <span class="op">=</span> standard_scaling(picher, scale_columns)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>picher_df <span class="op">=</span> picher_df.rename(columns<span class="op">=</span>{<span class="st">'연봉(2018)'</span>:<span class="st">'y'</span>})</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>picher_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="179">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">팀명</th>
+<th data-quarto-table-cell-role="th">승</th>
+<th data-quarto-table-cell-role="th">패</th>
+<th data-quarto-table-cell-role="th">세</th>
+<th data-quarto-table-cell-role="th">홀드</th>
+<th data-quarto-table-cell-role="th">블론</th>
+<th data-quarto-table-cell-role="th">경기</th>
+<th data-quarto-table-cell-role="th">선발</th>
+<th data-quarto-table-cell-role="th">이닝</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">홈런/9</th>
+<th data-quarto-table-cell-role="th">BABIP</th>
+<th data-quarto-table-cell-role="th">LOB%</th>
+<th data-quarto-table-cell-role="th">ERA</th>
+<th data-quarto-table-cell-role="th">RA9-WAR</th>
+<th data-quarto-table-cell-role="th">FIP</th>
+<th data-quarto-table-cell-role="th">kFIP</th>
+<th data-quarto-table-cell-role="th">WAR</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">연봉(2017)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>켈리</td>
+<td>SK</td>
+<td>3.313623</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>190.0</td>
+<td>...</td>
+<td>0.76</td>
+<td>0.342</td>
+<td>73.7</td>
+<td>3.60</td>
+<td>6.91</td>
+<td>3.69</td>
+<td>3.44</td>
+<td>6.62</td>
+<td>140000</td>
+<td>85000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>소사</td>
+<td>LG</td>
+<td>2.019505</td>
+<td>11</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>29</td>
+<td>185.1</td>
+<td>...</td>
+<td>0.53</td>
+<td>0.319</td>
+<td>67.1</td>
+<td>3.88</td>
+<td>6.80</td>
+<td>3.52</td>
+<td>3.41</td>
+<td>6.08</td>
+<td>120000</td>
+<td>50000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>양현종</td>
+<td>KIA</td>
+<td>4.348918</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>31</td>
+<td>31</td>
+<td>193.1</td>
+<td>...</td>
+<td>0.79</td>
+<td>0.332</td>
+<td>72.1</td>
+<td>3.44</td>
+<td>6.54</td>
+<td>3.94</td>
+<td>3.82</td>
+<td>5.64</td>
+<td>230000</td>
+<td>150000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>차우찬</td>
+<td>LG</td>
+<td>1.760682</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>28</td>
+<td>28</td>
+<td>175.2</td>
+<td>...</td>
+<td>1.02</td>
+<td>0.298</td>
+<td>75.0</td>
+<td>3.43</td>
+<td>6.11</td>
+<td>4.20</td>
+<td>4.03</td>
+<td>4.63</td>
+<td>100000</td>
+<td>100000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>롯데</td>
+<td>2.537153</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>187.1</td>
+<td>...</td>
+<td>0.91</td>
+<td>0.323</td>
+<td>74.1</td>
+<td>3.80</td>
+<td>6.13</td>
+<td>4.36</td>
+<td>4.31</td>
+<td>4.38</td>
+<td>111000</td>
+<td>85000</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<p><code>-</code> 범주형은 원핫 인코딩</p>
+<div id="107c5b55-c8ff-4534-b783-438e9cc35fda" class="cell" data-execution_count="143">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>team_encoding <span class="op">=</span> pd.get_dummies(picher_df[<span class="st">'팀명'</span>])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>picher_df <span class="op">=</span> picher_df.drop(<span class="st">'팀명'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>picher_df <span class="op">=</span> picher_df.join(team_encoding)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b4371e2f-1a06-4f3a-815e-89a95e7f8e4d" class="cell" data-execution_count="144">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>team_encoding.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="144">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KIA</th>
+<th data-quarto-table-cell-role="th">KT</th>
+<th data-quarto-table-cell-role="th">LG</th>
+<th data-quarto-table-cell-role="th">NC</th>
+<th data-quarto-table-cell-role="th">SK</th>
+<th data-quarto-table-cell-role="th">두산</th>
+<th data-quarto-table-cell-role="th">롯데</th>
+<th data-quarto-table-cell-role="th">삼성</th>
+<th data-quarto-table-cell-role="th">한화</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="6eb60320-9ecd-4d94-9df2-66f7d2f3e626" class="cell" data-execution_count="145">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>picher_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="145">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">승</th>
+<th data-quarto-table-cell-role="th">패</th>
+<th data-quarto-table-cell-role="th">세</th>
+<th data-quarto-table-cell-role="th">홀드</th>
+<th data-quarto-table-cell-role="th">블론</th>
+<th data-quarto-table-cell-role="th">경기</th>
+<th data-quarto-table-cell-role="th">선발</th>
+<th data-quarto-table-cell-role="th">이닝</th>
+<th data-quarto-table-cell-role="th">삼진/9</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">연봉(2017)</th>
+<th data-quarto-table-cell-role="th">KIA</th>
+<th data-quarto-table-cell-role="th">KT</th>
+<th data-quarto-table-cell-role="th">LG</th>
+<th data-quarto-table-cell-role="th">NC</th>
+<th data-quarto-table-cell-role="th">SK</th>
+<th data-quarto-table-cell-role="th">두산</th>
+<th data-quarto-table-cell-role="th">롯데</th>
+<th data-quarto-table-cell-role="th">삼성</th>
+<th data-quarto-table-cell-role="th">한화</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>켈리</td>
+<td>3.313623</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>190.0</td>
+<td>8.95</td>
+<td>...</td>
+<td>85000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>소사</td>
+<td>2.019505</td>
+<td>11</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>29</td>
+<td>185.1</td>
+<td>7.43</td>
+<td>...</td>
+<td>50000</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>양현종</td>
+<td>4.348918</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>31</td>
+<td>31</td>
+<td>193.1</td>
+<td>7.36</td>
+<td>...</td>
+<td>150000</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>차우찬</td>
+<td>1.760682</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>28</td>
+<td>28</td>
+<td>175.2</td>
+<td>8.04</td>
+<td>...</td>
+<td>100000</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>2.537153</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>187.1</td>
+<td>7.49</td>
+<td>...</td>
+<td>85000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 30 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="분석" class="level1 page-columns page-full">
+<h1>분석</h1>
+<section id="데이터-분리" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-분리">데이터 분리</h2>
+<div id="8983d99e-8673-463f-941b-d3b9a2ee510a" class="cell" data-execution_count="146">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> linear_model</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ab3db241-2d12-4318-95f2-1694489f79a1" class="cell" data-execution_count="147">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>picher_df[picher_df.columns.difference([<span class="st">'선수명'</span>,<span class="st">'y'</span>])]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>picher_df[<span class="st">'y'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="3872ad23-d2b4-4905-b6e1-5a3ab102db12" class="cell" data-execution_count="148">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X,y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">19</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="lrnr" class="level2">
+<h2 class="anchored" data-anchor-id="lrnr">lrnr</h2>
+<div id="6a08357c-6908-4cb3-8d01-e434e651a111" class="cell" data-execution_count="149">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> linear_model.LinearRegression()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fit" class="level2">
+<h2 class="anchored" data-anchor-id="fit">fit</h2>
+<div id="795e1886-f178-4b1d-a691-5c3d52e94b5f" class="cell" data-execution_count="150">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> lr.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b3866f23-aa73-41fb-9bcd-d97aa5a8e772" class="cell" data-execution_count="151">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lr.coef_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-1.66433649e+04 -1.00005486e+02 -5.03120671e+04 -1.56086205e+03
+  1.57200472e+03 -7.47049524e+02 -1.18666920e+02 -5.23546876e+02
+  2.14736071e+03  8.98376390e+02  7.76920737e+03  3.91969663e+04
+ -1.25668595e+02 -8.92118013e+02  4.49911172e+02  3.22164149e+03
+  7.77935715e+02 -2.81055645e+03  1.90870829e+03 -4.92026373e+02
+ -5.21324705e+01  2.36025301e+02  7.63803603e-01  1.69794484e+01
+  4.15729514e+02  3.61384063e+03 -2.07081858e+02  1.78400390e+04]</code></pre>
+</div>
+</div>
+<ul>
+<li>학습된 계수</li>
+</ul>
+</section>
+<section id="evaluate" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="evaluate">evaluate</h2>
+<div id="a565e25c-5f76-4a61-a325-3ad912ecde6d" class="cell" data-execution_count="152">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d0477830-e143-4325-b49e-0acd6e840da2" class="cell page-columns page-full" data-execution_count="153">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> sm.add_constant(X_train)   <span class="co"># X_train데이터에 상수열 추가 </span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y_train, X_train).fit()</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display page-columns page-full" data-execution_count="153">
+<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<td>y</td>
+<td data-quarto-table-cell-role="th">R-squared:</td>
+<td>0.928</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Model:</td>
+<td>OLS</td>
+<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<td>0.907</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method:</td>
+<td>Least Squares</td>
+<td data-quarto-table-cell-role="th">F-statistic:</td>
+<td>44.19</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Date:</td>
+<td>Thu, 18 May 2023</td>
+<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<td>7.70e-42</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time:</td>
+<td>13:58:48</td>
+<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<td>-1247.8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">No. Observations:</td>
+<td>121</td>
+<td data-quarto-table-cell-role="th">AIC:</td>
+<td>2552.</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<td>93</td>
+<td data-quarto-table-cell-role="th">BIC:</td>
+<td>2630.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Df Model:</td>
+<td>27</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<td>nonrobust</td>
+<td data-quarto-table-cell-role="th"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-table-caption margin-caption">OLS Regression Results</div><table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td></td>
+<td data-quarto-table-cell-role="th">coef</td>
+<td data-quarto-table-cell-role="th">std err</td>
+<td data-quarto-table-cell-role="th">t</td>
+<td data-quarto-table-cell-role="th">P&gt;|t|</td>
+<td data-quarto-table-cell-role="th">[0.025</td>
+<td data-quarto-table-cell-role="th">0.975]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">const</td>
+<td>2.591e+04</td>
+<td>2.08e+04</td>
+<td>1.246</td>
+<td>0.216</td>
+<td>-1.54e+04</td>
+<td>6.72e+04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">BABIP</td>
+<td>-1.664e+04</td>
+<td>1.45e+04</td>
+<td>-1.145</td>
+<td>0.255</td>
+<td>-4.55e+04</td>
+<td>1.22e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ERA</td>
+<td>-100.0055</td>
+<td>557.379</td>
+<td>-0.179</td>
+<td>0.858</td>
+<td>-1206.850</td>
+<td>1006.839</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">FIP</td>
+<td>-5.031e+04</td>
+<td>5.04e+04</td>
+<td>-0.998</td>
+<td>0.321</td>
+<td>-1.5e+05</td>
+<td>4.98e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">KIA</td>
+<td>1317.9412</td>
+<td>2954.415</td>
+<td>0.446</td>
+<td>0.657</td>
+<td>-4548.941</td>
+<td>7184.823</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">KT</td>
+<td>4450.8079</td>
+<td>3178.624</td>
+<td>1.400</td>
+<td>0.165</td>
+<td>-1861.310</td>
+<td>1.08e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">LG</td>
+<td>2131.7537</td>
+<td>2842.243</td>
+<td>0.750</td>
+<td>0.455</td>
+<td>-3512.378</td>
+<td>7775.885</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">LOB%</td>
+<td>-118.6669</td>
+<td>134.995</td>
+<td>-0.879</td>
+<td>0.382</td>
+<td>-386.740</td>
+<td>149.406</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NC</td>
+<td>2355.2563</td>
+<td>3713.995</td>
+<td>0.634</td>
+<td>0.528</td>
+<td>-5020.002</td>
+<td>9730.514</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">RA9-WAR</td>
+<td>2147.3607</td>
+<td>1589.996</td>
+<td>1.351</td>
+<td>0.180</td>
+<td>-1010.055</td>
+<td>5304.777</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">SK</td>
+<td>3777.1796</td>
+<td>2799.284</td>
+<td>1.349</td>
+<td>0.181</td>
+<td>-1781.644</td>
+<td>9336.004</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">WAR</td>
+<td>7769.2074</td>
+<td>1915.216</td>
+<td>4.057</td>
+<td>0.000</td>
+<td>3965.967</td>
+<td>1.16e+04</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">kFIP</td>
+<td>3.92e+04</td>
+<td>4.01e+04</td>
+<td>0.977</td>
+<td>0.331</td>
+<td>-4.05e+04</td>
+<td>1.19e+05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">경기</td>
+<td>-125.6686</td>
+<td>152.468</td>
+<td>-0.824</td>
+<td>0.412</td>
+<td>-428.439</td>
+<td>177.102</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">두산</td>
+<td>1986.6852</td>
+<td>3665.539</td>
+<td>0.542</td>
+<td>0.589</td>
+<td>-5292.349</td>
+<td>9265.719</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">롯데</td>
+<td>3328.7144</td>
+<td>3332.488</td>
+<td>0.999</td>
+<td>0.320</td>
+<td>-3288.946</td>
+<td>9946.374</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">볼넷/9</td>
+<td>3221.6415</td>
+<td>2655.869</td>
+<td>1.213</td>
+<td>0.228</td>
+<td>-2052.388</td>
+<td>8495.671</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">블론</td>
+<td>777.9357</td>
+<td>760.237</td>
+<td>1.023</td>
+<td>0.309</td>
+<td>-731.745</td>
+<td>2287.616</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">삼성</td>
+<td>68.2468</td>
+<td>3734.016</td>
+<td>0.018</td>
+<td>0.985</td>
+<td>-7346.768</td>
+<td>7483.262</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">삼진/9</td>
+<td>1908.7083</td>
+<td>2576.865</td>
+<td>0.741</td>
+<td>0.461</td>
+<td>-3208.435</td>
+<td>7025.852</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">선발</td>
+<td>-492.0264</td>
+<td>563.005</td>
+<td>-0.874</td>
+<td>0.384</td>
+<td>-1610.043</td>
+<td>625.990</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">세</td>
+<td>-52.1325</td>
+<td>269.373</td>
+<td>-0.194</td>
+<td>0.847</td>
+<td>-587.054</td>
+<td>482.789</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">승</td>
+<td>236.0253</td>
+<td>2215.264</td>
+<td>0.107</td>
+<td>0.915</td>
+<td>-4163.049</td>
+<td>4635.100</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">연봉(2017)</td>
+<td>0.7638</td>
+<td>0.051</td>
+<td>15.055</td>
+<td>0.000</td>
+<td>0.663</td>
+<td>0.865</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">이닝</td>
+<td>16.9794</td>
+<td>131.695</td>
+<td>0.129</td>
+<td>0.898</td>
+<td>-244.540</td>
+<td>278.499</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">패</td>
+<td>415.7295</td>
+<td>618.326</td>
+<td>0.672</td>
+<td>0.503</td>
+<td>-812.143</td>
+<td>1643.602</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">한화</td>
+<td>6492.6438</td>
+<td>3541.464</td>
+<td>1.833</td>
+<td>0.070</td>
+<td>-540.002</td>
+<td>1.35e+04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">홀드</td>
+<td>-207.0819</td>
+<td>362.736</td>
+<td>-0.571</td>
+<td>0.569</td>
+<td>-927.403</td>
+<td>513.239</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">홈런/9</td>
+<td>1.784e+04</td>
+<td>1.65e+04</td>
+<td>1.082</td>
+<td>0.282</td>
+<td>-1.49e+04</td>
+<td>5.06e+04</td>
+</tr>
+</tbody>
+</table>
+<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Omnibus:</td>
+<td>28.069</td>
+<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<td>2.025</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<td>0.000</td>
+<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<td>194.274</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Skew:</td>
+<td>-0.405</td>
+<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<td>6.52e-43</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<td>9.155</td>
+<td data-quarto-table-cell-role="th">Cond. No.</td>
+<td>2.39e+15</td>
+</tr>
+</tbody>
+</table>
+<br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The smallest eigenvalue is 1.72e-20. This might indicate that there are<br>strong multicollinearity problems or that the design matrix is singular.
+</div>
+</div>
+<ul>
+<li><p><code>OLS</code> : Ordinary Least Squares방법을 사용한 회귀 모델 정의 작업</p></li>
+<li><p>pvalue가 0.05미만인 데이터: <code>WAR</code>, <code>연봉(2017)</code>, <code>한화</code></p></li>
+</ul>
+</section>
+</section>
+<section id="coef-시각화" class="level1">
+<h1>coef 시각화</h1>
+<p><code>-</code> 회귀 계수 리스트 반환</p>
+<div id="f35292ec-2c86-44e7-bad8-9312dd4fceb4" class="cell" data-execution_count="154">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> model.params.tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a2b17d10-94ef-4b7a-a646-8b538d44d057" class="cell" data-execution_count="155">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>coefs_series<span class="op">=</span> pd.Series(coefs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 변수명 리스트 반환</p>
+<div id="97f7386d-ed4f-4722-82e9-9350c1645b6e" class="cell" data-execution_count="156">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>x_labels<span class="op">=</span>model.params.index.tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 회귀 계수 출력</p>
+<div id="0e96b2b0-cfa4-4858-aa6b-72d9b389a095" class="cell" data-execution_count="232">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>coefs_series.plot(kind<span class="op">=</span><span class="st">'bar'</span>)<span class="op">;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'feature_coef_graph'</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x_features'</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'coef'</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(x_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="232">
+<pre><code>[Text(0, 0, 'const'),
+ Text(1, 0, 'BABIP'),
+ Text(2, 0, 'ERA'),
+ Text(3, 0, 'FIP'),
+ Text(4, 0, 'KIA'),
+ Text(5, 0, 'KT'),
+ Text(6, 0, 'LG'),
+ Text(7, 0, 'LOB%'),
+ Text(8, 0, 'NC'),
+ Text(9, 0, 'RA9-WAR'),
+ Text(10, 0, 'SK'),
+ Text(11, 0, 'WAR'),
+ Text(12, 0, 'kFIP'),
+ Text(13, 0, '경기'),
+ Text(14, 0, '두산'),
+ Text(15, 0, '롯데'),
+ Text(16, 0, '볼넷/9'),
+ Text(17, 0, '블론'),
+ Text(18, 0, '삼성'),
+ Text(19, 0, '삼진/9'),
+ Text(20, 0, '선발'),
+ Text(21, 0, '세'),
+ Text(22, 0, '승'),
+ Text(23, 0, '연봉(2017)'),
+ Text(24, 0, '이닝'),
+ Text(25, 0, '패'),
+ Text(26, 0, '한화'),
+ Text(27, 0, '홀드'),
+ Text(28, 0, '홈런/9')]</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 46160 (\N{HANGUL SYLLABLE DU}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 47215 (\N{HANGUL SYLLABLE ROS}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 45936 (\N{HANGUL SYLLABLE DE}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 48380 (\N{HANGUL SYLLABLE BOL}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 45367 (\N{HANGUL SYLLABLE NES}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 48660 (\N{HANGUL SYLLABLE BEUL}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 47200 (\N{HANGUL SYLLABLE RON}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 48156 (\N{HANGUL SYLLABLE BAL}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 45789 (\N{HANGUL SYLLABLE NING}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 54056 (\N{HANGUL SYLLABLE PAE}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 54848 (\N{HANGUL SYLLABLE HOL}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 54856 (\N{HANGUL SYLLABLE HOM}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/events.py:89: UserWarning: Glyph 47088 (\N{HANGUL SYLLABLE REON}) missing from current font.
+  func(*args, **kwargs)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/pylabtools.py:152: UserWarning: Glyph 46160 (\N{HANGUL SYLLABLE DU}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/pylabtools.py:152: UserWarning: Glyph 47215 (\N{HANGUL SYLLABLE ROS}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+/home/coco/anaconda3/envs/py38/lib/python3.8/site-packages/IPython/core/pylabtools.py:152: UserWarning: Glyph 45936 (\N{HANGUL SYLLABLE DE}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="baseball-salary-prediction_files/figure-html/cell-38-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="결과-정리" class="level1">
+<h1>결과 정리</h1>
+<table class="table">
+<thead>
+<tr class="header">
+<th>피처명</th>
+<th>유의미한 피처</th>
+<th>영향력이 큰 피처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FIP</td>
+<td>X</td>
+<td>O</td>
+</tr>
+<tr class="even">
+<td>WAR</td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr class="odd">
+<td>홈런</td>
+<td>X</td>
+<td>O</td>
+</tr>
+<tr class="even">
+<td>작년 연봉</td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr class="odd">
+<td>팀(한화)</td>
+<td>O</td>
+<td><span class="math inline">\(\Delta\)</span></td>
+</tr>
+</tbody>
+</table>
+<section id="r2-score" class="level2">
+<h2 class="anchored" data-anchor-id="r2-score"><span class="math inline">\(R^2\)</span> SCORE</h2>
+<div id="b78724ee-dfbf-4b14-a17c-3bd4ae456488" class="cell" data-execution_count="158">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> picher_df[picher_df.columns.difference([<span class="st">'선수명'</span>,<span class="st">'y'</span>])]</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> picher_df[<span class="st">'y'</span>]</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>X_trian, X_test, y_train, y_test <span class="op">=</span> train_test_split(X,y,test_size<span class="op">=</span><span class="fl">0.2</span>,random_state<span class="op">=</span><span class="dv">19</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="1f177133-c0aa-482b-ba85-294619457b18" class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>lr<span class="op">=</span>  linear_model.LinearRegression()</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>model<span class="op">=</span>lr.fit(X_train, y_train)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.score(X_train, y_train))</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.9129870505440939</code></pre>
+</div>
+</div>
+<div id="13229cfa-19d7-4cd1-a27a-2a200ced34a6" class="cell" data-execution_count="160">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> sm.add_constant(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6bf50f6d-b806-4caf-9588-aec3c50a39c1" class="cell" data-execution_count="161">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.score(X_test, y_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.87323834388485</code></pre>
+</div>
+</div>
+<p>이ㅏ거 왜 안대</p>
+</section>
+<section id="rmse-score" class="level2">
+<h2 class="anchored" data-anchor-id="rmse-score">RMSE score</h2>
+<div id="ef04060e-0a73-46c2-9ae0-f24f64b45140" class="cell" data-execution_count="162">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>y_predictions <span class="op">=</span> lr.predict(X_train)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sqrt(mean_squared_error(y_train, y_predictions)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7989.160309407914</code></pre>
+</div>
+</div>
+<div id="28bf2449-5292-4da8-a5c5-e4bb54edafa2" class="cell" data-execution_count="165">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>y_predictions <span class="op">=</span> lr.predict(X_test)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sqrt(mean_squared_error(y_test,y_predictions)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>15091.589840279374</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="상관관계" class="level1">
+<h1>상관관계</h1>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> picher_df[scale_columns].corr(method<span class="op">=</span><span class="st">'pearson'</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>show_cols <span class="op">=</span> [<span class="st">'win'</span>, <span class="st">'lose'</span>, <span class="st">'save'</span>, <span class="st">'hold'</span>, <span class="st">'blon'</span>, <span class="st">'match'</span>, <span class="st">'start'</span>, </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">'inning'</span>, <span class="st">'strike3'</span>, <span class="st">'ball4'</span>, <span class="st">'homerun'</span>, <span class="st">'BABIP'</span>, <span class="st">'LOB'</span>, </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">'ERA'</span>, <span class="st">'RA9-WAR'</span>, <span class="st">'FIP'</span>, <span class="st">'kFIP'</span>, <span class="st">'WAR'</span>, <span class="st">'2017'</span>]</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># corr 행렬 히트맵을 시각화합니다.</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">'font'</span>, family<span class="op">=</span><span class="st">'NanumGothicOTF'</span>)</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>hm <span class="op">=</span> sns.heatmap(corr.values,</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>            cbar<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>            annot<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>            square<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>            fmt<span class="op">=</span><span class="st">'.2f'</span>,</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>            annot_kws<span class="op">=</span>{<span class="st">'size'</span>: <span class="dv">15</span>},</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>            yticklabels<span class="op">=</span>show_cols,</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>            xticklabels<span class="op">=</span>show_cols)</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="다중공산성" class="level1">
+<h1>다중공산성</h1>
+<div id="95ec7cbe-4966-48ef-9709-d05d1cf9309a" class="cell" data-execution_count="185">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="16d00b0f-aabf-4ce4-b156-e6521f23d115" class="cell" data-execution_count="186">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>vif <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>vif[<span class="st">"VIF Factor"</span>] <span class="op">=</span> [variance_inflation_factor(X.values,i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])]</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>vif[<span class="st">"features"</span>] <span class="op">=</span> X.columns</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>vif.<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="186">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">VIF Factor</th>
+<th data-quarto-table-cell-role="th">features</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>3.2</td>
+<td>BABIP</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>10.6</td>
+<td>ERA</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>14238.3</td>
+<td>FIP</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>67.8</td>
+<td>KIA</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>87.4</td>
+<td>KT</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>80.3</td>
+<td>LG</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>4.3</td>
+<td>LOB%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>61.6</td>
+<td>NC</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>13.6</td>
+<td>RA9-WAR</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>78.2</td>
+<td>SK</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>10.4</td>
+<td>WAR</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>10264.1</td>
+<td>kFIP</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>14.6</td>
+<td>경기</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>70.8</td>
+<td>두산</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>64.0</td>
+<td>롯데</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>57.8</td>
+<td>볼넷/9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>3.0</td>
+<td>블론</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>95.6</td>
+<td>삼성</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>89.5</td>
+<td>삼진/9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>39.6</td>
+<td>선발</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>3.1</td>
+<td>세</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>8.0</td>
+<td>승</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>2.5</td>
+<td>연봉(2017)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>63.8</td>
+<td>이닝</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>5.9</td>
+<td>패</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>94.7</td>
+<td>한화</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>3.8</td>
+<td>홀드</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>425.6</td>
+<td>홈런/9</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><code>-</code> VIF</p>
+<ul>
+<li><p>Variance Inflation Factior</p></li>
+<li><p>분산 팽창 요인</p></li>
+<li><p>계수가 10~15 넘으면 다중공산성</p></li>
+</ul>
+</section>
+<section id="절절한-피처로-다시-학습" class="level1">
+<h1>절절한 피처로 다시 학습</h1>
+<div id="ffad87e1-1b07-4fc9-a012-1eb6070ffaa4" class="cell" data-execution_count="187">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> picher_df[[<span class="st">'FIP'</span>, <span class="st">'WAR'</span>, <span class="st">'볼넷/9'</span>, <span class="st">'삼진/9'</span>, <span class="st">'연봉(2017)'</span>]]</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> picher_df[<span class="st">'y'</span>]</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">19</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="89cadf4c-e3df-422e-8e1c-9e860b885ddf" class="cell" data-execution_count="188">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> linear_model.LinearRegression()</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> lr.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b1b4ff65-8ddc-478b-9ee9-37cc3965e577" class="cell" data-execution_count="189">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.score(X_train, y_train)) <span class="co"># train R2 score</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.score(X_test, y_test)) <span class="co"># test R2 score</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.9150591192570362
+0.9038759653890193</code></pre>
+</div>
+</div>
+<div id="a482be16-96d6-4d75-b752-b093b92d0953" class="cell" data-execution_count="190">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>y_predictions <span class="op">=</span> lr.predict(X_train)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sqrt(mean_squared_error(y_train, y_predictions))) <span class="co"># train RMSE score</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>y_predictions <span class="op">=</span> lr.predict(X_test)</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sqrt(mean_squared_error(y_test, y_predictions))) <span class="co"># test RMSE score</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7893.462873347693
+13141.866063588841</code></pre>
+</div>
+</div>
+<div id="4626a0d7-ddd2-46e7-b5d5-84deda24b0eb" class="cell" data-execution_count="191">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> picher_df[[<span class="st">'FIP'</span>, <span class="st">'WAR'</span>, <span class="st">'볼넷/9'</span>, <span class="st">'삼진/9'</span>, <span class="st">'연봉(2017)'</span>]]</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>vif <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>vif[<span class="st">"VIF Factor"</span>] <span class="op">=</span> [variance_inflation_factor(X.values, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(X.shape[<span class="dv">1</span>])]</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>vif[<span class="st">"features"</span>] <span class="op">=</span> X.columns</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>vif.<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="191">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">VIF Factor</th>
+<th data-quarto-table-cell-role="th">features</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>8.9</td>
+<td>FIP</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2.5</td>
+<td>WAR</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>7.9</td>
+<td>볼넷/9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>5.1</td>
+<td>삼진/9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2.7</td>
+<td>연봉(2017)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="분석-결과-시각화" class="level1">
+<h1>분석 결과 시각화</h1>
+<ul>
+<li>회귀분석을 통해 얻어낸 예측연봉과 2018년의 실제연봉 데이터 비교</li>
+</ul>
+<div id="fe6d3898-91ee-4f0c-9eb9-09f20fb38c27" class="cell" data-execution_count="204">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span> picher_df[[<span class="st">'FIP'</span>, <span class="st">'WAR'</span>, <span class="st">'볼넷/9'</span>, <span class="st">'삼진/9'</span>, <span class="st">'연봉(2017)'</span>]]</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>predict_2018_salary <span class="op">=</span> lr.predict(X)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>picher_df[<span class="st">'예측연봉(2018)'</span>] <span class="op">=</span> pd.Series(predict_2018_salary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f18ea4a9-2ad8-4ce1-b281-4e6a8bf0e484" class="cell" data-execution_count="206">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>picher_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="206">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">팀명</th>
+<th data-quarto-table-cell-role="th">승</th>
+<th data-quarto-table-cell-role="th">패</th>
+<th data-quarto-table-cell-role="th">세</th>
+<th data-quarto-table-cell-role="th">홀드</th>
+<th data-quarto-table-cell-role="th">블론</th>
+<th data-quarto-table-cell-role="th">경기</th>
+<th data-quarto-table-cell-role="th">선발</th>
+<th data-quarto-table-cell-role="th">이닝</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">BABIP</th>
+<th data-quarto-table-cell-role="th">LOB%</th>
+<th data-quarto-table-cell-role="th">ERA</th>
+<th data-quarto-table-cell-role="th">RA9-WAR</th>
+<th data-quarto-table-cell-role="th">FIP</th>
+<th data-quarto-table-cell-role="th">kFIP</th>
+<th data-quarto-table-cell-role="th">WAR</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">연봉(2017)</th>
+<th data-quarto-table-cell-role="th">예측연봉(2018)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>켈리</td>
+<td>SK</td>
+<td>3.313623</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>190.0</td>
+<td>...</td>
+<td>0.342</td>
+<td>73.7</td>
+<td>3.60</td>
+<td>6.91</td>
+<td>3.69</td>
+<td>3.44</td>
+<td>6.62</td>
+<td>140000</td>
+<td>85000</td>
+<td>120122.822204</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>소사</td>
+<td>LG</td>
+<td>2.019505</td>
+<td>11</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>29</td>
+<td>185.1</td>
+<td>...</td>
+<td>0.319</td>
+<td>67.1</td>
+<td>3.88</td>
+<td>6.80</td>
+<td>3.52</td>
+<td>3.41</td>
+<td>6.08</td>
+<td>120000</td>
+<td>50000</td>
+<td>88127.019455</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>양현종</td>
+<td>KIA</td>
+<td>4.348918</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>31</td>
+<td>31</td>
+<td>193.1</td>
+<td>...</td>
+<td>0.332</td>
+<td>72.1</td>
+<td>3.44</td>
+<td>6.54</td>
+<td>3.94</td>
+<td>3.82</td>
+<td>5.64</td>
+<td>230000</td>
+<td>150000</td>
+<td>163930.148696</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>차우찬</td>
+<td>LG</td>
+<td>1.760682</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>28</td>
+<td>28</td>
+<td>175.2</td>
+<td>...</td>
+<td>0.298</td>
+<td>75.0</td>
+<td>3.43</td>
+<td>6.11</td>
+<td>4.20</td>
+<td>4.03</td>
+<td>4.63</td>
+<td>100000</td>
+<td>100000</td>
+<td>116009.684582</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>롯데</td>
+<td>2.537153</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>187.1</td>
+<td>...</td>
+<td>0.323</td>
+<td>74.1</td>
+<td>3.80</td>
+<td>6.13</td>
+<td>4.36</td>
+<td>4.31</td>
+<td>4.38</td>
+<td>111000</td>
+<td>85000</td>
+<td>102253.697589</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 23 columns</p>
+</div>
+</div>
+</div>
+<div id="fe54f77e-b16d-499e-b79c-62d87633ad13" class="cell" data-execution_count="202">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>picher2 <span class="op">=</span> picher[[<span class="st">'선수명'</span>,<span class="st">'연봉(2017)'</span>]]</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>picher2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="202">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">연봉(2017)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>켈리</td>
+<td>85000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>소사</td>
+<td>50000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>양현종</td>
+<td>150000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>차우찬</td>
+<td>100000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>85000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="43598a5b-bf40-4266-94d5-c0f474101a4a" class="cell" data-execution_count="209">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>result_df <span class="op">=</span> picher_df.sort_values(by<span class="op">=</span>[<span class="st">'y'</span>], ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>result_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="209">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">팀명</th>
+<th data-quarto-table-cell-role="th">승</th>
+<th data-quarto-table-cell-role="th">패</th>
+<th data-quarto-table-cell-role="th">세</th>
+<th data-quarto-table-cell-role="th">홀드</th>
+<th data-quarto-table-cell-role="th">블론</th>
+<th data-quarto-table-cell-role="th">경기</th>
+<th data-quarto-table-cell-role="th">선발</th>
+<th data-quarto-table-cell-role="th">이닝</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">BABIP</th>
+<th data-quarto-table-cell-role="th">LOB%</th>
+<th data-quarto-table-cell-role="th">ERA</th>
+<th data-quarto-table-cell-role="th">RA9-WAR</th>
+<th data-quarto-table-cell-role="th">FIP</th>
+<th data-quarto-table-cell-role="th">kFIP</th>
+<th data-quarto-table-cell-role="th">WAR</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">연봉(2017)</th>
+<th data-quarto-table-cell-role="th">예측연봉(2018)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>양현종</td>
+<td>KIA</td>
+<td>4.348918</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>31</td>
+<td>31</td>
+<td>193.1</td>
+<td>...</td>
+<td>0.332</td>
+<td>72.1</td>
+<td>3.44</td>
+<td>6.54</td>
+<td>3.94</td>
+<td>3.82</td>
+<td>5.64</td>
+<td>230000</td>
+<td>150000</td>
+<td>163930.148696</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>켈리</td>
+<td>SK</td>
+<td>3.313623</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>190.0</td>
+<td>...</td>
+<td>0.342</td>
+<td>73.7</td>
+<td>3.60</td>
+<td>6.91</td>
+<td>3.69</td>
+<td>3.44</td>
+<td>6.62</td>
+<td>140000</td>
+<td>85000</td>
+<td>120122.822204</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>소사</td>
+<td>LG</td>
+<td>2.019505</td>
+<td>11</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>29</td>
+<td>185.1</td>
+<td>...</td>
+<td>0.319</td>
+<td>67.1</td>
+<td>3.88</td>
+<td>6.80</td>
+<td>3.52</td>
+<td>3.41</td>
+<td>6.08</td>
+<td>120000</td>
+<td>50000</td>
+<td>88127.019455</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">20</td>
+<td>정우람</td>
+<td>한화</td>
+<td>0.725387</td>
+<td>4</td>
+<td>26</td>
+<td>0</td>
+<td>5</td>
+<td>56</td>
+<td>0</td>
+<td>59.0</td>
+<td>...</td>
+<td>0.304</td>
+<td>79.4</td>
+<td>2.75</td>
+<td>2.85</td>
+<td>3.26</td>
+<td>2.69</td>
+<td>1.81</td>
+<td>120000</td>
+<td>120000</td>
+<td>108489.464585</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>롯데</td>
+<td>2.537153</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>187.1</td>
+<td>...</td>
+<td>0.323</td>
+<td>74.1</td>
+<td>3.80</td>
+<td>6.13</td>
+<td>4.36</td>
+<td>4.31</td>
+<td>4.38</td>
+<td>111000</td>
+<td>85000</td>
+<td>102253.697589</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">82</td>
+<td>장지훈</td>
+<td>삼성</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>2.1</td>
+<td>...</td>
+<td>0.500</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.09</td>
+<td>0.73</td>
+<td>-0.69</td>
+<td>0.08</td>
+<td>2800</td>
+<td>2700</td>
+<td>249.850641</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">89</td>
+<td>차재용</td>
+<td>롯데</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>2.1</td>
+<td>...</td>
+<td>0.167</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.08</td>
+<td>2.02</td>
+<td>1.83</td>
+<td>0.05</td>
+<td>2800</td>
+<td>2800</td>
+<td>900.811527</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">103</td>
+<td>성영훈</td>
+<td>두산</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1.0</td>
+<td>...</td>
+<td>0.000</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.04</td>
+<td>6.73</td>
+<td>7.64</td>
+<td>-0.01</td>
+<td>2700</td>
+<td>2700</td>
+<td>5003.619609</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">115</td>
+<td>정동윤</td>
+<td>SK</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>3.0</td>
+<td>...</td>
+<td>0.364</td>
+<td>71.4</td>
+<td>9.00</td>
+<td>-0.03</td>
+<td>9.40</td>
+<td>10.05</td>
+<td>-0.07</td>
+<td>2700</td>
+<td>2700</td>
+<td>2686.350884</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">93</td>
+<td>장민익</td>
+<td>두산</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>2.0</td>
+<td>...</td>
+<td>0.000</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.08</td>
+<td>4.73</td>
+<td>4.61</td>
+<td>0.02</td>
+<td>2700</td>
+<td>2700</td>
+<td>3543.781665</td>
+</tr>
+</tbody>
+</table>
+
+<p>152 rows × 23 columns</p>
+</div>
+</div>
+</div>
+<div id="6eae59c1-df63-4dcf-bc6e-716864f4a751" class="cell" data-execution_count="210">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>result_df.drop([<span class="st">'연봉(2017)'</span>],axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>, errors<span class="op">=</span><span class="st">'ignore'</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>result_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="210">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">팀명</th>
+<th data-quarto-table-cell-role="th">승</th>
+<th data-quarto-table-cell-role="th">패</th>
+<th data-quarto-table-cell-role="th">세</th>
+<th data-quarto-table-cell-role="th">홀드</th>
+<th data-quarto-table-cell-role="th">블론</th>
+<th data-quarto-table-cell-role="th">경기</th>
+<th data-quarto-table-cell-role="th">선발</th>
+<th data-quarto-table-cell-role="th">이닝</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">홈런/9</th>
+<th data-quarto-table-cell-role="th">BABIP</th>
+<th data-quarto-table-cell-role="th">LOB%</th>
+<th data-quarto-table-cell-role="th">ERA</th>
+<th data-quarto-table-cell-role="th">RA9-WAR</th>
+<th data-quarto-table-cell-role="th">FIP</th>
+<th data-quarto-table-cell-role="th">kFIP</th>
+<th data-quarto-table-cell-role="th">WAR</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">예측연봉(2018)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>양현종</td>
+<td>KIA</td>
+<td>4.348918</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>31</td>
+<td>31</td>
+<td>193.1</td>
+<td>...</td>
+<td>0.79</td>
+<td>0.332</td>
+<td>72.1</td>
+<td>3.44</td>
+<td>6.54</td>
+<td>3.94</td>
+<td>3.82</td>
+<td>5.64</td>
+<td>230000</td>
+<td>163930.148696</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>켈리</td>
+<td>SK</td>
+<td>3.313623</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>190.0</td>
+<td>...</td>
+<td>0.76</td>
+<td>0.342</td>
+<td>73.7</td>
+<td>3.60</td>
+<td>6.91</td>
+<td>3.69</td>
+<td>3.44</td>
+<td>6.62</td>
+<td>140000</td>
+<td>120122.822204</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>소사</td>
+<td>LG</td>
+<td>2.019505</td>
+<td>11</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>29</td>
+<td>185.1</td>
+<td>...</td>
+<td>0.53</td>
+<td>0.319</td>
+<td>67.1</td>
+<td>3.88</td>
+<td>6.80</td>
+<td>3.52</td>
+<td>3.41</td>
+<td>6.08</td>
+<td>120000</td>
+<td>88127.019455</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">20</td>
+<td>정우람</td>
+<td>한화</td>
+<td>0.725387</td>
+<td>4</td>
+<td>26</td>
+<td>0</td>
+<td>5</td>
+<td>56</td>
+<td>0</td>
+<td>59.0</td>
+<td>...</td>
+<td>0.76</td>
+<td>0.304</td>
+<td>79.4</td>
+<td>2.75</td>
+<td>2.85</td>
+<td>3.26</td>
+<td>2.69</td>
+<td>1.81</td>
+<td>120000</td>
+<td>108489.464585</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>롯데</td>
+<td>2.537153</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>187.1</td>
+<td>...</td>
+<td>0.91</td>
+<td>0.323</td>
+<td>74.1</td>
+<td>3.80</td>
+<td>6.13</td>
+<td>4.36</td>
+<td>4.31</td>
+<td>4.38</td>
+<td>111000</td>
+<td>102253.697589</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">82</td>
+<td>장지훈</td>
+<td>삼성</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>2.1</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.500</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.09</td>
+<td>0.73</td>
+<td>-0.69</td>
+<td>0.08</td>
+<td>2800</td>
+<td>249.850641</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">89</td>
+<td>차재용</td>
+<td>롯데</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>2.1</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.167</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.08</td>
+<td>2.02</td>
+<td>1.83</td>
+<td>0.05</td>
+<td>2800</td>
+<td>900.811527</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">103</td>
+<td>성영훈</td>
+<td>두산</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1.0</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.000</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.04</td>
+<td>6.73</td>
+<td>7.64</td>
+<td>-0.01</td>
+<td>2700</td>
+<td>5003.619609</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">115</td>
+<td>정동윤</td>
+<td>SK</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>3.0</td>
+<td>...</td>
+<td>3.00</td>
+<td>0.364</td>
+<td>71.4</td>
+<td>9.00</td>
+<td>-0.03</td>
+<td>9.40</td>
+<td>10.05</td>
+<td>-0.07</td>
+<td>2700</td>
+<td>2686.350884</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">93</td>
+<td>장민익</td>
+<td>두산</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>2.0</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.000</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.08</td>
+<td>4.73</td>
+<td>4.61</td>
+<td>0.02</td>
+<td>2700</td>
+<td>3543.781665</td>
+</tr>
+</tbody>
+</table>
+
+<p>152 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<div id="784646b8-38fd-4e54-a368-bda0a20e40ff" class="cell" data-execution_count="212">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>result_df <span class="op">=</span> result_df.merge(picher2, on <span class="op">=</span> [<span class="st">'선수명'</span>], how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>result_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="212">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">팀명_x</th>
+<th data-quarto-table-cell-role="th">승_x</th>
+<th data-quarto-table-cell-role="th">패_x</th>
+<th data-quarto-table-cell-role="th">세_x</th>
+<th data-quarto-table-cell-role="th">홀드_x</th>
+<th data-quarto-table-cell-role="th">블론_x</th>
+<th data-quarto-table-cell-role="th">경기_x</th>
+<th data-quarto-table-cell-role="th">선발_x</th>
+<th data-quarto-table-cell-role="th">이닝_x</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">BABIP_y</th>
+<th data-quarto-table-cell-role="th">LOB%_y</th>
+<th data-quarto-table-cell-role="th">ERA_y</th>
+<th data-quarto-table-cell-role="th">RA9-WAR_y</th>
+<th data-quarto-table-cell-role="th">FIP_y</th>
+<th data-quarto-table-cell-role="th">kFIP_y</th>
+<th data-quarto-table-cell-role="th">WAR_y</th>
+<th data-quarto-table-cell-role="th">연봉(2018)</th>
+<th data-quarto-table-cell-role="th">연봉(2017)_x</th>
+<th data-quarto-table-cell-role="th">연봉(2017)_y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>양현종</td>
+<td>KIA</td>
+<td>4.348918</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>31</td>
+<td>31</td>
+<td>193.1</td>
+<td>...</td>
+<td>0.332</td>
+<td>72.1</td>
+<td>3.44</td>
+<td>6.54</td>
+<td>3.94</td>
+<td>3.82</td>
+<td>5.64</td>
+<td>230000</td>
+<td>150000</td>
+<td>150000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>켈리</td>
+<td>SK</td>
+<td>3.313623</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>190.0</td>
+<td>...</td>
+<td>0.342</td>
+<td>73.7</td>
+<td>3.60</td>
+<td>6.91</td>
+<td>3.69</td>
+<td>3.44</td>
+<td>6.62</td>
+<td>140000</td>
+<td>85000</td>
+<td>85000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>소사</td>
+<td>LG</td>
+<td>2.019505</td>
+<td>11</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>29</td>
+<td>185.1</td>
+<td>...</td>
+<td>0.319</td>
+<td>67.1</td>
+<td>3.88</td>
+<td>6.80</td>
+<td>3.52</td>
+<td>3.41</td>
+<td>6.08</td>
+<td>120000</td>
+<td>50000</td>
+<td>50000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>정우람</td>
+<td>한화</td>
+<td>0.725387</td>
+<td>4</td>
+<td>26</td>
+<td>0</td>
+<td>5</td>
+<td>56</td>
+<td>0</td>
+<td>59.0</td>
+<td>...</td>
+<td>0.304</td>
+<td>79.4</td>
+<td>2.75</td>
+<td>2.85</td>
+<td>3.26</td>
+<td>2.69</td>
+<td>1.81</td>
+<td>120000</td>
+<td>120000</td>
+<td>120000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>롯데</td>
+<td>2.537153</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>30</td>
+<td>187.1</td>
+<td>...</td>
+<td>0.323</td>
+<td>74.1</td>
+<td>3.80</td>
+<td>6.13</td>
+<td>4.36</td>
+<td>4.31</td>
+<td>4.38</td>
+<td>111000</td>
+<td>85000</td>
+<td>85000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">147</td>
+<td>장지훈</td>
+<td>삼성</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>2.1</td>
+<td>...</td>
+<td>0.500</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.09</td>
+<td>0.73</td>
+<td>-0.69</td>
+<td>0.08</td>
+<td>2800</td>
+<td>2700</td>
+<td>2700</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">148</td>
+<td>차재용</td>
+<td>롯데</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>2.1</td>
+<td>...</td>
+<td>0.167</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.08</td>
+<td>2.02</td>
+<td>1.83</td>
+<td>0.05</td>
+<td>2800</td>
+<td>2800</td>
+<td>2800</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">149</td>
+<td>성영훈</td>
+<td>두산</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1.0</td>
+<td>...</td>
+<td>0.000</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.04</td>
+<td>6.73</td>
+<td>7.64</td>
+<td>-0.01</td>
+<td>2700</td>
+<td>2700</td>
+<td>2700</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">150</td>
+<td>정동윤</td>
+<td>SK</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>3.0</td>
+<td>...</td>
+<td>0.364</td>
+<td>71.4</td>
+<td>9.00</td>
+<td>-0.03</td>
+<td>9.40</td>
+<td>10.05</td>
+<td>-0.07</td>
+<td>2700</td>
+<td>2700</td>
+<td>2700</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">151</td>
+<td>장민익</td>
+<td>두산</td>
+<td>-0.827554</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>2.0</td>
+<td>...</td>
+<td>0.000</td>
+<td>100.0</td>
+<td>0.00</td>
+<td>0.08</td>
+<td>4.73</td>
+<td>4.61</td>
+<td>0.02</td>
+<td>2700</td>
+<td>2700</td>
+<td>2700</td>
+</tr>
+</tbody>
+</table>
+
+<p>152 rows × 44 columns</p>
+</div>
+</div>
+</div>
+<div id="79cf10a9-c6e7-4dc8-a1a0-fe54e94e46f6" class="cell" data-execution_count="216">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>result_df <span class="op">=</span> result_df[[<span class="st">'선수명'</span>, <span class="st">'y'</span>, <span class="st">'예측연봉(2018)'</span>,<span class="st">'연봉(2017)_x'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="539db690-9f18-4fd4-b348-3bac65f5ced6" class="cell" data-execution_count="217">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>result_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="217">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">예측연봉(2018)</th>
+<th data-quarto-table-cell-role="th">연봉(2017)_x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>양현종</td>
+<td>230000</td>
+<td>163930.148696</td>
+<td>150000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>켈리</td>
+<td>140000</td>
+<td>120122.822204</td>
+<td>85000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>소사</td>
+<td>120000</td>
+<td>88127.019455</td>
+<td>50000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>정우람</td>
+<td>120000</td>
+<td>108489.464585</td>
+<td>120000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>111000</td>
+<td>102253.697589</td>
+<td>85000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">147</td>
+<td>장지훈</td>
+<td>2800</td>
+<td>249.850641</td>
+<td>2700</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">148</td>
+<td>차재용</td>
+<td>2800</td>
+<td>900.811527</td>
+<td>2800</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">149</td>
+<td>성영훈</td>
+<td>2700</td>
+<td>5003.619609</td>
+<td>2700</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">150</td>
+<td>정동윤</td>
+<td>2700</td>
+<td>2686.350884</td>
+<td>2700</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">151</td>
+<td>장민익</td>
+<td>2700</td>
+<td>3543.781665</td>
+<td>2700</td>
+</tr>
+</tbody>
+</table>
+
+<p>152 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<div id="c1892ec3-10a6-437a-a381-6823cc9bc8e4" class="cell" data-execution_count="218">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>result_df.columns<span class="op">=</span>[<span class="st">'선수명'</span>, <span class="st">'실제연봉(2018)'</span>, <span class="st">'예측연봉(2018)'</span>, <span class="st">'작년연봉(2017)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="982b9942-8b87-435b-9523-f3d5c00965a8" class="cell" data-execution_count="219">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>result_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="219">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">실제연봉(2018)</th>
+<th data-quarto-table-cell-role="th">예측연봉(2018)</th>
+<th data-quarto-table-cell-role="th">작년연봉(2017)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>양현종</td>
+<td>230000</td>
+<td>163930.148696</td>
+<td>150000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>켈리</td>
+<td>140000</td>
+<td>120122.822204</td>
+<td>85000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>소사</td>
+<td>120000</td>
+<td>88127.019455</td>
+<td>50000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>정우람</td>
+<td>120000</td>
+<td>108489.464585</td>
+<td>120000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>레일리</td>
+<td>111000</td>
+<td>102253.697589</td>
+<td>85000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">147</td>
+<td>장지훈</td>
+<td>2800</td>
+<td>249.850641</td>
+<td>2700</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">148</td>
+<td>차재용</td>
+<td>2800</td>
+<td>900.811527</td>
+<td>2800</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">149</td>
+<td>성영훈</td>
+<td>2700</td>
+<td>5003.619609</td>
+<td>2700</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">150</td>
+<td>정동윤</td>
+<td>2700</td>
+<td>2686.350884</td>
+<td>2700</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">151</td>
+<td>장민익</td>
+<td>2700</td>
+<td>3543.781665</td>
+<td>2700</td>
+</tr>
+</tbody>
+</table>
+
+<p>152 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<p><code>-</code> 재계약으로 연봉이 변화한 선무 확인</p>
+<div id="1cb3d57e-2001-4009-b449-49c007179263" class="cell" data-execution_count="221">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>result_df <span class="op">=</span> result_df[result_df[<span class="st">'작년연봉(2017)'</span>]<span class="op">!=</span> result_df[<span class="st">'실제연봉(2018)'</span>]]</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>result_df <span class="op">=</span> result_df.reset_index()</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>result_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="221">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">level_0</th>
+<th data-quarto-table-cell-role="th">index</th>
+<th data-quarto-table-cell-role="th">선수명</th>
+<th data-quarto-table-cell-role="th">실제연봉(2018)</th>
+<th data-quarto-table-cell-role="th">예측연봉(2018)</th>
+<th data-quarto-table-cell-role="th">작년연봉(2017)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>0</td>
+<td>양현종</td>
+<td>230000</td>
+<td>163930.148696</td>
+<td>150000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>1</td>
+<td>켈리</td>
+<td>140000</td>
+<td>120122.822204</td>
+<td>85000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>2</td>
+<td>소사</td>
+<td>120000</td>
+<td>88127.019455</td>
+<td>50000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>3</td>
+<td>4</td>
+<td>레일리</td>
+<td>111000</td>
+<td>102253.697589</td>
+<td>85000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4</td>
+<td>7</td>
+<td>피어밴드</td>
+<td>85000</td>
+<td>58975.725734</td>
+<td>35000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="89b3498f-eb98-4c16-b83f-941b60a6655a" class="cell" data-execution_count="233">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>result_df.plot(x<span class="op">=</span><span class="st">'선수명'</span>, y<span class="op">=</span>[<span class="st">'작년연봉(2017)'</span>,<span class="st">'예측연봉(2018)'</span>,<span class="st">'실제연봉(2018)'</span>],kind<span class="op">=</span><span class="st">'bar'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="baseball-salary-prediction_files/figure-html/cell-63-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="boram-coco/coco" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

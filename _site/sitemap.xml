@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://boram-coco.github.io/coco/index.html</loc>
+    <lastmod>2023-12-07T10:52:48.597Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/Laplacian.html</loc>
+    <lastmod>2023-10-05T09:57:25.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/0810.html</loc>
+    <lastmod>2023-10-05T09:57:23.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/Neural Network.html</loc>
+    <lastmod>2023-10-05T09:57:25.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html</loc>
+    <lastmod>2023-10-05T09:57:23.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/autogluon fraud.html</loc>
+    <lastmod>2023-10-12T07:34:06.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/Deep learning with pytorch/tensor basic.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/boostcourse/4. 건강검진 데이터로 가설검정.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/boostcourse/1. file-path-setting.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/boostcourse/0. jupyter basic.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/imbalaced data/plot_comparison_over_sampling.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/imbalaced data/plot_comparison_under_sampling.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/KSS-DataFrame.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/Python Data Analysis/경사하강법.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/3. Synthetic data/2023-07-02-CTGAN-TOY.html</loc>
+    <lastmod>2023-10-05T09:57:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/3. Synthetic data/Modeling Tabular Data using Conditional GAN.html</loc>
+    <lastmod>2023-10-05T09:57:26.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/3. Synthetic data/2023-07-01-CTGAN.html</loc>
+    <lastmod>2023-10-05T09:57:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/3. Synthetic data/Practical Synthetic Data Generation.html</loc>
+    <lastmod>2023-10-05T09:57:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/0. Note/콰트로 블로그 만드는 법.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/0. Note/Ref.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/3. Synthetic data/synthetic data.html</loc>
+    <lastmod>2023-10-05T09:57:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/3. Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html</loc>
+    <lastmod>2023-10-05T09:57:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/3. Synthetic data/[R] synthpop.html</loc>
+    <lastmod>2023-10-05T09:57:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/3. Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html</loc>
+    <lastmod>2023-10-05T09:57:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/주성분 분석.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/Python Data Analysis/딥러닝 회귀분석.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/Python Data Analysis/인공신경망과 퍼셉트론.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/tutorial_hand_on.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/imbalaced data/imbalaced data.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/boostcourse/2. 데이터 분석 준비하기.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/boostcourse/3. 서울 종합병원 분포 확인하기.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/boostcourse/5. K-beauty.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/데이터 개념 공부.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/baseball-salary-prediction.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/4. Study/sklearn.html</loc>
+    <lastmod>2023-10-05T09:59:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/GNN논문.html</loc>
+    <lastmod>2023-10-05T09:57:25.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/230810 데이터정리.html</loc>
+    <lastmod>2023-10-05T09:57:23.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/Graph basic.html</loc>
+    <lastmod>2023-10-05T09:57:25.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/about.html</loc>
+    <lastmod>2023-12-07T10:52:48.597Z</lastmod>
+  </url>
+</urlset>

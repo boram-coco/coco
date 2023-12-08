@@ -3,23 +3,27 @@ project:
 
 website:
   title: "coco"
+  
+  page-footer:
+    border: true
+    
   navbar:
     right:
       - about.qmd
       - icon: github
         href: https://github.com/boram-coco
+      - icon: lightning
+        href: https://icons.getbootstrap.com/
 
   sidebar:
     style: "docked"
     search: true
-    contents: auto
-    
-    
+    contents:
+      - Note.qmd
+      - GNN.qmd
+      - Synthetic.qmd
+      - Study.qmd
 format:
   html:
     theme: cosmo
     css: styles.css
-    toc: true
-    code-fold: false
-    code-line-numbers: true
-    code-copy: true

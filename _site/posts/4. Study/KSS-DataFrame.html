@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.283">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="김보람">
+<meta name="dcterms.date" content="2023-06-29">
+
+<title>coco - [한국통계학회] 통계계산연구회 튜토리얼</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">coco</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Boram-coco</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/4. Study/autogluon fraud.html">4. Study</a></li><li class="breadcrumb-item"><a href="../../posts/4. Study/KSS-DataFrame.html">[한국통계학회] 통계계산연구회 튜토리얼</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Boram-coco</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">0. Note</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/0. Note/Ref.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ref</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/0. Note/콰트로 블로그 만드는 법.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">콰트로 블로그</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">3. Synthetic data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/[R] synthpop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[R] synthpop</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/2023-07-01-CTGAN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CTGAN]</strong> CTGAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/2023-07-02-CTGAN-TOY.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CTGAN]</strong> CTGAN ToyEX</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Synthetic Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practical Synthetic Data Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/synthetic data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synthetic Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">4. Study</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/autogluon fraud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Autogluon fraud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/baseball-salary-prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/KSS-DataFrame.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">[한국통계학회] 통계계산연구회 튜토리얼</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/sklearn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬:사이킷런</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/tutorial_hand_on.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TDA tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/데이터 개념 공부.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 개념공부</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/주성분 분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">주성분 분석(PCA)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Boostcourse</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/0. jupyter basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1: 주피터 노트북 사용법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/1. file-path-setting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2: file-path-setting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/2. 데이터 분석 준비하기.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3: 데이터 분석 준비하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4: 서울 종합병원 분포 확인하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/4. 건강검진 데이터로 가설검정.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5: 건강검진 데이터로 가설검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/5. K-beauty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6: K-beauty</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">Deep learning with pytorch</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Deep learning with pytorch/tensor basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tensor Basic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">imbalaced data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/imbalaced data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">imbalanced data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/plot_comparison_over_sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">plot_comparison_over_sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/plot_comparison_under_sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">plot_comparison_under_sampling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Python Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/경사하강법.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경사하강법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">다층 퍼셉트론과 딥러닝</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/딥러닝 회귀분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">딥러닝: 회귀분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/인공신경망과 퍼셉트론.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인공신경망과 퍼셉트론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+ <span class="menu-text">선형대수와 통계학으로 배우는 머신러닝 with 파이썬</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">모형 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">앙상블 학습</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text">GNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/0810.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 그래프자료로 데이터정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/230810 데이터정리.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] An Introduction to Graph Neural Network(GNN) For Analysing Structured Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/GNN논문.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] 논문 정리 (~ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Graph basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Graph Basic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Laplacian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Laplacian matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Neural Network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Neural Network</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ref" id="toc-ref" class="nav-link active" data-scroll-target="#ref">ref</a></li>
+  <li><a href="#효율적인-메모리-관리와-프로그램-작성" id="toc-효율적인-메모리-관리와-프로그램-작성" class="nav-link" data-scroll-target="#효율적인-메모리-관리와-프로그램-작성">효율적인 메모리 관리와 프로그램 작성</a>
+  <ul class="collapse">
+  <li><a href="#빅데이터분석에서의-메모리-관리" id="toc-빅데이터분석에서의-메모리-관리" class="nav-link" data-scroll-target="#빅데이터분석에서의-메모리-관리">빅데이터분석에서의 메모리 관리</a></li>
+  <li><a href="#수행작업" id="toc-수행작업" class="nav-link" data-scroll-target="#수행작업">수행작업</a></li>
+  <li><a href="#string-rightarrow-범주형" id="toc-string-rightarrow-범주형" class="nav-link" data-scroll-target="#string-rightarrow-범주형">string <span class="math inline">\(\rightarrow\)</span> 범주형</a></li>
+  <li><a href="#downcastrng" id="toc-downcastrng" class="nav-link" data-scroll-target="#downcastrng">Downcastrng</a></li>
+  </ul></li>
+  <li><a href="#효율적인-프로그램" id="toc-효율적인-프로그램" class="nav-link" data-scroll-target="#효율적인-프로그램">효율적인 프로그램</a>
+  <ul class="collapse">
+  <li><a href="#수행작업-1" id="toc-수행작업-1" class="nav-link" data-scroll-target="#수행작업-1">수행작업</a></li>
+  <li><a href="#loop를-이용한-프로그램" id="toc-loop를-이용한-프로그램" class="nav-link" data-scroll-target="#loop를-이용한-프로그램">Loop를 이용한 프로그램</a></li>
+  <li><a href="#apply를-이용한-프로그램" id="toc-apply를-이용한-프로그램" class="nav-link" data-scroll-target="#apply를-이용한-프로그램">Apply를 이용한 프로그램</a></li>
+  <li><a href="#vectorized를-이용한-프로그램" id="toc-vectorized를-이용한-프로그램" class="nav-link" data-scroll-target="#vectorized를-이용한-프로그램">Vectorized를 이용한 프로그램</a></li>
+  </ul></li>
+  <li><a href="#set-up-the-environment-variables-for-pyspark-java-spark-and-python" id="toc-set-up-the-environment-variables-for-pyspark-java-spark-and-python" class="nav-link" data-scroll-target="#set-up-the-environment-variables-for-pyspark-java-spark-and-python">Set up the environment variables for Pyspark, Java, Spark, and python</a>
+  <ul class="collapse">
+  <li><a href="#웹브라우저에서-localhost4040-연결" id="toc-웹브라우저에서-localhost4040-연결" class="nav-link" data-scroll-target="#웹브라우저에서-localhost4040-연결">웹브라우저에서 localhost:4040 연결</a></li>
+  <li><a href="#pyspark에서-hdfs-데이터-불러오기" id="toc-pyspark에서-hdfs-데이터-불러오기" class="nav-link" data-scroll-target="#pyspark에서-hdfs-데이터-불러오기">Pyspark에서 hdfs 데이터 불러오기</a></li>
+  <li><a href="#여러개의-csv-파일-읽기" id="toc-여러개의-csv-파일-읽기" class="nav-link" data-scroll-target="#여러개의-csv-파일-읽기">여러개의 CSV 파일 읽기</a></li>
+  <li><a href="#직접-읽을-데이터의-type-지정" id="toc-직접-읽을-데이터의-type-지정" class="nav-link" data-scroll-target="#직접-읽을-데이터의-type-지정">직접 읽을 데이터의 type 지정</a></li>
+  <li><a href="#dataframe을-다른-형식으로-변환하고-저장불러오기" id="toc-dataframe을-다른-형식으로-변환하고-저장불러오기" class="nav-link" data-scroll-target="#dataframe을-다른-형식으로-변환하고-저장불러오기">DataFrame을 다른 형식으로 변환하고 저장/불러오기</a></li>
+  <li><a href="#pyspark-vs-python" id="toc-pyspark-vs-python" class="nav-link" data-scroll-target="#pyspark-vs-python">Pyspark vs Python</a></li>
+  <li><a href="#pyspark-기본-예제" id="toc-pyspark-기본-예제" class="nav-link" data-scroll-target="#pyspark-기본-예제">Pyspark 기본 예제</a></li>
+  <li><a href="#how-to-use-sql-in-pyspark" id="toc-how-to-use-sql-in-pyspark" class="nav-link" data-scroll-target="#how-to-use-sql-in-pyspark">How to use SQL in Pyspark</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="KSS-DataFrame.out.ipynb" download="KSS-DataFrame.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/4. Study/autogluon fraud.html">4. Study</a></li><li class="breadcrumb-item"><a href="../../posts/4. Study/KSS-DataFrame.html">[한국통계학회] 통계계산연구회 튜토리얼</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">[한국통계학회] 통계계산연구회 튜토리얼</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">한국통계학회</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>김보람 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 29, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<section id="ref" class="level2">
+<h2 class="anchored" data-anchor-id="ref">ref</h2>
+<p>해당 자료는 2023 한국통계학회 통계계산연구회 여인권 교수님 자료임</p>
+<p>https://github.com/statfunny/Bigdata-statistical-Analysis</p>
+<p>아래 내용 실행하기 전에 깔아야 할 게 엄청 많음……</p>
+<div id="060e33cc-28f3-42a5-ae65-3d8182390b48" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install pyarrow pyspark==3.4.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="효율적인-메모리-관리와-프로그램-작성" class="level2">
+<h2 class="anchored" data-anchor-id="효율적인-메모리-관리와-프로그램-작성">효율적인 메모리 관리와 프로그램 작성</h2>
+<section id="빅데이터분석에서의-메모리-관리" class="level3">
+<h3 class="anchored" data-anchor-id="빅데이터분석에서의-메모리-관리">빅데이터분석에서의 메모리 관리</h3>
+<ul>
+<li>문자열보다는 범주형</li>
+<li>범위가 제한적인 정수형</li>
+<li>최소한의 실수형</li>
+<li>이진(binary)인 경우 Boolean(True/False)</li>
+</ul>
+<div id="c33d61e0" class="cell" data-tags="[]" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0d414f6d" class="cell" data-tags="[]" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> 데이터프레임생성(size):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"나이"</span>] <span class="op">=</span> np.random.choice(<span class="dv">100</span>,size)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"수행평가1"</span>] <span class="op">=</span> np.random.choice([<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span>,<span class="st">"F"</span>], size)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"수행평가2"</span>] <span class="op">=</span> np.random.choice([<span class="st">"상"</span>,<span class="st">"중"</span>,<span class="st">"하"</span>], size)    </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"학점"</span>] <span class="op">=</span> np.random.choice([<span class="st">"[0,3)"</span>,<span class="st">"[3,3.5)"</span>,<span class="st">"[3.5,4)"</span>,<span class="st">"[4,4.3]"</span>], size)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"합격확률"</span>] <span class="op">=</span> np.random.uniform(<span class="dv">0</span>,<span class="dv">1</span>,size)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"결과"</span>] <span class="op">=</span> np.random.choice([<span class="st">"합격"</span>,<span class="st">"불합격"</span>],size)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a367c7e1" class="cell" data-tags="[]" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> 데이터프레임생성(<span class="dv">1000000</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># df = 데이터프레임생성(1_000_000) # 컴마 대신에 언더바를 작성해서 나눠주기</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> df.copy()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df.copy()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df1.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 6 columns):
+ #   Column  Non-Null Count    Dtype  
+---  ------  --------------    -----  
+ 0   나이      1000000 non-null  int64  
+ 1   수행평가1   1000000 non-null  object 
+ 2   수행평가2   1000000 non-null  object 
+ 3   학점      1000000 non-null  object 
+ 4   합격확률    1000000 non-null  float64
+ 5   결과      1000000 non-null  object 
+dtypes: float64(1), int64(1), object(4)
+memory usage: 45.8+ MB</code></pre>
+</div>
+</div>
+</section>
+<section id="수행작업" class="level3">
+<h3 class="anchored" data-anchor-id="수행작업">수행작업</h3>
+<ul>
+<li>수행평가1, 학점에 따라 데이터를 나누고 그 안에서 나이의 순위</li>
+<li>수행평가1, 학점에 따라 데이터를 나누고 그 안에서 합격확률의 순위</li>
+<li>수행평가1, 학점, 결과에 따라 데이터를 나누고 그 안에서 합격확률의 순위</li>
+<li>수행시간계산
+<ul>
+<li>%timeit : 반복 작업을 하며 해당 프로그램을 수행하는데 걸린 시간의 평균과 표준편차 제고</li>
+</ul></li>
+</ul>
+<div id="46fac89b" class="cell" data-tags="[]" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit df1[<span class="st">"순위1"</span>] <span class="op">=</span> df1.groupby([<span class="st">"수행평가1"</span>,<span class="st">"학점"</span>])[<span class="st">"나이"</span>].rank()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit df1[<span class="st">"순위2"</span>] <span class="op">=</span> df1.groupby([<span class="st">"수행평가1"</span>,<span class="st">"학점"</span>])[<span class="st">"합격확률"</span>].rank()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit df1[<span class="st">"순위3"</span>] <span class="op">=</span> df1.groupby([<span class="st">"수행평가1"</span>,<span class="st">"학점"</span>,<span class="st">"결과"</span>])[<span class="st">"합격확률"</span>].rank()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>157 ms ± 533 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+219 ms ± 2.95 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+256 ms ± 384 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+</div>
+</div>
+</section>
+<section id="string-rightarrow-범주형" class="level3">
+<h3 class="anchored" data-anchor-id="string-rightarrow-범주형">string <span class="math inline">\(\rightarrow\)</span> 범주형</h3>
+<div id="ecef0612" class="cell" data-tags="[]" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">"수행평가1"</span>] <span class="op">=</span> df2[<span class="st">"수행평가1"</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">"수행평가2"</span>] <span class="op">=</span> df2[<span class="st">"수행평가2"</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">"학점"</span>] <span class="op">=</span> df2[<span class="st">"학점"</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df2.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 6 columns):
+ #   Column  Non-Null Count    Dtype   
+---  ------  --------------    -----   
+ 0   나이      1000000 non-null  int64   
+ 1   수행평가1   1000000 non-null  category
+ 2   수행평가2   1000000 non-null  category
+ 3   학점      1000000 non-null  category
+ 4   합격확률    1000000 non-null  float64 
+ 5   결과      1000000 non-null  object  
+dtypes: category(3), float64(1), int64(1), object(1)
+memory usage: 25.7+ MB</code></pre>
+</div>
+</div>
+</section>
+<section id="downcastrng" class="level3">
+<h3 class="anchored" data-anchor-id="downcastrng">Downcastrng</h3>
+<ul>
+<li>int8: -128~127
+<ul>
+<li>uint8: 0~255</li>
+</ul></li>
+<li>int16: -32,768 ~ 32,767
+<ul>
+<li>uint16: 0~65,535</li>
+</ul></li>
+<li>int32: -2,147,483,648~2,147,483,647
+<ul>
+<li>uint32: 0~ 4,294,967,295</li>
+</ul></li>
+<li>int64: -9,223,372,036,854,775,808 ~ -9,223,372,036,854,775,807
+<ul>
+<li>uint64: 0~18,446,744,073,709,551,615</li>
+</ul></li>
+</ul>
+<div id="8080f6b6" class="cell" data-tags="[]" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">"나이"</span>] <span class="op">=</span> df2[<span class="st">"나이"</span>].astype(<span class="st">'int8'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df2.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 6 columns):
+ #   Column  Non-Null Count    Dtype   
+---  ------  --------------    -----   
+ 0   나이      1000000 non-null  int8    
+ 1   수행평가1   1000000 non-null  category
+ 2   수행평가2   1000000 non-null  category
+ 3   학점      1000000 non-null  category
+ 4   합격확률    1000000 non-null  float64 
+ 5   결과      1000000 non-null  object  
+dtypes: category(3), float64(1), int8(1), object(1)
+memory usage: 19.1+ MB</code></pre>
+</div>
+</div>
+<div id="a59028aa" class="cell" data-tags="[]" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">"합격확률"</span>] <span class="op">=</span> df2[<span class="st">"합격확률"</span>].astype(<span class="st">'float32'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df2.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 6 columns):
+ #   Column  Non-Null Count    Dtype   
+---  ------  --------------    -----   
+ 0   나이      1000000 non-null  int8    
+ 1   수행평가1   1000000 non-null  category
+ 2   수행평가2   1000000 non-null  category
+ 3   학점      1000000 non-null  category
+ 4   합격확률    1000000 non-null  float32 
+ 5   결과      1000000 non-null  object  
+dtypes: category(3), float32(1), int8(1), object(1)
+memory usage: 15.3+ MB</code></pre>
+</div>
+</div>
+<div id="340a653d" class="cell" data-tags="[]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">"결과"</span>] <span class="op">=</span> df2[<span class="st">"결과"</span>].<span class="bu">map</span>({<span class="st">"합격"</span>:<span class="va">True</span>,<span class="st">"불합격"</span>:<span class="va">False</span>})</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df2.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 6 columns):
+ #   Column  Non-Null Count    Dtype   
+---  ------  --------------    -----   
+ 0   나이      1000000 non-null  int8    
+ 1   수행평가1   1000000 non-null  category
+ 2   수행평가2   1000000 non-null  category
+ 3   학점      1000000 non-null  category
+ 4   합격확률    1000000 non-null  float32 
+ 5   결과      1000000 non-null  bool    
+dtypes: bool(1), category(3), float32(1), int8(1)
+memory usage: 8.6 MB</code></pre>
+</div>
+</div>
+<div id="37084661" class="cell" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit df2[<span class="st">"순위1"</span>] <span class="op">=</span> df2.groupby([<span class="st">"수행평가1"</span>,<span class="st">"학점"</span>])[<span class="st">"나이"</span>].rank()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit df2[<span class="st">"순위2"</span>] <span class="op">=</span> df2.groupby([<span class="st">"수행평가1"</span>,<span class="st">"학점"</span>])[<span class="st">"합격확률"</span>].rank()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit df2[<span class="st">"순위3"</span>] <span class="op">=</span> df2.groupby([<span class="st">"수행평가1"</span>,<span class="st">"학점"</span>,<span class="st">"결과"</span>])[<span class="st">"합격확률"</span>].rank()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>104 ms ± 377 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+164 ms ± 2.18 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+169 ms ± 1.55 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)</code></pre>
+</div>
+</div>
+<div id="cde4ae81" class="cell" data-tags="[]" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 파일 저장 및 읽기</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>변수 <span class="op">=</span> [<span class="st">"나이"</span>,<span class="st">"수행평가1"</span>,<span class="st">"수행평가2"</span>,<span class="st">"학점"</span>,<span class="st">"합격확률"</span>,<span class="st">"결과"</span>] </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> df1[변수]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df2[변수]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>df1.to_csv(<span class="st">"BSA03_df1.csv"</span>,index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>df2.to_csv(<span class="st">'BSA03_df2.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>df1csv <span class="op">=</span> pd.read_csv(<span class="st">'BSA03_df1.csv'</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>df2csv <span class="op">=</span> pd.read_csv(<span class="st">'BSA03_df2.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>df1.to_csv</code> : csv파일로 저장해라.</p>
+<div id="2dd5e94e" class="cell" data-tags="[]" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df1csv.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 6 columns):
+ #   Column  Non-Null Count    Dtype  
+---  ------  --------------    -----  
+ 0   나이      1000000 non-null  int64  
+ 1   수행평가1   1000000 non-null  object 
+ 2   수행평가2   1000000 non-null  object 
+ 3   학점      1000000 non-null  object 
+ 4   합격확률    1000000 non-null  float64
+ 5   결과      1000000 non-null  object 
+dtypes: float64(1), int64(1), object(4)
+memory usage: 45.8+ MB</code></pre>
+</div>
+</div>
+<div id="3be1740c" class="cell" data-tags="[]" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df2csv.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 6 columns):
+ #   Column  Non-Null Count    Dtype  
+---  ------  --------------    -----  
+ 0   나이      1000000 non-null  int64  
+ 1   수행평가1   1000000 non-null  object 
+ 2   수행평가2   1000000 non-null  object 
+ 3   학점      1000000 non-null  object 
+ 4   합격확률    1000000 non-null  float64
+ 5   결과      1000000 non-null  bool   
+dtypes: bool(1), float64(1), int64(1), object(3)
+memory usage: 39.1+ MB</code></pre>
+</div>
+</div>
+<div id="acf99203" class="cell" data-tags="[]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install pyarrow</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df2.to_parquet(<span class="st">'BSA03_df2.parquet'</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>df2pqt <span class="op">=</span> pd.read_parquet(<span class="st">'BSA03_df2.parquet'</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>df2pqt.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 6 columns):
+ #   Column  Non-Null Count    Dtype   
+---  ------  --------------    -----   
+ 0   나이      1000000 non-null  int8    
+ 1   수행평가1   1000000 non-null  category
+ 2   수행평가2   1000000 non-null  category
+ 3   학점      1000000 non-null  category
+ 4   합격확률    1000000 non-null  float32 
+ 5   결과      1000000 non-null  bool    
+dtypes: bool(1), category(3), float32(1), int8(1)
+memory usage: 8.6 MB</code></pre>
+</div>
+</div>
+<ul>
+<li>pandas에서 제공함</li>
+</ul>
+</section>
+</section>
+<section id="효율적인-프로그램" class="level2">
+<h2 class="anchored" data-anchor-id="효율적인-프로그램">효율적인 프로그램</h2>
+<blockquote class="blockquote">
+<p>반복적인 작업 진행시 for문 말고 아래와 같은 문법 사용</p>
+</blockquote>
+<section id="수행작업-1" class="level3">
+<h3 class="anchored" data-anchor-id="수행작업-1">수행작업</h3>
+<p>“평가”라는 새로운 변수에 - “나이”가 65세 미만이거나 “합격확률”이 0.6 이상이고 “학점”이 [4,4.3]이면 “수행평가1”를 - 위 조건이 아니면 “수행평가2”를 대입</p>
+<div id="e9be68e6" class="cell" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> 변수추가(행자료):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> 행자료[<span class="st">"나이"</span>] <span class="op">&lt;</span> <span class="dv">65</span>:</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> 행자료[<span class="st">"수행평가1"</span>]</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (행자료[<span class="st">"합격확률"</span>] <span class="op">&gt;=</span> <span class="fl">0.6</span>) <span class="op">&amp;</span> (행자료[<span class="st">"학점"</span>] <span class="op">==</span> <span class="st">"[4,4.3]"</span>):</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> 행자료[<span class="st">"수행평가1"</span>]</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(행자료[<span class="st">"수행평가2"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loop를-이용한-프로그램" class="level3">
+<h3 class="anchored" data-anchor-id="loop를-이용한-프로그램">Loop를 이용한 프로그램</h3>
+<div id="a2839d4a" class="cell" data-tags="[]" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span>데이터프레임생성(<span class="dv">100_000</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> df.copy()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df.copy()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> df.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e3ebc199" class="cell" data-tags="[]" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>timeit</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> df1.iterrows():</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    df1.loc[index,<span class="st">"평가"</span>] <span class="op">=</span> 변수추가(row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>17.3 s ± 1.05 s per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+</div>
+</div>
+</section>
+<section id="apply를-이용한-프로그램" class="level3">
+<h3 class="anchored" data-anchor-id="apply를-이용한-프로그램">Apply를 이용한 프로그램</h3>
+<div id="f5ab6861" class="cell" data-tags="[]" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>timeit</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">"평가"</span>] <span class="op">=</span> df2.<span class="bu">apply</span>(변수추가,axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.54 s ± 104 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+</div>
+</div>
+</section>
+<section id="vectorized를-이용한-프로그램" class="level3">
+<h3 class="anchored" data-anchor-id="vectorized를-이용한-프로그램">Vectorized를 이용한 프로그램</h3>
+<div id="3852add4" class="cell" data-tags="[]" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(df3[<span class="st">"나이"</span>] <span class="op">&lt;</span> <span class="dv">65</span>) <span class="op">|</span> ((df3[<span class="st">"합격확률"</span>] <span class="op">&gt;=</span> <span class="fl">0.6</span>) <span class="op">&amp;</span> (df3[<span class="st">"학점"</span>] <span class="op">==</span> <span class="st">"[4,4.3]"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>0         True
+1         True
+2        False
+3        False
+4         True
+         ...  
+99995     True
+99996     True
+99997     True
+99998     True
+99999    False
+Length: 100000, dtype: bool</code></pre>
+</div>
+</div>
+<div id="c41c2f47" class="cell" data-tags="[]" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>timeit</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df3[<span class="st">"평가"</span>] <span class="op">=</span> df3[<span class="st">"수행평가2"</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>조건 <span class="op">=</span> (df3[<span class="st">"나이"</span>] <span class="op">&lt;</span> <span class="dv">65</span>) <span class="op">|</span> ((df3[<span class="st">"합격확률"</span>] <span class="op">&gt;=</span> <span class="fl">0.6</span>) <span class="op">&amp;</span> (df3[<span class="st">"학점"</span>] <span class="op">==</span> <span class="st">"[4,4.3]"</span>))</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>df3.loc[조건,<span class="st">"평가"</span>] <span class="op">=</span> df[<span class="st">"수행평가1"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>23.2 ms ± 1.66 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)</code></pre>
+</div>
+</div>
+<ul>
+<li>Vectorized로 바꾸는게 가장 빠르게 할 수 있음.</li>
+</ul>
+</section>
+</section>
+<section id="set-up-the-environment-variables-for-pyspark-java-spark-and-python" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-the-environment-variables-for-pyspark-java-spark-and-python">Set up the environment variables for Pyspark, Java, Spark, and python</h2>
+<ul>
+<li>오류 발생 시</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">'JAVA_HOME'</span>] <span class="op">=</span> <span class="st">"C:\Java"</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">'SPARK_HOME'</span>] <span class="op">=</span> <span class="st">"C:\spark-3.4.0"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">'PYLIB'</span>] <span class="op">=</span> <span class="st">"C:\spark-3.4.0\python\lib"</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,os.environ[<span class="st">'PYLIB'</span>]<span class="op">+</span><span class="st">"\py4j-0.10.9.7-src.zip"</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,os.environ[<span class="st">'PYLIB'</span>]<span class="op">+</span><span class="st">"\pyspark.zip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="66e03cff-32f0-46f9-a07e-e61894dc6709" class="cell" data-tags="[]" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyspark</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c51f6cd2-f92d-47cb-9890-f261ec29df0a" class="cell" data-tags="[]" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>스파크 <span class="op">=</span> SparkSession.builder.appName(<span class="st">'Test'</span>).getOrCreate()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>스파크</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+
+            <div>
+                <p><b>SparkSession - in-memory</b></p>
+                
+        <div>
+            <p><b>SparkContext</b></p>
+
+            <p><a href="http://host.docker.internal:4040">Spark UI</a></p>
+
+            <dl>
+              <dt>Version</dt>
+                <dd><code>v3.3.2</code></dd>
+              <dt>Master</dt>
+                <dd><code>local[*]</code></dd>
+              <dt>AppName</dt>
+                <dd><code>Test</code></dd>
+            </dl>
+        </div>
+        
+            </div>
+        
+</div>
+</div>
+<section id="웹브라우저에서-localhost4040-연결" class="level3">
+<h3 class="anchored" data-anchor-id="웹브라우저에서-localhost4040-연결">웹브라우저에서 localhost:4040 연결</h3>
+</section>
+<section id="pyspark에서-hdfs-데이터-불러오기" class="level3">
+<h3 class="anchored" data-anchor-id="pyspark에서-hdfs-데이터-불러오기">Pyspark에서 hdfs 데이터 불러오기</h3>
+<ul>
+<li>CMD에서 start-dfs.cmd와 start-yarn.cmd 실행 후</li>
+<li>Spark 경로를 찾지 못하는 경우</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install findspark</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> findspark</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>findspark.find()</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>findspark.init(os.environ.get(<span class="st">"SPARK_HOME"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ee7d29e6-cd0d-459d-ab48-8e85242f0306" class="cell" data-tags="[]" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sparkDF1 <span class="op">=</span> 스파크.read.csv(<span class="st">"hdfs://localhost:9000/Spark/BSA03_df1.csv"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sparkDF1.show(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+----+---------+---------+-------+-------------------+------+
+| _c0|      _c1|      _c2|    _c3|                _c4|   _c5|
++----+---------+---------+-------+-------------------+------+
+|나이|수행평가1|수행평가2|   학점|           합격확률|  결과|
+|  19|        C|       하|  [0,3)| 0.1704850998911155|불합격|
+|  78|        F|       중|[3,3.5)| 0.7007295241834984|불합격|
+|  78|        F|       중|[4,4.3]|0.06793823954810418|불합격|
+|  23|        A|       중|[3.5,4)| 0.8262506446089442|  합격|
+|  97|        C|       하|[4,4.3]| 0.5911258463622218|불합격|
+|  45|        B|       하|  [0,3)| 0.3677844602679712|  합격|
+|  66|        A|       하|[3,3.5)| 0.9721303956886912|  합격|
+|  66|        F|       중|[4,4.3]|0.33333421672000396|  합격|
+|  61|        A|       상|[3,3.5)| 0.7048925310189916|불합격|
++----+---------+---------+-------+-------------------+------+
+only showing top 10 rows
+</code></pre>
+</div>
+</div>
+<div id="53ae871d-9418-4d02-ae30-cbd6145dd047" class="cell" data-tags="[]" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sparkDF1.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>root
+ |-- _c0: string (nullable = true)
+ |-- _c1: string (nullable = true)
+ |-- _c2: string (nullable = true)
+ |-- _c3: string (nullable = true)
+ |-- _c4: string (nullable = true)
+ |-- _c5: string (nullable = true)
+</code></pre>
+</div>
+</div>
+<div id="b1c65417-97f3-40cd-80f6-ca687d478084" class="cell" data-tags="[]" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sparkDF2 <span class="op">=</span> 스파크.read.csv(<span class="st">"hdfs://localhost:9000/Spark/BSA03_df1.csv"</span>, header<span class="op">=</span><span class="va">True</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>, inferSchema<span class="op">=</span><span class="st">"true"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#sparkDF2 = 스파크.read.option('encoding','utf-8').option('header',True).option(inferSchema='True') \</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    .csv("hdfs://localhost:9000/Spark/BSA03_df1.csv")</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>sparkDF2.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>root
+ |-- 나이: integer (nullable = true)
+ |-- 수행평가1: string (nullable = true)
+ |-- 수행평가2: string (nullable = true)
+ |-- 학점: string (nullable = true)
+ |-- 합격확률: double (nullable = true)
+ |-- 결과: string (nullable = true)
+</code></pre>
+</div>
+</div>
+<p><code>-</code> 하둡에 설치된 데이터를 가지고 올 때</p>
+<ul>
+<li><code>inferSchema="true"</code> 설정을 해주면 형태에 맞게 가지고 옴 (위에서는 string으로 다 가져옴)</li>
+</ul>
+</section>
+<section id="여러개의-csv-파일-읽기" class="level3">
+<h3 class="anchored" data-anchor-id="여러개의-csv-파일-읽기">여러개의 CSV 파일 읽기</h3>
+<ul>
+<li>can also read multiple csv files, just pass all file names by separating comma as a path</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sparkDF <span class="op">=</span> 스파크.read.csv(<span class="st">"path1,path2,path3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="직접-읽을-데이터의-type-지정" class="level3">
+<h3 class="anchored" data-anchor-id="직접-읽을-데이터의-type-지정">직접 읽을 데이터의 type 지정</h3>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyspark</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> StructType,StructField, StringType, IntegerType </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> ArrayType, DoubleType, BooleanType</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>스키마 <span class="op">=</span> StructType() <span class="op">\</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    .add(<span class="st">"나이"</span>,IntegerType(),<span class="va">True</span>) <span class="op">\</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    .add(<span class="st">"수행평가1"</span>,StringType(),<span class="va">True</span>) <span class="op">\</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    .add(<span class="st">"수행평가2"</span>,StringType(),<span class="va">True</span>) <span class="op">\</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    .add(<span class="st">"학점"</span>,StringType(),<span class="va">True</span>) <span class="op">\</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    .add(<span class="st">"합격확률"</span>,DoubleType(),<span class="va">True</span>) <span class="op">\</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    .add(<span class="st">"결과"</span>,StringType(),<span class="va">True</span>)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>sparkDF <span class="op">=</span> 스파크.read.<span class="bu">format</span>(<span class="st">'csv'</span>)<span class="op">\</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    .option(<span class="st">'header'</span>,<span class="va">True</span>).schema(스키마)<span class="op">\</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    load(<span class="st">"hdfs://localhost:9000/Spark/BSA03_df1.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a0db8e7b-3499-45ee-ac6d-909bd08a8642" class="cell" data-tags="[]" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>sparkDF3 <span class="op">=</span> 스파크.read.parquet(<span class="st">"hdfs://localhost:9000/Spark/BSA03_df2.parquet"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>sparkDF3.show(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+----+---------+---------+-------+----------+-----+
+|나이|수행평가1|수행평가2|   학점|  합격확률| 결과|
++----+---------+---------+-------+----------+-----+
+|  19|        C|       하|  [0,3)| 0.1704851|false|
+|  78|        F|       중|[3,3.5)|0.70072955|false|
+|  78|        F|       중|[4,4.3]|0.06793824|false|
+|  23|        A|       중|[3.5,4)| 0.8262507| true|
+|  97|        C|       하|[4,4.3]|0.59112585|false|
+|  45|        B|       하|  [0,3)|0.36778447| true|
+|  66|        A|       하|[3,3.5)| 0.9721304| true|
+|  66|        F|       중|[4,4.3]| 0.3333342| true|
+|  61|        A|       상|[3,3.5)| 0.7048925|false|
+|  46|        C|       상|[3,3.5)| 0.8856867|false|
++----+---------+---------+-------+----------+-----+
+only showing top 10 rows
+</code></pre>
+</div>
+</div>
+</section>
+<section id="dataframe을-다른-형식으로-변환하고-저장불러오기" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe을-다른-형식으로-변환하고-저장불러오기">DataFrame을 다른 형식으로 변환하고 저장/불러오기</h3>
+<ul>
+<li>pandas DataFrame <span class="math inline">\(\Longleftrightarrow\)</span> spark DataFrame</li>
+<li>csv <span class="math inline">\(\Longleftrightarrow\)</span> parquet</li>
+</ul>
+<div id="6ef8b49f-f7f9-44e8-a78e-0a959a209fae" class="cell" data-tags="[]" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>pandasDF_spark <span class="op">=</span> sparkDF2.toPandas()</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>pandasDF_spark.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">나이</th>
+<th data-quarto-table-cell-role="th">수행평가1</th>
+<th data-quarto-table-cell-role="th">수행평가2</th>
+<th data-quarto-table-cell-role="th">학점</th>
+<th data-quarto-table-cell-role="th">합격확률</th>
+<th data-quarto-table-cell-role="th">결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>19</td>
+<td>C</td>
+<td>하</td>
+<td>[0,3)</td>
+<td>0.170485</td>
+<td>불합격</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>78</td>
+<td>F</td>
+<td>중</td>
+<td>[3,3.5)</td>
+<td>0.700730</td>
+<td>불합격</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>78</td>
+<td>F</td>
+<td>중</td>
+<td>[4,4.3]</td>
+<td>0.067938</td>
+<td>불합격</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>23</td>
+<td>A</td>
+<td>중</td>
+<td>[3.5,4)</td>
+<td>0.826251</td>
+<td>합격</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>97</td>
+<td>C</td>
+<td>하</td>
+<td>[4,4.3]</td>
+<td>0.591126</td>
+<td>불합격</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="pandas-dataframe을-spark-dataframe으로" class="level4">
+<h4 class="anchored" data-anchor-id="pandas-dataframe을-spark-dataframe으로">pandas DataFrame을 spark DataFrame으로</h4>
+<p>Apache Spark uses Apache Arrow which is an in-memory columnar format to transfer the data between Python and JVM. You need to enable to use Arrow as this is disabled by default and have Apache Arrow (PyArrow) install on all Spark cluster nodes using pip install pyspark[sql] or by directly downloading from Apache Arrow for Python.</p>
+<div id="642adf00-cf4e-4730-954e-88aa88fe4c79" class="cell" data-tags="[]" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">### !pip install pyarrow</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>스파크.conf.<span class="bu">set</span>(<span class="st">"spark.sql.execution.arrow.pyspark.enabled"</span>,<span class="st">"true"</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">## pandas 2.0 : AttributeError: 'DataFrame' object has no attribute 'iteritems'</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">## --&gt;  iteritems was removed in pandas 2.0 ==&gt; pandas downgrade </span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co">#sparkDF_pandas = 스파크.createDataFrame(df1csv)</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">#sparkDF_pandas.show(10)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="when-an-error-occurs" class="level4">
+<h4 class="anchored" data-anchor-id="when-an-error-occurs">When an error occurs,</h4>
+<p>Spark automatically fallback to non-Arrow optimization implementation, this can be controlled by spark.sql.execution.arrow.pyspark.fallback.enabled.</p>
+<pre class="pythpn"><code>spark.conf.set("spark.sql.execution.arrow.pyspark.fallback.enabled","true")</code></pre>
+</section>
+</section>
+<section id="pyspark-vs-python" class="level3">
+<h3 class="anchored" data-anchor-id="pyspark-vs-python">Pyspark vs Python</h3>
+<ul>
+<li>pyspark는 scala로 만든 spark의 python 버전</li>
+<li>scala는 JVM object <span class="math inline">\(\rightarrow\)</span> pyspark 또한 JVM object</li>
+<li>python은 python object</li>
+<li>python(pandas) <span class="math inline">\(\rightarrow\)</span> py4J <span class="math inline">\(\rightarrow\)</span> scala(pyspark) : 오류가 자주 발생</li>
+</ul>
+<section id="spark에서" class="level4">
+<h4 class="anchored" data-anchor-id="spark에서">Spark에서</h4>
+<ul>
+<li>sparkDF.write.csv(“경로”)</li>
+<li>sparkDF.format(‘csv’).save(“경로”)</li>
+<li>기존 파일이 있는 경우
+<ul>
+<li>덮어쓰기: sparkDF.write.mode(‘overwrite’).csv(“경로”)</li>
+<li>추가하기: sparkDF.write.mode(‘append’).csv(“경로”)</li>
+<li>무시하기: sparkDF.write.mode(‘ignore’).csv(“경로”)</li>
+<li>오류발생: sparkDF.write.mode(‘error’).csv(“경로”) <span class="math inline">\(\Leftarrow\)</span> default</li>
+</ul></li>
+</ul>
+<div id="b1eb46b4-005c-413d-8382-ad6b2fb66c52" class="cell" data-tags="[]">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>sparkDF3.write.csv(<span class="st">"hdfs://localhost:9000/Test/csv"</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>sparkDF3.write.parquet(<span class="st">"hdfs://localhost:9000/Test/parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="pyspark-기본-예제" class="level3">
+<h3 class="anchored" data-anchor-id="pyspark-기본-예제">Pyspark 기본 예제</h3>
+<div id="de261607-54bf-4b05-a667-b918db6e6188" class="cell" data-tags="[]" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>df_hdfs <span class="op">=</span> 스파크.read.csv(<span class="st">"hdfs://localhost:9000/Spark/Employee.csv"</span>, header<span class="op">=</span><span class="va">True</span>, encoding<span class="op">=</span><span class="st">'cp949'</span>, inferSchema<span class="op">=</span><span class="st">'true'</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>df_hdfs.show(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---+------+----+------+-------+--------+-------+-------+--------+
+| id|gender|educ|jobcat| salary|salbegin|jobtime|prevexp|minority|
++---+------+----+------+-------+--------+-------+-------+--------+
+|  1|  남성|  15|경영자|57000.0|   27000|     98|    144|      No|
+|  2|  남성|  16|사무직|40200.0|   18750|     98|     36|      No|
+|  3|  여성|  12|사무직|21450.0|   12000|     98|    381|      No|
+|  4|  여성|   8|사무직|21900.0|   13200|     98|    190|      No|
+|  5|  남성|  15|사무직|45000.0|   21000|     98|    138|      No|
+|  6|  남성|  15|사무직|32100.0|   13500|     98|     67|      No|
+|  7|  남성|  15|사무직|36000.0|   18750|     98|    114|      No|
+|  8|  여성|  12|사무직|21900.0|    9750|     98|      0|      No|
+|  9|  여성|  15|사무직|27900.0|   12750|     98|    115|      No|
+| 10|  여성|  12|사무직|24000.0|   13500|     98|    244|      No|
++---+------+----+------+-------+--------+-------+-------+--------+
+only showing top 10 rows
+</code></pre>
+</div>
+</div>
+<div id="031fe264-27d1-45c4-8d33-8c9cf19c054d" class="cell" data-tags="[]" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>df_hdfs.where(<span class="st">'jobcat=="경영자"'</span>).show(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---+------+----+------+--------+--------+-------+-------+--------+
+| id|gender|educ|jobcat|  salary|salbegin|jobtime|prevexp|minority|
++---+------+----+------+--------+--------+-------+-------+--------+
+|  1|  남성|  15|경영자| 57000.0|   27000|     98|    144|      No|
+| 18|  남성|  16|경영자|103750.0|   27510|     97|     70|      No|
+| 27|  남성|  19|경영자| 60375.0|   27480|     96|     96|      No|
+| 29|  남성|  19|경영자|135000.0|   79980|     96|    199|      No|
+| 32|  남성|  19|경영자|110625.0|   45000|     96|    120|      No|
+| 34|  남성|  19|경영자| 92000.0|   39990|     96|    175|      No|
+| 35|  남성|  17|경영자| 81250.0|   30000|     96|     18|      No|
+| 50|  남성|  16|경영자| 60000.0|   23730|     94|     59|      No|
+| 53|  남성|  18|경영자| 73750.0|   26250|     94|     56|      No|
+| 62|  남성|  16|경영자| 48000.0|   21750|     93|     22|      No|
++---+------+----+------+--------+--------+-------+-------+--------+
+only showing top 10 rows
+</code></pre>
+</div>
+</div>
+<div id="2f3087e7-8216-47ec-9922-7e12339dfa78" class="cell" data-tags="[]" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col, log, exp, when</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>df_hdfs.withColumn(<span class="st">"Lsalary"</span>,log(<span class="st">"salary"</span>)).withColumn(<span class="st">"LBsalary"</span>,log(<span class="st">"salbegin"</span>)).show(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---+------+----+------+-------+--------+-------+-------+--------+------------------+------------------+
+| id|gender|educ|jobcat| salary|salbegin|jobtime|prevexp|minority|           Lsalary|          LBsalary|
++---+------+----+------+-------+--------+-------+-------+--------+------------------+------------------+
+|  1|  남성|  15|경영자|57000.0|   27000|     98|    144|      No|10.950806546816688|10.203592144986466|
+|  2|  남성|  16|사무직|40200.0|   18750|     98|     36|      No|10.601622274607113| 9.838949031398556|
+|  3|  여성|  12|사무직|21450.0|   12000|     98|    381|      No| 9.973479924356162| 9.392661928770137|
+|  4|  여성|   8|사무직|21900.0|   13200|     98|    190|      No| 9.994241915804592| 9.487972108574462|
+|  5|  남성|  15|사무직|45000.0|   21000|     98|    138|      No|10.714417768752456|  9.95227771670556|
++---+------+----+------+-------+--------+-------+-------+--------+------------------+------------------+
+only showing top 5 rows
+</code></pre>
+</div>
+</div>
+<div id="28333262-5fce-4714-9032-3be06489124e" class="cell" data-tags="[]" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>df_hdfs.select([<span class="st">"gender"</span>,<span class="st">"jobcat"</span>]).distinct().show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+------+------+
+|gender|jobcat|
++------+------+
+|  남성|사무직|
+|  여성|사무직|
+|  여성|경영자|
+|  남성|경영자|
+|  남성|관리직|
++------+------+
+</code></pre>
+</div>
+</div>
+<div id="ffa4ec78-c262-46c0-9b5f-3b03fb175af2" class="cell" data-tags="[]" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>df_hdfs.withColumn(<span class="st">"Job"</span>,when(col(<span class="st">"jobcat"</span>)<span class="op">==</span><span class="st">"경영자"</span>,<span class="st">"임원"</span>).otherwise(<span class="st">"사원"</span>)).show(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---+------+----+------+-------+--------+-------+-------+--------+----+
+| id|gender|educ|jobcat| salary|salbegin|jobtime|prevexp|minority| Job|
++---+------+----+------+-------+--------+-------+-------+--------+----+
+|  1|  남성|  15|경영자|57000.0|   27000|     98|    144|      No|임원|
+|  2|  남성|  16|사무직|40200.0|   18750|     98|     36|      No|사원|
+|  3|  여성|  12|사무직|21450.0|   12000|     98|    381|      No|사원|
+|  4|  여성|   8|사무직|21900.0|   13200|     98|    190|      No|사원|
+|  5|  남성|  15|사무직|45000.0|   21000|     98|    138|      No|사원|
++---+------+----+------+-------+--------+-------+-------+--------+----+
+only showing top 5 rows
+</code></pre>
+</div>
+</div>
+</section>
+<section id="how-to-use-sql-in-pyspark" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-use-sql-in-pyspark">How to use SQL in Pyspark</h3>
+<ul>
+<li>DF: DSL(domain specific language)</li>
+<li>Tables: pure SQL(Structured Query Language)</li>
+<li>DF(DataFrame)으로부터 (temporary, permanant) table를 create할 수 있음</li>
+</ul>
+<div id="ccc9a3af-1c49-4359-a47f-50d23540b06f" class="cell" data-tags="[]" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>df_hdfs.registerTempTable(<span class="st">"table1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>c:\users\smu\appdata\local\programs\python\python38\lib\site-packages\pyspark\sql\dataframe.py:229: FutureWarning: Deprecated in 2.0, use createOrReplaceTempView instead.
+  warnings.warn("Deprecated in 2.0, use createOrReplaceTempView instead.", FutureWarning)</code></pre>
+</div>
+</div>
+<ul>
+<li>Database 형태로 만드는 작업</li>
+</ul>
+<div id="1f26168d-888d-4916-af34-4c43ab5af073" class="cell" data-tags="[]" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>스파크.sql(<span class="st">"select count(*) from table1 group by jobcat"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+--------+
+|count(1)|
++--------+
+|      27|
+|      84|
+|     363|
++--------+
+</code></pre>
+</div>
+</div>
+<div id="05860fe6-3e51-4f3a-a872-92d00baa5d60" class="cell" data-tags="[]" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>스파크.sql(<span class="st">"show databases"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---------+
+|namespace|
++---------+
+|  default|
++---------+
+</code></pre>
+</div>
+</div>
+<div id="93605d59-7201-4b6e-b170-b58ba547e98f" class="cell" data-tags="[]" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>스파크.sql(<span class="st">"create database db1"</span>)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>스파크.sql(<span class="st">"show databases"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---------+
+|namespace|
++---------+
+|      db1|
+|  default|
++---------+
+</code></pre>
+</div>
+</div>
+<div id="840450ff-1ca5-48aa-ac76-aa1a37d8606a" class="cell" data-tags="[]" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>df_hdfs.registerTempTable(<span class="st">"table1"</span>) </span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>스파크.sql(<span class="st">"show tables in default"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---------+---------+-----------+
+|namespace|tableName|isTemporary|
++---------+---------+-----------+
+|         |   table1|       true|
++---------+---------+-----------+
+</code></pre>
+</div>
+</div>
+<div id="1ed3106a-b29a-42a9-b792-b145fa811dd8" class="cell" data-tags="[]" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>df_hdfs.registerTempTable(<span class="st">"table1"</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>df_hdfs.write.saveAsTable(<span class="st">"db1.permtable"</span>)  </span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co">## 현재 jupyter 실행 폴더의 spark-warehouse/db1.db/permtable에 저장</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="co">## 기존 table이 존재하는 경우 오류</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="mode-변경" class="level4">
+<h4 class="anchored" data-anchor-id="mode-변경">mode 변경:</h4>
+<ul>
+<li>관리자권한</li>
+<li>append, overwrite, error, errorifexists, ignore (default: error) 중 선택</li>
+</ul>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>df_hdfs.write.mode(<span class="st">'overwrite'</span>).saveAsTable(<span class="st">"db1.permtable"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b0da0ac7-adfb-4aee-b9be-2c0db2daebb6" class="cell" data-tags="[]" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>스파크.sql(<span class="st">"show tables in db1"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---------+---------+-----------+
+|namespace|tableName|isTemporary|
++---------+---------+-----------+
+|      db1|permtable|      false|
+|         |   table1|       true|
++---------+---------+-----------+
+</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="boram-coco/coco" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

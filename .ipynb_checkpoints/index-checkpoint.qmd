@@ -6,17 +6,56 @@ listing:
     - "date desc"
     - "title desc"
   type: table
-  categories: true
+  categories: false
+  page-size: 9999
   sort-ui: false
   filter-ui: false
 page-layout: full
 title-block-banner: true
+execute: 
+  enabled: true
+  cache: false
 ---
 
 
-coco
+**Coco's blog**
 
-* [Data Visualization](https://boram-coco.github.io/DV/)
 
-* [낙서장](https://boram-coco.github.io/Scribbling/)
+This is Boram's study blog, and it's a summary of what she's been studying, so there may be some mistakes. For blogs related to his graduate classes, click on the links below! I want to go for a walk. I want a snack. woof!
 
+
+
+---
+
+
+**links**
+
+::: {.panel-tabset} 
+
+## JBNU Class
+
+- [**Applied Statistics**](https://boram-coco.github.io/AS/)
+
+- [**Deep Learning**](https://boram-coco.github.io/DL/)
+
+- [**Machine Learning**](https://boram-coco.github.io/GML/)
+
+- [**Probabaility Theory**](https://boram-coco.github.io/PT/)
+
+- [**Python**](https://boram-coco.github.io/Python/)
+
+- [**Regression Analysis**](https://boram-coco.github.io/DL/)
+
+- [**Special Topics in Big Data Analysis(2022)**](https://boram-coco.github.io/STBDA22/)
+
+- [**Special Topics in Big Data Analysis(2023)**](https://boram-coco.github.io/STBDA23/)
+
+- [**Theoretical Statistics**](https://boram-coco.github.io/Ths/)
+
+- [**Time Series**]((https://boram-coco.github.io/TS/)
+
+## Study
+
+- [**Graph Machine Learning**]((https://boram-coco.github.io/GML/)
+
+:::
