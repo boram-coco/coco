@@ -77,8 +77,7 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      page: 30,
-    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
@@ -121,11 +120,16 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">Boram-coco</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://icons.getbootstrap.com/" rel="" target=""><i class="bi bi-lightning" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -152,13 +156,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
+    <div class="quarto-title column-page-right">
       <h1 class="title">coco</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-body">
+  <div class="quarto-title-meta column-page-right">
 
       
     
@@ -178,379 +182,68 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Boram-coco</span></a>
+  <a href="./Note.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Note</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Posts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">0. Note</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/0. Note/Ref.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ref</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/0. Note/콰트로 블로그 만드는 법.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">콰트로 블로그</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
- <span class="menu-text">3. Synthetic data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/3. Synthetic data/[R] synthpop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[R] synthpop</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/3. Synthetic data/2023-07-01-CTGAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[CTGAN]</strong> CTGAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/3. Synthetic data/2023-07-02-CTGAN-TOY.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[CTGAN]</strong> CTGAN ToyEX</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/3. Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Synthetic Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/3. Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/3. Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/3. Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practical Synthetic Data Generation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/3. Synthetic data/synthetic data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Synthetic Data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
- <span class="menu-text">4. Study</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/autogluon fraud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Autogluon fraud</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/baseball-salary-prediction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/KSS-DataFrame.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[한국통계학회] 통계계산연구회 튜토리얼</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">파이썬:사이킷런</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/tutorial_hand_on.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TDA tutorial</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/데이터 개념 공부.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">데이터 개념공부</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/주성분 분석.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">주성분 분석(PCA)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
- <span class="menu-text">Boostcourse</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/boostcourse/0. jupyter basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1: 주피터 노트북 사용법</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/boostcourse/1. file-path-setting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2: file-path-setting</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/boostcourse/2. 데이터 분석 준비하기.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3: 데이터 분석 준비하기</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4: 서울 종합병원 분포 확인하기</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/boostcourse/4. 건강검진 데이터로 가설검정.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5: 건강검진 데이터로 가설검정</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/boostcourse/5. K-beauty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6: K-beauty</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
- <span class="menu-text">Deep learning with pytorch</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/Deep learning with pytorch/tensor basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tensor Basic</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
- <span class="menu-text">imbalaced data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/imbalaced data/imbalaced data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">imbalanced data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/imbalaced data/plot_comparison_over_sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">plot_comparison_over_sampling</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/imbalaced data/plot_comparison_under_sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">plot_comparison_under_sampling</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
- <span class="menu-text">Python Data Analysis</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/Python Data Analysis/경사하강법.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">경사하강법</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">다층 퍼셉트론과 딥러닝</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/Python Data Analysis/딥러닝 회귀분석.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">딥러닝: 회귀분석</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/Python Data Analysis/인공신경망과 퍼셉트론.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">인공신경망과 퍼셉트론</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
- <span class="menu-text">선형대수와 통계학으로 배우는 머신러닝 with 파이썬</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">모형 평가</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">앙상블 학습</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+  <a href="./GNN.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GNN</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/GNN/0810.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 그래프자료로 데이터정리</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GNN/230810 데이터정리.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리</span></a>
+  <a href="./Synthetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GNN</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[GNN] An Introduction to Graph Neural Network(GNN) For Analysing Structured Data</span></a>
+  <a href="./Study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Study</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/GNN/GNN논문.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[GNN] 논문 정리 (~ing)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/GNN/Graph basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[GNN] Graph Basic</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/GNN/Laplacian.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[GNN] Laplacian matrix</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/GNN/Neural Network.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">[GNN] Neural Network</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(40)</span></div><div class="category" data-category="AutoEncoder">AutoEncoder <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GAN">GAN <span class="quarto-category-count">(2)</span></div><div class="category" data-category="GNN">GNN <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Laplacian Matrix">Laplacian Matrix <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Neural Network">Neural Network <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ref">Ref <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Synthetic Data">Synthetic Data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Synthetic data">Synthetic data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TDA">TDA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tensor">Tensor <span class="quarto-category-count">(1)</span></div><div class="category" data-category="imbalanced data">imbalanced data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="sklearn">sklearn <span class="quarto-category-count">(1)</span></div><div class="category" data-category="synthetic data">synthetic data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="synthpop">synthpop <span class="quarto-category-count">(1)</span></div><div class="category" data-category="경사하강법">경사하강법 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="그래디언트 부스팅">그래디언트 부스팅 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="딥러닝">딥러닝 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="모형 평가">모형 평가 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="배깅">배깅 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="보팅">보팅 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="부스트코스">부스트코스 <span class="quarto-category-count">(6)</span></div><div class="category" data-category="부스팅">부스팅 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="스태킹">스태킹 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="앙상블 학습">앙상블 학습 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="오토인코더">오토인코더 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="인공신경망">인공신경망 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="자격증 공부">자격증 공부 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="주성분 분석">주성분 분석 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="콰트로 블로그">콰트로 블로그 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="퍼셉트론">퍼셉트론 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="한국통계학회">한국통계학회 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="회귀 분석">회귀 분석 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="회귀분석">회귀분석 <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-body" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
 
 
 
 
-<p>coco</p>
+<p><strong>Coco’s blog</strong></p>
+<p>This is Boram’s study blog, and it’s a summary of what she’s been studying, so there may be some mistakes. For blogs related to his graduate classes, click on the links below! I want to go for a walk. I want a snack. woof!</p>
+<hr>
+<p><strong>links</strong></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">JBNU Class</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Study</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <ul>
-<li><p><a href="https://boram-coco.github.io/DV/">Data Visualization</a></p></li>
-<li><p><a href="https://boram-coco.github.io/Scribbling/">낙서장</a></p></li>
+<li><p><a href="https://boram-coco.github.io/AS/"><strong>Applied Statistics</strong></a></p></li>
+<li><p><a href="https://boram-coco.github.io/DL/"><strong>Deep Learning</strong></a></p></li>
+<li><p><a href="https://boram-coco.github.io/GML/"><strong>Machine Learning</strong></a></p></li>
+<li><p><a href="https://boram-coco.github.io/PT/"><strong>Probabaility Theory</strong></a></p></li>
+<li><p><a href="https://boram-coco.github.io/Python/"><strong>Python</strong></a></p></li>
+<li><p><a href="https://boram-coco.github.io/DL/"><strong>Regression Analysis</strong></a></p></li>
+<li><p><a href="https://boram-coco.github.io/STBDA22/"><strong>Special Topics in Big Data Analysis(2022)</strong></a></p></li>
+<li><p><a href="https://boram-coco.github.io/STBDA23/"><strong>Special Topics in Big Data Analysis(2023)</strong></a></p></li>
+<li><p><a href="https://boram-coco.github.io/Ths/"><strong>Theoretical Statistics</strong></a></p></li>
+<li><p>[<strong>Time Series</strong>]((https://boram-coco.github.io/TS/)</p></li>
 </ul>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<ul>
+<li>[<strong>Graph Machine Learning</strong>]((https://boram-coco.github.io/GML/)</li>
+</ul>
+</div>
+</div>
+</div>
 
 
 
@@ -576,7 +269,7 @@ Author
 <span class="listing-date">Oct 12, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/autogluon fraud.html" class="title listing-title">Autogluon fraud</a>
+<a href="./posts/Study/autogluon fraud.html" class="title listing-title">Autogluon fraud</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -609,7 +302,7 @@ Author
 <span class="listing-date">Jul 19, 2023</span>
 </td>
 <td>
-<a href="./posts/3. Synthetic data/2023-07-02-CTGAN-TOY.html" class="title listing-title"><strong>[CTGAN]</strong> CTGAN ToyEX</a>
+<a href="./posts/Synthetic/2023-07-02-CTGAN-TOY.html" class="title listing-title"><strong>[CTGAN]</strong> CTGAN ToyEX</a>
 </td>
 <td>
 <span class="listing-author">신록예찬 </span>
@@ -620,7 +313,7 @@ Author
 <span class="listing-date">Jul 19, 2023</span>
 </td>
 <td>
-<a href="./posts/3. Synthetic data/2023-07-01-CTGAN.html" class="title listing-title"><strong>[CTGAN]</strong> CTGAN</a>
+<a href="./posts/Synthetic/2023-07-01-CTGAN.html" class="title listing-title"><strong>[CTGAN]</strong> CTGAN</a>
 </td>
 <td>
 <span class="listing-author">신록예찬 </span>
@@ -653,7 +346,7 @@ Author
 <span class="listing-date">Jul 14, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/Deep learning with pytorch/tensor basic.html" class="title listing-title">Tensor Basic</a>
+<a href="./posts/Study/Deep learning with pytorch/tensor basic.html" class="title listing-title">Tensor Basic</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -675,7 +368,7 @@ Author
 <span class="listing-date">Jun 29, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/KSS-DataFrame.html" class="title listing-title">[한국통계학회] 통계계산연구회 튜토리얼</a>
+<a href="./posts/Study/KSS-DataFrame.html" class="title listing-title">[한국통계학회] 통계계산연구회 튜토리얼</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -686,7 +379,7 @@ Author
 <span class="listing-date">Jun 27, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/tutorial_hand_on.html" class="title listing-title">TDA tutorial</a>
+<a href="./posts/Study/tutorial_hand_on.html" class="title listing-title">TDA tutorial</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -697,7 +390,7 @@ Author
 <span class="listing-date">Jun 11, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/주성분 분석.html" class="title listing-title">주성분 분석(PCA)</a>
+<a href="./posts/Study/주성분 분석.html" class="title listing-title">주성분 분석(PCA)</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -730,7 +423,7 @@ Author
 <span class="listing-date">Jun 1, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html" class="title listing-title">앙상블 학습</a>
+<a href="./posts/Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html" class="title listing-title">앙상블 학습</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -741,7 +434,7 @@ Author
 <span class="listing-date">May 18, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/baseball-salary-prediction.html" class="title listing-title">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</a>
+<a href="./posts/Study/baseball-salary-prediction.html" class="title listing-title">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -752,7 +445,7 @@ Author
 <span class="listing-date">May 11, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html" class="title listing-title">모형 평가</a>
+<a href="./posts/Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html" class="title listing-title">모형 평가</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -763,7 +456,7 @@ Author
 <span class="listing-date">Apr 24, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/Python Data Analysis/인공신경망과 퍼셉트론.html" class="title listing-title">인공신경망과 퍼셉트론</a>
+<a href="./posts/Study/Python Data Analysis/인공신경망과 퍼셉트론.html" class="title listing-title">인공신경망과 퍼셉트론</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -774,7 +467,7 @@ Author
 <span class="listing-date">Apr 24, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html" class="title listing-title">다층 퍼셉트론과 딥러닝</a>
+<a href="./posts/Study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html" class="title listing-title">다층 퍼셉트론과 딥러닝</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -785,7 +478,7 @@ Author
 <span class="listing-date">Apr 24, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/Python Data Analysis/경사하강법.html" class="title listing-title">경사하강법</a>
+<a href="./posts/Study/Python Data Analysis/경사하강법.html" class="title listing-title">경사하강법</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -796,7 +489,7 @@ Author
 <span class="listing-date">Apr 20, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/Python Data Analysis/딥러닝 회귀분석.html" class="title listing-title">딥러닝: 회귀분석</a>
+<a href="./posts/Study/Python Data Analysis/딥러닝 회귀분석.html" class="title listing-title">딥러닝: 회귀분석</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -807,7 +500,7 @@ Author
 <span class="listing-date">Apr 14, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/sklearn.html" class="title listing-title">파이썬:사이킷런</a>
+<a href="./posts/Study/sklearn.html" class="title listing-title">파이썬:사이킷런</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -818,7 +511,7 @@ Author
 <span class="listing-date">Apr 14, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/imbalaced data/plot_comparison_under_sampling.html" class="title listing-title">plot_comparison_under_sampling</a>
+<a href="./posts/Study/imbalaced data/plot_comparison_under_sampling.html" class="title listing-title">plot_comparison_under_sampling</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -829,7 +522,7 @@ Author
 <span class="listing-date">Apr 14, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/imbalaced data/plot_comparison_over_sampling.html" class="title listing-title">plot_comparison_over_sampling</a>
+<a href="./posts/Study/imbalaced data/plot_comparison_over_sampling.html" class="title listing-title">plot_comparison_over_sampling</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -840,7 +533,7 @@ Author
 <span class="listing-date">Apr 12, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/imbalaced data/imbalaced data.html" class="title listing-title">imbalanced data</a>
+<a href="./posts/Study/imbalaced data/imbalaced data.html" class="title listing-title">imbalanced data</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -851,7 +544,7 @@ Author
 <span class="listing-date">Apr 12, 2023</span>
 </td>
 <td>
-<a href="./posts/0. Note/Ref.html" class="title listing-title">Ref</a>
+<a href="./posts/Note/Ref.html" class="title listing-title">Ref</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -862,7 +555,7 @@ Author
 <span class="listing-date">Apr 5, 2023</span>
 </td>
 <td>
-<a href="./posts/4. Study/데이터 개념 공부.html" class="title listing-title">데이터 개념공부</a>
+<a href="./posts/Study/데이터 개념 공부.html" class="title listing-title">데이터 개념공부</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -873,7 +566,7 @@ Author
 <span class="listing-date">Mar 31, 2023</span>
 </td>
 <td>
-<a href="./posts/3. Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="title listing-title">[논문] Modeling Tabular Data using Conditional GAN</a>
+<a href="./posts/Synthetic/Modeling Tabular Data using Conditional GAN.html" class="title listing-title">[논문] Modeling Tabular Data using Conditional GAN</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -884,7 +577,7 @@ Author
 <span class="listing-date">Mar 29, 2023</span>
 </td>
 <td>
-<a href="./posts/3. Synthetic data/[R] synthpop.html" class="title listing-title">[R] synthpop</a>
+<a href="./posts/Synthetic/[R] synthpop.html" class="title listing-title">[R] synthpop</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -895,7 +588,7 @@ Author
 <span class="listing-date">Mar 24, 2023</span>
 </td>
 <td>
-<a href="./posts/3. Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="title listing-title">[논문] Synthetic Data</a>
+<a href="./posts/Synthetic/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="title listing-title">[논문] Synthetic Data</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -906,7 +599,7 @@ Author
 <span class="listing-date">Mar 22, 2023</span>
 </td>
 <td>
-<a href="./posts/3. Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="title listing-title">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</a>
+<a href="./posts/Synthetic/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="title listing-title">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -917,7 +610,7 @@ Author
 <span class="listing-date">Mar 13, 2023</span>
 </td>
 <td>
-<a href="./posts/0. Note/콰트로 블로그 만드는 법.html" class="title listing-title">콰트로 블로그</a>
+<a href="./posts/Note/콰트로 블로그 만드는 법.html" class="title listing-title">콰트로 블로그</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -928,7 +621,7 @@ Author
 <span class="listing-date">Mar 13, 2023</span>
 </td>
 <td>
-<a href="./posts/3. Synthetic data/synthetic data.html" class="title listing-title">Synthetic Data</a>
+<a href="./posts/Synthetic/synthetic data.html" class="title listing-title">Synthetic Data</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -939,7 +632,7 @@ Author
 <span class="listing-date">Mar 10, 2023</span>
 </td>
 <td>
-<a href="./posts/3. Synthetic data/Practical Synthetic Data Generation.html" class="title listing-title">Practical Synthetic Data Generation</a>
+<a href="./posts/Synthetic/Practical Synthetic Data Generation.html" class="title listing-title">Practical Synthetic Data Generation</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -950,7 +643,7 @@ Author
 <span class="listing-date">Nov 24, 2022</span>
 </td>
 <td>
-<a href="./posts/4. Study/boostcourse/5. K-beauty.html" class="title listing-title">6: K-beauty</a>
+<a href="./posts/Study/boostcourse/5. K-beauty.html" class="title listing-title">6: K-beauty</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -961,7 +654,7 @@ Author
 <span class="listing-date">Nov 24, 2022</span>
 </td>
 <td>
-<a href="./posts/4. Study/boostcourse/4. 건강검진 데이터로 가설검정.html" class="title listing-title">5: 건강검진 데이터로 가설검정</a>
+<a href="./posts/Study/boostcourse/4. 건강검진 데이터로 가설검정.html" class="title listing-title">5: 건강검진 데이터로 가설검정</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -972,7 +665,7 @@ Author
 <span class="listing-date">Nov 24, 2022</span>
 </td>
 <td>
-<a href="./posts/4. Study/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="title listing-title">4: 서울 종합병원 분포 확인하기</a>
+<a href="./posts/Study/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="title listing-title">4: 서울 종합병원 분포 확인하기</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -983,7 +676,7 @@ Author
 <span class="listing-date">Nov 24, 2022</span>
 </td>
 <td>
-<a href="./posts/4. Study/boostcourse/2. 데이터 분석 준비하기.html" class="title listing-title">3: 데이터 분석 준비하기</a>
+<a href="./posts/Study/boostcourse/2. 데이터 분석 준비하기.html" class="title listing-title">3: 데이터 분석 준비하기</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -994,7 +687,7 @@ Author
 <span class="listing-date">Nov 24, 2022</span>
 </td>
 <td>
-<a href="./posts/4. Study/boostcourse/1. file-path-setting.html" class="title listing-title">2: file-path-setting</a>
+<a href="./posts/Study/boostcourse/1. file-path-setting.html" class="title listing-title">2: file-path-setting</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -1005,7 +698,7 @@ Author
 <span class="listing-date">Nov 24, 2022</span>
 </td>
 <td>
-<a href="./posts/4. Study/boostcourse/0. jupyter basic.html" class="title listing-title">1: 주피터 노트북 사용법</a>
+<a href="./posts/Study/boostcourse/0. jupyter basic.html" class="title listing-title">1: 주피터 노트북 사용법</a>
 </td>
 <td>
 <span class="listing-author">김보람 </span>
@@ -1016,9 +709,6 @@ Author
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
-  <ul class="pagination"></ul>
-</nav>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

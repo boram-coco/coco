@@ -20,9 +20,7 @@ execute:
 
 **Coco's blog**
 
-
-This is Boram's study blog, and it's a summary of what she's been studying, so there may be some mistakes. For blogs related to his graduate classes, click on the links below! I want to go for a walk. I want a snack. woof!
-
+[This is Boram's study blog, and it's a summary of what she's been studying, so there may be some mistakes. For blogs related to his graduate classes, click on the links below! I want to go for a walk. I want a snack. woof!](coco2.jpg)
 
 
 ---
@@ -32,13 +30,21 @@ This is Boram's study blog, and it's a summary of what she's been studying, so t
 
 ::: {.panel-tabset} 
 
+## Study
+
+- [**Graph Machine Learning**](https://boram-coco.github.io/GML/)
+
+- [**GNN paper (poster)**](https://boram-coco.github.io/GNNpaper/)
+
+
+
 ## JBNU Class
 
 - [**Applied Statistics**](https://boram-coco.github.io/AS/)
 
 - [**Deep Learning**](https://boram-coco.github.io/DL/)
 
-- [**Machine Learning**](https://boram-coco.github.io/GML/)
+- [**Machine Learning**](https://boram-coco.github.io/ML/)
 
 - [**Probabaility Theory**](https://boram-coco.github.io/PT/)
 
@@ -50,12 +56,10 @@ This is Boram's study blog, and it's a summary of what she's been studying, so t
 
 - [**Special Topics in Big Data Analysis(2023)**](https://boram-coco.github.io/STBDA23/)
 
-- [**Theoretical Statistics**](https://boram-coco.github.io/Ths/)
+- [**Theoretical Statistics**](https://boram-coco.github.io/ThS/)
 
-- [**Time Series**]((https://boram-coco.github.io/TS/)
+- [**Time Series**](https://boram-coco.github.io/TS/)
 
-## Study
 
-- [**Graph Machine Learning**]((https://boram-coco.github.io/GML/)
 
 :::
