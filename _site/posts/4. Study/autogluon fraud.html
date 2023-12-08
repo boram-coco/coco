@@ -1,0 +1,2778 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.283">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="김보람">
+<meta name="dcterms.date" content="2023-10-12">
+
+<title>coco - Autogluon fraud</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">coco</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Boram-coco</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/4. Study/autogluon fraud.html">4. Study</a></li><li class="breadcrumb-item"><a href="../../posts/4. Study/autogluon fraud.html">Autogluon fraud</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Boram-coco</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">0. Note</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/0. Note/Ref.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ref</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/0. Note/콰트로 블로그 만드는 법.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">콰트로 블로그</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">3. Synthetic data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/[R] synthpop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[R] synthpop</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/2023-07-01-CTGAN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CTGAN]</strong> CTGAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/2023-07-02-CTGAN-TOY.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CTGAN]</strong> CTGAN ToyEX</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Synthetic Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Advaced Deep Learning with TensorFlow 2 and Keras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Deep Learning with TensorFlow 2 and Keras(-ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Modeling Tabular Data using Conditional GAN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[논문] Modeling Tabular Data using Conditional GAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/Practical Synthetic Data Generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practical Synthetic Data Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/3. Synthetic data/synthetic data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Synthetic Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">4. Study</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/autogluon fraud.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Autogluon fraud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/baseball-salary-prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/KSS-DataFrame.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[한국통계학회] 통계계산연구회 튜토리얼</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/sklearn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬:사이킷런</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/tutorial_hand_on.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TDA tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/데이터 개념 공부.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">데이터 개념공부</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/주성분 분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">주성분 분석(PCA)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Boostcourse</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/0. jupyter basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1: 주피터 노트북 사용법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/1. file-path-setting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2: file-path-setting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/2. 데이터 분석 준비하기.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3: 데이터 분석 준비하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4: 서울 종합병원 분포 확인하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/4. 건강검진 데이터로 가설검정.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5: 건강검진 데이터로 가설검정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/boostcourse/5. K-beauty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6: K-beauty</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">Deep learning with pytorch</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Deep learning with pytorch/tensor basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tensor Basic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">imbalaced data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/imbalaced data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">imbalanced data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/plot_comparison_over_sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">plot_comparison_over_sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/imbalaced data/plot_comparison_under_sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">plot_comparison_under_sampling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Python Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/경사하강법.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">경사하강법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">다층 퍼셉트론과 딥러닝</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/딥러닝 회귀분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">딥러닝: 회귀분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/Python Data Analysis/인공신경망과 퍼셉트론.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인공신경망과 퍼셉트론</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+ <span class="menu-text">선형대수와 통계학으로 배우는 머신러닝 with 파이썬</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">모형 평가</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/4. Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">앙상블 학습</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text">GNN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/0810.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 그래프자료로 데이터정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/230810 데이터정리.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[FRAUD]</strong> 데이터정리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] An Introduction to Graph Neural Network(GNN) For Analysing Structured Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/GNN논문.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] 논문 정리 (~ing)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Graph basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Graph Basic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Laplacian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Laplacian matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GNN/Neural Network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GNN] Neural Network</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="autogluon fraud.out.ipynb" download="autogluon fraud.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/4. Study/autogluon fraud.html">4. Study</a></li><li class="breadcrumb-item"><a href="../../posts/4. Study/autogluon fraud.html">Autogluon fraud</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Autogluon fraud</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>김보람 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 12, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div id="a671b69a-3c69-4e29-9ead-188e82d83f6b" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This Python 3 environment comes with many helpful analytics libraries installed</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For example, here's several helpful packages to load</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># linear algebra</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># data processing, CSV file I/O (e.g. pd.read_csv)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Input data files are available in the read-only "../input/" directory</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dirname, _, filenames <span class="kw">in</span> os.walk(<span class="st">'/kaggle/input'</span>):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> filename <span class="kw">in</span> filenames:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(os.path.join(dirname, filename))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save &amp; Run All" </span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="74f7e77d-1987-4355-b0f1-dfd47f46c87b" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> autogluon.tabular <span class="im">import</span> TabularPredictor</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># directory = '~/IEEEfraud/'  # directory where you have downloaded the data CSV files from the competition</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> <span class="st">'isFraud'</span>  <span class="co"># name of target variable to predict in this competition</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>eval_metric <span class="op">=</span> <span class="st">'roc_auc'</span>  <span class="co"># Optional: specify that competition evaluation metric is AUC</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># save_path = directory + 'AutoGluonModels/'  # where to store trained models</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6a7ace06-810c-48a9-9fc8-a5acca599d13" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>kaggle competitions download <span class="op">-</span>c ieee<span class="op">-</span>fraud<span class="op">-</span>detection</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Warning: Your Kaggle API key is readable by other users on this system! To fix this, you can run 'chmod 600 /home/coco/.kaggle/kaggle.json'
+Downloading ieee-fraud-detection.zip to /home/coco/Dropbox/coco/posts/study
+ 99%|███████████████████████████████████████▌| 117M/118M [00:09&lt;00:00, 18.2MB/s]
+100%|████████████████████████████████████████| 118M/118M [00:09&lt;00:00, 13.5MB/s]</code></pre>
+</div>
+</div>
+<div id="9d6e0143-8ab4-4e39-b10e-47fe377ca29a" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>unzip ieee<span class="op">-</span>fraud<span class="op">-</span>detection.<span class="bu">zip</span> <span class="op">-</span>d .<span class="op">/</span>ieee<span class="op">-</span>fraud<span class="op">-</span>detection</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Archive:  ieee-fraud-detection.zip
+  inflating: ./ieee-fraud-detection/sample_submission.csv  
+  inflating: ./ieee-fraud-detection/test_identity.csv  
+  inflating: ./ieee-fraud-detection/test_transaction.csv  
+  inflating: ./ieee-fraud-detection/train_identity.csv  
+  inflating: ./ieee-fraud-detection/train_transaction.csv  </code></pre>
+</div>
+</div>
+<div id="888377bf-080e-4447-ad55-efee60ab89b5" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>train_identity <span class="op">=</span> pd.read_csv(<span class="st">'ieee-fraud-detection/train_identity.csv'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>train_transaction <span class="op">=</span> pd.read_csv(<span class="st">'ieee-fraud-detection/train_transaction.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="568b21a2-bc6e-41ab-858a-998f1cfa735c" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !kaggle competitions download -c ieee-fraud-detection</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !unzip titanic.zip -d ./ieee-fraud-detection</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># df_train = pd.read_csv('titanic/train.csv')</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># df_test = pd.read_csv('titanic/test.csv')</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># !rm titanic.zip</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># !rm -rf titanic/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="44080846-2c5b-4f77-b518-d5a6df13db3c" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>train_data <span class="op">=</span> pd.merge(train_transaction, train_identity, on<span class="op">=</span><span class="st">'TransactionID'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="756e06b1-cba3-4223-ac07-ca91f2f06807" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>train_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">TransactionID</th>
+<th data-quarto-table-cell-role="th">isFraud</th>
+<th data-quarto-table-cell-role="th">TransactionDT</th>
+<th data-quarto-table-cell-role="th">TransactionAmt</th>
+<th data-quarto-table-cell-role="th">ProductCD</th>
+<th data-quarto-table-cell-role="th">card1</th>
+<th data-quarto-table-cell-role="th">card2</th>
+<th data-quarto-table-cell-role="th">card3</th>
+<th data-quarto-table-cell-role="th">card4</th>
+<th data-quarto-table-cell-role="th">card5</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">id_31</th>
+<th data-quarto-table-cell-role="th">id_32</th>
+<th data-quarto-table-cell-role="th">id_33</th>
+<th data-quarto-table-cell-role="th">id_34</th>
+<th data-quarto-table-cell-role="th">id_35</th>
+<th data-quarto-table-cell-role="th">id_36</th>
+<th data-quarto-table-cell-role="th">id_37</th>
+<th data-quarto-table-cell-role="th">id_38</th>
+<th data-quarto-table-cell-role="th">DeviceType</th>
+<th data-quarto-table-cell-role="th">DeviceInfo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2987000</td>
+<td>0</td>
+<td>86400</td>
+<td>68.50</td>
+<td>W</td>
+<td>13926</td>
+<td>NaN</td>
+<td>150.0</td>
+<td>discover</td>
+<td>142.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2987001</td>
+<td>0</td>
+<td>86401</td>
+<td>29.00</td>
+<td>W</td>
+<td>2755</td>
+<td>404.0</td>
+<td>150.0</td>
+<td>mastercard</td>
+<td>102.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2987002</td>
+<td>0</td>
+<td>86469</td>
+<td>59.00</td>
+<td>W</td>
+<td>4663</td>
+<td>490.0</td>
+<td>150.0</td>
+<td>visa</td>
+<td>166.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2987003</td>
+<td>0</td>
+<td>86499</td>
+<td>50.00</td>
+<td>W</td>
+<td>18132</td>
+<td>567.0</td>
+<td>150.0</td>
+<td>mastercard</td>
+<td>117.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2987004</td>
+<td>0</td>
+<td>86506</td>
+<td>50.00</td>
+<td>H</td>
+<td>4497</td>
+<td>514.0</td>
+<td>150.0</td>
+<td>mastercard</td>
+<td>102.0</td>
+<td>...</td>
+<td>samsung browser 6.2</td>
+<td>32.0</td>
+<td>2220x1080</td>
+<td>match_status:2</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>mobile</td>
+<td>SAMSUNG SM-G892A Build/NRD90M</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">590535</td>
+<td>3577535</td>
+<td>0</td>
+<td>15811047</td>
+<td>49.00</td>
+<td>W</td>
+<td>6550</td>
+<td>NaN</td>
+<td>150.0</td>
+<td>visa</td>
+<td>226.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">590536</td>
+<td>3577536</td>
+<td>0</td>
+<td>15811049</td>
+<td>39.50</td>
+<td>W</td>
+<td>10444</td>
+<td>225.0</td>
+<td>150.0</td>
+<td>mastercard</td>
+<td>224.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">590537</td>
+<td>3577537</td>
+<td>0</td>
+<td>15811079</td>
+<td>30.95</td>
+<td>W</td>
+<td>12037</td>
+<td>595.0</td>
+<td>150.0</td>
+<td>mastercard</td>
+<td>224.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">590538</td>
+<td>3577538</td>
+<td>0</td>
+<td>15811088</td>
+<td>117.00</td>
+<td>W</td>
+<td>7826</td>
+<td>481.0</td>
+<td>150.0</td>
+<td>mastercard</td>
+<td>224.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">590539</td>
+<td>3577539</td>
+<td>0</td>
+<td>15811131</td>
+<td>279.95</td>
+<td>W</td>
+<td>15066</td>
+<td>170.0</td>
+<td>150.0</td>
+<td>mastercard</td>
+<td>102.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>590540 rows × 434 columns</p>
+</div>
+</div>
+</div>
+<div id="a1571d01-defc-4064-aba4-ff8d98f59bf5" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>predictor <span class="op">=</span> TabularPredictor(label<span class="op">=</span>label, eval_metric<span class="op">=</span>eval_metric, verbosity<span class="op">=</span><span class="dv">3</span>).fit(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    train_data, presets<span class="op">=</span><span class="st">'best_quality'</span>, time_limit<span class="op">=</span><span class="dv">1200</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> predictor.fit_summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No path specified. Models will be saved in: "AutogluonModels/ag-20231012_071002"
+Presets specified: ['best_quality']
+============ fit kwarg info ============
+User Specified kwargs:
+{'auto_stack': True}
+Full kwargs:
+{'_feature_generator_kwargs': None,
+ '_save_bag_folds': None,
+ 'ag_args': None,
+ 'ag_args_ensemble': None,
+ 'ag_args_fit': None,
+ 'auto_stack': True,
+ 'calibrate': 'auto',
+ 'excluded_model_types': None,
+ 'feature_generator': 'auto',
+ 'feature_prune_kwargs': None,
+ 'holdout_frac': None,
+ 'hyperparameter_tune_kwargs': None,
+ 'included_model_types': None,
+ 'keep_only_best': False,
+ 'name_suffix': None,
+ 'num_bag_folds': None,
+ 'num_bag_sets': None,
+ 'num_stack_levels': None,
+ 'pseudo_data': None,
+ 'refit_full': False,
+ 'save_space': False,
+ 'set_best_to_refit_full': False,
+ 'unlabeled_data': None,
+ 'use_bag_holdout': False,
+ 'verbosity': 3}
+========================================
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/core/utils/utils.py:564: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context("mode.use_inf_as_na", True):  # treat None, NaN, INF, NINF as NA
+Stack configuration (auto_stack=True): num_stack_levels=0, num_bag_folds=8, num_bag_sets=20
+Saving AutogluonModels/ag-20231012_071002/learner.pkl
+Saving AutogluonModels/ag-20231012_071002/predictor.pkl
+Beginning AutoGluon training ... Time limit = 1200s
+AutoGluon will save models to "AutogluonModels/ag-20231012_071002"
+AutoGluon Version:  0.8.2
+Python Version:     3.10.13
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #26~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Jul 13 16:27:29 UTC 2
+Disk Space Avail:   715.54 GB / 982.82 GB (72.8%)
+Train Data Rows:    590540
+Train Data Columns: 433
+Label Column: isFraud
+Preprocessing data ...
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/core/utils/utils.py:564: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context("mode.use_inf_as_na", True):  # treat None, NaN, INF, NINF as NA
+AutoGluon infers your prediction problem is: 'binary' (because only two unique label-values observed).
+    2 unique label values:  [0, 1]
+    If 'binary' is not the correct problem_type, please manually specify the problem_type parameter during predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression'])
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/tabular/learner/default_learner.py:215: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context("mode.use_inf_as_na", True):  # treat None, NaN, INF, NINF as NA
+Selected class &lt;--&gt; label mapping:  class 1 = 1, class 0 = 0
+Using Feature Generators to preprocess the data ...
+Fitting AutoMLPipelineFeatureGenerator...
+    Available Memory:                    35500.76 MB
+    Train Data (Original)  Memory Usage: 2715.97 MB (7.7% of available memory)
+    Warning: Data size prior to feature transformation consumes 7.7% of available memory. Consider increasing memory or subsampling the data to avoid instability.
+    Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+    Stage 1 Generators:
+        Fitting AsTypeFeatureGenerator...
+            Original Features (exact raw dtype, raw dtype):
+                ('float64', 'float') : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int64', 'int')     :   3 | ['TransactionID', 'TransactionDT', 'card1']
+                ('object', 'object') :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+            Types of features in original data (raw dtype, special dtypes):
+                ('float', [])  : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])    :   3 | ['TransactionID', 'TransactionDT', 'card1']
+                ('object', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+            Types of features in processed data (raw dtype, special dtypes):
+                ('float', [])  : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])    :   3 | ['TransactionID', 'TransactionDT', 'card1']
+                ('object', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+            1.2s = Fit runtime
+            433 features in original data used to generate 433 features in processed data.
+    Stage 2 Generators:
+        Fitting FillNaFeatureGenerator...
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/features/generators/fillna.py:58: FutureWarning: The 'downcast' keyword in fillna is deprecated and will be removed in a future version. Use res.infer_objects(copy=False) to infer non-object dtype, or pd.to_numeric with the 'downcast' keyword to downcast numeric results.
+  X.fillna(self._fillna_feature_map, inplace=True, downcast=False)
+            Types of features in original data (raw dtype, special dtypes):
+                ('float', [])  : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])    :   3 | ['TransactionID', 'TransactionDT', 'card1']
+                ('object', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+            Types of features in processed data (raw dtype, special dtypes):
+                ('float', [])  : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])    :   3 | ['TransactionID', 'TransactionDT', 'card1']
+                ('object', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+            0.7s = Fit runtime
+            433 features in original data used to generate 433 features in processed data.
+    Stage 3 Generators:
+        Fitting IdentityFeatureGenerator...
+            Types of features in original data (raw dtype, special dtypes):
+                ('float', []) : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])   :   3 | ['TransactionID', 'TransactionDT', 'card1']
+            Types of features in processed data (raw dtype, special dtypes):
+                ('float', []) : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])   :   3 | ['TransactionID', 'TransactionDT', 'card1']
+            0.2s = Fit runtime
+            402 features in original data used to generate 402 features in processed data.
+        Fitting CategoryFeatureGenerator...
+            Fitting CategoryMemoryMinimizeFeatureGenerator...
+                Types of features in original data (raw dtype, special dtypes):
+                    ('category', []) : 31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+                Types of features in processed data (raw dtype, special dtypes):
+                    ('category', []) : 31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+                0.0s = Fit runtime
+                31 features in original data used to generate 31 features in processed data.
+            Types of features in original data (raw dtype, special dtypes):
+                ('object', []) : 31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+            Types of features in processed data (raw dtype, special dtypes):
+                ('category', []) : 31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+            0.6s = Fit runtime
+            31 features in original data used to generate 31 features in processed data.
+        Skipping DatetimeFeatureGenerator: No input feature with required dtypes.
+        Skipping TextSpecialFeatureGenerator: No input feature with required dtypes.
+        Skipping TextNgramFeatureGenerator: No input feature with required dtypes.
+        Skipping IdentityFeatureGenerator: No input feature with required dtypes.
+        Skipping IsNanFeatureGenerator: No input feature with required dtypes.
+    Stage 4 Generators:
+        Fitting DropUniqueFeatureGenerator...
+            Types of features in original data (raw dtype, special dtypes):
+                ('category', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+                ('float', [])    : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])      :   3 | ['TransactionID', 'TransactionDT', 'card1']
+            Types of features in processed data (raw dtype, special dtypes):
+                ('category', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+                ('float', [])    : 399 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])      :   3 | ['TransactionID', 'TransactionDT', 'card1']
+            1.6s = Fit runtime
+            433 features in original data used to generate 433 features in processed data.
+    Stage 5 Generators:
+        Fitting DropDuplicatesFeatureGenerator...
+            5 duplicate columns removed: ['V28', 'V113', 'V119', 'V122', 'V154']
+            Types of features in original data (raw dtype, special dtypes):
+                ('category', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+                ('float', [])    : 394 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])      :   3 | ['TransactionID', 'TransactionDT', 'card1']
+            Types of features in processed data (raw dtype, special dtypes):
+                ('category', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+                ('float', [])    : 394 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+                ('int', [])      :   3 | ['TransactionID', 'TransactionDT', 'card1']
+            2.7s = Fit runtime
+            428 features in original data used to generate 428 features in processed data.
+    Unused Original Features (Count: 5): ['V28', 'V113', 'V119', 'V122', 'V154']
+        These features were not used to generate any of the output features. Add a feature generator compatible with these features to utilize them.
+        Features can also be unused if they carry very little information, such as being categorical but having almost entirely unique values or being duplicates of other features.
+        These features do not need to be present at inference time.
+        ('float', []) : 5 | ['V28', 'V113', 'V119', 'V122', 'V154']
+    Types of features in original data (exact raw dtype, raw dtype):
+        ('float64', 'float') : 394 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+        ('int64', 'int')     :   3 | ['TransactionID', 'TransactionDT', 'card1']
+        ('object', 'object') :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+    Types of features in original data (raw dtype, special dtypes):
+        ('float', [])  : 394 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+        ('int', [])    :   3 | ['TransactionID', 'TransactionDT', 'card1']
+        ('object', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+    Types of features in processed data (exact raw dtype, raw dtype):
+        ('category', 'category') :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+        ('float64', 'float')     : 394 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+        ('int64', 'int')         :   3 | ['TransactionID', 'TransactionDT', 'card1']
+    Types of features in processed data (raw dtype, special dtypes):
+        ('category', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+        ('float', [])    : 394 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+        ('int', [])      :   3 | ['TransactionID', 'TransactionDT', 'card1']
+    10.4s = Fit runtime
+    428 features in original data used to generate 428 features in processed data.
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '591140.6153846154' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Train Data (Processed) Memory Usage: 1895.06 MB (5.3% of available memory)
+Data preprocessing and feature engineering runtime = 11.64s ...
+AutoGluon will gauge predictive performance using evaluation metric: 'roc_auc'
+    This metric expects predicted probabilities rather than predicted class labels, so you'll need to use predict_proba() instead of predict()
+    To change this, specify the eval_metric parameter of Predictor()
+Saving AutogluonModels/ag-20231012_071002/learner.pkl
+User-specified model hyperparameters to be fit:
+{
+    'NN_TORCH': {},
+    'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, 'GBMLarge'],
+    'CAT': {},
+    'XGB': {},
+    'FASTAI': {},
+    'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+    'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+    'KNN': [{'weights': 'uniform', 'ag_args': {'name_suffix': 'Unif'}}, {'weights': 'distance', 'ag_args': {'name_suffix': 'Dist'}}],
+}
+Saving AutogluonModels/ag-20231012_071002/utils/data/X.pkl
+Saving AutogluonModels/ag-20231012_071002/utils/data/y.pkl
+Model configs that will be trained (in order):
+    KNeighborsUnif_BAG_L1:  {'weights': 'uniform', 'ag_args': {'valid_stacker': False, 'name_suffix': 'Unif', 'model_type': &lt;class 'autogluon.tabular.models.knn.knn_model.KNNModel'&gt;, 'priority': 100}, 'ag_args_ensemble': {'use_child_oof': True}}
+    KNeighborsDist_BAG_L1:  {'weights': 'distance', 'ag_args': {'valid_stacker': False, 'name_suffix': 'Dist', 'model_type': &lt;class 'autogluon.tabular.models.knn.knn_model.KNNModel'&gt;, 'priority': 100}, 'ag_args_ensemble': {'use_child_oof': True}}
+    LightGBMXT_BAG_L1:  {'extra_trees': True, 'ag_args': {'name_suffix': 'XT', 'model_type': &lt;class 'autogluon.tabular.models.lgb.lgb_model.LGBModel'&gt;, 'priority': 90}}
+    LightGBM_BAG_L1:    {'ag_args': {'model_type': &lt;class 'autogluon.tabular.models.lgb.lgb_model.LGBModel'&gt;, 'priority': 90}}
+    RandomForestGini_BAG_L1:    {'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass'], 'model_type': &lt;class 'autogluon.tabular.models.rf.rf_model.RFModel'&gt;, 'priority': 80}, 'ag_args_ensemble': {'use_child_oof': True}}
+    RandomForestEntr_BAG_L1:    {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass'], 'model_type': &lt;class 'autogluon.tabular.models.rf.rf_model.RFModel'&gt;, 'priority': 80}, 'ag_args_ensemble': {'use_child_oof': True}}
+    CatBoost_BAG_L1:    {'ag_args': {'model_type': &lt;class 'autogluon.tabular.models.catboost.catboost_model.CatBoostModel'&gt;, 'priority': 70}}
+    ExtraTreesGini_BAG_L1:  {'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass'], 'model_type': &lt;class 'autogluon.tabular.models.xt.xt_model.XTModel'&gt;, 'priority': 60}, 'ag_args_ensemble': {'use_child_oof': True}}
+    ExtraTreesEntr_BAG_L1:  {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass'], 'model_type': &lt;class 'autogluon.tabular.models.xt.xt_model.XTModel'&gt;, 'priority': 60}, 'ag_args_ensemble': {'use_child_oof': True}}
+    NeuralNetFastAI_BAG_L1:     {'ag_args': {'model_type': &lt;class 'autogluon.tabular.models.fastainn.tabular_nn_fastai.NNFastAiTabularModel'&gt;, 'priority': 50}}
+    XGBoost_BAG_L1:     {'ag_args': {'model_type': &lt;class 'autogluon.tabular.models.xgboost.xgboost_model.XGBoostModel'&gt;, 'priority': 40}}
+    NeuralNetTorch_BAG_L1:  {'ag_args': {'model_type': &lt;class 'autogluon.tabular.models.tabular_nn.torch.tabular_nn_torch.TabularNeuralNetTorchModel'&gt;, 'priority': 25}}
+    LightGBMLarge_BAG_L1:   {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 5, 'ag_args': {'model_type': &lt;class 'autogluon.tabular.models.lgb.lgb_model.LGBModel'&gt;, 'name_suffix': 'Large', 'hyperparameter_tune_kwargs': None, 'priority': 0}}
+Fitting 13 L1 models ...
+Fitting model: KNeighborsUnif_BAG_L1 ... Training model for up to 1188.36s of the 1188.35s of remaining time.
+    Fitting KNeighborsUnif_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/KNeighborsUnif_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/KNeighborsUnif_BAG_L1/utils/model_template.pkl
+    Warning: Not enough memory to safely train model. Estimated to require 3.640 GB out of 32.686 GB available memory (55.676%)... (20.000% of avail memory is the max safe size)
+    To force training the model, specify the model hyperparameter "ag.max_memory_usage_ratio" to a larger value (currently 1.0, set to &gt;=0.61 to avoid the error)
+        To set the same value for all models, do the following when calling predictor.fit: `predictor.fit(..., ag_args_fit={"ag.max_memory_usage_ratio": VALUE})`
+    Not enough memory to train KNeighborsUnif_BAG_L1... Skipping this model.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Fitting model: KNeighborsDist_BAG_L1 ... Training model for up to 1185.58s of the 1185.58s of remaining time.
+    Fitting KNeighborsDist_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/KNeighborsDist_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/KNeighborsDist_BAG_L1/utils/model_template.pkl
+    Warning: Not enough memory to safely train model. Estimated to require 3.640 GB out of 32.688 GB available memory (55.673%)... (20.000% of avail memory is the max safe size)
+    To force training the model, specify the model hyperparameter "ag.max_memory_usage_ratio" to a larger value (currently 1.0, set to &gt;=0.61 to avoid the error)
+        To set the same value for all models, do the following when calling predictor.fit: `predictor.fit(..., ag_args_fit={"ag.max_memory_usage_ratio": VALUE})`
+    Not enough memory to train KNeighborsDist_BAG_L1... Skipping this model.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Fitting model: LightGBMXT_BAG_L1 ... Training model for up to 1182.87s of the 1182.86s of remaining time.
+    Fitting LightGBMXT_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/LightGBMXT_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/LightGBMXT_BAG_L1/utils/model_template.pkl
+Will use sequential fold fitting strategy because import of ray failed. Reason: ray is required to train folds in parallel for TabularPredictor or HPO for MultiModalPredictor. A quick tip is to install via `pip install ray==2.6.3`
+    Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517312.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05, 'extra_trees': True}
+    Ran out of time, early stopping on iteration 5877. Best iteration is:
+    [5876]  valid_set's binary_logloss: 0.044724
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517312.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05, 'extra_trees': True}
+    Ran out of time, early stopping on iteration 6210. Best iteration is:
+    [6184]  valid_set's binary_logloss: 0.044593
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517312.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05, 'extra_trees': True}
+    Ran out of time, early stopping on iteration 6268. Best iteration is:
+    [6262]  valid_set's binary_logloss: 0.0450604
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517312.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05, 'extra_trees': True}
+    Ran out of time, early stopping on iteration 6519. Best iteration is:
+    [6510]  valid_set's binary_logloss: 0.0438093
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517313.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05, 'extra_trees': True}
+    Ran out of time, early stopping on iteration 6926. Best iteration is:
+    [6898]  valid_set's binary_logloss: 0.0450263
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517313.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05, 'extra_trees': True}
+    Ran out of time, early stopping on iteration 7246. Best iteration is:
+    [7246]  valid_set's binary_logloss: 0.04315
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517313.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05, 'extra_trees': True}
+    Ran out of time, early stopping on iteration 7562. Best iteration is:
+    [7545]  valid_set's binary_logloss: 0.0449857
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517313.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05, 'extra_trees': True}
+    Ran out of time, early stopping on iteration 9106. Best iteration is:
+    [7836]  valid_set's binary_logloss: 0.0452498
+Saving AutogluonModels/ag-20231012_071002/models/LightGBMXT_BAG_L1/utils/oof.pkl
+Saving AutogluonModels/ag-20231012_071002/models/LightGBMXT_BAG_L1/model.pkl
+    0.9713   = Validation score   (roc_auc)
+    1113.06s     = Training   runtime
+    28.14s   = Validation runtime
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Fitting model: LightGBM_BAG_L1 ... Training model for up to 37.45s of the 37.44s of remaining time.
+    Fitting LightGBM_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/LightGBM_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/LightGBM_BAG_L1/utils/model_template.pkl
+    Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517312.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Fitting 10000 rounds... Hyperparameters: {'learning_rate': 0.05}
+    Ran out of time, early stopping on iteration 9. Best iteration is:
+    [9] valid_set's binary_logloss: 0.11505
+    Time limit exceeded... Skipping LightGBM_BAG_L1.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Fitting model: RandomForestGini_BAG_L1 ... Training model for up to 29.33s of the 29.32s of remaining time.
+    Fitting RandomForestGini_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/RandomForestGini_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/RandomForestGini_BAG_L1/utils/model_template.pkl
+    Warning: Model is expected to require 262.4s to train, which exceeds the maximum time limit of 29.3s, skipping model...
+    Time limit exceeded... Skipping RandomForestGini_BAG_L1.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Fitting model: RandomForestEntr_BAG_L1 ... Training model for up to 22.0s of the 22.0s of remaining time.
+    Fitting RandomForestEntr_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/RandomForestEntr_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/RandomForestEntr_BAG_L1/utils/model_template.pkl
+    Warning: Model is expected to require 192.7s to train, which exceeds the maximum time limit of 22.0s, skipping model...
+    Time limit exceeded... Skipping RandomForestEntr_BAG_L1.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Fitting model: CatBoost_BAG_L1 ... Training model for up to 15.66s of the 15.65s of remaining time.
+    Fitting CatBoost_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/CatBoost_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/CatBoost_BAG_L1/utils/model_template.pkl
+    Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/common/utils/pandas_utils.py:50: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '517312.76923076925' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  memory_usage[column] = (
+    Catboost model hyperparameters: {'iterations': 10000, 'learning_rate': 0.05, 'random_seed': 0, 'allow_writing_files': False, 'eval_metric': 'Logloss', 'thread_count': 8}
+    Time limit exceeded... Skipping CatBoost_BAG_L1.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Fitting model: ExtraTreesGini_BAG_L1 ... Training model for up to 10.19s of the 10.19s of remaining time.
+    Fitting ExtraTreesGini_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/ExtraTreesGini_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/ExtraTreesGini_BAG_L1/utils/model_template.pkl
+    Warning: Model is expected to require 155.7s to train, which exceeds the maximum time limit of 10.2s, skipping model...
+    Time limit exceeded... Skipping ExtraTreesGini_BAG_L1.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Fitting model: ExtraTreesEntr_BAG_L1 ... Training model for up to 4.32s of the 4.31s of remaining time.
+    Fitting ExtraTreesEntr_BAG_L1 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/ExtraTreesEntr_BAG_L1/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/ExtraTreesEntr_BAG_L1/utils/model_template.pkl
+    Warning: Model is expected to require 154.8s to train, which exceeds the maximum time limit of 4.3s, skipping model...
+    Time limit exceeded... Skipping ExtraTreesEntr_BAG_L1.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Skipping NeuralNetFastAI_BAG_L1 due to lack of time remaining.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Skipping XGBoost_BAG_L1 due to lack of time remaining.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Skipping NeuralNetTorch_BAG_L1 due to lack of time remaining.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Skipping LightGBMLarge_BAG_L1 due to lack of time remaining.
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Not enough time left to finish repeated k-fold bagging, stopping early ...
+Completed 1/20 k-fold bagging repeats ...
+Loading: AutogluonModels/ag-20231012_071002/models/LightGBMXT_BAG_L1/utils/oof.pkl
+Model configs that will be trained (in order):
+    WeightedEnsemble_L2:    {'ag_args': {'valid_base': False, 'name_bag_suffix': '', 'model_type': &lt;class 'autogluon.core.models.greedy_ensemble.greedy_weighted_ensemble_model.GreedyWeightedEnsembleModel'&gt;, 'priority': 0}, 'ag_args_ensemble': {'save_bag_folds': True}}
+Fitting model: WeightedEnsemble_L2 ... Training model for up to 360.0s of the -1.54s of remaining time.
+    Fitting WeightedEnsemble_L2 with 'num_gpus': 0, 'num_cpus': 16
+Saving AutogluonModels/ag-20231012_071002/models/WeightedEnsemble_L2/utils/model_template.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/WeightedEnsemble_L2/utils/model_template.pkl
+Ensemble size: 1
+Ensemble weights: 
+[1.]
+    0.37s   = Estimated out-of-fold prediction time...
+Saving AutogluonModels/ag-20231012_071002/models/WeightedEnsemble_L2/utils/oof.pkl
+Saving AutogluonModels/ag-20231012_071002/models/WeightedEnsemble_L2/model.pkl
+    0.9713   = Validation score   (roc_auc)
+    0.07s    = Training   runtime
+    0.07s    = Validation runtime
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+AutoGluon training complete, total runtime = 1203.47s ... Best model: "WeightedEnsemble_L2"
+Loading: AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Saving AutogluonModels/ag-20231012_071002/models/trainer.pkl
+Saving AutogluonModels/ag-20231012_071002/learner.pkl
+Saving AutogluonModels/ag-20231012_071002/predictor.pkl
+Saving AutogluonModels/ag-20231012_071002/__version__ with contents "0.8.2"
+Saving AutogluonModels/ag-20231012_071002/metadata.json
+TabularPredictor saved. To load, use: predictor = TabularPredictor.load("AutogluonModels/ag-20231012_071002")
+Loading: AutogluonModels/ag-20231012_071002/models/LightGBMXT_BAG_L1/model.pkl
+Loading: AutogluonModels/ag-20231012_071002/models/WeightedEnsemble_L2/model.pkl
+/home/coco/anaconda3/envs/ag/lib/python3.10/site-packages/autogluon/core/utils/plots.py:169: UserWarning: AutoGluon summary plots cannot be created because bokeh is not installed. To see plots, please do: "pip install bokeh==2.0.1"
+  warnings.warn('AutoGluon summary plots cannot be created because bokeh is not installed. To see plots, please do: "pip install bokeh==2.0.1"')</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[50]    valid_set's binary_logloss: 0.0936737
+[100]   valid_set's binary_logloss: 0.0852533
+[150]   valid_set's binary_logloss: 0.0807703
+[200]   valid_set's binary_logloss: 0.0774437
+[250]   valid_set's binary_logloss: 0.0748597
+[300]   valid_set's binary_logloss: 0.072922
+[350]   valid_set's binary_logloss: 0.0713176
+[400]   valid_set's binary_logloss: 0.0698932
+[450]   valid_set's binary_logloss: 0.068628
+[500]   valid_set's binary_logloss: 0.0675102
+[550]   valid_set's binary_logloss: 0.0664848
+[600]   valid_set's binary_logloss: 0.0656376
+[650]   valid_set's binary_logloss: 0.064794
+[700]   valid_set's binary_logloss: 0.063985
+[750]   valid_set's binary_logloss: 0.0632608
+[800]   valid_set's binary_logloss: 0.0625744
+[850]   valid_set's binary_logloss: 0.0619177
+[900]   valid_set's binary_logloss: 0.0613089
+[950]   valid_set's binary_logloss: 0.0607002
+[1000]  valid_set's binary_logloss: 0.0601336
+[1050]  valid_set's binary_logloss: 0.0596524
+[1100]  valid_set's binary_logloss: 0.0591299
+[1150]  valid_set's binary_logloss: 0.05867
+[1200]  valid_set's binary_logloss: 0.0581907
+[1250]  valid_set's binary_logloss: 0.0577601
+[1300]  valid_set's binary_logloss: 0.0573534
+[1350]  valid_set's binary_logloss: 0.0569495
+[1400]  valid_set's binary_logloss: 0.0565643
+[1450]  valid_set's binary_logloss: 0.0561722
+[1500]  valid_set's binary_logloss: 0.0557824
+[1550]  valid_set's binary_logloss: 0.0554409
+[1600]  valid_set's binary_logloss: 0.0550898
+[1650]  valid_set's binary_logloss: 0.0548449
+[1700]  valid_set's binary_logloss: 0.054555
+[1750]  valid_set's binary_logloss: 0.0542798
+[1800]  valid_set's binary_logloss: 0.0540026
+[1850]  valid_set's binary_logloss: 0.0537238
+[1900]  valid_set's binary_logloss: 0.0534957
+[1950]  valid_set's binary_logloss: 0.0532611
+[2000]  valid_set's binary_logloss: 0.0529911
+[2050]  valid_set's binary_logloss: 0.0527246
+[2100]  valid_set's binary_logloss: 0.0525105
+[2150]  valid_set's binary_logloss: 0.0522785
+[2200]  valid_set's binary_logloss: 0.052111
+[2250]  valid_set's binary_logloss: 0.051931
+[2300]  valid_set's binary_logloss: 0.0517019
+[2350]  valid_set's binary_logloss: 0.0514896
+[2400]  valid_set's binary_logloss: 0.0512912
+[2450]  valid_set's binary_logloss: 0.0510876
+[2500]  valid_set's binary_logloss: 0.0509128
+[2550]  valid_set's binary_logloss: 0.0507453
+[2600]  valid_set's binary_logloss: 0.0505722
+[2650]  valid_set's binary_logloss: 0.0504064
+[2700]  valid_set's binary_logloss: 0.0502477
+[2750]  valid_set's binary_logloss: 0.0500313
+[2800]  valid_set's binary_logloss: 0.0498675
+[2850]  valid_set's binary_logloss: 0.0497107
+[2900]  valid_set's binary_logloss: 0.0495319
+[2950]  valid_set's binary_logloss: 0.0493426
+[3000]  valid_set's binary_logloss: 0.0491939
+[3050]  valid_set's binary_logloss: 0.0490613
+[3100]  valid_set's binary_logloss: 0.048961
+[3150]  valid_set's binary_logloss: 0.0488235
+[3200]  valid_set's binary_logloss: 0.0487102
+[3250]  valid_set's binary_logloss: 0.0485645
+[3300]  valid_set's binary_logloss: 0.0484437
+[3350]  valid_set's binary_logloss: 0.0483204
+[3400]  valid_set's binary_logloss: 0.0481833
+[3450]  valid_set's binary_logloss: 0.0480394
+[3500]  valid_set's binary_logloss: 0.0479323
+[3550]  valid_set's binary_logloss: 0.0478227
+[3600]  valid_set's binary_logloss: 0.0477384
+[3650]  valid_set's binary_logloss: 0.0476293
+[3700]  valid_set's binary_logloss: 0.0475201
+[3750]  valid_set's binary_logloss: 0.0474286
+[3800]  valid_set's binary_logloss: 0.0473531
+[3850]  valid_set's binary_logloss: 0.0472366
+[3900]  valid_set's binary_logloss: 0.0471641
+[3950]  valid_set's binary_logloss: 0.0470557
+[4000]  valid_set's binary_logloss: 0.0469405
+[4050]  valid_set's binary_logloss: 0.0468344
+[4100]  valid_set's binary_logloss: 0.0467228
+[4150]  valid_set's binary_logloss: 0.0466373
+[4200]  valid_set's binary_logloss: 0.0465481
+[4250]  valid_set's binary_logloss: 0.0464336
+[4300]  valid_set's binary_logloss: 0.0463165
+[4350]  valid_set's binary_logloss: 0.0462141
+[4400]  valid_set's binary_logloss: 0.0461617
+[4450]  valid_set's binary_logloss: 0.0460656
+[4500]  valid_set's binary_logloss: 0.046003
+[4550]  valid_set's binary_logloss: 0.0459441
+[4600]  valid_set's binary_logloss: 0.0458618
+[4650]  valid_set's binary_logloss: 0.0457985
+[4700]  valid_set's binary_logloss: 0.0457269
+[4750]  valid_set's binary_logloss: 0.0456808
+[4800]  valid_set's binary_logloss: 0.0456087
+[4850]  valid_set's binary_logloss: 0.0455417
+[4900]  valid_set's binary_logloss: 0.0454853
+[4950]  valid_set's binary_logloss: 0.0454527
+[5000]  valid_set's binary_logloss: 0.0453931
+[5050]  valid_set's binary_logloss: 0.0453198
+[5100]  valid_set's binary_logloss: 0.0452693
+[5150]  valid_set's binary_logloss: 0.045246
+[5200]  valid_set's binary_logloss: 0.0451859
+[5250]  valid_set's binary_logloss: 0.0451422
+[5300]  valid_set's binary_logloss: 0.0451284
+[5350]  valid_set's binary_logloss: 0.0450918
+[5400]  valid_set's binary_logloss: 0.0450484
+[5450]  valid_set's binary_logloss: 0.0450262
+[5500]  valid_set's binary_logloss: 0.0450119
+[5550]  valid_set's binary_logloss: 0.0449669
+[5600]  valid_set's binary_logloss: 0.044913
+[5650]  valid_set's binary_logloss: 0.0448789
+[5700]  valid_set's binary_logloss: 0.0448426
+[5750]  valid_set's binary_logloss: 0.044802
+[5800]  valid_set's binary_logloss: 0.0447707
+[5850]  valid_set's binary_logloss: 0.044755
+[50]    valid_set's binary_logloss: 0.0936941
+[100]   valid_set's binary_logloss: 0.0853461
+[150]   valid_set's binary_logloss: 0.0805932
+[200]   valid_set's binary_logloss: 0.0774739
+[250]   valid_set's binary_logloss: 0.0749666
+[300]   valid_set's binary_logloss: 0.0729618
+[350]   valid_set's binary_logloss: 0.0712934
+[400]   valid_set's binary_logloss: 0.0698307
+[450]   valid_set's binary_logloss: 0.0686244
+[500]   valid_set's binary_logloss: 0.0674185
+[550]   valid_set's binary_logloss: 0.0663523
+[600]   valid_set's binary_logloss: 0.0654039
+[650]   valid_set's binary_logloss: 0.0646239
+[700]   valid_set's binary_logloss: 0.0639209
+[750]   valid_set's binary_logloss: 0.0632
+[800]   valid_set's binary_logloss: 0.0625109
+[850]   valid_set's binary_logloss: 0.0619293
+[900]   valid_set's binary_logloss: 0.0613322
+[950]   valid_set's binary_logloss: 0.0608261
+[1000]  valid_set's binary_logloss: 0.0603095
+[1050]  valid_set's binary_logloss: 0.0597793
+[1100]  valid_set's binary_logloss: 0.0592263
+[1150]  valid_set's binary_logloss: 0.0588145
+[1200]  valid_set's binary_logloss: 0.0583591
+[1250]  valid_set's binary_logloss: 0.0578524
+[1300]  valid_set's binary_logloss: 0.0574527
+[1350]  valid_set's binary_logloss: 0.05699
+[1400]  valid_set's binary_logloss: 0.0566144
+[1450]  valid_set's binary_logloss: 0.0562529
+[1500]  valid_set's binary_logloss: 0.0559153
+[1550]  valid_set's binary_logloss: 0.0555792
+[1600]  valid_set's binary_logloss: 0.0552439
+[1650]  valid_set's binary_logloss: 0.0548792
+[1700]  valid_set's binary_logloss: 0.0545672
+[1750]  valid_set's binary_logloss: 0.0542206
+[1800]  valid_set's binary_logloss: 0.0539491
+[1850]  valid_set's binary_logloss: 0.0536195
+[1900]  valid_set's binary_logloss: 0.0533443
+[1950]  valid_set's binary_logloss: 0.0530605
+[2000]  valid_set's binary_logloss: 0.0528141
+[2050]  valid_set's binary_logloss: 0.0525792
+[2100]  valid_set's binary_logloss: 0.0523766
+[2150]  valid_set's binary_logloss: 0.0521728
+[2200]  valid_set's binary_logloss: 0.0519096
+[2250]  valid_set's binary_logloss: 0.0517099
+[2300]  valid_set's binary_logloss: 0.0515009
+[2350]  valid_set's binary_logloss: 0.0512851
+[2400]  valid_set's binary_logloss: 0.0511188
+[2450]  valid_set's binary_logloss: 0.0509557
+[2500]  valid_set's binary_logloss: 0.0507828
+[2550]  valid_set's binary_logloss: 0.0505682
+[2600]  valid_set's binary_logloss: 0.050393
+[2650]  valid_set's binary_logloss: 0.0502105
+[2700]  valid_set's binary_logloss: 0.0500548
+[2750]  valid_set's binary_logloss: 0.0499204
+[2800]  valid_set's binary_logloss: 0.0497787
+[2850]  valid_set's binary_logloss: 0.0496777
+[2900]  valid_set's binary_logloss: 0.0495056
+[2950]  valid_set's binary_logloss: 0.0493791
+[3000]  valid_set's binary_logloss: 0.0492379
+[3050]  valid_set's binary_logloss: 0.0491287
+[3100]  valid_set's binary_logloss: 0.0489873
+[3150]  valid_set's binary_logloss: 0.0488448
+[3200]  valid_set's binary_logloss: 0.048699
+[3250]  valid_set's binary_logloss: 0.0485927
+[3300]  valid_set's binary_logloss: 0.0484636
+[3350]  valid_set's binary_logloss: 0.0483569
+[3400]  valid_set's binary_logloss: 0.0482166
+[3450]  valid_set's binary_logloss: 0.0481552
+[3500]  valid_set's binary_logloss: 0.0480385
+[3550]  valid_set's binary_logloss: 0.0479487
+[3600]  valid_set's binary_logloss: 0.0478576
+[3650]  valid_set's binary_logloss: 0.0477319
+[3700]  valid_set's binary_logloss: 0.0476267
+[3750]  valid_set's binary_logloss: 0.0475399
+[3800]  valid_set's binary_logloss: 0.0474433
+[3850]  valid_set's binary_logloss: 0.0473576
+[3900]  valid_set's binary_logloss: 0.047269
+[3950]  valid_set's binary_logloss: 0.0471792
+[4000]  valid_set's binary_logloss: 0.0470721
+[4050]  valid_set's binary_logloss: 0.0469912
+[4100]  valid_set's binary_logloss: 0.0469019
+[4150]  valid_set's binary_logloss: 0.0467872
+[4200]  valid_set's binary_logloss: 0.0466825
+[4250]  valid_set's binary_logloss: 0.0465872
+[4300]  valid_set's binary_logloss: 0.0465201
+[4350]  valid_set's binary_logloss: 0.0464279
+[4400]  valid_set's binary_logloss: 0.0463656
+[4450]  valid_set's binary_logloss: 0.0463047
+[4500]  valid_set's binary_logloss: 0.0462652
+[4550]  valid_set's binary_logloss: 0.0461945
+[4600]  valid_set's binary_logloss: 0.0461257
+[4650]  valid_set's binary_logloss: 0.0460408
+[4700]  valid_set's binary_logloss: 0.0459528
+[4750]  valid_set's binary_logloss: 0.0458927
+[4800]  valid_set's binary_logloss: 0.0458173
+[4850]  valid_set's binary_logloss: 0.0457738
+[4900]  valid_set's binary_logloss: 0.0457117
+[4950]  valid_set's binary_logloss: 0.0456326
+[5000]  valid_set's binary_logloss: 0.0455434
+[5050]  valid_set's binary_logloss: 0.0455037
+[5100]  valid_set's binary_logloss: 0.0454415
+[5150]  valid_set's binary_logloss: 0.0453727
+[5200]  valid_set's binary_logloss: 0.0453197
+[5250]  valid_set's binary_logloss: 0.0452807
+[5300]  valid_set's binary_logloss: 0.0452186
+[5350]  valid_set's binary_logloss: 0.0451712
+[5400]  valid_set's binary_logloss: 0.0451253
+[5450]  valid_set's binary_logloss: 0.0450528
+[5500]  valid_set's binary_logloss: 0.0449985
+[5550]  valid_set's binary_logloss: 0.0449491
+[5600]  valid_set's binary_logloss: 0.0449064
+[5650]  valid_set's binary_logloss: 0.0448602
+[5700]  valid_set's binary_logloss: 0.0448243
+[5750]  valid_set's binary_logloss: 0.0448183
+[5800]  valid_set's binary_logloss: 0.0447804
+[5850]  valid_set's binary_logloss: 0.0447788
+[5900]  valid_set's binary_logloss: 0.0447217
+[5950]  valid_set's binary_logloss: 0.0446996
+[6000]  valid_set's binary_logloss: 0.0446905
+[6050]  valid_set's binary_logloss: 0.0446752
+[6100]  valid_set's binary_logloss: 0.0446451
+[6150]  valid_set's binary_logloss: 0.0446198
+[6200]  valid_set's binary_logloss: 0.0446077
+[50]    valid_set's binary_logloss: 0.0953617
+[100]   valid_set's binary_logloss: 0.0866117
+[150]   valid_set's binary_logloss: 0.0820183
+[200]   valid_set's binary_logloss: 0.0789598
+[250]   valid_set's binary_logloss: 0.07639
+[300]   valid_set's binary_logloss: 0.0746054
+[350]   valid_set's binary_logloss: 0.0729009
+[400]   valid_set's binary_logloss: 0.0714208
+[450]   valid_set's binary_logloss: 0.0699856
+[500]   valid_set's binary_logloss: 0.068841
+[550]   valid_set's binary_logloss: 0.0678098
+[600]   valid_set's binary_logloss: 0.066849
+[650]   valid_set's binary_logloss: 0.0659862
+[700]   valid_set's binary_logloss: 0.06517
+[750]   valid_set's binary_logloss: 0.0644492
+[800]   valid_set's binary_logloss: 0.063698
+[850]   valid_set's binary_logloss: 0.0631679
+[900]   valid_set's binary_logloss: 0.0625741
+[950]   valid_set's binary_logloss: 0.0619526
+[1000]  valid_set's binary_logloss: 0.0613726
+[1050]  valid_set's binary_logloss: 0.0608881
+[1100]  valid_set's binary_logloss: 0.060333
+[1150]  valid_set's binary_logloss: 0.0598478
+[1200]  valid_set's binary_logloss: 0.0593026
+[1250]  valid_set's binary_logloss: 0.0588779
+[1300]  valid_set's binary_logloss: 0.0585185
+[1350]  valid_set's binary_logloss: 0.0581324
+[1400]  valid_set's binary_logloss: 0.0577518
+[1450]  valid_set's binary_logloss: 0.0573949
+[1500]  valid_set's binary_logloss: 0.057027
+[1550]  valid_set's binary_logloss: 0.0566636
+[1600]  valid_set's binary_logloss: 0.0563203
+[1650]  valid_set's binary_logloss: 0.0559076
+[1700]  valid_set's binary_logloss: 0.0556244
+[1750]  valid_set's binary_logloss: 0.05531
+[1800]  valid_set's binary_logloss: 0.0550484
+[1850]  valid_set's binary_logloss: 0.0547708
+[1900]  valid_set's binary_logloss: 0.0544223
+[1950]  valid_set's binary_logloss: 0.054124
+[2000]  valid_set's binary_logloss: 0.0538415
+[2050]  valid_set's binary_logloss: 0.0536154
+[2100]  valid_set's binary_logloss: 0.0533372
+[2150]  valid_set's binary_logloss: 0.0531066
+[2200]  valid_set's binary_logloss: 0.0528901
+[2250]  valid_set's binary_logloss: 0.0526725
+[2300]  valid_set's binary_logloss: 0.0524141
+[2350]  valid_set's binary_logloss: 0.0521988
+[2400]  valid_set's binary_logloss: 0.0519733
+[2450]  valid_set's binary_logloss: 0.0517348
+[2500]  valid_set's binary_logloss: 0.0515702
+[2550]  valid_set's binary_logloss: 0.0513385
+[2600]  valid_set's binary_logloss: 0.0511175
+[2650]  valid_set's binary_logloss: 0.0509345
+[2700]  valid_set's binary_logloss: 0.0507911
+[2750]  valid_set's binary_logloss: 0.0506237
+[2800]  valid_set's binary_logloss: 0.0504895
+[2850]  valid_set's binary_logloss: 0.0503309
+[2900]  valid_set's binary_logloss: 0.0501717
+[2950]  valid_set's binary_logloss: 0.0500072
+[3000]  valid_set's binary_logloss: 0.0498751
+[3050]  valid_set's binary_logloss: 0.0497354
+[3100]  valid_set's binary_logloss: 0.0495826
+[3150]  valid_set's binary_logloss: 0.0494818
+[3200]  valid_set's binary_logloss: 0.0493455
+[3250]  valid_set's binary_logloss: 0.0492197
+[3300]  valid_set's binary_logloss: 0.0490787
+[3350]  valid_set's binary_logloss: 0.0490053
+[3400]  valid_set's binary_logloss: 0.0489099
+[3450]  valid_set's binary_logloss: 0.0487986
+[3500]  valid_set's binary_logloss: 0.0486927
+[3550]  valid_set's binary_logloss: 0.0485646
+[3600]  valid_set's binary_logloss: 0.0484413
+[3650]  valid_set's binary_logloss: 0.048333
+[3700]  valid_set's binary_logloss: 0.0482383
+[3750]  valid_set's binary_logloss: 0.0481231
+[3800]  valid_set's binary_logloss: 0.0479968
+[3850]  valid_set's binary_logloss: 0.0479246
+[3900]  valid_set's binary_logloss: 0.0478247
+[3950]  valid_set's binary_logloss: 0.0477391
+[4000]  valid_set's binary_logloss: 0.0476406
+[4050]  valid_set's binary_logloss: 0.0475602
+[4100]  valid_set's binary_logloss: 0.0474809
+[4150]  valid_set's binary_logloss: 0.047411
+[4200]  valid_set's binary_logloss: 0.0473249
+[4250]  valid_set's binary_logloss: 0.0472436
+[4300]  valid_set's binary_logloss: 0.0471634
+[4350]  valid_set's binary_logloss: 0.0471066
+[4400]  valid_set's binary_logloss: 0.0470278
+[4450]  valid_set's binary_logloss: 0.046957
+[4500]  valid_set's binary_logloss: 0.0468649
+[4550]  valid_set's binary_logloss: 0.0467664
+[4600]  valid_set's binary_logloss: 0.0466469
+[4650]  valid_set's binary_logloss: 0.0465849
+[4700]  valid_set's binary_logloss: 0.046506
+[4750]  valid_set's binary_logloss: 0.0464294
+[4800]  valid_set's binary_logloss: 0.0463723
+[4850]  valid_set's binary_logloss: 0.0463084
+[4900]  valid_set's binary_logloss: 0.046257
+[4950]  valid_set's binary_logloss: 0.0462023
+[5000]  valid_set's binary_logloss: 0.0461294
+[5050]  valid_set's binary_logloss: 0.0460733
+[5100]  valid_set's binary_logloss: 0.0459967
+[5150]  valid_set's binary_logloss: 0.0459475
+[5200]  valid_set's binary_logloss: 0.0458843
+[5250]  valid_set's binary_logloss: 0.0458291
+[5300]  valid_set's binary_logloss: 0.0457864
+[5350]  valid_set's binary_logloss: 0.0457388
+[5400]  valid_set's binary_logloss: 0.0456673
+[5450]  valid_set's binary_logloss: 0.045639
+[5500]  valid_set's binary_logloss: 0.0455991
+[5550]  valid_set's binary_logloss: 0.0455616
+[5600]  valid_set's binary_logloss: 0.0455333
+[5650]  valid_set's binary_logloss: 0.0454896
+[5700]  valid_set's binary_logloss: 0.0454491
+[5750]  valid_set's binary_logloss: 0.0454119
+[5800]  valid_set's binary_logloss: 0.0453569
+[5850]  valid_set's binary_logloss: 0.0453235
+[5900]  valid_set's binary_logloss: 0.0452943
+[5950]  valid_set's binary_logloss: 0.0452621
+[6000]  valid_set's binary_logloss: 0.0452319
+[6050]  valid_set's binary_logloss: 0.0451858
+[6100]  valid_set's binary_logloss: 0.0451748
+[6150]  valid_set's binary_logloss: 0.0451364
+[6200]  valid_set's binary_logloss: 0.045098
+[6250]  valid_set's binary_logloss: 0.045078
+[50]    valid_set's binary_logloss: 0.0927631
+[100]   valid_set's binary_logloss: 0.0840394
+[150]   valid_set's binary_logloss: 0.0793017
+[200]   valid_set's binary_logloss: 0.0761152
+[250]   valid_set's binary_logloss: 0.073898
+[300]   valid_set's binary_logloss: 0.0720469
+[350]   valid_set's binary_logloss: 0.0703314
+[400]   valid_set's binary_logloss: 0.0687589
+[450]   valid_set's binary_logloss: 0.06746
+[500]   valid_set's binary_logloss: 0.0663718
+[550]   valid_set's binary_logloss: 0.0653125
+[600]   valid_set's binary_logloss: 0.0644994
+[650]   valid_set's binary_logloss: 0.0637179
+[700]   valid_set's binary_logloss: 0.0629826
+[750]   valid_set's binary_logloss: 0.062309
+[800]   valid_set's binary_logloss: 0.0616543
+[850]   valid_set's binary_logloss: 0.0610427
+[900]   valid_set's binary_logloss: 0.0603622
+[950]   valid_set's binary_logloss: 0.0598431
+[1000]  valid_set's binary_logloss: 0.0592598
+[1050]  valid_set's binary_logloss: 0.0587273
+[1100]  valid_set's binary_logloss: 0.0582562
+[1150]  valid_set's binary_logloss: 0.0578348
+[1200]  valid_set's binary_logloss: 0.0573426
+[1250]  valid_set's binary_logloss: 0.0568541
+[1300]  valid_set's binary_logloss: 0.056457
+[1350]  valid_set's binary_logloss: 0.056099
+[1400]  valid_set's binary_logloss: 0.0557775
+[1450]  valid_set's binary_logloss: 0.055421
+[1500]  valid_set's binary_logloss: 0.0550517
+[1550]  valid_set's binary_logloss: 0.0547038
+[1600]  valid_set's binary_logloss: 0.0543526
+[1650]  valid_set's binary_logloss: 0.0539812
+[1700]  valid_set's binary_logloss: 0.0536435
+[1750]  valid_set's binary_logloss: 0.0533643
+[1800]  valid_set's binary_logloss: 0.0531052
+[1850]  valid_set's binary_logloss: 0.052775
+[1900]  valid_set's binary_logloss: 0.0525077
+[1950]  valid_set's binary_logloss: 0.0522301
+[2000]  valid_set's binary_logloss: 0.0520019
+[2050]  valid_set's binary_logloss: 0.0517571
+[2100]  valid_set's binary_logloss: 0.0514827
+[2150]  valid_set's binary_logloss: 0.051247
+[2200]  valid_set's binary_logloss: 0.0510767
+[2250]  valid_set's binary_logloss: 0.0508807
+[2300]  valid_set's binary_logloss: 0.0506708
+[2350]  valid_set's binary_logloss: 0.0504988
+[2400]  valid_set's binary_logloss: 0.0502891
+[2450]  valid_set's binary_logloss: 0.0501304
+[2500]  valid_set's binary_logloss: 0.0499786
+[2550]  valid_set's binary_logloss: 0.0497681
+[2600]  valid_set's binary_logloss: 0.0495752
+[2650]  valid_set's binary_logloss: 0.0494133
+[2700]  valid_set's binary_logloss: 0.0492863
+[2750]  valid_set's binary_logloss: 0.0491365
+[2800]  valid_set's binary_logloss: 0.048967
+[2850]  valid_set's binary_logloss: 0.0488281
+[2900]  valid_set's binary_logloss: 0.0486981
+[2950]  valid_set's binary_logloss: 0.0485372
+[3000]  valid_set's binary_logloss: 0.0484107
+[3050]  valid_set's binary_logloss: 0.0482393
+[3100]  valid_set's binary_logloss: 0.0481092
+[3150]  valid_set's binary_logloss: 0.0479626
+[3200]  valid_set's binary_logloss: 0.0478025
+[3250]  valid_set's binary_logloss: 0.0477056
+[3300]  valid_set's binary_logloss: 0.0475677
+[3350]  valid_set's binary_logloss: 0.0474623
+[3400]  valid_set's binary_logloss: 0.0473243
+[3450]  valid_set's binary_logloss: 0.0471746
+[3500]  valid_set's binary_logloss: 0.0470553
+[3550]  valid_set's binary_logloss: 0.0469179
+[3600]  valid_set's binary_logloss: 0.0468118
+[3650]  valid_set's binary_logloss: 0.0467056
+[3700]  valid_set's binary_logloss: 0.046612
+[3750]  valid_set's binary_logloss: 0.046511
+[3800]  valid_set's binary_logloss: 0.0464114
+[3850]  valid_set's binary_logloss: 0.0462902
+[3900]  valid_set's binary_logloss: 0.0461908
+[3950]  valid_set's binary_logloss: 0.0460768
+[4000]  valid_set's binary_logloss: 0.045977
+[4050]  valid_set's binary_logloss: 0.0459112
+[4100]  valid_set's binary_logloss: 0.0458248
+[4150]  valid_set's binary_logloss: 0.0457574
+[4200]  valid_set's binary_logloss: 0.0457007
+[4250]  valid_set's binary_logloss: 0.0456269
+[4300]  valid_set's binary_logloss: 0.0455602
+[4350]  valid_set's binary_logloss: 0.0455173
+[4400]  valid_set's binary_logloss: 0.0454434
+[4450]  valid_set's binary_logloss: 0.0453812
+[4500]  valid_set's binary_logloss: 0.0453452
+[4550]  valid_set's binary_logloss: 0.0452793
+[4600]  valid_set's binary_logloss: 0.0452373
+[4650]  valid_set's binary_logloss: 0.0451718
+[4700]  valid_set's binary_logloss: 0.0451099
+[4750]  valid_set's binary_logloss: 0.0450686
+[4800]  valid_set's binary_logloss: 0.0450216
+[4850]  valid_set's binary_logloss: 0.0449526
+[4900]  valid_set's binary_logloss: 0.04493
+[4950]  valid_set's binary_logloss: 0.0448861
+[5000]  valid_set's binary_logloss: 0.0448365
+[5050]  valid_set's binary_logloss: 0.0447974
+[5100]  valid_set's binary_logloss: 0.0447464
+[5150]  valid_set's binary_logloss: 0.0447008
+[5200]  valid_set's binary_logloss: 0.0446738
+[5250]  valid_set's binary_logloss: 0.0446196
+[5300]  valid_set's binary_logloss: 0.0445873
+[5350]  valid_set's binary_logloss: 0.0445419
+[5400]  valid_set's binary_logloss: 0.0445112
+[5450]  valid_set's binary_logloss: 0.0444979
+[5500]  valid_set's binary_logloss: 0.0444828
+[5550]  valid_set's binary_logloss: 0.0444646
+[5600]  valid_set's binary_logloss: 0.0444162
+[5650]  valid_set's binary_logloss: 0.0443655
+[5700]  valid_set's binary_logloss: 0.0443122
+[5750]  valid_set's binary_logloss: 0.0442762
+[5800]  valid_set's binary_logloss: 0.0442372
+[5850]  valid_set's binary_logloss: 0.0442111
+[5900]  valid_set's binary_logloss: 0.044202
+[5950]  valid_set's binary_logloss: 0.0441641
+[6000]  valid_set's binary_logloss: 0.0441388
+[6050]  valid_set's binary_logloss: 0.044127
+[6100]  valid_set's binary_logloss: 0.0440757
+[6150]  valid_set's binary_logloss: 0.0440481
+[6200]  valid_set's binary_logloss: 0.0440184
+[6250]  valid_set's binary_logloss: 0.0439897
+[6300]  valid_set's binary_logloss: 0.0439608
+[6350]  valid_set's binary_logloss: 0.0439372
+[6400]  valid_set's binary_logloss: 0.0439038
+[6450]  valid_set's binary_logloss: 0.0438652
+[6500]  valid_set's binary_logloss: 0.043821
+[50]    valid_set's binary_logloss: 0.0958529
+[100]   valid_set's binary_logloss: 0.0871841
+[150]   valid_set's binary_logloss: 0.0825358
+[200]   valid_set's binary_logloss: 0.0793639
+[250]   valid_set's binary_logloss: 0.0767544
+[300]   valid_set's binary_logloss: 0.0748024
+[350]   valid_set's binary_logloss: 0.0729768
+[400]   valid_set's binary_logloss: 0.0715264
+[450]   valid_set's binary_logloss: 0.0702451
+[500]   valid_set's binary_logloss: 0.0691385
+[550]   valid_set's binary_logloss: 0.0681567
+[600]   valid_set's binary_logloss: 0.0671696
+[650]   valid_set's binary_logloss: 0.0662754
+[700]   valid_set's binary_logloss: 0.0655184
+[750]   valid_set's binary_logloss: 0.0647833
+[800]   valid_set's binary_logloss: 0.0640332
+[850]   valid_set's binary_logloss: 0.0634018
+[900]   valid_set's binary_logloss: 0.0628251
+[950]   valid_set's binary_logloss: 0.0622536
+[1000]  valid_set's binary_logloss: 0.0616541
+[1050]  valid_set's binary_logloss: 0.0611593
+[1100]  valid_set's binary_logloss: 0.0606662
+[1150]  valid_set's binary_logloss: 0.0601493
+[1200]  valid_set's binary_logloss: 0.059709
+[1250]  valid_set's binary_logloss: 0.0592883
+[1300]  valid_set's binary_logloss: 0.05882
+[1350]  valid_set's binary_logloss: 0.0583718
+[1400]  valid_set's binary_logloss: 0.0579895
+[1450]  valid_set's binary_logloss: 0.0575995
+[1500]  valid_set's binary_logloss: 0.0572909
+[1550]  valid_set's binary_logloss: 0.0569859
+[1600]  valid_set's binary_logloss: 0.0566061
+[1650]  valid_set's binary_logloss: 0.0562683
+[1700]  valid_set's binary_logloss: 0.05591
+[1750]  valid_set's binary_logloss: 0.0556
+[1800]  valid_set's binary_logloss: 0.0552755
+[1850]  valid_set's binary_logloss: 0.0549707
+[1900]  valid_set's binary_logloss: 0.0546319
+[1950]  valid_set's binary_logloss: 0.0543291
+[2000]  valid_set's binary_logloss: 0.0540671
+[2050]  valid_set's binary_logloss: 0.0538636
+[2100]  valid_set's binary_logloss: 0.0535979
+[2150]  valid_set's binary_logloss: 0.0533004
+[2200]  valid_set's binary_logloss: 0.0530543
+[2250]  valid_set's binary_logloss: 0.0528484
+[2300]  valid_set's binary_logloss: 0.0525922
+[2350]  valid_set's binary_logloss: 0.0523899
+[2400]  valid_set's binary_logloss: 0.0521693
+[2450]  valid_set's binary_logloss: 0.0519451
+[2500]  valid_set's binary_logloss: 0.051739
+[2550]  valid_set's binary_logloss: 0.0515424
+[2600]  valid_set's binary_logloss: 0.0513854
+[2650]  valid_set's binary_logloss: 0.0512003
+[2700]  valid_set's binary_logloss: 0.0510369
+[2750]  valid_set's binary_logloss: 0.0508115
+[2800]  valid_set's binary_logloss: 0.0506688
+[2850]  valid_set's binary_logloss: 0.050544
+[2900]  valid_set's binary_logloss: 0.0503976
+[2950]  valid_set's binary_logloss: 0.050281
+[3000]  valid_set's binary_logloss: 0.050103
+[3050]  valid_set's binary_logloss: 0.0499684
+[3100]  valid_set's binary_logloss: 0.0498283
+[3150]  valid_set's binary_logloss: 0.0496718
+[3200]  valid_set's binary_logloss: 0.0495287
+[3250]  valid_set's binary_logloss: 0.0493909
+[3300]  valid_set's binary_logloss: 0.0492666
+[3350]  valid_set's binary_logloss: 0.0491547
+[3400]  valid_set's binary_logloss: 0.0490356
+[3450]  valid_set's binary_logloss: 0.0489135
+[3500]  valid_set's binary_logloss: 0.0488012
+[3550]  valid_set's binary_logloss: 0.0486779
+[3600]  valid_set's binary_logloss: 0.0485859
+[3650]  valid_set's binary_logloss: 0.0485029
+[3700]  valid_set's binary_logloss: 0.0483896
+[3750]  valid_set's binary_logloss: 0.0482569
+[3800]  valid_set's binary_logloss: 0.0481321
+[3850]  valid_set's binary_logloss: 0.0480145
+[3900]  valid_set's binary_logloss: 0.0479179
+[3950]  valid_set's binary_logloss: 0.0478284
+[4000]  valid_set's binary_logloss: 0.0477612
+[4050]  valid_set's binary_logloss: 0.0476764
+[4100]  valid_set's binary_logloss: 0.0475856
+[4150]  valid_set's binary_logloss: 0.0475034
+[4200]  valid_set's binary_logloss: 0.0474197
+[4250]  valid_set's binary_logloss: 0.0473214
+[4300]  valid_set's binary_logloss: 0.0472319
+[4350]  valid_set's binary_logloss: 0.0471829
+[4400]  valid_set's binary_logloss: 0.0471137
+[4450]  valid_set's binary_logloss: 0.0470401
+[4500]  valid_set's binary_logloss: 0.046964
+[4550]  valid_set's binary_logloss: 0.046908
+[4600]  valid_set's binary_logloss: 0.0468463
+[4650]  valid_set's binary_logloss: 0.0467809
+[4700]  valid_set's binary_logloss: 0.0466973
+[4750]  valid_set's binary_logloss: 0.0466348
+[4800]  valid_set's binary_logloss: 0.0465433
+[4850]  valid_set's binary_logloss: 0.0464919
+[4900]  valid_set's binary_logloss: 0.0464466
+[4950]  valid_set's binary_logloss: 0.0463859
+[5000]  valid_set's binary_logloss: 0.0463414
+[5050]  valid_set's binary_logloss: 0.0462629
+[5100]  valid_set's binary_logloss: 0.0462046
+[5150]  valid_set's binary_logloss: 0.0461347
+[5200]  valid_set's binary_logloss: 0.0461115
+[5250]  valid_set's binary_logloss: 0.0460565
+[5300]  valid_set's binary_logloss: 0.0460264
+[5350]  valid_set's binary_logloss: 0.0459682
+[5400]  valid_set's binary_logloss: 0.045935
+[5450]  valid_set's binary_logloss: 0.0459093
+[5500]  valid_set's binary_logloss: 0.045864
+[5550]  valid_set's binary_logloss: 0.0458426
+[5600]  valid_set's binary_logloss: 0.0458031
+[5650]  valid_set's binary_logloss: 0.0457566
+[5700]  valid_set's binary_logloss: 0.0457197
+[5750]  valid_set's binary_logloss: 0.045645
+[5800]  valid_set's binary_logloss: 0.0456126
+[5850]  valid_set's binary_logloss: 0.0455753
+[5900]  valid_set's binary_logloss: 0.0455112
+[5950]  valid_set's binary_logloss: 0.0454972
+[6000]  valid_set's binary_logloss: 0.0454535
+[6050]  valid_set's binary_logloss: 0.045403
+[6100]  valid_set's binary_logloss: 0.0453709
+[6150]  valid_set's binary_logloss: 0.0453439
+[6200]  valid_set's binary_logloss: 0.0453197
+[6250]  valid_set's binary_logloss: 0.0452929
+[6300]  valid_set's binary_logloss: 0.0452681
+[6350]  valid_set's binary_logloss: 0.0452358
+[6400]  valid_set's binary_logloss: 0.0452135
+[6450]  valid_set's binary_logloss: 0.0451854
+[6500]  valid_set's binary_logloss: 0.045153
+[6550]  valid_set's binary_logloss: 0.045136
+[6600]  valid_set's binary_logloss: 0.0451256
+[6650]  valid_set's binary_logloss: 0.0450953
+[6700]  valid_set's binary_logloss: 0.0450769
+[6750]  valid_set's binary_logloss: 0.0450618
+[6800]  valid_set's binary_logloss: 0.0450364
+[6850]  valid_set's binary_logloss: 0.0450598
+[6900]  valid_set's binary_logloss: 0.0450282
+[50]    valid_set's binary_logloss: 0.096029
+[100]   valid_set's binary_logloss: 0.0875963
+[150]   valid_set's binary_logloss: 0.0828263
+[200]   valid_set's binary_logloss: 0.079459
+[250]   valid_set's binary_logloss: 0.076807
+[300]   valid_set's binary_logloss: 0.0746964
+[350]   valid_set's binary_logloss: 0.0728091
+[400]   valid_set's binary_logloss: 0.0712396
+[450]   valid_set's binary_logloss: 0.0699792
+[500]   valid_set's binary_logloss: 0.0688837
+[550]   valid_set's binary_logloss: 0.0677572
+[600]   valid_set's binary_logloss: 0.0667425
+[650]   valid_set's binary_logloss: 0.0658026
+[700]   valid_set's binary_logloss: 0.0647754
+[750]   valid_set's binary_logloss: 0.0639841
+[800]   valid_set's binary_logloss: 0.0633219
+[850]   valid_set's binary_logloss: 0.062481
+[900]   valid_set's binary_logloss: 0.0618838
+[950]   valid_set's binary_logloss: 0.0612218
+[1000]  valid_set's binary_logloss: 0.0606204
+[1050]  valid_set's binary_logloss: 0.0601329
+[1100]  valid_set's binary_logloss: 0.0596067
+[1150]  valid_set's binary_logloss: 0.059146
+[1200]  valid_set's binary_logloss: 0.0586892
+[1250]  valid_set's binary_logloss: 0.0581933
+[1300]  valid_set's binary_logloss: 0.0577691
+[1350]  valid_set's binary_logloss: 0.0572867
+[1400]  valid_set's binary_logloss: 0.0568609
+[1450]  valid_set's binary_logloss: 0.0563865
+[1500]  valid_set's binary_logloss: 0.0559666
+[1550]  valid_set's binary_logloss: 0.0556471
+[1600]  valid_set's binary_logloss: 0.055327
+[1650]  valid_set's binary_logloss: 0.0549609
+[1700]  valid_set's binary_logloss: 0.0546156
+[1750]  valid_set's binary_logloss: 0.0542652
+[1800]  valid_set's binary_logloss: 0.0539369
+[1850]  valid_set's binary_logloss: 0.0536615
+[1900]  valid_set's binary_logloss: 0.0533676
+[1950]  valid_set's binary_logloss: 0.053119
+[2000]  valid_set's binary_logloss: 0.0528895
+[2050]  valid_set's binary_logloss: 0.0526299
+[2100]  valid_set's binary_logloss: 0.0523551
+[2150]  valid_set's binary_logloss: 0.0521056
+[2200]  valid_set's binary_logloss: 0.0518746
+[2250]  valid_set's binary_logloss: 0.051583
+[2300]  valid_set's binary_logloss: 0.0513986
+[2350]  valid_set's binary_logloss: 0.0511758
+[2400]  valid_set's binary_logloss: 0.0509808
+[2450]  valid_set's binary_logloss: 0.0508065
+[2500]  valid_set's binary_logloss: 0.050617
+[2550]  valid_set's binary_logloss: 0.0504458
+[2600]  valid_set's binary_logloss: 0.0502504
+[2650]  valid_set's binary_logloss: 0.0500439
+[2700]  valid_set's binary_logloss: 0.0498422
+[2750]  valid_set's binary_logloss: 0.0497158
+[2800]  valid_set's binary_logloss: 0.0495342
+[2850]  valid_set's binary_logloss: 0.0493658
+[2900]  valid_set's binary_logloss: 0.0492014
+[2950]  valid_set's binary_logloss: 0.0490622
+[3000]  valid_set's binary_logloss: 0.0489108
+[3050]  valid_set's binary_logloss: 0.0487223
+[3100]  valid_set's binary_logloss: 0.0485742
+[3150]  valid_set's binary_logloss: 0.0484105
+[3200]  valid_set's binary_logloss: 0.0482798
+[3250]  valid_set's binary_logloss: 0.0481619
+[3300]  valid_set's binary_logloss: 0.0480308
+[3350]  valid_set's binary_logloss: 0.0478707
+[3400]  valid_set's binary_logloss: 0.0477059
+[3450]  valid_set's binary_logloss: 0.0475891
+[3500]  valid_set's binary_logloss: 0.0474538
+[3550]  valid_set's binary_logloss: 0.0473513
+[3600]  valid_set's binary_logloss: 0.0472098
+[3650]  valid_set's binary_logloss: 0.0470663
+[3700]  valid_set's binary_logloss: 0.0469297
+[3750]  valid_set's binary_logloss: 0.0468268
+[3800]  valid_set's binary_logloss: 0.0467256
+[3850]  valid_set's binary_logloss: 0.0466264
+[3900]  valid_set's binary_logloss: 0.0465223
+[3950]  valid_set's binary_logloss: 0.046401
+[4000]  valid_set's binary_logloss: 0.046291
+[4050]  valid_set's binary_logloss: 0.0462018
+[4100]  valid_set's binary_logloss: 0.0460895
+[4150]  valid_set's binary_logloss: 0.0460154
+[4200]  valid_set's binary_logloss: 0.0459285
+[4250]  valid_set's binary_logloss: 0.045827
+[4300]  valid_set's binary_logloss: 0.0457041
+[4350]  valid_set's binary_logloss: 0.0456109
+[4400]  valid_set's binary_logloss: 0.0455477
+[4450]  valid_set's binary_logloss: 0.0454325
+[4500]  valid_set's binary_logloss: 0.0453829
+[4550]  valid_set's binary_logloss: 0.0453399
+[4600]  valid_set's binary_logloss: 0.0452509
+[4650]  valid_set's binary_logloss: 0.0451889
+[4700]  valid_set's binary_logloss: 0.0451453
+[4750]  valid_set's binary_logloss: 0.0450557
+[4800]  valid_set's binary_logloss: 0.0449748
+[4850]  valid_set's binary_logloss: 0.044914
+[4900]  valid_set's binary_logloss: 0.0448246
+[4950]  valid_set's binary_logloss: 0.0447387
+[5000]  valid_set's binary_logloss: 0.0446659
+[5050]  valid_set's binary_logloss: 0.0445939
+[5100]  valid_set's binary_logloss: 0.0445724
+[5150]  valid_set's binary_logloss: 0.0445304
+[5200]  valid_set's binary_logloss: 0.0444925
+[5250]  valid_set's binary_logloss: 0.0444439
+[5300]  valid_set's binary_logloss: 0.0443933
+[5350]  valid_set's binary_logloss: 0.0443689
+[5400]  valid_set's binary_logloss: 0.0443306
+[5450]  valid_set's binary_logloss: 0.0443063
+[5500]  valid_set's binary_logloss: 0.0442446
+[5550]  valid_set's binary_logloss: 0.0441769
+[5600]  valid_set's binary_logloss: 0.0441459
+[5650]  valid_set's binary_logloss: 0.0440855
+[5700]  valid_set's binary_logloss: 0.0440464
+[5750]  valid_set's binary_logloss: 0.0440239
+[5800]  valid_set's binary_logloss: 0.0439486
+[5850]  valid_set's binary_logloss: 0.0439129
+[5900]  valid_set's binary_logloss: 0.0438784
+[5950]  valid_set's binary_logloss: 0.0438326
+[6000]  valid_set's binary_logloss: 0.0438114
+[6050]  valid_set's binary_logloss: 0.0437905
+[6100]  valid_set's binary_logloss: 0.0437841
+[6150]  valid_set's binary_logloss: 0.0437536
+[6200]  valid_set's binary_logloss: 0.0437328
+[6250]  valid_set's binary_logloss: 0.0437097
+[6300]  valid_set's binary_logloss: 0.0436838
+[6350]  valid_set's binary_logloss: 0.0436201
+[6400]  valid_set's binary_logloss: 0.0435791
+[6450]  valid_set's binary_logloss: 0.0435448
+[6500]  valid_set's binary_logloss: 0.0435206
+[6550]  valid_set's binary_logloss: 0.0434969
+[6600]  valid_set's binary_logloss: 0.0434361
+[6650]  valid_set's binary_logloss: 0.0434091
+[6700]  valid_set's binary_logloss: 0.0433701
+[6750]  valid_set's binary_logloss: 0.0433598
+[6800]  valid_set's binary_logloss: 0.0433449
+[6850]  valid_set's binary_logloss: 0.043322
+[6900]  valid_set's binary_logloss: 0.0433011
+[6950]  valid_set's binary_logloss: 0.0432873
+[7000]  valid_set's binary_logloss: 0.0432648
+[7050]  valid_set's binary_logloss: 0.0432352
+[7100]  valid_set's binary_logloss: 0.0431976
+[7150]  valid_set's binary_logloss: 0.0431651
+[7200]  valid_set's binary_logloss: 0.0431723
+[50]    valid_set's binary_logloss: 0.0963595
+[100]   valid_set's binary_logloss: 0.0874971
+[150]   valid_set's binary_logloss: 0.0822255
+[200]   valid_set's binary_logloss: 0.0787811
+[250]   valid_set's binary_logloss: 0.0763279
+[300]   valid_set's binary_logloss: 0.0742303
+[350]   valid_set's binary_logloss: 0.0726398
+[400]   valid_set's binary_logloss: 0.0712395
+[450]   valid_set's binary_logloss: 0.0699367
+[500]   valid_set's binary_logloss: 0.0686127
+[550]   valid_set's binary_logloss: 0.0675576
+[600]   valid_set's binary_logloss: 0.0666049
+[650]   valid_set's binary_logloss: 0.0656221
+[700]   valid_set's binary_logloss: 0.0647134
+[750]   valid_set's binary_logloss: 0.0639351
+[800]   valid_set's binary_logloss: 0.06328
+[850]   valid_set's binary_logloss: 0.0625951
+[900]   valid_set's binary_logloss: 0.062073
+[950]   valid_set's binary_logloss: 0.0615084
+[1000]  valid_set's binary_logloss: 0.0609661
+[1050]  valid_set's binary_logloss: 0.0604399
+[1100]  valid_set's binary_logloss: 0.0600036
+[1150]  valid_set's binary_logloss: 0.0595467
+[1200]  valid_set's binary_logloss: 0.0589833
+[1250]  valid_set's binary_logloss: 0.0586464
+[1300]  valid_set's binary_logloss: 0.05828
+[1350]  valid_set's binary_logloss: 0.0578237
+[1400]  valid_set's binary_logloss: 0.0574375
+[1450]  valid_set's binary_logloss: 0.0570635
+[1500]  valid_set's binary_logloss: 0.0566872
+[1550]  valid_set's binary_logloss: 0.0563722
+[1600]  valid_set's binary_logloss: 0.0560513
+[1650]  valid_set's binary_logloss: 0.0557359
+[1700]  valid_set's binary_logloss: 0.0554226
+[1750]  valid_set's binary_logloss: 0.0551295
+[1800]  valid_set's binary_logloss: 0.0548514
+[1850]  valid_set's binary_logloss: 0.054562
+[1900]  valid_set's binary_logloss: 0.0542853
+[1950]  valid_set's binary_logloss: 0.0539922
+[2000]  valid_set's binary_logloss: 0.0537153
+[2050]  valid_set's binary_logloss: 0.0535054
+[2100]  valid_set's binary_logloss: 0.053234
+[2150]  valid_set's binary_logloss: 0.0530146
+[2200]  valid_set's binary_logloss: 0.0528032
+[2250]  valid_set's binary_logloss: 0.0525949
+[2300]  valid_set's binary_logloss: 0.0523296
+[2350]  valid_set's binary_logloss: 0.0520953
+[2400]  valid_set's binary_logloss: 0.0519209
+[2450]  valid_set's binary_logloss: 0.0517044
+[2500]  valid_set's binary_logloss: 0.0515098
+[2550]  valid_set's binary_logloss: 0.051358
+[2600]  valid_set's binary_logloss: 0.051202
+[2650]  valid_set's binary_logloss: 0.0510337
+[2700]  valid_set's binary_logloss: 0.0508504
+[2750]  valid_set's binary_logloss: 0.0506773
+[2800]  valid_set's binary_logloss: 0.0505178
+[2850]  valid_set's binary_logloss: 0.0503554
+[2900]  valid_set's binary_logloss: 0.0501675
+[2950]  valid_set's binary_logloss: 0.0500212
+[3000]  valid_set's binary_logloss: 0.0498818
+[3050]  valid_set's binary_logloss: 0.0497166
+[3100]  valid_set's binary_logloss: 0.0495503
+[3150]  valid_set's binary_logloss: 0.0494104
+[3200]  valid_set's binary_logloss: 0.0492911
+[3250]  valid_set's binary_logloss: 0.049172
+[3300]  valid_set's binary_logloss: 0.0490426
+[3350]  valid_set's binary_logloss: 0.048887
+[3400]  valid_set's binary_logloss: 0.0488056
+[3450]  valid_set's binary_logloss: 0.048684
+[3500]  valid_set's binary_logloss: 0.0485444
+[3550]  valid_set's binary_logloss: 0.0484011
+[3600]  valid_set's binary_logloss: 0.0482951
+[3650]  valid_set's binary_logloss: 0.0481692
+[3700]  valid_set's binary_logloss: 0.0480661
+[3750]  valid_set's binary_logloss: 0.047946
+[3800]  valid_set's binary_logloss: 0.0478613
+[3850]  valid_set's binary_logloss: 0.0477531
+[3900]  valid_set's binary_logloss: 0.0476474
+[3950]  valid_set's binary_logloss: 0.0475589
+[4000]  valid_set's binary_logloss: 0.0474945
+[4050]  valid_set's binary_logloss: 0.0474054
+[4100]  valid_set's binary_logloss: 0.0473383
+[4150]  valid_set's binary_logloss: 0.0472701
+[4200]  valid_set's binary_logloss: 0.0471839
+[4250]  valid_set's binary_logloss: 0.0471112
+[4300]  valid_set's binary_logloss: 0.0470491
+[4350]  valid_set's binary_logloss: 0.0469657
+[4400]  valid_set's binary_logloss: 0.0469111
+[4450]  valid_set's binary_logloss: 0.0468494
+[4500]  valid_set's binary_logloss: 0.0467667
+[4550]  valid_set's binary_logloss: 0.0466633
+[4600]  valid_set's binary_logloss: 0.0466025
+[4650]  valid_set's binary_logloss: 0.0465532
+[4700]  valid_set's binary_logloss: 0.0464863
+[4750]  valid_set's binary_logloss: 0.0464151
+[4800]  valid_set's binary_logloss: 0.046364
+[4850]  valid_set's binary_logloss: 0.0463181
+[4900]  valid_set's binary_logloss: 0.0462468
+[4950]  valid_set's binary_logloss: 0.0461862
+[5000]  valid_set's binary_logloss: 0.0461098
+[5050]  valid_set's binary_logloss: 0.0460828
+[5100]  valid_set's binary_logloss: 0.0460382
+[5150]  valid_set's binary_logloss: 0.0460061
+[5200]  valid_set's binary_logloss: 0.0459409
+[5250]  valid_set's binary_logloss: 0.0459004
+[5300]  valid_set's binary_logloss: 0.0458499
+[5350]  valid_set's binary_logloss: 0.0458205
+[5400]  valid_set's binary_logloss: 0.0457765
+[5450]  valid_set's binary_logloss: 0.0457331
+[5500]  valid_set's binary_logloss: 0.0456862
+[5550]  valid_set's binary_logloss: 0.045656
+[5600]  valid_set's binary_logloss: 0.0456313
+[5650]  valid_set's binary_logloss: 0.0455883
+[5700]  valid_set's binary_logloss: 0.0455565
+[5750]  valid_set's binary_logloss: 0.0455113
+[5800]  valid_set's binary_logloss: 0.0454627
+[5850]  valid_set's binary_logloss: 0.0454342
+[5900]  valid_set's binary_logloss: 0.0453972
+[5950]  valid_set's binary_logloss: 0.0453747
+[6000]  valid_set's binary_logloss: 0.0453566
+[6050]  valid_set's binary_logloss: 0.0453355
+[6100]  valid_set's binary_logloss: 0.0453014
+[6150]  valid_set's binary_logloss: 0.0452635
+[6200]  valid_set's binary_logloss: 0.0452424
+[6250]  valid_set's binary_logloss: 0.0452184
+[6300]  valid_set's binary_logloss: 0.0451961
+[6350]  valid_set's binary_logloss: 0.0451502
+[6400]  valid_set's binary_logloss: 0.0451273
+[6450]  valid_set's binary_logloss: 0.0451117
+[6500]  valid_set's binary_logloss: 0.0450916
+[6550]  valid_set's binary_logloss: 0.0450568
+[6600]  valid_set's binary_logloss: 0.0450442
+[6650]  valid_set's binary_logloss: 0.0450293
+[6700]  valid_set's binary_logloss: 0.0450295
+[6750]  valid_set's binary_logloss: 0.0450123
+[6800]  valid_set's binary_logloss: 0.0450061
+[6850]  valid_set's binary_logloss: 0.045008
+[6900]  valid_set's binary_logloss: 0.0450171
+[6950]  valid_set's binary_logloss: 0.0450367
+[7000]  valid_set's binary_logloss: 0.0450351
+[7050]  valid_set's binary_logloss: 0.0450223
+[7100]  valid_set's binary_logloss: 0.045006
+[7150]  valid_set's binary_logloss: 0.0450014
+[7200]  valid_set's binary_logloss: 0.045005
+[7250]  valid_set's binary_logloss: 0.0450355
+[7300]  valid_set's binary_logloss: 0.0450434
+[7350]  valid_set's binary_logloss: 0.045031
+[7400]  valid_set's binary_logloss: 0.0450103
+[7450]  valid_set's binary_logloss: 0.0450016
+[7500]  valid_set's binary_logloss: 0.0449951
+[7550]  valid_set's binary_logloss: 0.0449908
+[50]    valid_set's binary_logloss: 0.0962948
+[100]   valid_set's binary_logloss: 0.0875366
+[150]   valid_set's binary_logloss: 0.0826311
+[200]   valid_set's binary_logloss: 0.0791537
+[250]   valid_set's binary_logloss: 0.0766791
+[300]   valid_set's binary_logloss: 0.0746304
+[350]   valid_set's binary_logloss: 0.0730532
+[400]   valid_set's binary_logloss: 0.0715409
+[450]   valid_set's binary_logloss: 0.0703641
+[500]   valid_set's binary_logloss: 0.0693024
+[550]   valid_set's binary_logloss: 0.0682694
+[600]   valid_set's binary_logloss: 0.0672797
+[650]   valid_set's binary_logloss: 0.0664449
+[700]   valid_set's binary_logloss: 0.0656632
+[750]   valid_set's binary_logloss: 0.0648896
+[800]   valid_set's binary_logloss: 0.0642512
+[850]   valid_set's binary_logloss: 0.0636429
+[900]   valid_set's binary_logloss: 0.0629948
+[950]   valid_set's binary_logloss: 0.0623619
+[1000]  valid_set's binary_logloss: 0.0618802
+[1050]  valid_set's binary_logloss: 0.0614347
+[1100]  valid_set's binary_logloss: 0.0609686
+[1150]  valid_set's binary_logloss: 0.0604567
+[1200]  valid_set's binary_logloss: 0.0599484
+[1250]  valid_set's binary_logloss: 0.0595137
+[1300]  valid_set's binary_logloss: 0.0590859
+[1350]  valid_set's binary_logloss: 0.0586598
+[1400]  valid_set's binary_logloss: 0.0582442
+[1450]  valid_set's binary_logloss: 0.057846
+[1500]  valid_set's binary_logloss: 0.0575185
+[1550]  valid_set's binary_logloss: 0.0571447
+[1600]  valid_set's binary_logloss: 0.0568225
+[1650]  valid_set's binary_logloss: 0.0564835
+[1700]  valid_set's binary_logloss: 0.0562151
+[1750]  valid_set's binary_logloss: 0.0559457
+[1800]  valid_set's binary_logloss: 0.055691
+[1850]  valid_set's binary_logloss: 0.0553846
+[1900]  valid_set's binary_logloss: 0.0551046
+[1950]  valid_set's binary_logloss: 0.0548127
+[2000]  valid_set's binary_logloss: 0.0545277
+[2050]  valid_set's binary_logloss: 0.0542339
+[2100]  valid_set's binary_logloss: 0.0539807
+[2150]  valid_set's binary_logloss: 0.0537343
+[2200]  valid_set's binary_logloss: 0.0534642
+[2250]  valid_set's binary_logloss: 0.0532622
+[2300]  valid_set's binary_logloss: 0.0530425
+[2350]  valid_set's binary_logloss: 0.0528564
+[2400]  valid_set's binary_logloss: 0.0526538
+[2450]  valid_set's binary_logloss: 0.0524329
+[2500]  valid_set's binary_logloss: 0.0521854
+[2550]  valid_set's binary_logloss: 0.0519891
+[2600]  valid_set's binary_logloss: 0.0518008
+[2650]  valid_set's binary_logloss: 0.0516694
+[2700]  valid_set's binary_logloss: 0.0514709
+[2750]  valid_set's binary_logloss: 0.0512856
+[2800]  valid_set's binary_logloss: 0.0511404
+[2850]  valid_set's binary_logloss: 0.0509686
+[2900]  valid_set's binary_logloss: 0.0508043
+[2950]  valid_set's binary_logloss: 0.0506575
+[3000]  valid_set's binary_logloss: 0.0504941
+[3050]  valid_set's binary_logloss: 0.0503218
+[3100]  valid_set's binary_logloss: 0.0501923
+[3150]  valid_set's binary_logloss: 0.050039
+[3200]  valid_set's binary_logloss: 0.0498999
+[3250]  valid_set's binary_logloss: 0.0497412
+[3300]  valid_set's binary_logloss: 0.0496217
+[3350]  valid_set's binary_logloss: 0.0495241
+[3400]  valid_set's binary_logloss: 0.0494252
+[3450]  valid_set's binary_logloss: 0.0493008
+[3500]  valid_set's binary_logloss: 0.0491831
+[3550]  valid_set's binary_logloss: 0.0490707
+[3600]  valid_set's binary_logloss: 0.0489746
+[3650]  valid_set's binary_logloss: 0.0488395
+[3700]  valid_set's binary_logloss: 0.0487442
+[3750]  valid_set's binary_logloss: 0.0486169
+[3800]  valid_set's binary_logloss: 0.0485238
+[3850]  valid_set's binary_logloss: 0.048429
+[3900]  valid_set's binary_logloss: 0.0483117
+[3950]  valid_set's binary_logloss: 0.0482465
+[4000]  valid_set's binary_logloss: 0.0481866
+[4050]  valid_set's binary_logloss: 0.0480781
+[4100]  valid_set's binary_logloss: 0.0479657
+[4150]  valid_set's binary_logloss: 0.0479174
+[4200]  valid_set's binary_logloss: 0.0478491
+[4250]  valid_set's binary_logloss: 0.0477598
+[4300]  valid_set's binary_logloss: 0.0476699
+[4350]  valid_set's binary_logloss: 0.0475929
+[4400]  valid_set's binary_logloss: 0.0475102
+[4450]  valid_set's binary_logloss: 0.0474583
+[4500]  valid_set's binary_logloss: 0.0473897
+[4550]  valid_set's binary_logloss: 0.0473208
+[4600]  valid_set's binary_logloss: 0.0472478
+[4650]  valid_set's binary_logloss: 0.0471707
+[4700]  valid_set's binary_logloss: 0.0470975
+[4750]  valid_set's binary_logloss: 0.0470223
+[4800]  valid_set's binary_logloss: 0.046933
+[4850]  valid_set's binary_logloss: 0.0468955
+[4900]  valid_set's binary_logloss: 0.0467916
+[4950]  valid_set's binary_logloss: 0.0467316
+[5000]  valid_set's binary_logloss: 0.0466726
+[5050]  valid_set's binary_logloss: 0.0466299
+[5100]  valid_set's binary_logloss: 0.0465787
+[5150]  valid_set's binary_logloss: 0.0465216
+[5200]  valid_set's binary_logloss: 0.0464555
+[5250]  valid_set's binary_logloss: 0.0464032
+[5300]  valid_set's binary_logloss: 0.0463644
+[5350]  valid_set's binary_logloss: 0.046345
+[5400]  valid_set's binary_logloss: 0.0463021
+[5450]  valid_set's binary_logloss: 0.0462572
+[5500]  valid_set's binary_logloss: 0.0462455
+[5550]  valid_set's binary_logloss: 0.046189
+[5600]  valid_set's binary_logloss: 0.0461821
+[5650]  valid_set's binary_logloss: 0.0461512
+[5700]  valid_set's binary_logloss: 0.0461375
+[5750]  valid_set's binary_logloss: 0.0460782
+[5800]  valid_set's binary_logloss: 0.046044
+[5850]  valid_set's binary_logloss: 0.0460181
+[5900]  valid_set's binary_logloss: 0.0459886
+[5950]  valid_set's binary_logloss: 0.0459739
+[6000]  valid_set's binary_logloss: 0.0459499
+[6050]  valid_set's binary_logloss: 0.0459214
+[6100]  valid_set's binary_logloss: 0.0458806
+[6150]  valid_set's binary_logloss: 0.0458286
+[6200]  valid_set's binary_logloss: 0.0458169
+[6250]  valid_set's binary_logloss: 0.0458025
+[6300]  valid_set's binary_logloss: 0.045789
+[6350]  valid_set's binary_logloss: 0.045785
+[6400]  valid_set's binary_logloss: 0.0457392
+[6450]  valid_set's binary_logloss: 0.0457052
+[6500]  valid_set's binary_logloss: 0.0456856
+[6550]  valid_set's binary_logloss: 0.0456551
+[6600]  valid_set's binary_logloss: 0.0456049
+[6650]  valid_set's binary_logloss: 0.0455808
+[6700]  valid_set's binary_logloss: 0.0455627
+[6750]  valid_set's binary_logloss: 0.0455433
+[6800]  valid_set's binary_logloss: 0.0455255
+[6850]  valid_set's binary_logloss: 0.0454953
+[6900]  valid_set's binary_logloss: 0.0454847
+[6950]  valid_set's binary_logloss: 0.0454637
+[7000]  valid_set's binary_logloss: 0.0454715
+[7050]  valid_set's binary_logloss: 0.0454629
+[7100]  valid_set's binary_logloss: 0.0454673
+[7150]  valid_set's binary_logloss: 0.0454424
+[7200]  valid_set's binary_logloss: 0.0454276
+[7250]  valid_set's binary_logloss: 0.0454074
+[7300]  valid_set's binary_logloss: 0.045406
+[7350]  valid_set's binary_logloss: 0.0454003
+[7400]  valid_set's binary_logloss: 0.045375
+[7450]  valid_set's binary_logloss: 0.0453647
+[7500]  valid_set's binary_logloss: 0.0453676
+[7550]  valid_set's binary_logloss: 0.0453669
+[7600]  valid_set's binary_logloss: 0.0453402
+[7650]  valid_set's binary_logloss: 0.045347
+[7700]  valid_set's binary_logloss: 0.0453404
+[7750]  valid_set's binary_logloss: 0.0452905
+[7800]  valid_set's binary_logloss: 0.0452678
+[7850]  valid_set's binary_logloss: 0.0452621
+[7900]  valid_set's binary_logloss: 0.0452721
+[7950]  valid_set's binary_logloss: 0.0453034
+[8000]  valid_set's binary_logloss: 0.0453192
+[8050]  valid_set's binary_logloss: 0.0453174
+[8100]  valid_set's binary_logloss: 0.04531
+[8150]  valid_set's binary_logloss: 0.0453097
+[8200]  valid_set's binary_logloss: 0.0453064
+[8250]  valid_set's binary_logloss: 0.0453017
+[8300]  valid_set's binary_logloss: 0.0453148
+[8350]  valid_set's binary_logloss: 0.0453153
+[8400]  valid_set's binary_logloss: 0.0453138
+[8450]  valid_set's binary_logloss: 0.0453403
+[8500]  valid_set's binary_logloss: 0.0453684
+[8550]  valid_set's binary_logloss: 0.0453877
+[8600]  valid_set's binary_logloss: 0.0454095
+[8650]  valid_set's binary_logloss: 0.0453896
+[8700]  valid_set's binary_logloss: 0.0453852
+[8750]  valid_set's binary_logloss: 0.045368
+[8800]  valid_set's binary_logloss: 0.0453844
+[8850]  valid_set's binary_logloss: 0.0453988
+[8900]  valid_set's binary_logloss: 0.0454074
+[8950]  valid_set's binary_logloss: 0.0453968
+[9000]  valid_set's binary_logloss: 0.0454079
+[9050]  valid_set's binary_logloss: 0.0454114
+[9100]  valid_set's binary_logloss: 0.045438
+*** Summary of fit() ***
+Estimated performance of each model:
+                 model  score_val  pred_time_val     fit_time  pred_time_val_marginal  fit_time_marginal  stack_level  can_infer  fit_order
+0    LightGBMXT_BAG_L1   0.971274      28.143910  1113.060551               28.143910        1113.060551            1       True          1
+1  WeightedEnsemble_L2   0.971274      28.211386  1113.131086                0.067476           0.070535            2       True          2
+Number of models trained: 2
+Types of models trained:
+{'StackerEnsembleModel_LGB', 'WeightedEnsembleModel'}
+Bagging used: True  (with 8 folds)
+Multi-layer stack-ensembling used: False 
+Feature Metadata (Processed):
+(raw dtype, special dtypes):
+('category', []) :  31 | ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', ...]
+('float', [])    : 394 | ['TransactionAmt', 'card2', 'card3', 'card5', 'addr1', ...]
+('int', [])      :   3 | ['TransactionID', 'TransactionDT', 'card1']
+*** End of fit() summary ***</code></pre>
+</div>
+</div>
+<div id="4612d293-256c-44cc-9b61-14536f92332c" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>test_identity <span class="op">=</span> pd.read_csv(<span class="st">'ieee-fraud-detection/test_identity.csv'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>test_transaction <span class="op">=</span> pd.read_csv(<span class="st">'ieee-fraud-detection/test_transaction.csv'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> pd.merge(test_transaction, test_identity, on<span class="op">=</span><span class="st">'TransactionID'</span>, how<span class="op">=</span><span class="st">'left'</span>)  <span class="co"># same join applied to training files</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>y_predproba <span class="op">=</span> predictor.predict_proba(test_data)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>y_predproba.head(<span class="dv">5</span>)  <span class="co"># some example predicted fraud-probabilities</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>KeyError: "38 required columns are missing from the provided dataset to transform using AutoMLPipelineFeatureGenerator. 38 missing columns: ['id_01', 'id_02', 'id_03', 'id_04', 'id_05', 'id_06', 'id_07', 'id_08', 'id_09', 'id_10', 'id_11', 'id_12', 'id_13', 'id_14', 'id_15', 'id_16', 'id_17', 'id_18', 'id_19', 'id_20', 'id_21', 'id_22', 'id_23', 'id_24', 'id_25', 'id_26', 'id_27', 'id_28', 'id_29', 'id_30', 'id_31', 'id_32', 'id_33', 'id_34', 'id_35', 'id_36', 'id_37', 'id_38'] | 433 available columns: ['TransactionID', 'TransactionDT', 'TransactionAmt', 'ProductCD', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'addr1', 'addr2', 'dist1', 'dist2', 'P_emaildomain', 'R_emaildomain', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'V29', 'V30', 'V31', 'V32', 'V33', 'V34', 'V35', 'V36', 'V37', 'V38', 'V39', 'V40', 'V41', 'V42', 'V43', 'V44', 'V45', 'V46', 'V47', 'V48', 'V49', 'V50', 'V51', 'V52', 'V53', 'V54', 'V55', 'V56', 'V57', 'V58', 'V59', 'V60', 'V61', 'V62', 'V63', 'V64', 'V65', 'V66', 'V67', 'V68', 'V69', 'V70', 'V71', 'V72', 'V73', 'V74', 'V75', 'V76', 'V77', 'V78', 'V79', 'V80', 'V81', 'V82', 'V83', 'V84', 'V85', 'V86', 'V87', 'V88', 'V89', 'V90', 'V91', 'V92', 'V93', 'V94', 'V95', 'V96', 'V97', 'V98', 'V99', 'V100', 'V101', 'V102', 'V103', 'V104', 'V105', 'V106', 'V107', 'V108', 'V109', 'V110', 'V111', 'V112', 'V113', 'V114', 'V115', 'V116', 'V117', 'V118', 'V119', 'V120', 'V121', 'V122', 'V123', 'V124', 'V125', 'V126', 'V127', 'V128', 'V129', 'V130', 'V131', 'V132', 'V133', 'V134', 'V135', 'V136', 'V137', 'V138', 'V139', 'V140', 'V141', 'V142', 'V143', 'V144', 'V145', 'V146', 'V147', 'V148', 'V149', 'V150', 'V151', 'V152', 'V153', 'V154', 'V155', 'V156', 'V157', 'V158', 'V159', 'V160', 'V161', 'V162', 'V163', 'V164', 'V165', 'V166', 'V167', 'V168', 'V169', 'V170', 'V171', 'V172', 'V173', 'V174', 'V175', 'V176', 'V177', 'V178', 'V179', 'V180', 'V181', 'V182', 'V183', 'V184', 'V185', 'V186', 'V187', 'V188', 'V189', 'V190', 'V191', 'V192', 'V193', 'V194', 'V195', 'V196', 'V197', 'V198', 'V199', 'V200', 'V201', 'V202', 'V203', 'V204', 'V205', 'V206', 'V207', 'V208', 'V209', 'V210', 'V211', 'V212', 'V213', 'V214', 'V215', 'V216', 'V217', 'V218', 'V219', 'V220', 'V221', 'V222', 'V223', 'V224', 'V225', 'V226', 'V227', 'V228', 'V229', 'V230', 'V231', 'V232', 'V233', 'V234', 'V235', 'V236', 'V237', 'V238', 'V239', 'V240', 'V241', 'V242', 'V243', 'V244', 'V245', 'V246', 'V247', 'V248', 'V249', 'V250', 'V251', 'V252', 'V253', 'V254', 'V255', 'V256', 'V257', 'V258', 'V259', 'V260', 'V261', 'V262', 'V263', 'V264', 'V265', 'V266', 'V267', 'V268', 'V269', 'V270', 'V271', 'V272', 'V273', 'V274', 'V275', 'V276', 'V277', 'V278', 'V279', 'V280', 'V281', 'V282', 'V283', 'V284', 'V285', 'V286', 'V287', 'V288', 'V289', 'V290', 'V291', 'V292', 'V293', 'V294', 'V295', 'V296', 'V297', 'V298', 'V299', 'V300', 'V301', 'V302', 'V303', 'V304', 'V305', 'V306', 'V307', 'V308', 'V309', 'V310', 'V311', 'V312', 'V313', 'V314', 'V315', 'V316', 'V317', 'V318', 'V319', 'V320', 'V321', 'V322', 'V323', 'V324', 'V325', 'V326', 'V327', 'V328', 'V329', 'V330', 'V331', 'V332', 'V333', 'V334', 'V335', 'V336', 'V337', 'V338', 'V339', 'id-01', 'id-02', 'id-03', 'id-04', 'id-05', 'id-06', 'id-07', 'id-08', 'id-09', 'id-10', 'id-11', 'id-12', 'id-13', 'id-14', 'id-15', 'id-16', 'id-17', 'id-18', 'id-19', 'id-20', 'id-21', 'id-22', 'id-23', 'id-24', 'id-25', 'id-26', 'id-27', 'id-28', 'id-29', 'id-30', 'id-31', 'id-32', 'id-33', 'id-34', 'id-35', 'id-36', 'id-37', 'id-38', 'DeviceType', 'DeviceInfo']"</code></pre>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="boram-coco/coco" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
