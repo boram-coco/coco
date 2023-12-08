@@ -56,11 +56,14 @@
   {
     "listing": "/Synthetic.html",
     "items": [
-      "/posts/GNN/GNN논문.html",
-      "/posts/GNN/Graph basic.html",
-      "/posts/GNN/Laplacian.html",
-      "/posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html",
-      "/posts/GNN/Neural Network.html"
+      "/posts/Synthetic/2023-07-01-CTGAN.html",
+      "/posts/Synthetic/2023-07-02-CTGAN-TOY.html",
+      "/posts/Synthetic/Modeling Tabular Data using Conditional GAN.html",
+      "/posts/Synthetic/[R] synthpop.html",
+      "/posts/Synthetic/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html",
+      "/posts/Synthetic/Advaced Deep Learning with TensorFlow 2 and Keras.html",
+      "/posts/Synthetic/synthetic data.html",
+      "/posts/Synthetic/Practical Synthetic Data Generation.html"
     ]
   },
   {
