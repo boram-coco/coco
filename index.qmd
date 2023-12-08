@@ -20,7 +20,9 @@ execute:
 
 **Coco's blog**
 
-[This is Boram's study blog, and it's a summary of what she's been studying, so there may be some mistakes. For blogs related to his graduate classes, click on the links below! I want to go for a walk. I want a snack. woof!](coco2.jpg)
+coco2.jpg
+
+This is Boram's study blog, and it's a summary of what she's been studying, so there may be some mistakes. For blogs related to his graduate classes, click on the links below! I want to go for a walk. I want a snack. woof!
 
 
 ---
@@ -42,6 +44,8 @@ execute:
 
 - [**Applied Statistics**](https://boram-coco.github.io/AS/)
 
+- [**Data Visualization**](https://boram-coco.github.io/DV/)
+
 - [**Deep Learning**](https://boram-coco.github.io/DL/)
 
 - [**Machine Learning**](https://boram-coco.github.io/ML/)
@@ -51,6 +55,8 @@ execute:
 - [**Python**](https://boram-coco.github.io/Python/)
 
 - [**Regression Analysis**](https://boram-coco.github.io/DL/)
+
+- [**Statistical Computing**](https://boram-coco.github.io/julia/)
 
 - [**Special Topics in Big Data Analysis(2022)**](https://boram-coco.github.io/STBDA22/)
 

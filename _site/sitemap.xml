@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://boram-coco.github.io/coco/index.html</loc>
-    <lastmod>2023-12-08T03:55:37.600Z</lastmod>
+    <lastmod>2023-12-08T04:32:57.093Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/GNN.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/Note.html</loc>
-    <lastmod>2023-12-08T03:58:41.852Z</lastmod>
+    <lastmod>2023-12-08T04:16:45.041Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/Study/autogluon fraud.html</loc>
@@ -61,10 +61,6 @@
     <lastmod>2023-10-05T09:57:25.000Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/0810.html</loc>
-    <lastmod>2023-10-05T09:57:23.000Z</lastmod>
-  </url>
-  <url>
     <loc>https://boram-coco.github.io/coco/posts/GNN/Neural Network.html</loc>
     <lastmod>2023-10-05T09:57:25.000Z</lastmod>
   </url>
@@ -94,7 +90,7 @@
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/Synthetic.html</loc>
-    <lastmod>2023-12-08T03:59:20.320Z</lastmod>
+    <lastmod>2023-12-08T04:17:05.808Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/Note/콰트로 블로그 만드는 법.html</loc>
@@ -119,10 +115,6 @@
   <url>
     <loc>https://boram-coco.github.io/coco/posts/GNN/GNN논문.html</loc>
     <lastmod>2023-10-05T09:57:25.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/230810 데이터정리.html</loc>
-    <lastmod>2023-10-05T09:57:23.000Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/GNN/Graph basic.html</loc>
@@ -182,6 +174,6 @@
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/Study.html</loc>
-    <lastmod>2023-12-08T04:00:08.576Z</lastmod>
+    <lastmod>2023-12-08T04:16:53.752Z</lastmod>
   </url>
 </urlset>

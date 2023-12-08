@@ -76,9 +76,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -223,9 +223,271 @@ ul.task-list li input[type="checkbox"] {
 <table class="quarto-listing-table table">
 <thead>
 <tr>
+<th>
+Date
+</th>
+<th>
+Title
+</th>
+<th>
+Author
+</th>
 </tr>
 </thead>
 <tbody class="list">
+<tr data-index="0" data-listing-date-sort="1697036400000" data-listing-file-modified-sort="1697096046000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Autogluon fraud" data-listing-filename-sort="autogluon fraud.ipynb">
+<td>
+<span class="listing-date">Oct 12, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/autogluon fraud.html" class="title listing-title">Autogluon fraud</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="1" data-categories="Tensor" data-listing-date-sort="1689260400000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Tensor Basic" data-listing-filename-sort="tensor basic.ipynb">
+<td>
+<span class="listing-date">Jul 14, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/Deep learning with pytorch/tensor basic.html" class="title listing-title">Tensor Basic</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="2" data-categories="한국통계학회" data-listing-date-sort="1687964400000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="[한국통계학회] 통계계산연구회 튜토리얼" data-listing-filename-sort="KSS-DataFrame.ipynb">
+<td>
+<span class="listing-date">Jun 29, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/KSS-DataFrame.html" class="title listing-title">[한국통계학회] 통계계산연구회 튜토리얼</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="3" data-categories="TDA" data-listing-date-sort="1687791600000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-title-sort="TDA tutorial" data-listing-filename-sort="tutorial_hand_on.ipynb">
+<td>
+<span class="listing-date">Jun 27, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/tutorial_hand_on.html" class="title listing-title">TDA tutorial</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="4" data-categories="주성분 분석" data-listing-date-sort="1686409200000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="주성분 분석(PCA)" data-listing-filename-sort="주성분 분석.ipynb">
+<td>
+<span class="listing-date">Jun 11, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/주성분 분석.html" class="title listing-title">주성분 분석(PCA)</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="5" data-categories="앙상블 학습,보팅,배깅,부스팅,그래디언트 부스팅,스태킹" data-listing-date-sort="1685545200000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="앙상블 학습" data-listing-filename-sort="ml with python 9.ipynb">
+<td>
+<span class="listing-date">Jun 1, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 9.html" class="title listing-title">앙상블 학습</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="6" data-categories="회귀 분석" data-listing-date-sort="1684335600000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)" data-listing-filename-sort="baseball-salary-prediction.ipynb">
+<td>
+<span class="listing-date">May 18, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/baseball-salary-prediction.html" class="title listing-title">미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="7" data-categories="모형 평가" data-listing-date-sort="1683730800000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="모형 평가" data-listing-filename-sort="ml with python 7.ipynb">
+<td>
+<span class="listing-date">May 11, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/선형대수와 통계학으로 배우는 머신러닝 with 파이썬/ml with python 7.html" class="title listing-title">모형 평가</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="8" data-categories="경사하강법" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="경사하강법" data-listing-filename-sort="경사하강법.ipynb">
+<td>
+<span class="listing-date">Apr 24, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/Python Data Analysis/경사하강법.html" class="title listing-title">경사하강법</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="9" data-categories="딥러닝,퍼셉트론" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="다층 퍼셉트론과 딥러닝" data-listing-filename-sort="다층 퍼셉트론과 딥러닝.ipynb">
+<td>
+<span class="listing-date">Apr 24, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/Python Data Analysis/다층 퍼셉트론과 딥러닝.html" class="title listing-title">다층 퍼셉트론과 딥러닝</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="10" data-categories="인공신경망,퍼셉트론" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="인공신경망과 퍼셉트론" data-listing-filename-sort="인공신경망과 퍼셉트론.ipynb">
+<td>
+<span class="listing-date">Apr 24, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/Python Data Analysis/인공신경망과 퍼셉트론.html" class="title listing-title">인공신경망과 퍼셉트론</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="11" data-categories="딥러닝,회귀분석" data-listing-date-sort="1681916400000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="딥러닝: 회귀분석" data-listing-filename-sort="딥러닝 회귀분석.ipynb">
+<td>
+<span class="listing-date">Apr 20, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/Python Data Analysis/딥러닝 회귀분석.html" class="title listing-title">딥러닝: 회귀분석</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="12" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="plot_comparison_under_sampling" data-listing-filename-sort="plot_comparison_under_sampling.ipynb">
+<td>
+<span class="listing-date">Apr 14, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/imbalaced data/plot_comparison_under_sampling.html" class="title listing-title">plot_comparison_under_sampling</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="13" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="plot_comparison_over_sampling" data-listing-filename-sort="plot_comparison_over_sampling.ipynb">
+<td>
+<span class="listing-date">Apr 14, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/imbalaced data/plot_comparison_over_sampling.html" class="title listing-title">plot_comparison_over_sampling</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="14" data-categories="sklearn" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="파이썬:사이킷런" data-listing-filename-sort="sklearn.ipynb">
+<td>
+<span class="listing-date">Apr 14, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/sklearn.html" class="title listing-title">파이썬:사이킷런</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="15" data-categories="imbalanced data" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="imbalanced data" data-listing-filename-sort="imbalaced data.ipynb">
+<td>
+<span class="listing-date">Apr 12, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/imbalaced data/imbalaced data.html" class="title listing-title">imbalanced data</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="16" data-categories="자격증 공부" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-title-sort="데이터 개념공부" data-listing-filename-sort="데이터 개념 공부.ipynb">
+<td>
+<span class="listing-date">Apr 5, 2023</span>
+</td>
+<td>
+<a href="./posts/Study/데이터 개념 공부.html" class="title listing-title">데이터 개념공부</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="17" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="3: 데이터 분석 준비하기" data-listing-filename-sort="2. 데이터 분석 준비하기.ipynb">
+<td>
+<span class="listing-date">Nov 24, 2022</span>
+</td>
+<td>
+<a href="./posts/Study/boostcourse/2. 데이터 분석 준비하기.html" class="title listing-title">3: 데이터 분석 준비하기</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="18" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="1: 주피터 노트북 사용법" data-listing-filename-sort="0. jupyter basic.ipynb">
+<td>
+<span class="listing-date">Nov 24, 2022</span>
+</td>
+<td>
+<a href="./posts/Study/boostcourse/0. jupyter basic.html" class="title listing-title">1: 주피터 노트북 사용법</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="19" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="4: 서울 종합병원 분포 확인하기" data-listing-filename-sort="3. 서울 종합병원 분포 확인하기.ipynb">
+<td>
+<span class="listing-date">Nov 24, 2022</span>
+</td>
+<td>
+<a href="./posts/Study/boostcourse/3. 서울 종합병원 분포 확인하기.html" class="title listing-title">4: 서울 종합병원 분포 확인하기</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="20" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="2: file-path-setting" data-listing-filename-sort="1. file-path-setting.ipynb">
+<td>
+<span class="listing-date">Nov 24, 2022</span>
+</td>
+<td>
+<a href="./posts/Study/boostcourse/1. file-path-setting.html" class="title listing-title">2: file-path-setting</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="21" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="6: K-beauty" data-listing-filename-sort="5. K-beauty.ipynb">
+<td>
+<span class="listing-date">Nov 24, 2022</span>
+</td>
+<td>
+<a href="./posts/Study/boostcourse/5. K-beauty.html" class="title listing-title">6: K-beauty</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
+<tr data-index="22" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1696499943000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="5: 건강검진 데이터로 가설검정" data-listing-filename-sort="4. 건강검진 데이터로 가설검정.ipynb">
+<td>
+<span class="listing-date">Nov 24, 2022</span>
+</td>
+<td>
+<a href="./posts/Study/boostcourse/4. 건강검진 데이터로 가설검정.html" class="title listing-title">5: 건강검진 데이터로 가설검정</a>
+</td>
+<td>
+<span class="listing-author">김보람 </span>
+</td>
+</tr>
 </tbody>
 </table>
 <div class="listing-no-matching d-none">
