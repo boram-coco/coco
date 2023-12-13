@@ -1,6 +1,6 @@
 ---
 listing:
-  contents: [Note,GNN,Synthetic,Study]
+  contents: posts
   sort: [date desc,title]
   type: table
   categories: false
@@ -33,6 +33,8 @@ I want to go for a walk. I want a snack. woof!
 - [**Graph Machine Learning**](https://boram-coco.github.io/GML/)
 
 - [**GNN paper (poster)**](https://boram-coco.github.io/GNNpaper/)
+
+- [**Kaggle Study**](https://boram-coco.github.io/KS/)
 
 
 

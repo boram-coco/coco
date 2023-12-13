@@ -4,6 +4,36 @@
     "items": []
   },
   {
+    "listing": "/GNN.html",
+    "items": [
+      "/posts/GNN/GNN논문.html",
+      "/posts/GNN/Graph basic.html",
+      "/posts/GNN/Laplacian.html",
+      "/posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html",
+      "/posts/GNN/Neural Network.html"
+    ]
+  },
+  {
+    "listing": "/Note.html",
+    "items": [
+      "/posts/Note/Ref.html",
+      "/posts/Note/콰트로 블로그 만드는 법.html"
+    ]
+  },
+  {
+    "listing": "/Synthetic.html",
+    "items": [
+      "/posts/Synthetic/2023-07-01-CTGAN.html",
+      "/posts/Synthetic/2023-07-02-CTGAN-TOY.html",
+      "/posts/Synthetic/Modeling Tabular Data using Conditional GAN.html",
+      "/posts/Synthetic/[R] synthpop.html",
+      "/posts/Synthetic/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html",
+      "/posts/Synthetic/Advaced Deep Learning with TensorFlow 2 and Keras.html",
+      "/posts/Synthetic/synthetic data.html",
+      "/posts/Synthetic/Practical Synthetic Data Generation.html"
+    ]
+  },
+  {
     "listing": "/Study.html",
     "items": [
       "/posts/Study/autogluon fraud.html",
@@ -29,36 +59,6 @@
       "/posts/Study/boostcourse/1. file-path-setting.html",
       "/posts/Study/boostcourse/5. K-beauty.html",
       "/posts/Study/boostcourse/4. 건강검진 데이터로 가설검정.html"
-    ]
-  },
-  {
-    "listing": "/Synthetic.html",
-    "items": [
-      "/posts/Synthetic/2023-07-01-CTGAN.html",
-      "/posts/Synthetic/2023-07-02-CTGAN-TOY.html",
-      "/posts/Synthetic/Modeling Tabular Data using Conditional GAN.html",
-      "/posts/Synthetic/[R] synthpop.html",
-      "/posts/Synthetic/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html",
-      "/posts/Synthetic/Advaced Deep Learning with TensorFlow 2 and Keras.html",
-      "/posts/Synthetic/synthetic data.html",
-      "/posts/Synthetic/Practical Synthetic Data Generation.html"
-    ]
-  },
-  {
-    "listing": "/Note.html",
-    "items": [
-      "/posts/Note/Ref.html",
-      "/posts/Note/콰트로 블로그 만드는 법.html"
-    ]
-  },
-  {
-    "listing": "/GNN.html",
-    "items": [
-      "/posts/GNN/GNN논문.html",
-      "/posts/GNN/Graph basic.html",
-      "/posts/GNN/Laplacian.html",
-      "/posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html",
-      "/posts/GNN/Neural Network.html"
     ]
   }
 ]
