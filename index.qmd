@@ -52,7 +52,7 @@ I want to go for a walk. I want a snack. woof!
 
 - [**Python**](https://boram-coco.github.io/Python/)
 
-- [**Regression Analysis**](https://boram-coco.github.io/DL/)
+- [**Regression Analysis**](https://boram-coco.github.io/RA/)
 
 - [**Statistical Computing**](https://boram-coco.github.io/julia/)
 

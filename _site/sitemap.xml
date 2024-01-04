@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://boram-coco.github.io/coco/index.html</loc>
-    <lastmod>2023-12-11T11:31:51.973Z</lastmod>
+    <lastmod>2023-12-14T08:50:39.288Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/GNN.html</loc>
@@ -65,43 +65,11 @@
     <lastmod>2023-12-08T06:27:57.756Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html</loc>
-    <lastmod>2023-12-08T06:27:57.756Z</lastmod>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/GNN논문.html</loc>
+    <lastmod>2024-01-03T05:59:42.274Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Synthetic/Advaced Deep Learning with TensorFlow 2 and Keras.html</loc>
-    <lastmod>2023-12-08T06:27:57.900Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Synthetic/[R] synthpop.html</loc>
-    <lastmod>2023-12-08T06:27:57.916Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Synthetic/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html</loc>
-    <lastmod>2023-12-08T06:27:57.900Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Synthetic/synthetic data.html</loc>
-    <lastmod>2023-12-08T06:27:57.936Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Note/Ref.html</loc>
-    <lastmod>2023-12-08T06:27:57.756Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/Synthetic.html</loc>
-    <lastmod>2023-12-08T06:27:57.296Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Note/콰트로 블로그 만드는 법.html</loc>
-    <lastmod>2023-12-08T06:27:57.756Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Synthetic/Practical Synthetic Data Generation.html</loc>
-    <lastmod>2023-12-08T06:27:57.916Z</lastmod>
-  </url>
-  <url>
-    <loc>https://boram-coco.github.io/coco/posts/Synthetic/2023-07-01-CTGAN.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Synthetic/2023-07-02-CTGAN-TOY.html</loc>
     <lastmod>2023-12-08T06:27:57.900Z</lastmod>
   </url>
   <url>
@@ -109,12 +77,56 @@
     <lastmod>2023-12-08T06:27:57.900Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/Synthetic/2023-07-02-CTGAN-TOY.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Synthetic/2023-07-01-CTGAN.html</loc>
     <lastmod>2023-12-08T06:27:57.900Z</lastmod>
   </url>
   <url>
-    <loc>https://boram-coco.github.io/coco/posts/GNN/GNN논문.html</loc>
+    <loc>https://boram-coco.github.io/coco/posts/Synthetic/Practical Synthetic Data Generation.html</loc>
+    <lastmod>2023-12-08T06:27:57.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Note/[DSTBX] day2.html</loc>
+    <lastmod>2024-01-04T07:30:34.029Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Note/Ref.html</loc>
+    <lastmod>2024-01-02T09:19:17.747Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/Synthetic.html</loc>
+    <lastmod>2023-12-08T06:27:57.296Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Note/[DSTBX] day1.html</loc>
+    <lastmod>2024-01-03T07:01:24.626Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Note/콰트로 블로그 만드는 법.html</loc>
     <lastmod>2023-12-08T06:27:57.756Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Synthetic/synthetic data.html</loc>
+    <lastmod>2023-12-08T06:27:57.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Synthetic/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html</loc>
+    <lastmod>2023-12-08T06:27:57.900Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Synthetic/[R] synthpop.html</loc>
+    <lastmod>2023-12-08T06:27:57.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/Synthetic/Advaced Deep Learning with TensorFlow 2 and Keras.html</loc>
+    <lastmod>2023-12-08T06:27:57.900Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/An Introduction to Graph Neural Network(GNN) For Analysing Structured Data.html</loc>
+    <lastmod>2023-12-26T09:02:39.457Z</lastmod>
+  </url>
+  <url>
+    <loc>https://boram-coco.github.io/coco/posts/GNN/Untitled1.html</loc>
+    <lastmod>2024-01-03T06:00:32.178Z</lastmod>
   </url>
   <url>
     <loc>https://boram-coco.github.io/coco/posts/GNN/Graph basic.html</loc>
