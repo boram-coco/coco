@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.283">
+<meta name="generator" content="quarto-1.4.538">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,12 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -95,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -104,6 +106,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
@@ -111,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
@@ -125,18 +154,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html" rel="" target="">
- <span class="menu-text">Boram-coco</span></a>
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">Boram-coco</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/boram-coco"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://icons.getbootstrap.com/" rel="" target=""><i class="bi bi-lightning" role="img">
+    <a class="nav-link" href="https://icons.getbootstrap.com/"> <i class="bi bi-lightning" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -146,11 +175,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">plot_comparison_under_sampling</li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -161,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -196,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -243,6 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header>
+
 
 <p>ref: <a href="https://imbalanced-learn.org/stable/index.html">imbalaced-learn</a></p>
 <div id="cell-2" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-execution_count="14">
@@ -355,7 +385,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_under_sampling_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_under_sampling_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -383,7 +417,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_under_sampling_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_under_sampling_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>:class:<code>~imblearn.under_sampling.NearMiss</code> algorithms implement some heuristic rules in order to select samples. NearMiss-1 selects samples from the majority class for which the average distance of the <span class="math inline">\(k\)</span>` nearest samples of the minority class is the smallest. NearMiss-2 selects the samples from the majority class for which the average distance to the farthest samples of the negative class is the smallest. NearMiss-3 is a 2-step algorithm: first, for each minority sample, their <span class="math inline">\(m\)</span> nearest-neighbors will be kept; then, the majority samples selected are the on for which the average distance to the <span class="math inline">\(k\)</span> nearest neighbors is the largest.</p>
@@ -423,7 +461,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   warnings.warn(</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_under_sampling_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_under_sampling_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>:class:<code>~imblearn.under_sampling.EditedNearestNeighbours</code> removes samples of the majority class for which their class differ from the one of their nearest-neighbors. This sieve can be repeated which is the principle of the :class:<code>~imblearn.under_sampling.RepeatedEditedNearestNeighbours</code>. :class:<code>~imblearn.under_sampling.AllKNN</code> is slightly different from the :class:<code>~imblearn.under_sampling.RepeatedEditedNearestNeighbours</code> by changing the <span class="math inline">\(k\)</span> parameter of the internal nearest neighors algorithm, increasing it at each iteration.</p>
@@ -454,7 +496,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_under_sampling_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_under_sampling_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>:class:<code>~imblearn.under_sampling.CondensedNearestNeighbour</code> makes use of a 1-NN to iteratively decide if a sample should be kept in a dataset or not. The issue is that :class:<code>~imblearn.under_sampling.CondensedNearestNeighbour</code> is sensitive to noise by preserving the noisy samples. :class:<code>~imblearn.under_sampling.OneSidedSelection</code> also used the 1-NN and use :class:<code>~imblearn.under_sampling.TomekLinks</code> to remove the samples considered noisy. The :class:<code>~imblearn.under_sampling.NeighbourhoodCleaningRule</code> use a :class:<code>~imblearn.under_sampling.EditedNearestNeighbours</code> to remove some sample. Additionally, they use a 3 nearest-neighbors to remove samples which do not agree with this rule.</p>
@@ -485,7 +531,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_under_sampling_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_under_sampling_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>:class:<code>~imblearn.under_sampling.InstanceHardnessThreshold</code> uses the prediction of classifier to exclude samples. All samples which are classified with a low probability will be removed.</p>
@@ -517,7 +567,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_under_sampling_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_under_sampling_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 
@@ -654,15 +708,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -670,6 +737,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const anchorLink = note.querySelector('a.anchorjs-link');
       if (anchorLink) {
         anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
       }
       return note.innerHTML;
     }
@@ -713,6 +783,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -784,6 +877,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {

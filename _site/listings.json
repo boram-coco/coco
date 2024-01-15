@@ -2,9 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/GNN/Untitled1.html",
-      "/posts/Note/[DSTBX] day2.html",
-      "/posts/Note/[DSTBX] day1.html",
+      "/posts/GNN/graph기반증강.html",
       "/posts/Study/autogluon fraud.html",
       "/posts/Synthetic/2023-07-01-CTGAN.html",
       "/posts/Synthetic/2023-07-02-CTGAN-TOY.html",
@@ -31,7 +29,6 @@
       "/posts/Study/imbalaced data/imbalaced data.html",
       "/posts/Study/데이터 개념 공부.html",
       "/posts/Synthetic/Modeling Tabular Data using Conditional GAN.html",
-      "/posts/Synthetic/[R] synthpop.html",
       "/posts/Synthetic/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html",
       "/posts/Synthetic/Advaced Deep Learning with TensorFlow 2 and Keras.html",
       "/posts/Synthetic/synthetic data.html",
@@ -48,7 +45,7 @@
   {
     "listing": "/GNN.html",
     "items": [
-      "/posts/GNN/Untitled1.html",
+      "/posts/GNN/graph기반증강.html",
       "/posts/GNN/GNN논문.html",
       "/posts/GNN/Graph basic.html",
       "/posts/GNN/Laplacian.html",
@@ -59,8 +56,6 @@
   {
     "listing": "/Note.html",
     "items": [
-      "/posts/Note/[DSTBX] day2.html",
-      "/posts/Note/[DSTBX] day1.html",
       "/posts/Note/Ref.html",
       "/posts/Note/콰트로 블로그 만드는 법.html"
     ]
@@ -71,7 +66,6 @@
       "/posts/Synthetic/2023-07-01-CTGAN.html",
       "/posts/Synthetic/2023-07-02-CTGAN-TOY.html",
       "/posts/Synthetic/Modeling Tabular Data using Conditional GAN.html",
-      "/posts/Synthetic/[R] synthpop.html",
       "/posts/Synthetic/A Comparison of Synthetic Data Approaches Using Utility and Disclosure Risk Measures.html",
       "/posts/Synthetic/Advaced Deep Learning with TensorFlow 2 and Keras.html",
       "/posts/Synthetic/synthetic data.html",

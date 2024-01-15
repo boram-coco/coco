@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.283">
+<meta name="generator" content="quarto-1.4.538">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,12 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -61,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -99,6 +101,33 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -106,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
@@ -120,18 +149,18 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">Boram-coco</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Boram-coco</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/boram-coco"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://icons.getbootstrap.com/" rel="" target=""><i class="bi bi-lightning" role="img">
+    <a class="nav-link" href="https://icons.getbootstrap.com/"> <i class="bi bi-lightning" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -141,11 +170,11 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Study.html">Study</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -156,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -191,7 +220,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -219,6 +248,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+
 <div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <table class="quarto-listing-table table">
 <thead>
@@ -235,7 +265,7 @@ Author
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1697036400000" data-listing-file-modified-sort="1702016877768" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Autogluon fraud" data-listing-filename-sort="autogluon fraud.ipynb">
+<tr data-index="0" data-listing-date-sort="1697036400000" data-listing-file-modified-sort="1704363642431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Autogluon fraud" data-listing-filename-sort="autogluon fraud.ipynb">
 <td>
 <span class="listing-date">Oct 12, 2023</span>
 </td>
@@ -246,7 +276,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="Tensor" data-listing-date-sort="1689260400000" data-listing-file-modified-sort="1702016877760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Tensor Basic" data-listing-filename-sort="tensor basic.ipynb">
+<tr data-index="1" data-categories="Tensor" data-listing-date-sort="1689260400000" data-listing-file-modified-sort="1704363642419" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="532" data-listing-title-sort="Tensor Basic" data-listing-filename-sort="tensor basic.ipynb">
 <td>
 <span class="listing-date">Jul 14, 2023</span>
 </td>
@@ -257,7 +287,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="2" data-categories="한국통계학회" data-listing-date-sort="1687964400000" data-listing-file-modified-sort="1702016877760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="[한국통계학회] 통계계산연구회 튜토리얼" data-listing-filename-sort="KSS-DataFrame.ipynb">
+<tr data-index="2" data-categories="한국통계학회" data-listing-date-sort="1687964400000" data-listing-file-modified-sort="1704363642423" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="518" data-listing-title-sort="[한국통계학회] 통계계산연구회 튜토리얼" data-listing-filename-sort="KSS-DataFrame.ipynb">
 <td>
 <span class="listing-date">Jun 29, 2023</span>
 </td>
@@ -268,7 +298,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="3" data-categories="TDA" data-listing-date-sort="1687791600000" data-listing-file-modified-sort="1702016877864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-title-sort="TDA tutorial" data-listing-filename-sort="tutorial_hand_on.ipynb">
+<tr data-index="3" data-categories="TDA" data-listing-date-sort="1687791600000" data-listing-file-modified-sort="1704363642527" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2493" data-listing-title-sort="TDA tutorial" data-listing-filename-sort="tutorial_hand_on.ipynb">
 <td>
 <span class="listing-date">Jun 27, 2023</span>
 </td>
@@ -279,7 +309,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="4" data-categories="주성분 분석" data-listing-date-sort="1686409200000" data-listing-file-modified-sort="1702016877864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="주성분 분석(PCA)" data-listing-filename-sort="주성분 분석.ipynb">
+<tr data-index="4" data-categories="주성분 분석" data-listing-date-sort="1686409200000" data-listing-file-modified-sort="1704363642531" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43" data-listing-title-sort="주성분 분석(PCA)" data-listing-filename-sort="주성분 분석.ipynb">
 <td>
 <span class="listing-date">Jun 11, 2023</span>
 </td>
@@ -290,7 +320,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="5" data-categories="앙상블 학습,보팅,배깅,부스팅,그래디언트 부스팅,스태킹" data-listing-date-sort="1685545200000" data-listing-file-modified-sort="1702016877864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="앙상블 학습" data-listing-filename-sort="ml with python 9.ipynb">
+<tr data-index="5" data-categories="앙상블 학습,보팅,배깅,부스팅,그래디언트 부스팅,스태킹" data-listing-date-sort="1685545200000" data-listing-file-modified-sort="1704363642531" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="193" data-listing-title-sort="앙상블 학습" data-listing-filename-sort="ml with python 9.ipynb">
 <td>
 <span class="listing-date">Jun 1, 2023</span>
 </td>
@@ -301,7 +331,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="6" data-categories="회귀 분석" data-listing-date-sort="1684335600000" data-listing-file-modified-sort="1702016877768" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)" data-listing-filename-sort="baseball-salary-prediction.ipynb">
+<tr data-index="6" data-categories="회귀 분석" data-listing-date-sort="1684335600000" data-listing-file-modified-sort="1704363642431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="243" data-listing-title-sort="미래 예측 데이터 분석(프로야구 선수의 다음 해 연봉 예측)" data-listing-filename-sort="baseball-salary-prediction.ipynb">
 <td>
 <span class="listing-date">May 18, 2023</span>
 </td>
@@ -312,7 +342,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="7" data-categories="모형 평가" data-listing-date-sort="1683730800000" data-listing-file-modified-sort="1702016877864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="모형 평가" data-listing-filename-sort="ml with python 7.ipynb">
+<tr data-index="7" data-categories="모형 평가" data-listing-date-sort="1683730800000" data-listing-file-modified-sort="1704363642527" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="157" data-listing-title-sort="모형 평가" data-listing-filename-sort="ml with python 7.ipynb">
 <td>
 <span class="listing-date">May 11, 2023</span>
 </td>
@@ -323,7 +353,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="8" data-categories="경사하강법" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1702016877764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="경사하강법" data-listing-filename-sort="경사하강법.ipynb">
+<tr data-index="8" data-categories="경사하강법" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1704363642423" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="49" data-listing-title-sort="경사하강법" data-listing-filename-sort="경사하강법.ipynb">
 <td>
 <span class="listing-date">Apr 24, 2023</span>
 </td>
@@ -334,7 +364,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="9" data-categories="딥러닝,퍼셉트론" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1702016877764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="다층 퍼셉트론과 딥러닝" data-listing-filename-sort="다층 퍼셉트론과 딥러닝.ipynb">
+<tr data-index="9" data-categories="딥러닝,퍼셉트론" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1704363642427" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="47" data-listing-title-sort="다층 퍼셉트론과 딥러닝" data-listing-filename-sort="다층 퍼셉트론과 딥러닝.ipynb">
 <td>
 <span class="listing-date">Apr 24, 2023</span>
 </td>
@@ -345,7 +375,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="10" data-categories="인공신경망,퍼셉트론" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1702016877768" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="인공신경망과 퍼셉트론" data-listing-filename-sort="인공신경망과 퍼셉트론.ipynb">
+<tr data-index="10" data-categories="인공신경망,퍼셉트론" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1704363642427" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="86" data-listing-title-sort="인공신경망과 퍼셉트론" data-listing-filename-sort="인공신경망과 퍼셉트론.ipynb">
 <td>
 <span class="listing-date">Apr 24, 2023</span>
 </td>
@@ -356,7 +386,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="11" data-categories="딥러닝,회귀분석" data-listing-date-sort="1681916400000" data-listing-file-modified-sort="1702016877764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="딥러닝: 회귀분석" data-listing-filename-sort="딥러닝 회귀분석.ipynb">
+<tr data-index="11" data-categories="딥러닝,회귀분석" data-listing-date-sort="1681916400000" data-listing-file-modified-sort="1704363642427" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="243" data-listing-title-sort="딥러닝: 회귀분석" data-listing-filename-sort="딥러닝 회귀분석.ipynb">
 <td>
 <span class="listing-date">Apr 20, 2023</span>
 </td>
@@ -367,7 +397,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="12" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1702016877860" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="plot_comparison_under_sampling" data-listing-filename-sort="plot_comparison_under_sampling.ipynb">
+<tr data-index="12" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1704363642527" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="357" data-listing-title-sort="plot_comparison_under_sampling" data-listing-filename-sort="plot_comparison_under_sampling.ipynb">
 <td>
 <span class="listing-date">Apr 14, 2023</span>
 </td>
@@ -378,7 +408,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="13" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1702016877832" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="plot_comparison_over_sampling" data-listing-filename-sort="plot_comparison_over_sampling.ipynb">
+<tr data-index="13" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1704363642499" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="407" data-listing-title-sort="plot_comparison_over_sampling" data-listing-filename-sort="plot_comparison_over_sampling.ipynb">
 <td>
 <span class="listing-date">Apr 14, 2023</span>
 </td>
@@ -389,7 +419,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="14" data-categories="sklearn" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1702016877864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="파이썬:사이킷런" data-listing-filename-sort="sklearn.ipynb">
+<tr data-index="14" data-categories="sklearn" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1704363642527" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="72" data-listing-title-sort="파이썬:사이킷런" data-listing-filename-sort="sklearn.ipynb">
 <td>
 <span class="listing-date">Apr 14, 2023</span>
 </td>
@@ -400,7 +430,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="15" data-categories="imbalanced data" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1702016877812" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="imbalanced data" data-listing-filename-sort="imbalaced data.ipynb">
+<tr data-index="15" data-categories="imbalanced data" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1704363642475" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110" data-listing-title-sort="imbalanced data" data-listing-filename-sort="imbalaced data.ipynb">
 <td>
 <span class="listing-date">Apr 12, 2023</span>
 </td>
@@ -411,7 +441,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="16" data-categories="자격증 공부" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1702016877864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-title-sort="데이터 개념공부" data-listing-filename-sort="데이터 개념 공부.ipynb">
+<tr data-index="16" data-categories="자격증 공부" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1704363642527" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1599" data-listing-title-sort="데이터 개념공부" data-listing-filename-sort="데이터 개념 공부.ipynb">
 <td>
 <span class="listing-date">Apr 5, 2023</span>
 </td>
@@ -422,7 +452,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="17" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1702016877772" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="3: 데이터 분석 준비하기" data-listing-filename-sort="2. 데이터 분석 준비하기.ipynb">
+<tr data-index="17" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1704363642435" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="98" data-listing-title-sort="3: 데이터 분석 준비하기" data-listing-filename-sort="2. 데이터 분석 준비하기.ipynb">
 <td>
 <span class="listing-date">Nov 24, 2022</span>
 </td>
@@ -433,7 +463,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="18" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1702016877772" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="1: 주피터 노트북 사용법" data-listing-filename-sort="0. jupyter basic.ipynb">
+<tr data-index="18" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1704363642431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="86" data-listing-title-sort="1: 주피터 노트북 사용법" data-listing-filename-sort="0. jupyter basic.ipynb">
 <td>
 <span class="listing-date">Nov 24, 2022</span>
 </td>
@@ -444,7 +474,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="19" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1702016877788" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="4: 서울 종합병원 분포 확인하기" data-listing-filename-sort="3. 서울 종합병원 분포 확인하기.ipynb">
+<tr data-index="19" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1704363642451" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93" data-listing-title-sort="4: 서울 종합병원 분포 확인하기" data-listing-filename-sort="3. 서울 종합병원 분포 확인하기.ipynb">
 <td>
 <span class="listing-date">Nov 24, 2022</span>
 </td>
@@ -455,7 +485,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="20" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1702016877772" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="2: file-path-setting" data-listing-filename-sort="1. file-path-setting.ipynb">
+<tr data-index="20" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1704363642435" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="2: file-path-setting" data-listing-filename-sort="1. file-path-setting.ipynb">
 <td>
 <span class="listing-date">Nov 24, 2022</span>
 </td>
@@ -466,7 +496,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="21" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1702016877808" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="6: K-beauty" data-listing-filename-sort="5. K-beauty.ipynb">
+<tr data-index="21" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1704363642471" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="59" data-listing-title-sort="6: K-beauty" data-listing-filename-sort="5. K-beauty.ipynb">
 <td>
 <span class="listing-date">Nov 24, 2022</span>
 </td>
@@ -477,7 +507,7 @@ Author
 <span class="listing-author">김보람 </span>
 </td>
 </tr>
-<tr data-index="22" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1702016877800" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="5: 건강검진 데이터로 가설검정" data-listing-filename-sort="4. 건강검진 데이터로 가설검정.ipynb">
+<tr data-index="22" data-categories="부스트코스" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1704363642463" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="206" data-listing-title-sort="5: 건강검진 데이터로 가설검정" data-listing-filename-sort="4. 건강검진 데이터로 가설검정.ipynb">
 <td>
 <span class="listing-date">Nov 24, 2022</span>
 </td>
@@ -622,15 +652,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -638,6 +681,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const anchorLink = note.querySelector('a.anchorjs-link');
       if (anchorLink) {
         anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
       }
       return note.innerHTML;
     }
@@ -681,6 +727,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -752,6 +821,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {

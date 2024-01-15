@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.283">
+<meta name="generator" content="quarto-1.4.538">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,12 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -95,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -109,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
@@ -123,18 +125,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">Boram-coco</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Boram-coco</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/boram-coco"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://icons.getbootstrap.com/" rel="" target=""><i class="bi bi-lightning" role="img">
+    <a class="nav-link" href="https://icons.getbootstrap.com/"> <i class="bi bi-lightning" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -144,11 +146,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">[GNN] Neural Network</li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -159,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -194,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -253,6 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header>
+
 
 <section id="ref" class="level1">
 <h1>ref</h1>
@@ -315,7 +318,11 @@ The shape of this vector:  (3, 1)</code></pre>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.hist(s)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Neural Network_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Neural Network_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="192e6b9e-7d59-4158-9a9a-7335f4e838ba" class="cell" data-execution_count="19">
@@ -323,7 +330,11 @@ The shape of this vector:  (3, 1)</code></pre>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.hist(s)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Neural Network_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Neural Network_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="00a799c2-934d-471a-b369-c9a7e246b1db" class="cell" data-execution_count="20">
@@ -334,7 +345,11 @@ The shape of this vector:  (3, 1)</code></pre>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.hist(s)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Neural Network_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Neural Network_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="9555a22a-11d4-4718-b90c-170947377c71" class="cell" data-execution_count="21">
@@ -348,7 +363,11 @@ The shape of this vector:  (3, 1)</code></pre>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.hist(s)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Neural Network_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Neural Network_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="340719f9-200d-4bbf-bd96-a77c9c8b5938" class="cell" data-execution_count="22">
@@ -363,7 +382,11 @@ The shape of this vector:  (3, 1)</code></pre>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].hist(X3.rvs(<span class="dv">10000</span>), density<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Neural Network_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Neural Network_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="2f47ebae-4ef2-454d-b347-4c753ed25f34" class="cell" data-execution_count="23">
@@ -478,7 +501,11 @@ The shape of this vector:  (3, 1)</code></pre>
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Neural Network_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Neural Network_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="c2c430eb-c608-4157-b896-f6af7763d7c2" class="cell" data-execution_count="28">
@@ -515,7 +542,11 @@ The shape of this vector:  (3, 1)</code></pre>
 <span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Neural Network_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Neural Network_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="f393c400-d656-44ad-9248-2211254f8bc3" class="cell" data-execution_count="30">
@@ -554,7 +585,11 @@ The shape of this vector:  (3, 1)</code></pre>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.8</span>, <span class="fl">0.4</span>, <span class="vs">r'$ReLU(x)=max(0, x)$'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Neural Network_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Neural Network_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -761,15 +796,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -777,6 +825,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const anchorLink = note.querySelector('a.anchorjs-link');
       if (anchorLink) {
         anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
       }
       return note.innerHTML;
     }
@@ -820,6 +871,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -891,6 +965,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {

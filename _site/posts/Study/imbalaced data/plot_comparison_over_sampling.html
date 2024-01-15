@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.283">
+<meta name="generator" content="quarto-1.4.538">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,12 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -95,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -109,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
@@ -123,18 +125,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html" rel="" target="">
- <span class="menu-text">Boram-coco</span></a>
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">Boram-coco</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/boram-coco"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://icons.getbootstrap.com/" rel="" target=""><i class="bi bi-lightning" role="img">
+    <a class="nav-link" href="https://icons.getbootstrap.com/"> <i class="bi bi-lightning" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -144,11 +146,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">plot_comparison_over_sampling</li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -159,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -194,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -242,6 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header>
+
 
 <p>ref: <a href="https://imbalanced-learn.org/stable/index.html">imbalaced-learn</a></p>
 <div id="cell-2" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}">
@@ -345,7 +348,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="ss">f"Decision function of </span><span class="sc">{</span>clf<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_over_sampling_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_over_sampling_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Greater is the difference between the number of samples in each class, poorer are the classification results.</p>
@@ -373,7 +380,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="ss">f"Decision function of </span><span class="sc">{</span>clf<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_over_sampling_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_over_sampling_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>By default, random over-sampling generates a bootstrap. The parameter <code>shrinkage</code> allows adding a small perturbation to the generated data to generate a smoothed bootstrap instead. The plot below shows the difference between the two data generation strategies.</p>
@@ -389,7 +400,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="ss">f"Resampling with </span><span class="sc">{</span>sampler<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_over_sampling_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_over_sampling_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>It looks like more samples are generated with smoothed bootstrap. This is due to the fact that the samples generated are not superimposing with the original samples.</p>
@@ -417,7 +432,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    plot_resampling(X, y, sampler, ax, title<span class="op">=</span>title)</span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_over_sampling_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_over_sampling_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The following plot illustrates the difference between :class:<code>~imblearn.over_sampling.ADASYN</code> and :class:<code>~imblearn.over_sampling.SMOTE</code>. :class:<code>~imblearn.over_sampling.ADASYN</code> will focus on the samples which are difficult to classify with a nearest-neighbors rule while regular :class:<code>~imblearn.over_sampling.SMOTE</code> will not make any distinction. Therefore, the decision function depending of the algorithm.</p>
@@ -439,7 +458,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="ss">f"Decision function using a </span><span class="sc">{</span>clf<span class="sc">.</span>__class__<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_over_sampling_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_over_sampling_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Due to those sampling particularities, it can give rise to some specific issues as illustrated below.</p>
@@ -459,7 +482,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Particularities of over-sampling with SMOTE and ADASYN"</span>)</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_over_sampling_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_over_sampling_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>SMOTE proposes several variants by identifying specific samples to consider during the resampling. The borderline version (:class:<code>~imblearn.over_sampling.BorderlineSMOTE</code>) will detect which point to select which are in the border between two classes. The SVM version (:class:<code>~imblearn.over_sampling.SVMSMOTE</code>) will use the support vectors found using an SVM algorithm to create new sample while the KMeans version (:class:<code>~imblearn.over_sampling.KMeansSMOTE</code>) will make a clustering before to generate samples in each cluster independently depending each cluster density.</p>
@@ -492,7 +519,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Decision function and resampling using SMOTE variants"</span>)</span>
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="plot_comparison_over_sampling_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="plot_comparison_over_sampling_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>When dealing with a mixed of continuous and categorical features, :class:<code>~imblearn.over_sampling.SMOTENC</code> is the only method which can handle this case.</p>
@@ -720,15 +751,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -736,6 +780,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const anchorLink = note.querySelector('a.anchorjs-link');
       if (anchorLink) {
         anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
       }
       return note.innerHTML;
     }
@@ -779,6 +826,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -850,6 +920,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {

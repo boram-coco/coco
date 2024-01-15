@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.283">
+<meta name="generator" content="quarto-1.4.538">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -81,12 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -95,17 +96,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -114,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
@@ -128,18 +157,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">Boram-coco</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Boram-coco</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/boram-coco" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/boram-coco"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://icons.getbootstrap.com/" rel="" target=""><i class="bi bi-lightning" role="img">
+    <a class="nav-link" href="https://icons.getbootstrap.com/"> <i class="bi bi-lightning" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -149,11 +178,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TDA tutorial</li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -164,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -199,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -274,6 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+
 <section id="ref" class="level1">
 <h1>Ref</h1>
 <p>https://github.com/SHlee-TDA/PNU_TDA_TUTORIAL</p>
@@ -309,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="motivation">2.1) Motivation</h3>
 <figure align="center" class="figure">
 <img src="https://og-data.s3.amazonaws.com/media/artstory/post_image/50/4.jpg" class="figure-img">
-<figcaption class="figure-caption">
+<figcaption>
 Georges Seurat, A Sunday on La Grande Jatte, 1884-1886.
 </figcaption>
 </figure>
@@ -326,7 +356,7 @@ Georges Seurat, A Sunday on La Grande Jatte, 1884-1886.
 <p>이를 위해서는 데이터가 가진 성질과 기하학이 가진 성질 사이의 차이를 이해할 필요가 있습니다.</p>
 <figure align="center" class="figure">
 <img src="https://editor.analyticsvidhya.com/uploads/75809Computer-vision1.png" class="figure-img">
-<figcaption class="figure-caption">
+<figcaption>
 컴퓨터가 보는 고양이 사진. (이미지 출처 : <a href="https://indatalabs.com/blog/how-does-computer-vision-work">InData Labs </a>)
 </figcaption>
 </figure>
@@ -346,7 +376,7 @@ Georges Seurat, A Sunday on La Grande Jatte, 1884-1886.
 <h4 class="anchored" data-anchor-id="geometric-inference"><strong>Geometric Inference</strong></h4>
 <figure align="center" class="figure">
 <img src="https://github.com/SHlee-TDA/TDA_coding/blob/master/images/pers_hom03.png?raw=true" width="600" class="figure-img">
-<figcaption class="figure-caption">
+<figcaption>
 기하학적 추론과 통계적 추론의 비교
 </figcaption>
 </figure>
@@ -372,7 +402,7 @@ Georges Seurat, A Sunday on La Grande Jatte, 1884-1886.
 <p>순전히 연구자의 주관과 경험에 따를 수 밖에 없었으며, 이는 빅데이터를 분석하는데에 굉장한 리스크가 되었습니다.</p>
 <figure align="center" class="figure">
 <img src="https://github.com/SHlee-TDA/TDA_coding/blob/master/images/simplicial05.png?raw=true" class="figure-img">
-<figcaption class="figure-caption">
+<figcaption>
 Persistent homology는 필트레이션을 이용해 데이터로부터 심플리셜 컴플렉스의 진화과정을 만들고, 그 과정 중에 연결성분(파란 막대)이나 구멍(점선)의 지속성을 측정한다. [이미지 출처 : Figure 1 in Otter, Nina, et al.&nbsp;“A roadmap for the computation of persistent homology.” EPJ Data Science 6 (2017)]
 </figcaption>
 </figure>
@@ -488,7 +518,11 @@ Persistent homology는 필트레이션을 이용해 데이터로부터 심플리
 <pre><code>usetex mode requires TeX.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="tutorial_hand_on_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="tutorial_hand_on_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Persistence Barcode(PB)는 거리 파라미터가 증가할때마다 각 호몰로지 클래스들이 언제 탄생(birth)하고</p>
@@ -576,7 +610,7 @@ Persistent homology는 필트레이션을 이용해 데이터로부터 심플리
 <h4 class="anchored" data-anchor-id="mnist-손글씨-숫자-이미지-데이터">MNIST 손글씨 숫자 이미지 데이터</h4>
 <figure align="center" class="figure">
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png" width="1000" class="figure-img">
-<figcaption class="figure-caption">
+<figcaption>
 MNIST handwritten digit database, Yann LeCun et al. 
 </figcaption></figure>
 <p>MNIST 손글씨 숫자 데이터는 머신러닝을 입문하기 위한 가장 대표적인 데이터로, 0~9까지의 손글씨 숫자가 7만장 준비되어 있습니다.</p>
@@ -655,7 +689,11 @@ MNIST handwritten digit database, Yann LeCun et al.
 <span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="tutorial_hand_on_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="tutorial_hand_on_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -664,7 +702,7 @@ MNIST handwritten digit database, Yann LeCun et al.
 <p>우리는 가장 단순한 머신러닝 분류기인 ’퍼셉트론’을 사용할 것입니다. 퍼셉트론은 뉴럴 네트워크의 기본 단위가 되는 선형 모델입니다.</p>
 <figure align="center" class="figure">
 <img src="https://github.com/SHlee-TDA/Deep_Learning/blob/master/images/perceptron.png?raw=true" class="figure-img">
-<figcaption class="figure-caption">
+<figcaption>
 퍼셉트론의 작동방식 도식화
 </figcaption>
 </figure>
@@ -706,11 +744,12 @@ MNIST handwritten digit database, Yann LeCun et al.
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot confusion matrix</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>cfs_mat <span class="op">=</span> confusion_matrix(y_test_hom, y_pred)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay(cfs_mat).plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x17776a5b0&gt;</code></pre>
-</div>
 <div class="cell-output cell-output-display">
-<p><img src="tutorial_hand_on_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="tutorial_hand_on_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>이 모델은 약 82퍼센트의 정확도를 가지고 있습니다.</p>
@@ -734,7 +773,7 @@ MNIST handwritten digit database, Yann LeCun et al.
 <p>이러한 이미지 데이터로부터 위상적인 정보를 표현할 때는 Cubical Complex가 사용됩니다.</p>
 <figure align="center" class="figure">
 <img src="https://github.com/SHlee-TDA/TDA_coding/blob/main/figures/cubical_complex-1.jpg?raw=true" class="figure-img">
-<figcaption class="figure-caption">
+<figcaption>
 Cubical complex
 </figcaption>
 </figure>
@@ -743,7 +782,7 @@ Cubical complex
 <p>아래의 그림은 이미지 데이터로부터 PB와 PD를 그려나가는 과정을 보여줍니다.</p>
 <figure align="center" class="figure">
 <p><img src="https://github.com/SHlee-TDA/TDA_coding/blob/main/figures/cubical_filtration-1.jpg?raw=true" class="figure-img"> <img src="https://github.com/SHlee-TDA/TDA_coding/blob/main/figures/cubical_PB-1.jpg?raw=true" class="figure-img"> <img src="https://github.com/SHlee-TDA/TDA_coding/blob/main/figures/cubical_PD-1.jpg?raw=true" class="figure-img"></p>
-<figcaption class="figure-caption">
+<figcaption>
 <ol type="1">
 <li>Cubical filtration 과정 (2) 위 과정을 통해 얻어진 Persistence barcode (3) 동일한 정보를 나타내는 Persistence diagram
 </li></ol></figcaption>
@@ -754,25 +793,29 @@ Cubical complex
 <h3 class="anchored" data-anchor-id="topological-data-analysis">5.1) Topological Data Analysis</h3>
 <p>먼저, 이미지 데이터의 위상적 특징을 분석하기 위해 이미지 데이터로부터 PH를 계산해 관찰합니다.</p>
 <div id="cell-53" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Persistent homology for Image data</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>cc <span class="op">=</span> gudhi.CubicalComplex(dimensions<span class="op">=</span>[<span class="dv">28</span>,<span class="dv">28</span>], top_dimensional_cells<span class="op">=</span><span class="dv">1</span><span class="op">-</span>X_train[sample])</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>diag <span class="op">=</span> cc.persistence(homology_coeff_field<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">10</span>))</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].imshow(X_train[sample].reshape(<span class="dv">28</span>,<span class="dv">28</span>), cmap<span class="op">=</span><span class="st">'gray_r'</span>)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="ss">f'Label : </span><span class="sc">{</span>y_train_hom[sample]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>gudhi.plot_persistence_barcode(diag, axes<span class="op">=</span>axs[<span class="dv">1</span>], legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>gudhi.plot_persistence_diagram(diag, axes<span class="op">=</span>axs[<span class="dv">2</span>], legend<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Persistent homology for Image data</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>cc <span class="op">=</span> gudhi.CubicalComplex(dimensions<span class="op">=</span>[<span class="dv">28</span>,<span class="dv">28</span>], top_dimensional_cells<span class="op">=</span><span class="dv">1</span><span class="op">-</span>X_train[sample])</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>diag <span class="op">=</span> cc.persistence(homology_coeff_field<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">10</span>))</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].imshow(X_train[sample].reshape(<span class="dv">28</span>,<span class="dv">28</span>), cmap<span class="op">=</span><span class="st">'gray_r'</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="ss">f'Label : </span><span class="sc">{</span>y_train_hom[sample]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>gudhi.plot_persistence_barcode(diag, axes<span class="op">=</span>axs[<span class="dv">1</span>], legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>gudhi.plot_persistence_diagram(diag, axes<span class="op">=</span>axs[<span class="dv">2</span>], legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>usetex mode requires TeX.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="tutorial_hand_on_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="tutorial_hand_on_files/figure-html/cell-24-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>위 코드를 통해 데이터를 분석해보면 1st Persistent homology가 보여주는 긴 바코드의 개수가 이미지의 구멍의 개수로 근사하는 것을 관찰할 수 있습니다.</p>
@@ -793,40 +836,40 @@ Cubical complex
 <p>우리는 이미지 벡터 뒤에 Persistence Landscape 벡터를 붙여(concatenate) 새로운 입력 데이터로 사용할 것입니다.</p>
 <figure align="center" class="figure">
 <img src="https://github.com/SHlee-TDA/TDA_coding/blob/main/figures/vectorization.png?raw=true" class="figure-img">
-<figcaption class="figure-caption">
+<figcaption>
 데이터 벡터화 과정의 도식화
 </figcaption>
 </figure>
 <div id="cell-57" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Topological features</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>PH0 <span class="op">=</span> CubicalPersistence(homology_dimensions<span class="op">=</span><span class="dv">0</span>, homology_coeff_field<span class="op">=</span><span class="dv">2</span>, newshape<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>], n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>PH1 <span class="op">=</span> CubicalPersistence(homology_dimensions<span class="op">=</span><span class="dv">1</span>, homology_coeff_field<span class="op">=</span><span class="dv">2</span>, newshape<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>], n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>PL <span class="op">=</span> Landscape(num_landscapes<span class="op">=</span><span class="dv">10</span>, resolution<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> topological_vector(X_data):</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    X_data_ <span class="op">=</span> np.ones_like(X_data) <span class="op">-</span> X_data</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate persistence diagram for input dataset.</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    pd0 <span class="op">=</span> PH0.fit_transform(X_data)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    pd1 <span class="op">=</span> PH1.fit_transform(X_data_)</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We only use finite length points.</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    pd0 <span class="op">=</span> DiagramSelector(use<span class="op">=</span><span class="va">True</span>, point_type<span class="op">=</span><span class="st">'finite'</span>).fit_transform(pd0)</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    pd1 <span class="op">=</span> DiagramSelector(use<span class="op">=</span><span class="va">True</span>, point_type<span class="op">=</span><span class="st">'finite'</span>).fit_transform(pd1)</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate persistence landscape for each dimensional persistence diagram.</span></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    pl0 <span class="op">=</span> PL.fit_transform(pd0)</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    pl1 <span class="op">=</span> PL.fit_transform(pd1)</span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Our output vector is of the shape [image vector, 0th-PL, 1st-PL].</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.concatenate([X_data, pl0, pl1], axis<span class="op">=</span><span class="dv">1</span>)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Topological features</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>PH0 <span class="op">=</span> CubicalPersistence(homology_dimensions<span class="op">=</span><span class="dv">0</span>, homology_coeff_field<span class="op">=</span><span class="dv">2</span>, newshape<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>], n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>PH1 <span class="op">=</span> CubicalPersistence(homology_dimensions<span class="op">=</span><span class="dv">1</span>, homology_coeff_field<span class="op">=</span><span class="dv">2</span>, newshape<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>], n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>PL <span class="op">=</span> Landscape(num_landscapes<span class="op">=</span><span class="dv">10</span>, resolution<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> topological_vector(X_data):</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    X_data_ <span class="op">=</span> np.ones_like(X_data) <span class="op">-</span> X_data</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate persistence diagram for input dataset.</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    pd0 <span class="op">=</span> PH0.fit_transform(X_data)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    pd1 <span class="op">=</span> PH1.fit_transform(X_data_)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We only use finite length points.</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    pd0 <span class="op">=</span> DiagramSelector(use<span class="op">=</span><span class="va">True</span>, point_type<span class="op">=</span><span class="st">'finite'</span>).fit_transform(pd0)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    pd1 <span class="op">=</span> DiagramSelector(use<span class="op">=</span><span class="va">True</span>, point_type<span class="op">=</span><span class="st">'finite'</span>).fit_transform(pd1)</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate persistence landscape for each dimensional persistence diagram.</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    pl0 <span class="op">=</span> PL.fit_transform(pd0)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    pl1 <span class="op">=</span> PL.fit_transform(pd1)</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Our output vector is of the shape [image vector, 0th-PL, 1st-PL].</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.concatenate([X_data, pl0, pl1], axis<span class="op">=</span><span class="dv">1</span>)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-58" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># feature addition </span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>X_train_top <span class="op">=</span> topological_vector(X_train)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>X_test_top <span class="op">=</span> topological_vector(X_test)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>X_train_top.shape, X_test_top.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># feature addition </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>X_train_top <span class="op">=</span> topological_vector(X_train)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>X_test_top <span class="op">=</span> topological_vector(X_test)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>X_train_top.shape, X_test_top.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>((7000, 1784), (63000, 1784))</code></pre>
 </div>
@@ -838,43 +881,44 @@ Cubical complex
 <p>실험의 형평성을 위해 우리의 모델은 여전히 똑같은 퍼셉트론 모델입니다.</p>
 <p>변한 것은 학습 데이터에 위상적인 정보가 추가된 것 뿐입니다.</p>
 <div id="cell-60" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model setting</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>model_tda <span class="op">=</span> Perceptron(random_state<span class="op">=</span>seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model setting</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>model_tda <span class="op">=</span> Perceptron(random_state<span class="op">=</span>seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-61" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model fitting</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>model_tda.fit(X_train_top, y_train_hom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model fitting</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>model_tda.fit(X_train_top, y_train_hom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <style>#sk-container-id-3 {color: black;background-color: white;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Perceptron(random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked=""><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">Perceptron</label><div class="sk-toggleable__content"><pre>Perceptron(random_state=42)</pre></div></div></div></div></div>
 </div>
 </div>
 <div id="cell-62" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model evaluation</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model_tda.predict(X_test_top)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>accuracy_score(y_pred, y_test_hom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model evaluation</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model_tda.predict(X_test_top)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>accuracy_score(y_pred, y_test_hom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>0.9128095238095238</code></pre>
 </div>
 </div>
 <p>모델 평가 결과, 정확도가 기존의 약 82%에서 약 91%로, 9% 가량 성능이 향상된 것을 확인할 수 있습니다.</p>
 <div id="cell-64" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experiment</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> X_test[<span class="dv">1</span>]</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>plt.imshow(image.reshape(<span class="dv">28</span>,<span class="dv">28</span>), cmap <span class="op">=</span> <span class="st">'gray_r'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x1774ec2b0&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experiment</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> X_test[<span class="dv">1</span>]</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>plt.imshow(image.reshape(<span class="dv">28</span>,<span class="dv">28</span>), cmap <span class="op">=</span> <span class="st">'gray_r'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="tutorial_hand_on_files/figure-html/cell-30-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="tutorial_hand_on_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="cell-65" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pred1 <span class="op">=</span> model.predict(image[<span class="va">None</span>,:])</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>pred2 <span class="op">=</span> model_tda.predict(topological_vector(image[<span class="va">None</span>, :]))</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'일반 퍼셉트론 모델 : 이 숫자 이미지에는 구멍이 </span><span class="sc">{</span>pred1<span class="sc">}</span><span class="ss">개 있습니다.'</span>)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'TDA 퍼셉트론 모델 : 이 숫자 이미지에는 구멍이 </span><span class="sc">{</span>pred2<span class="sc">}</span><span class="ss">개 있습니다.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>pred1 <span class="op">=</span> model.predict(image[<span class="va">None</span>,:])</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>pred2 <span class="op">=</span> model_tda.predict(topological_vector(image[<span class="va">None</span>, :]))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'일반 퍼셉트론 모델 : 이 숫자 이미지에는 구멍이 </span><span class="sc">{</span>pred1<span class="sc">}</span><span class="ss">개 있습니다.'</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'TDA 퍼셉트론 모델 : 이 숫자 이미지에는 구멍이 </span><span class="sc">{</span>pred2<span class="sc">}</span><span class="ss">개 있습니다.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>일반 퍼셉트론 모델 : 이 숫자 이미지에는 구멍이 [1]개 있습니다.
 TDA 퍼셉트론 모델 : 이 숫자 이미지에는 구멍이 [0]개 있습니다.</code></pre>
@@ -883,13 +927,14 @@ TDA 퍼셉트론 모델 : 이 숫자 이미지에는 구멍이 [0]개 있습니�
 <p>혼동행렬을 관찰하면, 기존의 모델이 구멍이 없는데도 구멍이 있다고 했던 샘플에 대한 오답을 새로운 모델에서 상당히 개선해냈음을 알 수 있습니다.</p>
 <p>이로부터 Persistent homology에 대한 정보를 추가하는 것이 머신러닝의 성능을 향상시킬 수 있음을 관찰할 수 있습니다.</p>
 <div id="cell-67" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cfs_mat <span class="op">=</span> confusion_matrix(y_test_hom, y_pred)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay(cfs_mat).plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x177c78ac0&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>cfs_mat <span class="op">=</span> confusion_matrix(y_test_hom, y_pred)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay(cfs_mat).plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="tutorial_hand_on_files/figure-html/cell-32-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="tutorial_hand_on_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1052,15 +1097,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1068,6 +1126,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const anchorLink = note.querySelector('a.anchorjs-link');
       if (anchorLink) {
         anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
       }
       return note.innerHTML;
     }
@@ -1111,6 +1172,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1182,6 +1266,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
