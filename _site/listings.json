@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Note/Untitled.html",
       "/posts/GNN/graph기반증강.html",
       "/posts/Study/autogluon fraud.html",
       "/posts/Synthetic/2023-07-01-CTGAN.html",
@@ -56,6 +57,7 @@
   {
     "listing": "/Note.html",
     "items": [
+      "/posts/Note/Untitled.html",
       "/posts/Note/Ref.html",
       "/posts/Note/콰트로 블로그 만드는 법.html"
     ]
