@@ -2,7 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/GNN/1_intro.html",
+      "/posts/GNN/pyod.html",
       "/posts/Note/Untitled.html",
+      "/posts/GNN/Untitled.html",
+      "/posts/GNN/pygod_examples.html",
       "/posts/GNN/graph기반증강.html",
       "/posts/Study/autogluon fraud.html",
       "/posts/Synthetic/2023-07-01-CTGAN.html",
@@ -46,6 +50,10 @@
   {
     "listing": "/GNN.html",
     "items": [
+      "/posts/GNN/1_intro.html",
+      "/posts/GNN/pyod.html",
+      "/posts/GNN/Untitled.html",
+      "/posts/GNN/pygod_examples.html",
       "/posts/GNN/graph기반증강.html",
       "/posts/GNN/GNN논문.html",
       "/posts/GNN/Graph basic.html",
