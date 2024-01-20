@@ -4,9 +4,14 @@
     "items": [
       "/posts/GNN/1_intro.html",
       "/posts/GNN/pyod.html",
-      "/posts/Note/Untitled.html",
       "/posts/GNN/Untitled.html",
       "/posts/GNN/pygod_examples.html",
+      "/posts/Note/DSTBX day6.html",
+      "/posts/Note/DSTBX day5.html",
+      "/posts/Note/DSTBX day4.html",
+      "/posts/Note/DSTBX day3.html",
+      "/posts/Note/DSTBX day2.html",
+      "/posts/Note/DSTBX day1.html",
       "/posts/GNN/graph기반증강.html",
       "/posts/Study/autogluon fraud.html",
       "/posts/Synthetic/2023-07-01-CTGAN.html",
@@ -65,7 +70,12 @@
   {
     "listing": "/Note.html",
     "items": [
-      "/posts/Note/Untitled.html",
+      "/posts/Note/DSTBX day6.html",
+      "/posts/Note/DSTBX day5.html",
+      "/posts/Note/DSTBX day4.html",
+      "/posts/Note/DSTBX day3.html",
+      "/posts/Note/DSTBX day2.html",
+      "/posts/Note/DSTBX day1.html",
       "/posts/Note/Ref.html",
       "/posts/Note/콰트로 블로그 만드는 법.html"
     ]
