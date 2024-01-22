@@ -3,8 +3,8 @@
     "listing": "/index.html",
     "items": [
       "/posts/GNN/1_intro.html",
-      "/posts/GNN/pyod.html",
       "/posts/GNN/Untitled.html",
+      "/posts/GNN/pyod.html",
       "/posts/GNN/pygod_examples.html",
       "/posts/Note/DSTBX day6.html",
       "/posts/Note/DSTBX day5.html",
@@ -56,8 +56,8 @@
     "listing": "/GNN.html",
     "items": [
       "/posts/GNN/1_intro.html",
-      "/posts/GNN/pyod.html",
       "/posts/GNN/Untitled.html",
+      "/posts/GNN/pyod.html",
       "/posts/GNN/pygod_examples.html",
       "/posts/GNN/graph기반증강.html",
       "/posts/GNN/GNN논문.html",
