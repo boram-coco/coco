@@ -2,8 +2,6 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/GNN/1_intro.html",
-      "/posts/GNN/Untitled.html",
       "/posts/GNN/2024-01-25-pyod 사용.out.html",
       "/posts/GNN/pyod.html",
       "/posts/GNN/pygod_examples.html",
@@ -56,8 +54,6 @@
   {
     "listing": "/GNN.html",
     "items": [
-      "/posts/GNN/1_intro.html",
-      "/posts/GNN/Untitled.html",
       "/posts/GNN/2024-01-25-pyod 사용.out.html",
       "/posts/GNN/pyod.html",
       "/posts/GNN/pygod_examples.html",
